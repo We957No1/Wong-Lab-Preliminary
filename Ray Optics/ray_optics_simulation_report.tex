@@ -1,0 +1,354 @@
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[margin=25mm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{amsmath,amssymb}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{float}
+\usepackage{subcaption}
+\usepackage{siunitx}
+\usepackage{xcolor}
+\usepackage{listings}
+\usepackage[hidelinks]{hyperref}
+
+\sisetup{per-mode=symbol,detect-all}
+\graphicspath{{figures/}}
+\setlength{\emergencystretch}{2em}
+\definecolor{codeblue}{RGB}{31,78,121}
+\definecolor{codegray}{RGB}{245,245,245}
+\lstset{
+  language=Python,
+  basicstyle=\ttfamily\small,
+  keywordstyle=\color{codeblue}\bfseries,
+  backgroundcolor=\color{codegray},
+  frame=single,
+  breaklines=true,
+  showstringspaces=false
+}
+
+% The report compiles before the notebooks have been run.  A labelled box is
+% shown for a missing plot and is replaced automatically after figure export.
+\newcommand{\simfigure}[2][0.94]{%
+  \IfFileExists{#2}{%
+    \includegraphics[width=#1\linewidth]{#2}%
+  }{%
+    \fbox{\parbox[c][48mm][c]{0.88\linewidth}{\centering
+      Run the notebooks to generate\\[2mm]
+      \texttt{\detokenize{#2}}}}%
+  }%
+}
+
+\title{Primary Exploration of Python Packages Optiland and xrt for Ray Optics.}
+\author{}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+
+\section{Division of software responsibilities.}
+Optiland is used for sequential visible-light surfaces, glass dispersion,
+reflection, and image-plane tracing.  xrt/raycing is used for the geometric
+source--mirror--screen beamline, polarization weights, finite apertures, and
+X-ray material reflectivity.  In the lens notebook, xrt's documented external
+refractive-index interface is used as a material bridge.  Native xrt refractive
+elements are aimed primarily at compound refractive X-ray lenses, so ordinary
+visible spherical lenses are traced by Optiland rather than being forced into
+an inappropriate X-ray model.
+
+\section{Plane-mirror simulation}
+
+\subsection{Default configuration}
+
+The supplied example is an opaque gold mirror at a wavelength of
+\SI{0.15406}{\nano\metre}.  The equivalent photon energy is
+\begin{equation}
+ E_\gamma=\frac{hc}{\lambda}
+ =\frac{\SI{1239.841984}{\electronvolt\nano\metre}}
+ {\SI{0.15406}{\nano\metre}}
+ \simeq \SI{8.048}{\kilo\electronvolt}.
+\end{equation}
+This default lies in the intended range of the xrt scattering-factor tables.
+For a visible or infrared mirror, the notebook requires the constant mode and
+the measured coating values of $R$ and $A$.
+
+\begin{table}[H]
+\centering
+\caption{Principal default parameters in \texttt{MirrorConfig}.}
+\begin{tabular}{@{}lll@{}}
+\toprule
+Parameter & Default & Role \\
+\midrule
+Wavelength & \SI{0.15406}{\nano\metre} & photon energy/material response \\
+Grazing angle & \SI{0.50}{\degree} & angle from the xrt mirror surface \\
+Source--mirror distance & \SI{1000}{\milli\metre} & incoming propagation \\
+Mirror--screen distance & \SI{800}{\milli\metre} & outgoing propagation \\
+Source size $(x,z)$ & $\SI{0.40}{\milli\metre}\times\SI{0.20}{\milli\metre}$ & footprint size \\
+Divergence $(x,z)$ & $(0.10,0.05)\,\si{\milli\radian}$ & angular broadening \\
+Mirror material & Au, \SI{19.32}{\gram\per\cubic\centi\metre} & xrt optical constants \\
+Rays & $20\,000$ & Monte-Carlo sample size \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Geometry and reflection invariant}
+
+For incident unit direction $\hat{\mathbf d}$ and unit surface normal
+$\hat{\mathbf n}$, the reflected direction is
+\begin{equation}
+ \hat{\mathbf d}_{r}=\hat{\mathbf d}
+ -2(\hat{\mathbf d}\cdot\hat{\mathbf n})\hat{\mathbf n}.
+ \label{eq:reflection}
+\end{equation}
+Thus a mirror rotation by $\Delta\theta$ rotates the specular beam by
+$2\Delta\theta$.  In the default xrt layout the expected vertical deflection
+is therefore \SI{1.00}{\degree}.  The screen centre is placed on this direction,
+so its elevation relative to the mirror is
+\begin{equation}
+ z_s=L\sin(2\theta)
+ =\SI{800}{\milli\metre}\sin(\SI{1.00}{\degree})
+ \simeq\SI{13.96}{\milli\metre}.
+\end{equation}
+The notebook asserts the unit length of the reflected direction and checks the
+mean Monte-Carlo deflection against $2\theta$.
+
+The Optiland illustration uses the same vector law in a visually convenient
+folded geometry: a \SI{45}{\degree} plane mirror turns a beam initially along
+$+z$ into $+y$.  Its detector is positioned normal to that reflected branch.
+
+\begin{figure}[H]
+\centering
+\begin{subfigure}[t]{0.49\textwidth}
+  \centering
+  \simfigure{figures/plane_mirror_optiland.png}
+  \caption{Optiland fold-mirror layout.}
+\end{subfigure}\hfill
+\begin{subfigure}[t]{0.49\textwidth}
+  \centering
+  \simfigure{figures/plane_mirror_layout.png}
+  \caption{xrt Monte-Carlo scattering plane.}
+\end{subfigure}
+\caption{The two geometric views implement the same specular-reflection law
+but use different coordinate conventions.}
+\label{fig:mirror-layouts}
+\end{figure}
+
+\subsection{Reflectance, absorptance, and detector distribution}
+
+xrt obtains the complex $s$- and $p$-polarized amplitudes from the selected
+material and incidence angle.  The intensity reflectances are
+\begin{equation}
+ R_s=|r_s|^2,\qquad R_p=|r_p|^2.
+\end{equation}
+These weights are applied to the ray coherency matrix.  For an opaque thick
+mirror, transmission is neglected and
+\begin{equation}
+ A=1-R,\qquad T=0,\qquad R+A+T=1.
+ \label{eq:budget}
+\end{equation}
+In the user-defined constant mode, all three branches are retained in the
+reported budget, with $T=1-R-A$.  xrt traces the reflected branch geometrically;
+the table and bar chart account for the non-reflected power.
+
+Figure~\ref{fig:mirror-results} should be interpreted as follows.  The
+reflectance plot shows the rapid angle and polarization dependence expected of
+an X-ray mirror.  The vertical dashed line marks the selected grazing angle.
+The detector distribution convolves source size and divergence and is clipped
+by the finite mirror.  Increasing either divergence broadens the corresponding
+screen coordinate approximately linearly with propagation distance; decreasing
+the mirror width or length lowers the accepted-ray fraction.
+
+\begin{figure}[H]
+\centering
+\begin{subfigure}[t]{0.49\textwidth}
+  \centering
+  \simfigure{figures/plane_mirror_reflectance.png}
+  \caption{Polarization-dependent material reflectance.}
+\end{subfigure}\hfill
+\begin{subfigure}[t]{0.49\textwidth}
+  \centering
+  \simfigure{figures/plane_mirror_screen.png}
+  \caption{Reflected screen footprint.}
+\end{subfigure}
+\begin{subfigure}[t]{0.62\textwidth}
+  \centering
+  \simfigure{figures/plane_mirror_energy_budget.png}
+  \caption{Reflected, absorbed, and transmitted fractions.}
+\end{subfigure}
+\caption{Plane-mirror outputs generated by \texttt{Plane Mirror.ipynb}.}
+\label{fig:mirror-results}
+\end{figure}
+
+\section{Movable lens-group simulation}
+
+\subsection{Prescription and exact model}
+
+The default three-element group is summarized in Table~\ref{tab:lenses}.  The
+front and rear radii, thickness, glass, position, wavelengths, field angles,
+aperture, and fixed sensor location are all editable.  Removing either the
+second or third tuple produces a two-lens model without changing the builder.
+
+\begin{table}[H]
+\centering
+\caption{Default front-vertex prescription and paraxial reference values.}
+\label{tab:lenses}
+\begin{tabular}{@{}lrrrrl@{}}
+\toprule
+Lens & $z$ (mm) & $R_1$ (mm) & $R_2$ (mm) & $d$ (mm) & Glass \\
+\midrule
+L1 & 0  & 100 & $-100$ & 5 & N-BK7 \\
+L2 & 45 & 150 & $-150$ & 4 & N-SF5 \\
+L3 & 70 & 120 & $-120$ & 5 & N-BK7 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+For the first-order comparison, each element focal length is estimated with the
+thick lensmaker equation in air,
+\begin{equation}
+ \frac{1}{f}=(n-1)\left[
+ \frac{1}{R_1}-\frac{1}{R_2}
+ +\frac{(n-1)d}{nR_1R_2}\right].
+ \label{eq:lensmaker}
+\end{equation}
+The reference indices in the notebook give approximately
+$f_1=\SI{97.58}{\milli\metre}$,
+$f_2=\SI{112.09}{\milli\metre}$, and
+$f_3=\SI{116.93}{\milli\metre}$.  Optiland does not use these constants for
+the exact trace: it loads the named glass and evaluates its dispersion at each
+of \SI{486.1}{\nano\metre}, \SI{587.6}{\nano\metre}, and
+\SI{656.3}{\nano\metre}.
+
+\begin{figure}[H]
+\centering
+\begin{subfigure}[t]{0.49\textwidth}
+  \centering
+  \simfigure{figures/lens_group_baseline.png}
+  \caption{Baseline Optiland surfaces.}
+\end{subfigure}\hfill
+\begin{subfigure}[t]{0.49\textwidth}
+  \centering
+  \simfigure{figures/lens_group_moved.png}
+  \caption{Lens 2 translated by \SI{10}{\milli\metre}.}
+\end{subfigure}
+\caption{Exact thick-lens layouts at the same fixed sensor plane.}
+\label{fig:lens-layouts}
+\end{figure}
+
+\subsection{Why lens translation moves the focus}
+
+In one meridional plane, free propagation by distance $d$ and refraction by an
+ideal thin lens of focal length $f$ are represented by
+\begin{equation}
+ P(d)=\begin{pmatrix}1&d\\0&1\end{pmatrix},\qquad
+ L(f)=\begin{pmatrix}1&0\\-1/f&1\end{pmatrix}.
+\end{equation}
+The group matrix contains alternating $P$ and $L$ factors.  Moving lens 2
+changes both adjacent propagation distances, so the group power and the
+principal-plane locations change even though the lens curvature does not.
+For collimated input, a matrix
+$M=\left(\begin{smallmatrix}A&B\\C&D\end{smallmatrix}\right)$ places the
+paraxial focus a distance $-A/C$ after the output reference plane.
+
+With the default reference indices, the paraxial calculation predicts a focus
+near $z=\SI{79.88}{\milli\metre}$, close to the fixed sensor at
+\SI{80}{\milli\metre}.  Translating L2 from $z=\SI{45}{\milli\metre}$ to
+$z=\SI{55}{\milli\metre}$ moves the first-order focus to about
+$z=\SI{83.96}{\milli\metre}$.  Therefore the moved configuration should have a
+larger spot at the unchanged sensor.  Exact numerical values in the Optiland
+table can differ because the spherical surfaces include thickness, aberration,
+field angle, vignetting, and wavelength-dependent glass data.
+
+\begin{figure}[H]
+\centering
+\simfigure[0.90]{figures/lens_group_comparison.png}
+\caption{Independent paraxial trajectories before and after translating L2.}
+\label{fig:lens-comparison}
+\end{figure}
+
+\subsection{Spot diagrams and position sensitivity}
+
+The image-plane RMS spot radius is calculated from accepted rays as
+\begin{equation}
+ r_{\mathrm{RMS}}=
+ \sqrt{\left\langle(x-\bar{x})^2+(y-\bar{y})^2\right\rangle}.
+ \label{eq:rms}
+\end{equation}
+A smaller value at the fixed sensor means better convergence there, not
+necessarily a globally optimized imaging system.  Differences between the
+three wavelength panels show chromatic residuals.  At the off-axis field,
+coma, astigmatism, and field curvature may also contribute.
+
+The two-dimensional sweep moves L2 and L3 while keeping L1 and the sensor
+fixed.  A dark valley indicates combinations that make the first-order sensor
+height small.  The sweep is an initializer: promising positions must be copied
+back to the prescription and verified with the exact Optiland trace.  Invalid
+overlapping prescriptions are masked rather than silently traced.
+
+\begin{figure}[H]
+\centering
+\begin{subfigure}[t]{0.59\textwidth}
+  \centering
+  \simfigure{figures/lens_group_spots.png}
+  \caption{Exact multi-wavelength spot distributions.}
+\end{subfigure}\hfill
+\begin{subfigure}[t]{0.39\textwidth}
+  \centering
+  \simfigure{figures/lens_group_sweep.png}
+  \caption{Paraxial lens-position sensitivity.}
+\end{subfigure}
+\caption{Fixed-sensor convergence metrics from \texttt{lens\_group.ipynb}.}
+\label{fig:lens-results}
+\end{figure}
+
+\section{Validation, interpretation, and limitations}
+
+The notebooks use several checks that are independent of a visually plausible
+plot:
+\begin{enumerate}
+  \item Equation~\eqref{eq:reflection} predicts the $2\theta$ mirror
+  deflection, which is compared with the mean xrt ray direction.
+  \item Equation~\eqref{eq:budget} is asserted numerically, including a
+  possible transmitted fraction in constant mode.
+  \item The external visible refractive indices returned by xrt are checked
+  against the requested constants.
+  \item The paraxial lens calculation predicts the direction of focus shift;
+  the exact Optiland RMS spot verifies its consequence at the fixed sensor.
+  \item Lens overlap and sensor-order checks reject non-physical position
+  combinations during the sweep.
+\end{enumerate}
+
+The simulations are geometrical-optics models.  They do not by themselves
+include diffraction-limited point-spread functions, mirror roughness scatter,
+surface figure error, mechanical tolerances, thermal deformation, ghost paths,
+or a measured coating spectrum.  The xrt material tables are suitable for the
+X-ray/EUV example, not for an arbitrary visible mirror.  Conversely, visible
+glass catalogue data should not be interpreted as an X-ray compound refractive
+lens model.  For an experiment, measured source phase space, coating data,
+surface prescriptions, and detector response should replace the defaults.
+
+\section{Recommended parameter studies}
+
+For the mirror, sweep wavelength and grazing angle together, plot $R_s$ and
+$R_p$, and record accepted flux and screen RMS width.  This separates a
+material-response loss from aperture clipping.  For the lens group, first use
+the fast position heat map to select a region, then evaluate the exact
+multi-wavelength RMS spot and off-axis fields at each candidate.  A final design
+should optimize radii, spacings, glass choices, and sensor position jointly
+rather than interpreting one translated configuration as an optimum.
+
+\begin{thebibliography}{9}
+\bibitem{optiland}
+Optiland documentation, ``Quickstart---Your First 5 Minutes'' and reflective
+examples.  \url{https://optiland.readthedocs.io/}
+
+\bibitem{xrt}
+xrt documentation, ``Raycing backend'' and ``Using xrt as X-ray calculator.''
+\url{https://xrt.readthedocs.io/}
+\end{thebibliography}
+
+\end{document}

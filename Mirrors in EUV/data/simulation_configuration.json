@@ -1,0 +1,184 @@
+{
+  "wavelength_nm": 13.5,
+  "object_distance_mm": 351.14151,
+  "image_f_number": 2.78,
+  "field_y_mm": [
+    -208.0,
+    -211.0,
+    -214.0
+  ],
+  "mirrors": [
+    {
+      "name": "M1",
+      "radius_mm": -1277.3186526842853,
+      "thickness_to_next_mm": -292.381122,
+      "conic": 1.626111,
+      "asphere_coeffs": [
+        0.0,
+        0.0,
+        3.4982e-16,
+        -7.10116e-22,
+        0.0
+      ],
+      "surface_type": "even_asphere",
+      "nominal_aoi_deg": 11.34,
+      "aoi_half_span_deg": 2.0,
+      "aperture_radius_mm": null,
+      "dx_mm": 0.0,
+      "dy_mm": 0.0,
+      "rx_rad": 0.0,
+      "ry_rad": 0.0,
+      "coating": {
+        "n_pairs": 40,
+        "d_mo_nm": 2.8,
+        "d_si_nm": 4.15,
+        "d_ru_nm": 1.5,
+        "roughness_nm": 0.25,
+        "period_gradient_pct": 0.0,
+        "layer_overrides_nm": {}
+      }
+    },
+    {
+      "name": "M2",
+      "radius_mm": -417.6341858639181,
+      "thickness_to_next_mm": 504.794891,
+      "conic": 0.339465,
+      "asphere_coeffs": [
+        0.0,
+        0.0,
+        5.75903e-15,
+        9.51256e-20,
+        0.0
+      ],
+      "surface_type": "even_asphere",
+      "nominal_aoi_deg": 7.72,
+      "aoi_half_span_deg": 2.0,
+      "aperture_radius_mm": null,
+      "dx_mm": 0.0,
+      "dy_mm": 0.0,
+      "rx_rad": 0.0,
+      "ry_rad": 0.0,
+      "coating": {
+        "n_pairs": 40,
+        "d_mo_nm": 2.8,
+        "d_si_nm": 4.15,
+        "d_ru_nm": 1.5,
+        "roughness_nm": 0.25,
+        "period_gradient_pct": 0.0,
+        "layer_overrides_nm": {}
+      }
+    },
+    {
+      "name": "M3",
+      "radius_mm": -757.3290518997599,
+      "thickness_to_next_mm": -496.445439,
+      "conic": 0.026174,
+      "asphere_coeffs": [
+        0.0,
+        0.0,
+        1.14397e-17,
+        7.74632e-23,
+        0.0
+      ],
+      "surface_type": "even_asphere",
+      "nominal_aoi_deg": 5.28,
+      "aoi_half_span_deg": 2.0,
+      "aperture_radius_mm": null,
+      "dx_mm": 0.0,
+      "dy_mm": 0.0,
+      "rx_rad": 0.0,
+      "ry_rad": 0.0,
+      "coating": {
+        "n_pairs": 40,
+        "d_mo_nm": 2.8,
+        "d_si_nm": 4.15,
+        "d_ru_nm": 1.5,
+        "roughness_nm": 0.25,
+        "period_gradient_pct": 0.0,
+        "layer_overrides_nm": {}
+      }
+    },
+    {
+      "name": "M4",
+      "radius_mm": -448.0969323284013,
+      "thickness_to_next_mm": 193.582965,
+      "conic": 2.592761,
+      "asphere_coeffs": [
+        0.0,
+        0.0,
+        -9.00925e-15,
+        -2.72277e-19,
+        0.0
+      ],
+      "surface_type": "even_asphere",
+      "nominal_aoi_deg": 15.52,
+      "aoi_half_span_deg": 3.0,
+      "aperture_radius_mm": null,
+      "dx_mm": 0.0,
+      "dy_mm": 0.0,
+      "rx_rad": 0.0,
+      "ry_rad": 0.0,
+      "coating": {
+        "n_pairs": 40,
+        "d_mo_nm": 2.8,
+        "d_si_nm": 4.15,
+        "d_ru_nm": 1.5,
+        "roughness_nm": 0.25,
+        "period_gradient_pct": 0.0,
+        "layer_overrides_nm": {}
+      }
+    },
+    {
+      "name": "M5",
+      "radius_mm": -392.02618734931497,
+      "thickness_to_next_mm": -260.692804,
+      "conic": 0.346595,
+      "asphere_coeffs": [
+        0.0,
+        0.0,
+        -9.70172e-16,
+        -1.56756e-20,
+        0.0
+      ],
+      "surface_type": "even_asphere",
+      "nominal_aoi_deg": 7.76,
+      "aoi_half_span_deg": 2.0,
+      "aperture_radius_mm": null,
+      "dx_mm": 0.0,
+      "dy_mm": 0.0,
+      "rx_rad": 0.0,
+      "ry_rad": 0.0,
+      "coating": {
+        "n_pairs": 40,
+        "d_mo_nm": 2.8,
+        "d_si_nm": 4.15,
+        "d_ru_nm": 1.5,
+        "roughness_nm": 0.25,
+        "period_gradient_pct": 0.0,
+        "layer_overrides_nm": {}
+      }
+    }
+  ],
+  "optical_constants_13p5nm": {
+    "vacuum": {
+      "n_real": 1.0,
+      "k": 0.0
+    },
+    "Ru": {
+      "n_real": 0.886360034,
+      "k": 0.017064894
+    },
+    "Si": {
+      "n_real": 0.999002305,
+      "k": 0.001826494
+    },
+    "Mo": {
+      "n_real": 0.923793525,
+      "k": 0.006435425
+    },
+    "substrate": {
+      "n_real": 0.973713,
+      "k": 0.0129764
+    }
+  }
+}
