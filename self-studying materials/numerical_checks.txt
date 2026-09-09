@@ -1,0 +1,115 @@
+Optics textbook reproducibility checks
+Dependencies: NumPy and SymPy. All checks run locally; no network required.
+Numbers rounded for display; assertions use unrounded values.
+
+1. Real, full-disk, RMS-normalized Zernike checks
+  Modes through n=6: 28; quadrature samples: 6144
+  Maximum full-disk Gram-matrix error: 1.976e-14
+  Synthetic OPD full-disk RMS including piston: 0.118650748 um
+  Coefficient Euclidean norm: 0.118650748 um
+  Masked samples: 4360; sampled area fraction: 0.793303
+  Weighted-design rank: 28; condition number: 7.327566
+  Correct weighted least-squares maximum coefficient error: 1.388e-16 um
+  Incorrect masked-projection maximum coefficient error: 0.020527 um
+  (n,m)       prescribed [um]        recovered [um]
+  (0, 0)     0.020000000             0.020000000
+  (1, 1)    -0.035000000            -0.035000000
+  (2, 0)     0.080000000             0.080000000
+  (2, -2)    0.042000000             0.042000000
+  (3, 1)    -0.025000000            -0.025000000
+  (4, 0)     0.060000000             0.060000000
+  (6, 0)     0.008000000             0.008000000
+
+2. Quartic/sixth-order expansion and least-RMS focus
+  W = A rho^4 + B rho^6
+  c00=A/3+B/4; c20=(A/2+9B/20)/sqrt(3)
+  c40=(A/6+B/4)/sqrt(5); c60=B/(20sqrt(7))
+  Add D rho^2 + P, with D=-A-9B/10 and P=A/6+B/5.
+  Balanced RMS = sqrt[(A/6+B/4)^2/5 + B^2/2800].
+  Here P is the added piston, not the original piston coefficient.
+  Symbolic expansion, zero mean, zero defocus and RMS identities: PASS
+  Example (micrometres): A=-0.156250000, B=+0.0001953125
+    c00          = -0.052034505208 um
+    c20          = -0.045054746104 um
+    c40          = -0.011624350781 um
+    c60          = +0.000003691059 um
+    added D      = +0.156074218750 um
+    added P      = -0.026002604167 um
+    balanced RMS = +0.011624351367 um
+
+3. Spherical mirror: exact geometry, series and exact reflected rays
+  Incoming direction (dy,dz)=(0,-1); sag z=R-sqrt(R^2-r^2).
+  Reference focus (0,R/2), mirror vertex at z=0.
+  W(r)=-z+sqrt[r^2+(R/2-z)^2]-R/2.
+  Symbolic W=-r^4/(4R^3)+r^6/(8R^5)+O(r^8): PASS
+  R=100 mm, paraxial f=50 mm; ray table:
+   height [mm]   axis crossing z [mm]   intercept at f [mm]   exact W [um]  W4+W6 [um]
+      0.100          49.999975000         -0.000000050        -0.000000025  -0.000000025
+      1.000          49.997499812         -0.000050011        -0.000249987  -0.000249988
+      2.000          49.989996999         -0.000400360        -0.003999201  -0.003999200
+      3.000          49.977484801         -0.001352739        -0.020240901  -0.020240887
+      4.000          49.959951936         -0.003211558        -0.063948933  -0.063948800
+      5.000          49.937382568         -0.006285338        -0.156055479  -0.156054688
+     10.000          49.748109237         -0.051148601        -2.487701047  -2.487500000
+  Leading spot f*dW/dr at r=0.5 mm: -6.250000000000e-06 mm
+  Exact spot at r=0.5 mm:          -6.250351580528e-06 mm
+  The slope relation here is a paraxial leading-order check, not an exact surface-coordinate identity.
+  Vertex comparison plane uses reflected rays continued backward to z=0.
+  Its radial coordinate is x=r+r^3/R^2+7r^5/(4R^4)+O(r^7).
+  Its wavefront is W0(x)=-x^4/(4R^3)+9x^6/(8R^5)+O(x^8).
+  The exact ray spot expanded in x is -x^3/(2R^2)+3x^5/(8R^4)+O(x^7).
+  Coordinate inversion and independent vertex-plane series: PASS
+  The surface-footprint and plane-coordinate sixth coefficients differ legitimately.
+
+4. A thin spherical phase-screen lens (not a finite-thickness singlet)
+  Symmetric spherical thickness change: t(r)-t0=-2[R-sqrt(R^2-r^2)].
+  Air phase delay: P(r)=(n-1)[t(r)-t0], f=R/[2(n-1)].
+  Target-focus OPD: W=P(r)+sqrt(f^2+r^2)-f.
+  Quartic coefficient: -(n-1)/(4R^3)-1/(8f^3).
+  Sixth coefficient:   -(n-1)/(8R^5)+1/(16f^5).
+  At n=1.5, f=R: W=-r^4/(4R^3)+0*r^6+O(r^8): PASS
+  At R=50 mm, a=5 mm: quartic edge OPD A=-1.250000 um.
+  c40=A/(6sqrt(5))=-0.093169499062 um after piston/defocus removal.
+  This screen omits travel inside a thick lens; section 5 traces that travel explicitly.
+
+5. Exact symmetric biconvex singlet: vector Snell trace and common-plane OPD
+  Coordinates (height,z), propagation +z; lengths mm; ray state (height,n*theta).
+  R1=+50 mm, R2=-50 mm, thickness=5 mm, n=1.5, air on both sides.
+  ABCD = [[0.966666666667, 3.333333333333], [-0.019666666667, 0.966666666667]]
+  Effective focal length (EFL): 50.847457627119 mm
+  Back focal length (from rear vertex at z=5): 49.152542372881 mm
+  Paraxial focus coordinate: z=54.152542372881 mm
+  Wavefront comparison plane: z=6 mm.
+  W=OPL_to_z6 + sqrt(y6^2+(focus_z-6)^2) - [1.5*5+(focus_z-5)].
+  The exact rays reach their own axis crossings; the added distance to the
+  common ideal focus defines a reference-sphere OPD and is not the ray's continuation.
+  input h    rear h      exit h       ray axis z     spot at focus     W at z6
+     mm        mm          mm             mm              mm             um
+    0.00   0.0000000   0.0000000             nan   0.0000000000   0.000000000
+    0.10   0.0966668   0.0946999    54.152230060  -0.0000006142  -0.000000302
+    1.00   0.9667905   0.9469286    54.121294448  -0.0006148952  -0.003020490
+    2.00   1.9343251   1.8934255    54.027348416  -0.0049356344  -0.048357240
+    3.00   2.9033535   2.8390428    53.870092404  -0.0167513265  -0.245055846
+    4.00   3.8746372   3.7832988    53.648489333  -0.0400219043  -0.775586326
+    5.00   4.8489549   4.7256595    53.361049957  -0.0789746778  -1.896913612
+  At input h=3 mm, finite-difference dW/dy6=-3.460637226289e-04.
+  Actual minus ideal transverse direction cosine=-3.460636803499e-04.
+  Differential OPD/ray-direction consistency: PASS
+  Illustrative pullback: W sampled uniformly in entrance disk rho=h/5.
+  This labels output OPD by entrance rays; it is NOT an exit-pupil fit.
+    c(0,0) = -0.631518946868 um
+    c(2,0) = -0.547320956941 um
+    c(4,0) = -0.141739670677 um
+    c(6,0) = -0.000177324201 um
+    c(8,0) = +0.000000559596 um
+  Fit residual RMS through n=8: 1.661e-08 um
+  Reported c(2,0) includes the defocus projection of higher radial powers
+  even though the reference focus was fixed at the paraxial focus.
+
+6. Reproducible illustrations (Matplotlib)
+  figures/zernike_mode_atlas.pdf
+  figures/spherical_mirror_checks.pdf
+  figures/thick_singlet_checks.pdf
+  PNG previews are also written beside the PDF figures.
+
+ALL CHECKS PASSED

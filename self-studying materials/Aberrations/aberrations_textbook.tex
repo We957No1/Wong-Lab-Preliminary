@@ -1,0 +1,81 @@
+\documentclass[11pt,a4paper,oneside,openany]{book}
+\usepackage[margin=25mm,headheight=15pt]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern,microtype}
+\usepackage{amsmath,amssymb,mathtools,bm}
+\usepackage{graphicx,xcolor,booktabs,longtable,array}
+\usepackage{siunitx,enumitem,listings}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,calc,positioning}
+\usepackage{fancyhdr}
+\usepackage{hyperref}
+\hypersetup{colorlinks=true,linkcolor=blue!45!black,citecolor=green!35!black,urlcolor=blue!55!black,pdftitle={Optical Aberrations: Orders, Derivations, and Design},pdfauthor={Self-study optics series}}
+\setlength{\emergencystretch}{3em}
+\setlength{\parskip}{0.35em}
+\setcounter{tocdepth}{1}
+\setcounter{secnumdepth}{2}
+\setlist{itemsep=0.25em,topsep=0.4em}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\nouppercase{\leftmark}}
+\fancyfoot[C]{\thepage}
+\renewcommand{\chaptermark}[1]{\markboth{\thechapter.\ #1}{}}
+\lstset{basicstyle=\ttfamily\footnotesize,breaklines=true,columns=fullflexible,keepspaces=true,frame=single,rulecolor=\color{black!20},showstringspaces=false,tabsize=4}
+\begin{document}
+\frontmatter
+\hypersetup{pageanchor=false}
+\begin{titlepage}
+\centering
+\vspace*{18mm}
+{\large SELF-STUDY OPTICS SERIES\par}
+\vspace{17mm}
+{\Huge\bfseries Optical Aberrations\par}
+\vspace{6mm}
+{\LARGE Orders, Derivations, and Design\par}
+\vspace{13mm}
+{\Large A first-principles course for mirrors and lenses\par}
+\vspace{18mm}
+\begin{tikzpicture}[x=1cm,y=1cm,>=Stealth]
+\draw[gray,->] (-3.4,0)--(3.4,0) node[right] {axis};
+\draw[very thick,blue!55!black] (0,-2)--(0,2);
+\foreach \h/\f in {1.8/1.9,1.2/2.3,0.6/2.65,-0.6/2.65,-1.2/2.3,-1.8/1.9}{
+\draw[orange!85!black,->] (-3,\h)--(-0.1,\h);
+\draw[orange!85!black] (0,\h)--(\f,0);
+}
+\node[below] at (0,-2.1) {optical element};
+\node[above,align=center] at (2.2,1.7) {different pupil rays\\different axis crossings};
+\end{tikzpicture}
+\vfill
+{\large Primary and higher-order theory, explicit calculations,\par mirror and lens examples, and exercises with solutions\par}
+\vspace{8mm}
+{10 September 2026\par}
+\end{titlepage}
+\hypersetup{pageanchor=true}
+\setcounter{page}{1}
+\chapter*{How to study this book}
+\addcontentsline{toc}{chapter}{How to study this book}
+An aberration is a departure from a specified ideal image or wavefront. To calculate one, you must first define the ideal. This book begins with how rays travel and how a simple lens or mirror forms an image. It then derives the departures systematically, including how the departures change with pupil position and object field.
+
+Part I is a self-contained introduction for a reader who has never studied optics. It includes the mathematical operations used later. Part II derives primary aberrations, constructs the higher-order hierarchy, and relates these mathematical descriptions to physical mirror and lens designs. The emphasis is on reasoning you can reproduce: coordinate definitions, optical path expansions, gradients, numerical estimates, and checks against exact geometry.
+
+\paragraph{Three meanings of order.}
+Keep three questions separate throughout your study: what is the total degree of the wavefront polynomial in pupil and field coordinates; what is the degree of the transverse ray error; and what is the radial index of a Zernike polynomial? A term can be called third order in one description and fourth order in another. The chapters derive the connection and explain where a leading paraxial conversion ceases to be sufficient.
+
+\paragraph{Suggested progression.}
+Study the foundations first, then derive each primary aberration and draw its ray fan. Reproduce the spherical mirror example by hand before running the computational check. Next work through the invariant construction for higher orders, the lens examples, chromatic effects, and the design exercises. Keep a notebook recording every reference plane, aperture, sign convention, and approximation. An unexplained factor of two is an invitation to reconstruct the optical path, not to memorize another rule.
+
+\paragraph{Companion material.}
+The book in \texttt{../Zernike Constants/} develops disk orthogonality and wavefront fitting in greater depth. Both books repeat the introductory foundations for independent use. The shared \texttt{../verify\_optics.py} script provides reproducible checks of modal normalization and exact rays; its saved results are in \texttt{../numerical\_checks.txt}. All prescriptions used for numerical examples are explicit teaching examples, not measured data from an instrument.
+
+\paragraph{Scope and next steps.}
+This is a bridge into research, including reproducible modelling and interpretation of numerical results. It does not replace a complete treatment of Hamiltonian optics, general surface-by-surface high-order aberration sums, polarization-sensitive diffraction, or a validated industrial design code. It teaches when the approximations work and how an exact ray trace can expose their failure. Further reading is listed at the end.
+
+\input{notation.tex}
+\tableofcontents
+\mainmatter
+\part{Foundations: from light to an optical model}
+\input{foundations.tex}
+\part{Aberration theory: from primary terms to higher orders}
+\input{aberrations_chapters.tex}
+\end{document}

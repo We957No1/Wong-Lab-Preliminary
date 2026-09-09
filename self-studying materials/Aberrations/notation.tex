@@ -1,0 +1,43 @@
+\chapter*{Notation and convention card}
+\addcontentsline{toc}{chapter}{Notation and convention card}
+Keep this page beside your calculations. Individual examples may introduce local symbols, but each defines its geometry before using it.
+
+\renewcommand{\arraystretch}{1.05}
+\begin{longtable}{@{}>{\raggedright\arraybackslash}p{0.17\linewidth}>{\raggedright\arraybackslash}p{0.46\linewidth}>{\raggedright\arraybackslash}p{0.29\linewidth}@{}}
+\toprule
+Symbol & Meaning & Typical units or range \\
+\midrule
+\endhead
+$\lambda_0$ & Vacuum wavelength & nm, $\mu$m, or mm; convert consistently \\
+$n,n',n_g$ & Refractive indices in incident, output, and glass regions & Dimensionless \\
+$\mathcal{L}$ & Optical path length $\int n\,\mathrm{d}\ell$ & Length \\
+$S$ & Eikonal; phase expressed as optical length & Length \\
+$W$ & Actual minus ideal eikonal at the stated comparison points & Length; waves only when explicitly divided by $\lambda_0$ \\
+$\phi$ & Optical phase, $2\pi S/\lambda_0$ & Radians \\
+$\bm{d},\bm{N}$ & Unit ray direction and unit surface normal & Dimensionless vectors \\
+$R,c=1/R$ & Vertex radius and curvature & Length and inverse length \\
+$K$ & Conic constant in the specified sag equation & Dimensionless \\
+$a,r$ & Physical pupil radius and physical radial coordinate & Length \\
+$\rho,\theta$ & Normalized radius $r/a$ and pupil azimuth & $0\leq\rho\leq1$; radians \\
+$u,v$ & Often normalized Cartesian pupil coordinates in wavefront sections & Dimensionless; local definitions take precedence \\
+$u,p=nu$ & In first-order ray matrices, small angle and reduced angle & Radians and index times radians \\
+$H$ & Normalized field magnitude in invariant expansions & Dimensionless when normalized \\
+$f,L$ & Focal length; distance from comparison plane to reference focus & Length; generally different \\
+$Z_n^m$ & Real RMS-normalized disk mode & Dimensionless; here $n$ is a radial integer, not an index of refraction \\
+$c_n^m$ & Coefficient multiplying $Z_n^m$ in a wavefront expansion & Same units as $W$ \\
+$\langle\cdot\rangle$ & Specified pupil average; uniform area by default & Preserves the units of its argument \\
+$\sigma_W$ & RMS wavefront deviation after the stated removals & Length \\
+$\Delta\bm{x}$ & Actual minus ideal transverse ray intercept & Length \\
+\bottomrule
+\end{longtable}
+\renewcommand{\arraystretch}{1}
+\clearpage
+
+\paragraph{Geometry and OPD.}
+For a transmitting system the local forward axis is normally $+z$. A signed spherical radius is positive when its centre of curvature is downstream. Mirror examples explicitly specify the direction before and after reflection. Our OPD sign is $W=S_{\rm actual}-S_{\rm ideal}$, giving the leading forward image-space relation $\Delta\bm{x}\simeq(L/n')\nabla_\perp W$. Changing the definition of OPD reverses the corresponding signed coefficients.
+
+\paragraph{Modes and pupil.}
+Unless explicitly stated otherwise, Zernike functions are real, orthonormal under the full-disk area average, with $m>0$ for $\cos(m\theta)$ and $m<0$ for $\sin(|m|\theta)$. A pair $(n,m)$ identifies a function; a single number requires a named ordering convention. Coefficients depend on the pupil radius, coordinate surface, obscurations or weights, reference sphere, and removed modes.
+
+\paragraph{Order and meaning.}
+A wavefront polynomial's total degree in pupil and field variables, the degree of its transverse ray error, and the radial index of a Zernike mode answer different questions. Terms called ``spherical'' or ``coma'' in a Zernike fit include lower powers needed for orthogonality. They are not simply the corresponding highest monomials. Surface Zernike amplitudes are not wavefront amplitudes until the reflection or refraction conversion and pupil mapping have been applied.

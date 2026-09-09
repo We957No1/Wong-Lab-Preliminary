@@ -1,0 +1,79 @@
+\documentclass[11pt,a4paper,oneside,openany]{book}
+\usepackage[margin=25mm,headheight=15pt]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern,microtype}
+\usepackage{amsmath,amssymb,mathtools,bm}
+\usepackage{graphicx,xcolor,booktabs,longtable,array}
+\usepackage{siunitx,enumitem,listings}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,calc,positioning}
+\usepackage{fancyhdr}
+\usepackage{hyperref}
+\hypersetup{colorlinks=true,linkcolor=blue!45!black,citecolor=green!35!black,urlcolor=blue!55!black,pdftitle={Zernike Coefficients for Mirrors and Lenses},pdfauthor={Self-study optics series}}
+\setlength{\emergencystretch}{3em}
+\setlength{\parskip}{0.35em}
+\setcounter{tocdepth}{1}
+\setcounter{secnumdepth}{2}
+\setlist{itemsep=0.25em,topsep=0.4em}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\nouppercase{\leftmark}}
+\fancyfoot[C]{\thepage}
+\renewcommand{\chaptermark}[1]{\markboth{\thechapter.\ #1}{}}
+\lstset{basicstyle=\ttfamily\footnotesize,breaklines=true,columns=fullflexible,keepspaces=true,frame=single,rulecolor=\color{black!20},showstringspaces=false,tabsize=4}
+\begin{document}
+\frontmatter
+\hypersetup{pageanchor=false}
+\begin{titlepage}
+\centering
+\vspace*{18mm}
+{\large SELF-STUDY OPTICS SERIES\par}
+\vspace{17mm}
+{\Huge\bfseries Zernike Coefficients\par}
+\vspace{5mm}
+{\LARGE for Mirrors and Lenses\par}
+\vspace{13mm}
+{\Large From first principles to wavefront analysis\par}
+\vspace{14mm}
+\begin{tikzpicture}[scale=1.05]
+\draw[thick,blue!65!black] (0,0) circle (2);
+\draw[gray!60,->] (-2.3,0)--(2.5,0) node[right] {$x/a$};
+\draw[gray!60,->] (0,-2.3)--(0,2.5) node[above] {$y/a$};
+\draw[blue!45] (0,0) circle (1.414);
+\draw[blue!30] (0,0) circle (0.8);
+\draw[very thick,orange!85!black,->] (0,0)--(1.42,1.05) node[midway,above left] {$\rho$};
+\draw[->] (0.6,0) arc (0:36.5:0.6) node[right] {$\theta$};
+\end{tikzpicture}
+\vfill
+{\large Detailed derivations, worked examples, computational checks,\par and exercises with solutions\par}
+\vspace{8mm}
+{10 September 2026\par}
+\end{titlepage}
+\hypersetup{pageanchor=true}
+\setcounter{page}{1}
+\chapter*{How to study this book}
+\addcontentsline{toc}{chapter}{How to study this book}
+A Zernike coefficient is a number describing one component of a surface or a wavefront over a specified pupil. It is not a universal constant belonging to a piece of glass or metal. This book develops the mathematics needed to calculate those numbers and the optics needed to interpret them correctly.
+
+You need no previous optics course. Part I introduces units, elementary calculus, optical path length, reflection, refraction, image formation, pupils, and a reproducible ray-tracing procedure. Work through these chapters with pencil and paper. The mathematical explanations introduce the operations as they become useful; if differentiation and integration are new to you, repeat the short examples before moving on.
+
+Part II builds the Zernike basis rather than presenting it as a table to memorize. It then connects the coefficients to mirror figure, lens thickness, reference focus, image quality, and measured data. The examples are specified teaching designs, not specifications for an existing commercial instrument. Every quoted numerical coefficient depends on the stated units, aperture, wavelength when used, and reference.
+
+\paragraph{A practical study sequence.}
+Use approximately two sessions for the mathematical tools, three for rays and first-order imaging, two for pupils and optical path, four for orthogonality and coefficient extraction, and four or more for mirror/lens examples and numerical fitting. A session is complete when you can rederive its principal equation without copying the text. These are suggested blocks of work, not a promise that research proficiency takes a fixed number of hours.
+
+\paragraph{Companion material.}
+The companion book in \texttt{../abberations/} develops field-dependent aberration theory and the distinction between third-, fifth-, and higher-order ray aberrations. Both books contain the same introductory foundations so either can be studied independently. The file \texttt{../verify\_optics.py} reproduces selected mathematical and ray-tracing checks; \texttt{../numerical\_checks.txt} records its output. Detailed exercises and solutions in this volume turn the derivations into calculations you can adapt.
+
+\paragraph{Research scope.}
+The aim is to prepare you to begin supervised design, simulation, and metrology work: define a prescription, compute a wavefront, fit modes, test convergence, and interpret residuals. Vector diffraction, electromagnetic multilayer design, inverse-problem regularization, fabrication process modelling, and full system optimization require further study. Wherever a simplified model is introduced, its assumptions are stated before it is used.
+
+\input{notation.tex}
+\tableofcontents
+\mainmatter
+\part{Foundations: from light to an optical model}
+\input{foundations.tex}
+\part{Zernike coefficients: derivation, interpretation, and research use}
+\input{zernike_chapters.tex}
+\end{document}

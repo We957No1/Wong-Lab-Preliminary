@@ -1,0 +1,622 @@
+% This foundation is repeated in both volumes for independent study.
+\chapter{The mathematical language of optics}
+\label{fnd:math}
+
+\section{What an optical model describes}
+Imagine a small luminous point, a lens, and a sheet of paper. Light leaving the point travels in many directions. Some of those directions reach the lens. A successful imaging system redirects that light into a small region on the paper. A mirror accomplishes redirection by reflection; a lens does it by refraction. An optical design specifies the surfaces, their positions, the materials between them, and which rays are admitted.
+
+There are two complementary descriptions. A \emph{ray} describes a local direction of energy propagation in the geometrical approximation. A \emph{wavefront} describes equal phase. Rays let us calculate intersections and image positions. Wavefronts tell us whether light arriving by different paths adds constructively. An aberration can therefore be described by misplaced rays or by an error in optical phase. The two descriptions are connected but their numerical measures have different units.
+
+Before deriving an equation, write down what its variables represent. A surface height, a ray height, and an optical path difference may all be measured in millimetres; they are nevertheless different quantities. Similarly, a physical pupil radius and a normalized radius may have the same numerical value in one example but different dimensions.
+
+\section{Units, angles, and dimensionless coordinates}
+We use the vacuum wavelength $\lambda_0$. The units most often encountered are
+\[
+1\ \mathrm{mm}=10^{-3}\ \mathrm{m},\qquad
+1\ \mu\mathrm{m}=10^{-6}\ \mathrm{m},\qquad
+1\ \mathrm{nm}=10^{-9}\ \mathrm{m}.
+\]
+Thus $633\ \mathrm{nm}=0.000633\ \mathrm{mm}$. If an optical path error is $W=31.65\ \mathrm{nm}$, its value in waves at this wavelength is $W/\lambda_0=0.05$. The phase error is $2\pi W/\lambda_0=0.31416$ radians. At $13.5\ \mathrm{nm}$ the same path error is about $2.344$ waves. A surface acceptable at one wavelength may be unacceptable at another even when the ray geometry is identical.
+
+An angle in radians is arc length divided by radius. One full revolution is $2\pi$ radians, so $1^\circ=\pi/180$ radians. Series such as $\sin u\simeq u$ assume radians. Substituting $u=5$ for five degrees would be a serious error; the correct number is approximately $0.08727$.
+
+For a circular pupil of physical radius $a$, define
+\begin{equation}
+x=a\rho\cos\theta,\qquad y=a\rho\sin\theta,
+\qquad 0\leq\rho\leq1,\quad 0\leq\theta<2\pi.
+\label{fnd:pupilcoords}
+\end{equation}
+Here $x,y,a$ have units of length and $\rho$ is dimensionless. The angle $\theta$ increases counterclockwise from the positive $x$ axis toward the positive $y$ axis when looking at the plotted pupil. State the physical viewing direction separately when comparing two instruments, because looking from the opposite side reverses handedness.
+
+\section{Functions, slopes, and curvature}
+A function assigns an output to an input. A sag function $z=s(x,y)$ gives a surface's axial position at transverse point $(x,y)$. For a rotationally symmetric surface, $s$ depends only on $r=\sqrt{x^2+y^2}$.
+
+The derivative is a limiting slope:
+\[
+\frac{\mathrm{d}s}{\mathrm{d}r}
+=\lim_{\Delta r\to0}\frac{s(r+\Delta r)-s(r)}{\Delta r}.
+\]
+For $s(r)=cr^2/2$, expand $(r+\Delta r)^2$, subtract $r^2$, and divide by $\Delta r$ to get $cr+c\Delta r/2$. Taking the limit gives $s'(r)=cr$. The second derivative $s''(r)=c$ describes how fast the slope changes. For a shallow spherical surface, $c=1/R$ is its vertex curvature.
+
+A partial derivative varies one coordinate while holding the other fixed. The transverse gradient is
+\[
+\nabla_\perp W=
+\left(\frac{\partial W}{\partial x},\frac{\partial W}{\partial y}\right).
+\]
+For $W=A(x^2+y^2)^2$,
+\[
+\frac{\partial W}{\partial x}=4Ax(x^2+y^2),\qquad
+\frac{\partial W}{\partial y}=4Ay(x^2+y^2).
+\]
+The coefficient $A$ here has units of inverse length cubed if $W$ is a length. If instead $W=B\rho^4$, then $B$ has units of length. The two coefficients satisfy $B=Aa^4$. Confusing them gives errors that grow as the fourth power of the aperture radius.
+
+The chain rule handles normalization. With $u=x/a$ and $v=y/a$,
+\[
+\frac{\partial W}{\partial x}
+=\frac{1}{a}\frac{\partial W}{\partial u}.
+\]
+The factor $1/a$ is essential when converting a fitted wavefront into a physical ray angle.
+
+\section{Integrals and the area measure on a disk}
+An integral adds infinitesimal contributions. The one-dimensional identity
+\[
+\int_0^1\rho^q\,\mathrm{d}\rho=\frac{1}{q+1}\qquad(q>-1)
+\]
+follows because the derivative of $\rho^{q+1}/(q+1)$ is $\rho^q$.
+
+A small polar patch has radial width $\mathrm{d}r$ and tangential width $r\,\mathrm{d}\theta$. Its area is therefore $r\,\mathrm{d}r\,\mathrm{d}\theta$. After setting $r=a\rho$,
+\[
+\mathrm{d}A=a^2\rho\,\mathrm{d}\rho\,\mathrm{d}\theta.
+\]
+The area of the disk follows immediately: $a^2\int_0^{2\pi}\int_0^1\rho\,\mathrm{d}\rho\,\mathrm{d}\theta=\pi a^2$. The area average of a function is thus
+\begin{equation}
+\langle F\rangle=
+\frac{1}{\pi}\int_0^{2\pi}\int_0^1
+F(\rho,\theta)\rho\,\mathrm{d}\rho\,\mathrm{d}\theta.
+\label{fnd:average}
+\end{equation}
+In particular,
+\[
+\langle\rho^q\rangle=\frac{2}{q+2},\qquad
+\langle\rho^2\rangle=\frac12,\quad
+\langle\rho^4\rangle=\frac13,\quad
+\langle\rho^6\rangle=\frac14.
+\]
+These simple moments will repeatedly replace lengthy integrations.
+
+The mean-subtracted root-mean-square value of a wavefront is
+\begin{equation}
+\sigma_W=\sqrt{\langle(W-\langle W\rangle)^2\rangle}
+=\sqrt{\langle W^2\rangle-\langle W\rangle^2}.
+\label{fnd:rms}
+\end{equation}
+To obtain the second equality, expand the square, use linearity of the integral, and recognize that $\langle W\rangle$ is a constant. For $W=B\rho^2$, the mean is $B/2$ and the variance is $B^2(1/3-1/4)=B^2/12$, giving $\sigma_W=|B|/\sqrt{12}$. The peak-to-valley error is $|B|$, a different statistic.
+
+\section{Taylor expansions and what an omitted term means}
+Near $\epsilon=0$, the binomial expansion gives
+\begin{align}
+(1+\epsilon)^{1/2}
+&=1+\frac{\epsilon}{2}-\frac{\epsilon^2}{8}
++\frac{\epsilon^3}{16}-\frac{5\epsilon^4}{128}+
+O(\epsilon^5),\\
+(1-\epsilon)^{1/2}
+&=1-\frac{\epsilon}{2}-\frac{\epsilon^2}{8}
+-\frac{\epsilon^3}{16}-\frac{5\epsilon^4}{128}+
+O(\epsilon^5).
+\end{align}
+The notation $O(\epsilon^5)$ means that the neglected remainder scales no faster than a constant times $|\epsilon|^5$ sufficiently near zero. It is not an error estimate valid at arbitrary aperture. To use an expansion reliably, identify its dimensionless small quantity and check convergence at the largest ray height of interest.
+
+For example,
+\begin{align}
+\sqrt{L^2+r^2}
+&=L\sqrt{1+r^2/L^2}\\
+&=L+\frac{r^2}{2L}-\frac{r^4}{8L^3}
++\frac{r^6}{16L^5}+O(r^8/L^7),\qquad L>0.
+\label{fnd:distance-series}
+\end{align}
+Every term has dimensions of length. The expansion parameter is $(r/L)^2$. For $r/L=0.05$, the quartic correction is smaller than the quadratic term by $(r/L)^2/4=0.000625$. That may be tiny geometrically but still many nanometres of optical path, which can matter in a short-wavelength instrument.
+
+For a sphere with positive radius $R$ and vertex at $z=0$,
+\begin{align}
+s(r)&=R-\sqrt{R^2-r^2}\\
+&=\frac{r^2}{2R}+\frac{r^4}{8R^3}
++\frac{r^6}{16R^5}+\frac{5r^8}{128R^7}+\cdots.
+\label{fnd:sphere-sag}
+\end{align}
+The first term is a parabola in a meridional section. A sphere and a paraboloid can therefore have the same vertex curvature while differing away from the axis. Those apparently small higher-power differences are a central source of aberration.
+
+\section{Vectors and a minimal introduction to matrices}
+A three-dimensional vector $\bm{r}=(x,y,z)$ describes position or displacement. Its length is $|\bm{r}|=\sqrt{x^2+y^2+z^2}$. The dot product
+\[
+\bm{a}\cdot\bm{b}=a_xb_x+a_yb_y+a_zb_z
+=|\bm{a}|\,|\bm{b}|\cos\gamma
+\]
+measures the component of one vector along the other; $\gamma$ is their included angle. A unit vector has length one. A straight ray is $\bm{r}(t)=\bm{r}_0+t\bm{d}$, with unit direction $\bm{d}$ and distance parameter $t$ in units of length.
+
+A matrix encodes a linear operation. For example,
+\[
+\begin{pmatrix}A&B\\C&D\end{pmatrix}
+\begin{pmatrix}y\\p\end{pmatrix}
+=\begin{pmatrix}Ay+Bp\\Cy+Dp\end{pmatrix}.
+\]
+If operation $M_1$ acts first and $M_2$ acts second, the combined result is $M_2M_1\bm{v}$. The rightmost matrix acts first. Changing that order usually changes the answer because refraction followed by translation is physically different from translation followed by refraction.
+
+\chapter{Why light reflects, refracts, and accumulates phase}
+\label{fnd:light}
+\section{The domain of ray optics}
+Light is an electromagnetic wave. In a simple isotropic transparent medium the refractive index $n$ relates the phase speed to the vacuum speed by $v=c/n$. In this introductory model, $n$ is real and may depend on wavelength. Absorption and multilayer reflection require a complex optical response, discussed later where relevant.
+
+Ray optics is a short-wavelength approximation: the relevant surface and field variations are smooth on the wavelength scale, and diffraction is not needed to locate the leading geometrical paths. The condition is not merely that a lens is bigger than a wavelength. A small sharp feature, an aperture edge, a caustic, or a narrow focal region can require a wave treatment even in a large apparatus. We use rays for the path geometry and wavefront phase for the first connection to image quality.
+
+\section{Optical path length and phase}
+If light travels a small geometric distance $\mathrm{d}\ell$ in index $n$, it accumulates phase $2\pi n\,\mathrm{d}\ell/\lambda_0$. Summing along a path gives
+\begin{equation}
+\mathcal{L}=\int n\,\mathrm{d}\ell,
+\qquad \phi=\frac{2\pi}{\lambda_0}\mathcal{L}+\phi_{\rm initial}.
+\label{fnd:opl}
+\end{equation}
+The quantity $\mathcal{L}$ is optical path length (OPL), not geometrical distance. In homogeneous segments it reduces to $\mathcal{L}=\sum_j n_j\ell_j$.
+
+For $10\ \mathrm{mm}$ in air approximated by $n=1$ followed by $5\ \mathrm{mm}$ of index $1.5$, the geometrical length is $15\ \mathrm{mm}$ but the OPL is $17.5\ \mathrm{mm}$. Replacing $5\ \mathrm{mm}$ of air by that glass increases OPL by $2.5\ \mathrm{mm}$. Optical phase is controlled by that difference, not by the total thickness alone.
+
+For two coherent scalar fields of real amplitudes $A_1,A_2$, the intensity after superposition is proportional to
+\[
+|A_1e^{i\phi_1}+A_2e^{i\phi_2}|^2
+=A_1^2+A_2^2+2A_1A_2\cos(\phi_1-\phi_2).
+\]
+This identity follows by multiplying the complex sum by its complex conjugate. Equal phases reinforce; a phase difference of $\pi$ can cancel equal amplitudes. A geometrically small path mismatch can therefore have a large effect on image intensity.
+
+\section{Fermat's principle: stationary optical path}
+Fermat's principle states that the physical ray makes the optical path stationary under small allowed changes of path with endpoints held fixed. \emph{Stationary} means that the first-order change vanishes. The path need not be a global minimum.
+
+Derive Snell's law in a two-dimensional plane. Place a flat interface at $z=0$, with source $A=(x_A,-h_1)$ in index $n_1$ and destination $B=(x_B,h_2)$ in index $n_2$. Let the unknown crossing point be $P=(x,0)$. The optical path is
+\[
+\mathcal{L}(x)=n_1\sqrt{(x-x_A)^2+h_1^2}
++n_2\sqrt{(x_B-x)^2+h_2^2}.
+\]
+Differentiation gives
+\[
+\frac{\mathrm{d}\mathcal{L}}{\mathrm{d}x}
+=n_1\frac{x-x_A}{\sqrt{(x-x_A)^2+h_1^2}}
+-n_2\frac{x_B-x}{\sqrt{(x_B-x)^2+h_2^2}}.
+\]
+Each ratio is the sine of the corresponding signed angle to the interface normal. Setting the derivative to zero yields
+\begin{equation}
+n_1\sin i=n_2\sin t.
+\label{fnd:snell}
+\end{equation}
+If $n_2>n_1$ and the incident angle is positive, then $t<i$: the ray bends toward the normal. At normal incidence both angles vanish and the direction does not change, although phase accumulation does.
+
+For reflection, put both endpoints on the same side of the interface and use the same index for both path segments. The analogous derivative sets the two signed tangential projections equal. The normal component reverses, yielding equality of incident and reflected angles measured from the normal. An ideal plane mirror redirects a converging or diverging bundle without acquiring optical power in its own local plane.
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[scale=1.05,>=Stealth]
+\fill[blue!5] (-3,-2) rectangle (3,0);
+\draw[thick] (-3,0)--(3,0);
+\draw[dashed] (0,-2)--(0,2);
+\draw[very thick,orange!85!black,->] (-2,1.7)--(0,0);
+\draw[very thick,orange!85!black,->] (0,0)--(1,-1.8);
+\node[above left] at (-2,1.7) {incident ray};
+\node[right] at (1,-1.8) {transmitted ray};
+\node at (2.3,1) {$n_1$};
+\node at (-2.3,-1) {$n_2>n_1$};
+\node[above] at (0,2) {normal};
+\draw (0,0.7) arc[start angle=90,end angle=139.6,radius=0.7];
+\node at (-0.36,0.85) {$i$};
+\draw (0,-0.7) arc[start angle=-90,end angle=-60.9,radius=0.7];
+\node at (0.30,-0.93) {$t$};
+\end{tikzpicture}
+\caption{Angles in Snell's law are measured from the normal, not from the interface. Geometry is schematic.}
+\end{figure}
+
+\section{Exact vector reflection}
+Let $\bm{d}$ be the incident unit direction and $\bm{N}$ any unit normal to the reflecting surface. Split $\bm{d}$ into normal and tangent components:
+\[
+\bm{d}_\perp=(\bm{d}\cdot\bm{N})\bm{N},\qquad
+\bm{d}_\parallel=\bm{d}-\bm{d}_\perp.
+\]
+Specular reflection preserves the tangent component and reverses the normal component. Therefore
+\begin{equation}
+\boxed{\bm{d}_{\rm r}=\bm{d}-2(\bm{d}\cdot\bm{N})\bm{N}.}
+\label{fnd:reflection}
+\end{equation}
+Replacing $\bm{N}$ by $-\bm{N}$ does not change this expression. With $\bm{d}=(0,0,-1)$ and $\bm{N}=(0,0,1)$, reflection gives $(0,0,1)$ as expected. Reflection at a perfect plane changes direction; a spatially constant coating phase does not change the outgoing wavefront error after piston removal.
+
+\section{Exact vector refraction and total internal reflection}
+For refraction choose $\bm{N}$ to point into the incident medium, so $\bm{d}\cdot\bm{N}<0$. Set
+\[
+\eta=\frac{n_1}{n_2},\qquad c_i=-\bm{d}\cdot\bm{N}.
+\]
+The incident tangent component is $\bm{d}+c_i\bm{N}$. Snell's law scales it by $\eta$, while normalization fixes the transmitted normal component. Thus
+\begin{align}
+c_t&=\sqrt{1-\eta^2(1-c_i^2)},\\
+\bm{d}_{\rm t}&=\boxed{\eta\bm{d}+(\eta c_i-c_t)\bm{N}.}
+\label{fnd:vector-snell}
+\end{align}
+The negative normal component $-c_t\bm{N}$ sends the ray into the second medium. Verify normal incidence: $\bm{d}=-\bm{N}$ gives $\bm{d}_{\rm t}=-\bm{N}$.
+
+If the expression under the square root is negative, there is no propagating transmitted ray in this geometrical model. This is total internal reflection. For $n_1>n_2$, its threshold is $\sin i_c=n_2/n_1$. A glass-to-air interface with $n_1=1.5$ has $i_c\simeq41.81^\circ$. This is a propagation condition, not a statement that polarization-dependent phase can be neglected during reflection.
+
+\section{Eikonal, wavefront normals, and the ray limit}
+Write a monochromatic scalar field locally as
+\[
+U(\bm{r})=A(\bm{r})e^{ik_0S(\bm{r})},\qquad k_0=2\pi/\lambda_0.
+\]
+Here $S$ has units of length and is called the eikonal. The suppressed time dependence is $e^{-i\omega t}$, so increasing spatial phase corresponds to propagation along $\nabla S$. Substitute this form into the scalar Helmholtz equation $\nabla^2U+k_0^2n^2U=0$. Applying the product rule twice and cancelling the exponential gives
+\[
+\nabla^2A+2ik_0\nabla A\cdot\nabla S
++ik_0A\nabla^2S-k_0^2A|\nabla S|^2+k_0^2n^2A=0.
+\]
+In the short-wavelength limit the terms proportional to $k_0^2$ dominate if the amplitude and material vary slowly. Their cancellation requires
+\begin{equation}
+|\nabla S|^2=n^2,\qquad \bm{d}=\frac{\nabla S}{n}.
+\label{fnd:eikonal}
+\end{equation}
+A wavefront is a level surface $S=\mathrm{constant}$, so its normal is $\nabla S$. This explains the statement that rays are normal to wavefronts in an isotropic medium. At a caustic, several ray branches can reach the same point; a single smooth eikonal then requires branchwise interpretation. The full electromagnetic problem also contains vector and polarization effects absent from this scalar derivation.
+
+\chapter{First-order images: mirrors, lenses, and ray matrices}
+\label{fnd:imaging}
+\section{Coordinates and the paraxial approximation}
+For transmitted systems, take the optical axis along $+z$, let ray height in a meridional section be $y$, and let $u$ be its small signed angle to $+z$. The paraxial approximation uses
+\[
+\sin u\simeq u,\qquad \tan u\simeq u,\qquad \cos u\simeq1.
+\]
+It retains only terms linear in ray heights and angles. It predicts ideal first-order imaging but discards the nonlinear terms that cause geometrical aberrations. ``Paraxial'' is an approximation to a physical ray, not a separate type of light.
+
+A radius of curvature is positive if the centre of curvature lies downstream of its vertex. Thus the first surface of a usual biconvex lens has $R_1>0$ and the second has $R_2<0$. For a mirror we state the incident and reflected axes explicitly; blindly carrying the transmitted-system signs through a reversal of propagation is a frequent source of mistakes.
+
+\section{Paraxial power of one refracting surface}
+Near a vertex, $s(y)\simeq y^2/(2R)$ and the slope is $y/R$. A normal oriented approximately along $+z$ has small angle $\alpha\simeq-y/R$ to the axis. The signed incident and refracted angles relative to that normal are $u-\alpha$ and $u'-\alpha$. Linearizing Snell's law gives
+\[
+n(u-\alpha)=n'(u'-\alpha).
+\]
+Rearrange and substitute $\alpha=-y/R$:
+\begin{equation}
+n'u'=nu-\frac{n'-n}{R}y.
+\label{fnd:surface-power}
+\end{equation}
+Define reduced angle $p=nu$ and surface power $\Phi=(n'-n)/R$. Then $p'=p-\Phi y$. Positive power bends an initially axial ray at positive height toward the axis.
+
+Suppose an on-axis real object is a positive distance $s$ to the left of the vertex and its real image is a positive distance $s'$ to the right. At the surface $u\simeq y/s$ and $u'\simeq-y/s'$. Substitution gives
+\begin{equation}
+\boxed{\frac{n}{s}+\frac{n'}{s'}=\frac{n'-n}{R}.}
+\end{equation}
+This equation uses positive \emph{real conjugate distances}, while $R$ uses the downstream-centre convention. A virtual object or image gives a negative corresponding conjugate distance. Defining the convention first is more reliable than identifying a formula by its pattern of plus and minus signs.
+
+\section{The thin-lens equation derived twice}
+A thin lens has two surface powers whose separation is neglected. In surrounding air approximated as index one, add Eq.~\eqref{fnd:surface-power} at the two interfaces:
+\[
+u_{\rm out}=u_{\rm in}-\Phi y,
+\qquad \Phi=(n_g-1)\left(\frac{1}{R_1}-\frac{1}{R_2}\right).
+\]
+For a collimated incident ray, $u_{\rm in}=0$. After distance $f$ the ray has height $y+fu_{\rm out}=y(1-f\Phi)$. It reaches the axis when
+\begin{equation}
+\boxed{\frac{1}{f}=(n_g-1)\left(\frac{1}{R_1}-\frac{1}{R_2}\right).}
+\label{fnd:lensmaker}
+\end{equation}
+For an on-axis object at positive real distance $s$, the incoming angle is $y/s$. To reach an image at distance $s'$, the outgoing angle must be $-y/s'$. Therefore
+\begin{equation}
+\boxed{\frac{1}{s}+\frac{1}{s'}=\frac{1}{f}.}
+\label{fnd:thinlens}
+\end{equation}
+
+There is a wavefront derivation of the same result. Between fixed planes on opposite sides of a thin phase element, extra glass thickness $t(y)-t(0)$ contributes phase-equivalent path $(n_g-1)[t(y)-t(0)]$. To quadratic order the biconvex thickness is
+\[
+t(y)-t(0)\simeq\frac{y^2}{2}\left(\frac{1}{R_2}-\frac{1}{R_1}\right),
+\]
+so the element contributes $-y^2/(2f)$. The path from the object contributes $y^2/(2s)$ and the path to the image contributes $y^2/(2s')$. For all small pupil rays to arrive with the same phase, their summed coefficient must vanish:
+\[
+\frac{y^2}{2}\left(\frac1s+\frac1{s'}-\frac1f\right)=0.
+\]
+This reproduces the thin-lens equation. Extending a thickness-only model to fourth and sixth powers is a \emph{phase-screen model}; it is not automatically the exact aberration of a finite lens, because ray bending inside the glass changes ray heights and optical paths.
+
+\paragraph{Worked example.}
+Let $n_g=1.5$, $R_1=+50\ \mathrm{mm}$, and $R_2=-50\ \mathrm{mm}$. Equation~\eqref{fnd:lensmaker} gives $1/f=0.02\ \mathrm{mm}^{-1}$ and $f=50\ \mathrm{mm}$. An object at $s=200\ \mathrm{mm}$ gives $1/s'=0.02-0.005=0.015\ \mathrm{mm}^{-1}$, so $s'=66.667\ \mathrm{mm}$. A central undeviated paraxial ray from an object height $y_o$ gives image height $y_i=-s'y_o/s$. The lateral magnification is therefore $m=-1/3$; the negative sign means inversion.
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[x=1cm,y=1cm,>=Stealth]
+\draw[gray,->] (-4.2,0)--(4.3,0) node[right] {$z$};
+\draw[very thick,blue!65!black,<->] (0,-1.8)--(0,1.8);
+\draw[very thick,->] (-3.6,0)--(-3.6,1.3);
+\draw[very thick,->] (2.4,0)--(2.4,-0.867);
+\draw[orange!85!black] (-3.6,1.3)--(0,1.3)--(2.4,-0.867);
+\draw[orange!85!black] (-3.6,1.3)--(2.4,-0.867);
+\node[above] at (-3.6,1.3) {object};
+\node[below] at (2.4,-0.9) {image};
+\node[above] at (0,1.8) {thin lens};
+\draw[<->] (-3.6,-1.5)--(0,-1.5) node[midway,below] {$s$};
+\draw[<->] (0,-1.5)--(2.4,-1.5) node[midway,below] {$s'$};
+\end{tikzpicture}
+\caption{Paraxial imaging of an off-axis point. The drawing illustrates the construction; the numerical conjugates in the worked example differ from the schematic scale.}
+\end{figure}
+
+\section{A concave spherical mirror and the origin of its focal length}
+Choose the mirror vertex at $z=0$, incident light travelling in $-z$, and a concave bowl $z=s(r)=R-\sqrt{R^2-r^2}$ opening toward $+z$. For small $r$, $s'(r)\simeq r/R$. In a meridional section a unit normal is approximately $(-r/R,0,1)$. Apply Eq.~\eqref{fnd:reflection} to $\bm{d}=(0,0,-1)$: the outgoing direction is approximately $(-2r/R,0,1)$. At distance $f$ along $+z$, the transverse height is approximately $r-2fr/R$. Hence
+\begin{equation}
+\boxed{f=R/2.}
+\label{fnd:mirrorf}
+\end{equation}
+For finite real object and image distances $s,s'>0$ in front of this mirror, the geometric path through surface point $r$ is
+\[
+\sqrt{r^2+[s-s(r)]^2}+\sqrt{r^2+[s'-s(r)]^2}.
+\]
+To quadratic order this is
+\[
+s+s'+r^2\left(\frac{1}{2s}+\frac{1}{2s'}-\frac1R\right)+O(r^4).
+\]
+Stationarity for all paraxial heights requires $1/s+1/s'=2/R=1/f$. The omitted quartic terms explain why a spherical mirror's finite-aperture rays generally fail to meet at one point. A paraboloid is exactly stigmatic for an on-axis collimated input under ideal specular geometric reflection; it is not generally perfect for other conjugates or off-axis fields.
+
+\section{Translation, refraction, and a thick lens}
+Use ray vector $(y,p)^{\mathsf T}$ with $p=nu$. Translation by physical distance $d$ in constant index $n$ gives $y'=y+du=y+(d/n)p$ and preserves $p$. Refraction preserves the surface intersection height and changes $p$ by $-\Phi y$. The matrices are therefore
+\begin{equation}
+T(d,n)=\begin{pmatrix}1&d/n\\0&1\end{pmatrix},\qquad
+S(\Phi)=\begin{pmatrix}1&0\\-\Phi&1\end{pmatrix}.
+\label{fnd:matrices}
+\end{equation}
+For a lens of centre thickness $d$, internal index $n_g$, and surface powers $\Phi_1,\Phi_2$,
+\begin{align}
+M&=S(\Phi_2)T(d,n_g)S(\Phi_1)\\
+&=\begin{pmatrix}
+1-d\Phi_1/n_g&d/n_g\\
+-\Phi_1-\Phi_2+d\Phi_1\Phi_2/n_g&1-d\Phi_2/n_g
+\end{pmatrix}
+=\begin{pmatrix}A&B\\C&D\end{pmatrix}.
+\end{align}
+The effective power is $\Phi_{\rm eff}=-C=\Phi_1+\Phi_2-d\Phi_1\Phi_2/n_g$. In output air the effective focal length is $f_{\rm eff}=1/\Phi_{\rm eff}$. A collimated input $(y_0,0)$ emerges as $(Ay_0,Cy_0)$. Translation by a distance $b$ to the axis requires $Ay_0+bCy_0=0$, giving the back focal length measured from the second vertex:
+\begin{equation}
+\boxed{\mathrm{BFL}=-A/C.}
+\label{fnd:bfl}
+\end{equation}
+Effective focal length is measured from a principal plane, an equivalent reference plane of the first-order system. Back focal length is measured from the last physical vertex. They are equal for an ideal thin lens in air but not for a general thick lens.
+
+\paragraph{Worked thick-lens calculation.}
+Retain $R_1=+50\ \mathrm{mm}$, $R_2=-50\ \mathrm{mm}$ and $n_g=1.5$, but use $d=5\ \mathrm{mm}$. Then $\Phi_1=\Phi_2=0.01\ \mathrm{mm}^{-1}$ and
+\[
+A=D=\frac{29}{30},\quad B=\frac{10}{3}\ \mathrm{mm},\quad
+C=-\frac{59}{3000}\ \mathrm{mm}^{-1}.
+\]
+Consequently,
+\[
+f_{\rm eff}=\frac{3000}{59}=50.84746\ \mathrm{mm},\qquad
+\mathrm{BFL}=\frac{2900}{59}=49.15254\ \mathrm{mm}.
+\]
+The paraxial focus is at global $z=5+49.15254=54.15254\ \mathrm{mm}$ if the first vertex is $z=0$. A trace reporting a different finite-height axis crossing need not be wrong: spherical aberration shifts nonparaxial rays. Compare the trace as its entrance height tends to zero before diagnosing a discrepancy.
+
+\section{An imaging condition and a conservation check}
+Include all translations from object plane to image plane in a total matrix $M$. Then $y_i=Ay_o+Bp_o$. Rays from the same object point have fixed $y_o$ but different $p_o$. They form a paraxial image when $B=0$, making $y_i=Ay_o$ independent of the launch direction.
+
+Both matrices in Eq.~\eqref{fnd:matrices} have determinant one, so their product satisfies $AD-BC=1$. For two paraxial rays with coordinates $(y_1,p_1)$ and $(y_2,p_2)$, the combination $y_1p_2-y_2p_1$ is unchanged by such a matrix. This follows by substitution and cancellation, leaving a factor $AD-BC$. This invariant is a useful error check and is related to the restrictions on trading image size against angular spread.
+
+\chapter{Pupils, reference wavefronts, and the meaning of an error}
+\label{fnd:wavefronts}
+\section{Aperture stop, entrance pupil, and exit pupil}
+The \emph{aperture stop} is the element that limits the angular cone accepted from an axial object point. Its opening may be a diaphragm, a mirror boundary, or a lens rim. The \emph{entrance pupil} is the image of that stop through the optics preceding it, as seen from object space. The \emph{exit pupil} is its image through the optics following it, as seen from image space. Either image can be virtual.
+
+These definitions explain why the pupil diameter is not always the diameter of the first lens. A stop seen through preceding optics can appear magnified. A field stop instead limits which object positions are admitted. \emph{Vignetting} occurs when off-axis bundles are partly blocked; it changes pupil shape and weights as a function of field.
+
+The \emph{chief ray} from a field point passes through the centre of the aperture stop. A \emph{marginal ray} passes through its edge; in a centred system an axial marginal ray describes the aperture cone. Field position describes which object point is being imaged. Pupil position describes which ray from that object point is used. The two must be varied independently to characterize aberrations across an image.
+
+For an object at infinity in air, the $f$-number is $N=f_{\rm eff}/D_{\rm entrance}$. Image-space numerical aperture is $\mathrm{NA}=n'\sin\alpha$, where $\alpha$ is the marginal cone half-angle at the image. In a simple paraxial air system with the pupil appropriately located, $\mathrm{NA}\simeq1/(2N)$. Finite conjugates, pupil magnification, and high aperture require the actual cone geometry rather than this shortcut.
+
+\section{Define the ideal before subtracting it}
+Let an output plane be $z=z_e$, with intended focus $F=(X_0,Y_0,z_f)$ and $L=z_f-z_e>0$ in a homogeneous output index $n'$. The ideal converging eikonal on that plane can be written
+\begin{equation}
+S_{\rm ideal}(x,y)=C-n'\sqrt{(x-X_0)^2+(y-Y_0)^2+L^2}.
+\label{fnd:ideal-eikonal}
+\end{equation}
+The minus sign is physically necessary: the ideal transverse derivative directs a ray toward the focus. Define the optical path difference by
+\begin{equation}
+\boxed{W(x,y)=S_{\rm actual}(x,y)-S_{\rm ideal}(x,y).}
+\label{fnd:w-sign}
+\end{equation}
+A positive $W$ is a positive excess of eikonal, in length units, at the same evaluation point. The choice of $C$ changes only a constant term called piston. We usually choose it so a chief-ray reference or the pupil mean is zero.
+
+An equivalent computational construction is
+\[
+W=S_{\rm actual}(P)+n'|F-P|-C.
+\]
+The last straight distance is the distance from the evaluation point to the \emph{chosen ideal focus}. An aberrated physical ray need not travel along that line. The expression subtracts an ideal phase; it must not be described as proving that every physical ray reaches $F$.
+
+Evaluation on a mirror surface, on a plane, or on a reference sphere gives different coordinate parameterizations. At leading order they often agree well; at higher order the mapping matters. A mode fitted as a function of mirror footprint radius is not automatically the same mode fitted over a planar exit pupil. Record the coordinate surface along with the coefficient table.
+
+\section{Piston, tilt, and defocus}
+Adding a constant $C_0$ to $W$ changes the common phase but not relative phase across a single pupil. This is \emph{piston}. It is irrelevant to the intensity of an isolated coherent image, although differential piston between interferometer arms or mirror segments can matter.
+
+A linear wavefront $W=b_xx+b_yy$ is \emph{tilt}. Its gradient is constant, so it produces a uniform angular change in the paraxial approximation. Tilt shifts an image. Whether it should be removed depends on the question: centring a spot and predicting absolute pointing or distortion are different measurements.
+
+A quadratic radial term is \emph{defocus}. Its connection to changing the reference image plane follows directly from Eq.~\eqref{fnd:ideal-eikonal}. For an on-axis focus,
+\[
+S_{\rm ideal}(r;L)=\text{piston}-\frac{n'r^2}{2L}
++\frac{n'r^4}{8L^3}-\cdots.
+\]
+Move the reference focus downstream by $\Delta L$, hold the actual eikonal fixed, and expand $1/(L+\Delta L)\simeq1/L-\Delta L/L^2$. The new difference is
+\begin{equation}
+W_{\rm new}(r)=W_{\rm old}(r)
+-\frac{n'\Delta L}{2L^2}r^2
++\text{piston}+\text{higher-order terms}.
+\label{fnd:reference-focus-shift}
+\end{equation}
+Changing the reference focus is therefore not the same operation as adding a positive quadratic phase to the physical wavefront. One changes the subtracted ideal; the other changes the actual optical system.
+
+For normalized radius $\rho=r/a$, a quadratic coefficient $B$ in $W=B\rho^2$ changes under refocusing by $\Delta B=-n'a^2\Delta L/(2L^2)$. The units are consistent: $a^2\Delta L/L^2$ is a length.
+
+\section{Wavefront slope to ray error: derivation and limits}
+On a fixed output plane, Eq.~\eqref{fnd:eikonal} gives the exact relation between transverse direction cosines and phase:
+\[
+\bm{q}=(d_x,d_y)=\frac1{n'}\nabla_\perp S.
+\]
+Hence $\delta\bm{q}=\nabla_\perp W/n'$. If both the ideal and actual directions are paraxial, $d_z\simeq1$, so transverse slope is approximately $\bm{q}$. Propagating through axial distance $L$ yields
+\begin{equation}
+\boxed{\Delta\bm{x}\simeq\frac{L}{n'}\nabla_\perp W.}
+\label{fnd:raygradient}
+\end{equation}
+The sign is positive under Eq.~\eqref{fnd:w-sign}. A positive $x$ derivative adds positive transverse direction and moves the intercept toward positive $x$. References defining ideal minus actual OPD have the opposite sign.
+
+For a normalized wavefront $W(u,v)$ with $u=x/a$, $v=y/a$, the correct formula is $\Delta\bm{x}\simeq L\nabla_{u,v}W/(n'a)$. As an example, let $W=20\ \mathrm{nm}\,(x/a)$, $a=5\ \mathrm{mm}$, $L=100\ \mathrm{mm}$, $n'=1$. Convert $20\ \mathrm{nm}=2\times10^{-5}\ \mathrm{mm}$. Then the angle error is $4\times10^{-6}$ radians and the image shift is $0.0004\ \mathrm{mm}=0.4\ \mu\mathrm{m}$.
+
+For higher aperture use the actual slope function on the forward branch $d_z>0$, with $|\bm{q}|<1$:
+\[
+\bm{s}(\bm{q})=\frac{\bm{q}}{\sqrt{1-|\bm{q}|^2}}.
+\]
+Let $\bm{q}_0$ be the ideal transverse direction-cosine vector at the same pupil point. Between fixed planes, exact geometrical propagation gives
+\begin{equation}
+\Delta\bm{x}=L\left[
+\bm{s}\left(\bm{q}_0+\frac{\nabla_\perp W}{n'}\right)
+-\bm{s}(\bm{q}_0)\right].
+\label{fnd:exact-slope}
+\end{equation}
+To first order in a small wavefront perturbation, but without setting the ideal aperture angle to zero, differentiate the slope:
+\[
+\delta\bm{s}=
+\left[\frac{I}{\sqrt{1-q_0^2}}
++\frac{\bm{q}_0\bm{q}_0^{\mathsf T}}{(1-q_0^2)^{3/2}}\right]
+\frac{\nabla_\perp W}{n'}.
+\]
+Here $q_0^2=|\bm{q}_0|^2$ and $I$ is the two-dimensional identity matrix. This matrix approaches $I$ paraxially. Higher-order ray coefficients can receive contributions from its aperture dependence, not just from differentiating the next wavefront term. Pupil coordinate transformations and a curved evaluation surface introduce further changes. These distinctions become essential when claiming fifth-order or higher physical ray accuracy.
+
+\section{Surface displacement is not wavefront error}
+Move a local reflecting point by displacement $\delta\bm{r}$ while keeping nearby incident and outgoing reference endpoints fixed. Differentiating the lengths of the incident and outgoing segments gives
+\[
+\delta\mathcal{L}=n(\bm{d}_{\rm in}-\bm{d}_{\rm out})\cdot\delta\bm{r}.
+\]
+Let the unit normal $\bm{N}$ point toward the incident medium and let positive surface height $h$ mean displacement $h\bm{N}$. Since $\bm{d}_{\rm in}\cdot\bm{N}=-\cos i$ and $\bm{d}_{\rm out}\cdot\bm{N}=+\cos i$,
+\begin{equation}
+\boxed{\delta W=-2nh\cos i.}
+\label{fnd:mirrorheight}
+\end{equation}
+At normal incidence in air the magnitude is twice the surface displacement. The sign says that moving the mirror toward the incoming beam shortens the two-way geometrical path. The relation is a first-order local perturbation with a specified normal displacement and pupil mapping. At oblique incidence a global axial sag is not the same as a normal displacement, and the footprint is distorted.
+
+For a thin transmitted layer between fixed reference planes, replacing external material of index $n_e$ by glass of index $n_g$ through additional near-normal thickness $\delta t$ gives
+\begin{equation}
+\boxed{\delta W=(n_g-n_e)\delta t.}
+\label{fnd:transmittedthickness}
+\end{equation}
+Thus $10\ \mathrm{nm}$ of local mirror height and $10\ \mathrm{nm}$ of extra glass thickness do not imply the same phase error. The surface-to-wavefront conversion also depends on the number of passes, incidence angle, refractive index, and spatial mapping. A manufacturer's ``surface RMS'' cannot be inserted into a wavefront formula without this information.
+
+\chapter{Build an exact geometrical calculation you can inspect}
+\label{fnd:exacttrace}
+\section{What must be specified}
+An optical prescription needs surface shapes and vertex positions, material index in each space, clear apertures, input field and wavelength, stop definition, and the evaluation plane or reference sphere. A conic constant by itself is not a mirror prescription. A list of Zernike coefficients without a pupil radius and convention is not a complete wavefront specification.
+
+Use a single consistent length unit internally. Store the physical vacuum wavelength in the same unit when converting OPL to phase. Separate source rays, geometry, index data, and analysis choices so you can change one without silently changing the others. The introductory geometrical sequence is also developed in the university course collection listed as Ref.~\cite{greivenkamp502}; the derivations here are presented explicitly for independent study.
+
+\section{Intersect a ray with a sphere}
+For sphere centre $\bm{c}$ and radius magnitude $|R|$, substitute the ray $\bm{r}(t)=\bm{r}_0+t\bm{d}$ into $|\bm{r}-\bm{c}|^2=R^2$. Since $|\bm{d}|=1$, expansion gives
+\[
+t^2+2bt+c_0=0,\qquad
+b=\bm{d}\cdot(\bm{r}_0-\bm{c}),\quad
+c_0=|\bm{r}_0-\bm{c}|^2-R^2.
+\]
+The solutions are $t=-b\pm\sqrt{b^2-c_0}$. A negative discriminant means the line misses the sphere. But a positive discriminant does not tell you which solution belongs to the intended optical surface. A lens uses one cap of a sphere, not its entire boundary. Select a forward intersection consistent with the cap containing the specified vertex, then check the clear aperture. Close to a surface, exclude a zero-distance self-intersection within a stated numerical tolerance.
+
+For numerical stability, if one root suffers subtraction of nearly equal numbers, compute the more stable root $q=-b-\operatorname{sign}(b)\sqrt{b^2-c_0}$ and the other as $c_0/q$, with suitable handling of zero $b$ or $q$. This follows because the product of the roots is $c_0$. Precision lost in a geometric intersection can corrupt a much smaller wavefront difference downstream.
+
+\section{Intersect a ray with an asphere}
+For an explicit surface $z=z_v+s(x,y)$, define
+\[
+F(t)=z_0+td_z-z_v-s(x_0+td_x,y_0+td_y).
+\]
+The intersection satisfies $F(t)=0$. Its derivative is
+\[
+F'(t)=d_z-s_xd_x-s_yd_y.
+\]
+Newton's iteration is $t_{k+1}=t_k-F(t_k)/F'(t_k)$. It comes from replacing $F$ near $t_k$ by its tangent line and finding that line's zero. Use a bracketed or safeguarded method if the derivative becomes small or several intersections are possible. A converged root must still be checked against the intended surface branch and aperture.
+
+At the resulting point, an unnormalized surface normal is $(-s_x,-s_y,1)$. Normalize it by its Euclidean length and orient it according to the reflection or refraction convention. Surface position and surface slope enter different stages of the ray trace, which is why a small but rapidly varying height error can scatter rays strongly.
+
+\section{Accumulate OPL and compare on a common plane}
+For every straight segment of length $\ell_j$, add $n_j\ell_j$ before changing the material index at its end. For a collimated input, rays should start on a common plane of equal initial phase, or carry the correct initial eikonal for their different start positions. For a point object, the path from that object to the first intersection supplies the initial optical path.
+
+After the last surface, propagate each physical ray to the same output plane $z=z_e$ using
+\[
+t_e=\frac{z_e-z_{\mathrm{last}}}{d_z},\qquad
+P_e=P_{\mathrm{last}}+t_e\bm{d}.
+\]
+For a real downstream plane $t_e$ should be nonnegative. A virtual pupil may be represented by signed backward continuation in a homogeneous image space; this is a mathematical evaluation, not another physical pass through earlier surfaces.
+
+Let $\mathcal{L}_j(P_e)$ be the accumulated actual eikonal at that point, including the final continuation with the appropriate sign. Choose reference focus $F$ and reference ray $c$. Then compute
+\begin{equation}
+W_j=\mathcal{L}_j(P_{e,j})+n'|F-P_{e,j}|
+-\left[\mathcal{L}_c(P_{e,c})+n'|F-P_{e,c}|\right].
+\label{fnd:trace-opd}
+\end{equation}
+The ray's pupil coordinates should be the coordinates used for the stated fit. If you sample uniformly on an entrance disk and fit on an exit disk, the mapped points need not be uniform in exit area. Use area weights or explicitly label the result as an entrance-pupil parameterization.
+
+\section{A trace is not verified merely because it produces a spot}
+Several independent checks test different failure modes:
+\begin{enumerate}
+\item Confirm $|\bm{d}|=1$ after every reflection or refraction and verify the tangential Snell relation at every transmitting surface.
+\item Let an entrance ray height tend toward zero. Its focal distance should approach the paraxial matrix result.
+\item For a centred rotationally symmetric on-axis system, rotate the input pupil ray and confirm that the output rotates correspondingly.
+\item For an ideal paraboloid and axial plane-wave illumination, verify constant phase-to-focus over the admitted aperture.
+\item Increase pupil sampling and fitted polynomial order separately. A low residual at sparse sample points is not evidence of an accurate continuous fit.
+\item Verify that a fitted coefficient has the predicted aperture scaling in the small-aperture limit. A leading quartic wavefront scales as $a^4$ before normalization changes.
+\end{enumerate}
+An optical model can pass one check and fail another. For example, a wrong OPL accumulator can coexist with a correct ray spot because directions were traced correctly. Conversely, an apparently smooth OPD map can be assigned to the wrong pupil coordinates.
+
+\section{Numerical differentiation and cancellation}
+The centred finite difference $[W(x+h)-W(x-h)]/(2h)$ approximates $W'(x)$ with leading truncation error proportional to $h^2$ for a smooth function. Making $h$ arbitrarily small eventually amplifies floating-point noise. Check a sequence of step sizes for a stable region instead of assuming the smallest step is best.
+
+Likewise, subtracting two OPLs of tens of millimetres to recover nanometres involves cancellation. Double precision is often adequate for the examples in these books, but it is not a universal guarantee at picometre accuracy or extreme geometric scales. Use reference-subtracted analytic expressions, compensated accumulation, or higher precision when convergence checks demand it. Test the optical quantity of interest, not just the number of printed digits.
+
+\chapter{Foundation exercises and worked solutions}
+\label{fnd:exercises}
+\section{Exercises}
+Attempt these before reading the solutions. State units and conventions in every answer.
+\begin{enumerate}
+\item A wavefront has $W=45\ \mathrm{nm}$ at one pupil point relative to another. Compute the phase difference at $633\ \mathrm{nm}$ and $13.5\ \mathrm{nm}$.
+\item A spherical surface has $R=200\ \mathrm{mm}$ and clear radius $a=10\ \mathrm{mm}$. Find the quadratic sag at the edge and the first omitted quartic sag. Why can the latter matter even when the quadratic approximation looks accurate on a drawing?
+\item Find the mean, RMS after removing the mean, and peak-to-valley value of $W=B\rho^4$ on a uniformly weighted unit disk.
+\item A ray enters index $1.5$ from air at $30^\circ$ to the normal. Find its refracted angle. Explain why substituting $\tan i$ for $\sin i$ is not an exact refraction law.
+\item Derive the focal length of a thin lens with $n_g=1.6$, $R_1=+80\ \mathrm{mm}$, $R_2=-120\ \mathrm{mm}$. Where is the image of an object $300\ \mathrm{mm}$ in front of it?
+\item A normal-incidence mirror has positive normal height error $h=+8\ \mathrm{nm}$ toward the incoming beam. What is its first-order OPD in air? Compare with a transmitted glass thickness increase of $8\ \mathrm{nm}$ at $n_g=1.5$.
+\item At an output plane $a=10\ \mathrm{mm}$ from its pupil centre to its edge, a reference focus lies $L=200\ \mathrm{mm}$ downstream in air. How much does the quadratic normalized-pupil coefficient change if the reference focus moves downstream by $0.1\ \mathrm{mm}$?
+\item For the thick lens of Chapter~\ref{fnd:imaging}, use its matrix to find the output ray vector for collimated entrance height $1\ \mathrm{mm}$, then recover its paraxial BFL from the vector.
+\item For $W=A\rho^4+B\rho^2$, choose $B$ to minimize mean-subtracted wavefront RMS. Is the resulting coefficient also guaranteed to minimize every geometrical spot measure?
+\end{enumerate}
+
+\section{Solutions with intermediate steps}
+\paragraph{1. Phase.}
+Use $\Delta\phi=2\pi W/\lambda_0$. At $633\ \mathrm{nm}$, $W/\lambda_0=45/633=0.071090$ and $\Delta\phi=0.44667$ radians. At $13.5\ \mathrm{nm}$ the ratio is $10/3$, so the accumulated difference is $20\pi/3=20.94395$ radians. An interference measurement of wrapped phase only determines this angle modulo $2\pi$; reconstructing a continuous multiwave OPD requires phase unwrapping or additional information.
+
+\paragraph{2. Sag.}
+The quadratic term is $a^2/(2R)=100/400=0.25\ \mathrm{mm}$. The quartic term is $a^4/(8R^3)=10^4/(8\times8\times10^6)=0.00015625\ \mathrm{mm}=156.25\ \mathrm{nm}$. It is only $0.0625\%$ of the quadratic sag, yet its normal-incidence reflected path effect has magnitude approximately $312.5\ \mathrm{nm}$ under the local perturbation model. Optical phase sensitivity and visual geometric similarity are different criteria.
+
+\paragraph{3. Quartic statistics.}
+The mean is $B\langle\rho^4\rangle=B/3$. The second moment is $B^2\langle\rho^8\rangle=B^2/5$. Therefore the variance is $B^2(1/5-1/9)=4B^2/45$ and $\sigma_W=2|B|/\sqrt{45}$. The extrema are $0$ and $B$, so peak-to-valley is $|B|$. Removing the mean leaves peak-to-valley unchanged.
+
+\paragraph{4. Refraction.}
+Snell's law gives $\sin t=\sin30^\circ/1.5=1/3$, so $t=\arcsin(1/3)=19.4712^\circ$. The sine follows from the tangential projection of a \emph{unit} direction and from the path derivative. The tangent is transverse slope per axial distance, a different geometric quantity. Sine and tangent agree to first order near zero, which explains their interchange only in a paraxial approximation.
+
+\paragraph{5. Lens.}
+The power is $0.6(1/80+1/120)=0.0125\ \mathrm{mm}^{-1}$, so $f=80\ \mathrm{mm}$. The image satisfies $1/s'=1/80-1/300=11/1200\ \mathrm{mm}^{-1}$. Thus $s'=1200/11=109.0909\ \mathrm{mm}$ and the magnification is $-s'/s=-4/11$.
+
+\paragraph{6. Surface versus thickness.}
+With the stated mirror height sign, $\delta W=-2h=-16\ \mathrm{nm}$. The transmitted thickness produces $\delta W=(1.5-1)(8\ \mathrm{nm})=+4\ \mathrm{nm}$. The signs differ because moving the reflector forward shortens the path, whereas replacing air by more glass increases optical path between fixed planes.
+
+\paragraph{7. Reference focus.}
+Equation~\eqref{fnd:reference-focus-shift} gives
+\[
+\Delta B=-\frac{(10\ \mathrm{mm})^2(0.1\ \mathrm{mm})}
+{2(200\ \mathrm{mm})^2}=-0.000125\ \mathrm{mm}=-125\ \mathrm{nm}.
+\]
+The calculation assumes $|\Delta L|\ll L$ and a paraxial pupil. A physical change in lens power requires a separate calculation of how $S_{\rm actual}$ changes.
+
+\paragraph{8. Thick-lens ray.}
+Multiplication gives $y_{\mathrm{out}}=29/30\ \mathrm{mm}$ and $p_{\mathrm{out}}=-59/3000$. In output air $u\simeq p$, so the distance needed to remove the remaining height is $-y/u=(29/30)(3000/59)=2900/59\ \mathrm{mm}$. This agrees with Eq.~\eqref{fnd:bfl}. Its dimensions come from the height; reduced angle is dimensionless.
+
+\paragraph{9. Best RMS focus.}
+The variance is a quadratic function of $B$. Its derivative vanishes when
+\[
+0=\operatorname{Cov}(A\rho^4+B\rho^2,\rho^2)
+=A\left(\frac14-\frac13\frac12\right)
++B\left(\frac13-\frac14\right)
+=\frac{A+B}{12}.
+\]
+Therefore $B=-A$. Removing the mean yields
+\[
+W-\langle W\rangle=A(\rho^4-\rho^2+1/6).
+\]
+Squaring and using disk moments gives variance $A^2/180$. Hence $\sigma_W=|A|/\sqrt{180}$. This is best mean-square \emph{wavefront} focus under the given weighting. A geometrical metric uses derivatives or extrema and need not have the same optimum. The later chapters explicitly separate these objectives.

@@ -1,0 +1,48 @@
+{
+  "zernike": {
+    "pdf_pages": 75,
+    "chapters": 18,
+    "source_whitespace_words": 19949,
+    "duplicate_labels": [],
+    "unresolved_source_references": [],
+    "unresolved_source_citations": [],
+    "replacement_glyph_pages": [],
+    "page_edge_text": [],
+    "very_sparse_pages": [
+      9,
+      29
+    ],
+    "contact_sheets": [
+      "C:\\Users\\fxl04\\Desktop\\Prof. Wong Grp Papers\\self-studying materials\\.qa\\zernike\\contact_001_012.png",
+      "C:\\Users\\fxl04\\Desktop\\Prof. Wong Grp Papers\\self-studying materials\\.qa\\zernike\\contact_013_024.png",
+      "C:\\Users\\fxl04\\Desktop\\Prof. Wong Grp Papers\\self-studying materials\\.qa\\zernike\\contact_025_036.png",
+      "C:\\Users\\fxl04\\Desktop\\Prof. Wong Grp Papers\\self-studying materials\\.qa\\zernike\\contact_037_048.png",
+      "C:\\Users\\fxl04\\Desktop\\Prof. Wong Grp Papers\\self-studying materials\\.qa\\zernike\\contact_049_060.png",
+      "C:\\Users\\fxl04\\Desktop\\Prof. Wong Grp Papers\\self-studying materials\\.qa\\zernike\\contact_061_072.png",
+      "C:\\Users\\fxl04\\Desktop\\Prof. Wong Grp Papers\\self-studying materials\\.qa\\zernike\\contact_073_075.png"
+    ]
+  },
+  "aberrations": {
+    "pdf_pages": 73,
+    "chapters": 17,
+    "source_whitespace_words": 19458,
+    "duplicate_labels": [],
+    "unresolved_source_references": [],
+    "unresolved_source_citations": [],
+    "replacement_glyph_pages": [],
+    "page_edge_text": [],
+    "very_sparse_pages": [
+      9,
+      29
+    ],
+    "contact_sheets": [
+      "C:\\Users\\fxl04\\Desktop\\Prof. Wong Grp Papers\\self-studying materials\\.qa\\aberrations\\contact_001_012.png",
+      "C:\\Users\\fxl04\\Desktop\\Prof. Wong Grp Papers\\self-studying materials\\.qa\\aberrations\\contact_013_024.png",
+      "C:\\Users\\fxl04\\Desktop\\Prof. Wong Grp Papers\\self-studying materials\\.qa\\aberrations\\contact_025_036.png",
+      "C:\\Users\\fxl04\\Desktop\\Prof. Wong Grp Papers\\self-studying materials\\.qa\\aberrations\\contact_037_048.png",
+      "C:\\Users\\fxl04\\Desktop\\Prof. Wong Grp Papers\\self-studying materials\\.qa\\aberrations\\contact_049_060.png",
+      "C:\\Users\\fxl04\\Desktop\\Prof. Wong Grp Papers\\self-studying materials\\.qa\\aberrations\\contact_061_072.png",
+      "C:\\Users\\fxl04\\Desktop\\Prof. Wong Grp Papers\\self-studying materials\\.qa\\aberrations\\contact_073_073.png"
+    ]
+  }
+}
