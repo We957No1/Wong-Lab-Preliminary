@@ -1,0 +1,398 @@
+\chapter{Pupils, diffraction, resolution, and focus}\label{ch:diffraction}
+\reading{Saleh--Teich \S\S4.1--4.4, printed pp.~105--137.
+Start at PDF pp.~127, 138, 143, and 149.
+Born--Wolf \S8.3, printed p.~375 (PDF p.~413), and \S8.5.2,
+printed p.~395; the Airy formula is on p.~396 (PDF p.~434).}
+
+\section{Aperture stops, pupils, and numerical aperture}
+An aperture stop limits the cone of rays that an optical system accepts
+from an object point. The entrance pupil is the image of that stop seen
+through the optics before it; the exit pupil is its image through the
+optics after it. A pupil can therefore be a virtual image rather than a
+physical hole at the plane where it is drawn.
+
+For a rotationally symmetric image-side cone of half-angle $\alpha_{\max}$,
+\begin{equation}
+\NA=n\sin\alpha_{\max}.
+\label{eq:NA}
+\end{equation}
+In vacuum $n=1$. Thus $\NA=0.33$ corresponds to
+$\alpha_{\max}=\arcsin(0.33)\simeq19.27^\circ$.
+The chief ray goes through the centre of the aperture stop; marginal rays
+reach its edge. These are different rays.
+The mask chief-ray angle of $6^\circ$ in Table 1 is not the same angle as
+the wafer-side numerical-aperture cone.
+
+In a paraxial system with pupil radius $a$ and effective image distance $f$,
+$\NA\simeq a/f$ in air. The exact sine definition is the basic one.
+The optical invariant gives approximately
+$\NA_{\rm object}\simeq |M|\NA_{\rm image}$ for equal media and lateral
+magnification $M$. A 4:1 reduction has $|M|=1/4$; object and image NAs
+must not be silently interchanged.
+
+\section{Propagation as a sum of angular components}
+Insert a transverse Fourier component
+$\exp[\ii2\pi(f_xx+f_yy)]\exp(\ii k_z z)$ into the Helmholtz equation
+in vacuum. The result is
+\[
+k_z^2=k_0^2-(2\pi)^2(f_x^2+f_y^2).
+\]
+Each propagating component therefore acquires
+\begin{equation}
+H_z(\vct f)=
+\exp\!\left[\ii k_0z\sqrt{1-\lambda^2|\vct f|^2}\right].
+\label{eq:angularprop}
+\end{equation}
+For $|\vct f|>1/\lambda$, the longitudinal wave number is imaginary and
+the component is evanescent. The far-field projector does not collect
+arbitrarily fine near-field detail.
+
+When $\lambda|\vct f|\ll1$,
+\begin{equation}
+H_z(\vct f)\simeq
+\ee^{\ii k_0z}\ee^{-\ii\pi\lambda z|\vct f|^2}.
+\label{eq:fresneltransfer}
+\end{equation}
+Inverse transformation yields the Fresnel propagation integral
+\begin{equation}
+U(x,y;z)=\frac{\ee^{\ii k_0z}}{\ii\lambda z}
+\iint U(x',y';0)
+\exp\!\left[\frac{\ii\pi}{\lambda z}
+\{(x-x')^2+(y-y')^2\}\right]\dd x'\dd y'.
+\label{eq:fresnel}
+\end{equation}
+One way to obtain the same phase is to expand the distance
+$R=\sqrt{z^2+(x-x')^2+(y-y')^2}$ as
+$z+\{(x-x')^2+(y-y')^2\}/(2z)$.
+The amplitude $1/R$ is approximated by $1/z$.
+These are two approximations, and the phase approximation is often
+the stricter one because it is multiplied by the large wave number.
+
+If the quadratic source-coordinate phase is negligible,
+$a^2/(\lambda z)\ll1$ for characteristic aperture radius $a$,
+Eq.~\eqref{eq:fresnel} becomes a Fourier transform:
+\[
+U(x,y;z)\propto
+\widetilde U\!\left(\frac{x}{\lambda z},\frac{y}{\lambda z}\right)
+\]
+apart from a known output quadratic phase. This is Fraunhofer diffraction.
+The dimensionless ratio $N_F=a^2/(\lambda z)$ is the Fresnel number.
+A focusing optic can cancel the required quadratic phase, giving a
+Fourier-related focal plane without requiring a physically enormous
+propagation distance.
+
+\section{The pupil function and the point-spread function}
+Define a scalar coherent transfer function
+\begin{equation}
+P(\vct f)=A(\vct f)\,
+\mathbf1_{|\vct f|\leq f_c}\,
+\exp\!\left[\frac{\ii2\pi}{\lambda}W(\vct f/f_c)\right],
+\qquad f_c=\frac{\NA}{\lambda}.
+\label{eq:pupil}
+\end{equation}
+Here $\mathbf1$ equals one inside the admitted disk and zero outside,
+$A$ describes amplitude transmission or reflection, and $W$ is the
+phase-equivalent OPD. The normalized pupil coordinate is
+$\vct u=\vct f/f_c=(\rho\cos\theta,\rho\sin\theta)$.
+
+For coherent illumination of a thin scalar object with complex
+transmittance or reflectance $t$,
+\begin{equation}
+U_{\rm image}=\FT^{-1}[\widetilde t\,P]=t*h,\qquad
+h=\FT^{-1}[P].
+\label{eq:coherentimage}
+\end{equation}
+$h$ is the amplitude point-spread function (PSF).
+The intensity PSF is $|h|^2$. A point object contains all transverse
+spatial frequencies; the pupil selects the part used to reconstruct it.
+This is why a finite aperture produces a finite spot.
+
+For a clear circular pupil with no aberration, let $r=\sqrt{x^2+y^2}$.
+Angular integration gives a Bessel function:
+\[
+h(r)=2\pi\int_0^{f_c}fJ_0(2\pi fr)\dd f
+=\frac{f_cJ_1(2\pi f_cr)}{r}.
+\]
+Since $h(0)=\pi f_c^2$, the normalized intensity is
+\begin{equation}
+\frac{I(r)}{I(0)}
+=\left[\frac{2J_1(v)}{v}\right]^2,\qquad
+v=2\pi f_cr.
+\label{eq:airy}
+\end{equation}
+The first zero of $J_1$ is $v\simeq3.8317$, so
+\begin{equation}
+r_{\rm first\ zero}=0.6098\,\frac{\lambda}{\NA}.
+\end{equation}
+This is the Airy pattern. Its rings redistribute energy rather than
+indicating geometric rays bouncing around the image.
+
+\section{Coherent and incoherent resolution are different questions}
+For coherent illumination, amplitudes from object points interfere before
+we square the field. For mutually incoherent object points, cross terms
+average out and object \emph{intensity} is convolved with $|h|^2$.
+The incoherent optical transfer function is consequently a pupil
+autocorrelation:
+\begin{equation}
+\mathrm{OTF}(\vct q)=
+\frac{\int P(\vct f+\vct q/2)P^*(\vct f-\vct q/2)\dd^2f}
+{\int |P(\vct f)|^2\dd^2f}.
+\label{eq:otf}
+\end{equation}
+Two disks of radius $f_c$ cease to overlap when their separation exceeds
+$2f_c$. This explains the incoherent intensity cutoff $2\NA/\lambda$,
+whereas the on-axis coherent field cutoff is $\NA/\lambda$.
+Partial coherence, used in lithography, requires the source-dependent
+formulation developed later.
+
+The Rayleigh two-point separation $0.61\lambda/\NA$ is a criterion for
+distinguishing point-source images. It is not a universal minimum
+thresholded hole diameter. Periodic patterns, oblique illumination,
+resist thresholds, and proximity correction pose a different problem.
+Do not conclude that the paper's 14 nm contacts are impossible merely
+because $0.61(13.5)/0.33\simeq24.95\nm$.
+
+\section{Resolution and depth-of-focus scaling}
+Lithography often summarizes a process-dependent minimum feature scale as
+\begin{equation}
+\mathrm{CD}\sim k_1\frac{\lambda}{\NA},
+\label{eq:k1}
+\end{equation}
+where $k_1$ absorbs pattern, illumination, mask, resist, and process choices.
+For 14 nm, 13.5 nm wavelength, and 0.33 NA, the numerical ratio is
+$k_1=14(0.33)/13.5\simeq0.3422$.
+This calculation characterizes the geometry; it does not prove a process
+window or assign the same $k_1$ to every pitch.
+
+Defocus adds a relative phase from Eq.~\eqref{eq:angularprop}.
+Subtract the on-axis piston:
+\begin{align}
+\phi_z(\rho)
+&=\frac{2\pi z}{\lambda}
+\left[\sqrt{1-\NA^2\rho^2}-1\right]\\
+&\simeq-\frac{\pi z\NA^2}{\lambda}\rho^2.
+\label{eq:defocusphase}
+\end{align}
+When the pupil-edge phase becomes a fixed tolerable number, the
+corresponding defocus scales as $\lambda/\NA^2$:
+\begin{equation}
+\mathrm{DOF}\sim k_2\frac{\lambda}{\NA^2}.
+\end{equation}
+Whether DOF denotes a half-range or a full range changes the convention
+for $k_2$. The paper specifies sampled focus values, not a universal $k_2$.
+
+At its conditions,
+\[
+\lambda/\NA=40.91\nm,\qquad
+\lambda/\NA^2=123.97\nm.
+\]
+Increasing NA improves lateral resolution but generally makes focus more
+sensitive. Reducing wavelength improves resolution but also reduces this
+focus scale at fixed NA. Reducing NA has the opposite resolution effect.
+The Introduction's combined discussion of smaller wavelength and NA
+should be read with these two distinct scalings in mind.
+
+\section{A quantitative focus check}
+From Eq.~\eqref{eq:defocusphase},
+\[
+W_z(\rho)\simeq-\frac{z\NA^2}{2}\rho^2.
+\]
+Remove its mean and use $\Var(\rho^2)=1/12$:
+\begin{equation}
+\sigma_{W,z}=\frac{|z|\NA^2}{4\sqrt3}.
+\label{eq:defocusRMS}
+\end{equation}
+At $z=15\nm$, $\sigma_{W,z}=0.235775\nm
+=17.4648\,\mathrm{m}\lambda$.
+The pupil-edge-to-centre OPD is $0.81675\nm$.
+These two values are different because RMS, peak-to-valley, and
+edge-to-centre error are different statistics.
+
+The exact angular formula gives an edge OPD
+$15[1-\sqrt{1-0.33^2}]\simeq0.8403\nm$.
+The paraxial value is a useful approximation, not an exact
+high-angle propagation result.
+
+\chapter{Why EUV needs mirrors and a three-dimensional mask}\label{ch:euv}
+\paperloc{Fig.~1, Table 1, Fig.~3, and the mask discussion in Section 2A.}
+\reading{Born--Wolf \S1.5, printed p.~36 (PDF p.~65), and
+\S1.6, p.~51 (PDF p.~80); its characteristic-matrix discussion begins
+at p.~55 (PDF p.~84). Saleh--Teich \S6.2, p.~209 (PDF p.~231).}
+
+\section{The optical path through an EUV exposure system}
+The useful sequence is source, collector and illumination optics,
+reflective patterned mask, projection mirrors, and resist-coated wafer.
+Illumination optics control the angular distribution incident on the
+mask. Projection optics determine which mask-diffracted components reach
+the wafer and with what amplitude and phase.
+
+At 13.5 nm, strong absorption makes ordinary transmissive lens trains
+and propagation through air unsuitable. EUV scanners use vacuum and
+multilayer mirrors. ASML's NXE:3400C documentation specifies reflective
+4:1 reduction optics and 0.33 NA \cite{asml}.
+The paper's Fig.~1 caption says NXT3400; the relevant EUV family is
+NXE:3400. This naming issue does not alter the optical calculations.
+
+A geometrical mirror's reflection direction is largely independent of
+wavelength, so an all-reflective design avoids ordinary refractive
+chromatic aberration. Its coatings still have wavelength-dependent
+reflectance and phase. Mirrors also absorb energy, heat, deform, and move.
+Thus reflective does not mean perfectly achromatic in every optical
+property or immune to thermal aberration.
+
+\section{Complex refractive index and absorption}
+With time convention $\ee^{-\ii\omega t}$, write a passive EUV material's
+index as $\widetilde n=1-\delta+\ii\beta$, where $\beta>0$.
+A normally propagating field behaves as
+\[
+U(z)=U(0)\ee^{\ii k_0(1-\delta)z}\ee^{-k_0\beta z}.
+\]
+Hence
+\begin{equation}
+I(z)=I(0)\ee^{-\mu_{\rm abs}z},\qquad
+\mu_{\rm abs}=\frac{4\pi\beta}{\lambda}.
+\end{equation}
+The real part affects phase; the imaginary part attenuates amplitude.
+Material optical constants therefore influence both image contrast and
+phase. Treating an absorber as merely a perfectly black two-dimensional
+painted region omits this physics.
+
+\section{Reflection at an interface}
+Continuity of tangential electric and magnetic fields at an interface
+gives, for a chosen polarization, equations of the form
+\[
+1+r=t,\qquad Y_0(1-r)=Y_1t.
+\]
+Here $Y_j$ is the appropriate optical admittance for that polarization.
+Solving,
+\begin{equation}
+r_{01}=\frac{Y_0-Y_1}{Y_0+Y_1},\qquad
+t_{01}=\frac{2Y_0}{Y_0+Y_1}.
+\label{eq:fresnelr}
+\end{equation}
+For electric field perpendicular to the incidence plane,
+$Y_j$ is proportional to $\widetilde n_j\cos\theta_j$.
+For the tangential electric-field convention of parallel polarization
+it is proportional to $\widetilde n_j/\cos\theta_j$.
+Different polarization amplitude conventions can reverse a reflected
+amplitude sign; physical intensities and phase comparisons must use
+one convention consistently.
+
+Snell's relation is
+$\widetilde n_0\sin\theta_0=\widetilde n_1\sin\theta_1$.
+For absorbing layers the transmitted angle and longitudinal wave number
+are generally complex. The physical branch decays into the medium.
+
+\section{A thin film: summing all internal reflections}
+Consider a layer 1 of thickness $d$ between media 0 and 2.
+The phase for one transit is
+$\delta_1=k_0\widetilde n_1d\cos\theta_1$.
+The first reflection is $r_{01}$.
+The first wave returning from the lower interface contributes
+$t_{01}t_{10}r_{12}\ee^{2\ii\delta_1}$.
+Each additional round trip multiplies this by
+$r_{10}r_{12}\ee^{2\ii\delta_1}$.
+Summing the geometric series,
+\[
+r_{\rm film}
+=r_{01}+
+\frac{t_{01}t_{10}r_{12}\ee^{2\ii\delta_1}}
+{1-r_{10}r_{12}\ee^{2\ii\delta_1}}.
+\]
+Using $r_{10}=-r_{01}$ and
+$t_{01}t_{10}=1-r_{01}^2$ gives
+\begin{equation}
+r_{\rm film}=
+\frac{r_{01}+r_{12}\ee^{2\ii\delta_1}}
+{1+r_{01}r_{12}\ee^{2\ii\delta_1}}.
+\label{eq:thinfilm}
+\end{equation}
+Replace the lower-interface reflection by the effective reflection of
+all deeper layers and repeat recursively. This constructs a multilayer
+response. The equivalent transfer-matrix method propagates tangential
+fields through each layer and multiplies the matrices in physical order.
+The reflected intensity is $|r_{\rm stack}|^2$ in the incident medium,
+and the reflected phase is $\arg r_{\rm stack}$.
+
+This derivation explains why a small thickness error can change
+reflectance and phase simultaneously. It also explains why a multilayer
+reflector cannot be represented by surface height alone.
+
+\section{The Mo/Si period and the Bragg estimate}
+Reflections from successive layers can reinforce when their round-trip
+phase difference is approximately $2\pi$. Neglecting refractive
+corrections for an estimate, a repeated period $d$ at angle $\alpha$
+from the normal obeys
+\begin{equation}
+2d\cos\alpha\simeq m\lambda.
+\label{eq:bragg}
+\end{equation}
+This is a design estimate; the full result follows from the complex
+multilayer calculation above, including interfaces, absorption, and
+termination.
+
+The paper gives Mo thickness $0.725\nm$, Si thickness $1\nm$, and
+absorber height $15\nm$, explicitly in \emph{wafer scale}. Under a 4:1
+scale conversion these correspond to physical mask values
+$2.9\nm$, $4\nm$, and $60\nm$.
+The inferred period is $6.9\nm$, and
+\[
+2(6.9)\cos6^\circ=13.7244\nm,
+\]
+which has the expected scale for 13.5 nm multilayer reflection.
+This is a consistency check based on a 4:1 interpretation, not a
+recovered complete mask prescription.
+
+\careful{Do not put the wafer-scaled 1.725 nm period directly into a
+physical 13.5 nm mask-stack solver. Lateral pattern dimensions can be
+reported at wafer scale for convenience, but a Maxwell calculation must
+use a consistent physical mask geometry, wavelength, and reduction mapping.
+The paper does not provide all stack details needed for exact reconstruction.}
+
+\section{Finite absorber height breaks the ideal thin-mask picture}
+An obliquely incident ray traversing absorber height $h$ has a lateral
+geometrical displacement $h\tan\alpha$. With the inferred
+$h=60\nm$ and $\alpha=6^\circ$, this is about $6.306\nm$ on the mask,
+or $1.577\nm$ after 4:1 reduction.
+This shows why an apparently small angle matters on nanometre scales.
+It is not a prediction of the paper's PS: coherent diffraction, material
+phase, double-pass geometry, and contour formation also contribute.
+
+Different diffraction orders interact with the finite absorber and
+multilayer differently. Their complex amplitudes can depend on source
+angle, polarization, hole orientation, and pitch. This produces
+asymmetric images, orientation-dependent CDs, and focus-dependent
+placement. A square mask opening can therefore have unequal printed
+horizontal and vertical dimensions.
+
+The mask chief-ray angle describes the central illumination geometry.
+The quasar distribution describes angular offsets around that geometry.
+Off-axis source shaping and a nonzero chief-ray angle are distinct ideas;
+one should not infer that the chief ray itself supplies every resolution
+benefit attributed to source shaping.
+
+\section{What a rigorous mask calculation has to do}
+A representative electromagnetic workflow is:
+\begin{enumerate}
+\item Specify each material's complex optical constants, layer thickness,
+feature shape, sidewall angle, period, source angle, and polarization.
+\item Solve the frequency-domain Maxwell boundary-value problem. Methods
+include Fourier modal techniques and finite-element discretizations.
+\item Obtain the complex vector amplitudes of reflected diffraction orders.
+\item Propagate those orders through the projection system, including pupil
+phase, amplitude, and defocus.
+\item Sum coherent orders for one source point, average intensities over
+mutually incoherent source points, and extract image or resist contours.
+\end{enumerate}
+For a periodic permittivity
+$\epsilon(x,z)=\sum_g\epsilon_g(z)\ee^{\ii gx}$, expanding the field in
+the same harmonics turns multiplication by $\epsilon$ into convolution
+of Fourier coefficients. The diffraction orders become coupled equations,
+not independent rays. Their boundary conditions enforce the material
+interfaces. This is the basic reason rigorous diffraction is more
+computationally expensive than a binary thin-mask Fourier transform.
+
+The paper identifies a commercial Synopsys simulator but does not give
+enough settings to determine its exact electromagnetic solver, numerical
+convergence, material database, or resist extraction procedure.
+Those items remain unknown rather than being supplied by the word rigorous.

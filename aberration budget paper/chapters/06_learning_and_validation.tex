@@ -1,0 +1,365 @@
+\chapter{The neural network and its training, step by step}\label{ch:network}
+\paperloc{Sections 2B--2C, Fig.~4, and the reported network architecture.}
+
+\section{A neuron is a weighted sum followed by a function}
+Given inputs $a_1,\ldots,a_d$, a neuron forms
+\[
+q=\sum_{j=1}^dw_ja_j+b,\qquad a_{\rm out}=g(q).
+\]
+The weights $w_j$ determine which inputs contribute and with what sign;
+the bias $b$ shifts the response. The activation $g$ introduces nonlinearity.
+A layer of neurons applies this operation in parallel:
+\begin{equation}
+\vct q^{(\ell)}=A^{(\ell)}\vct a^{(\ell-1)}+\vct b^{(\ell)},
+\qquad
+\vct a^{(\ell)}=g_\ell(\vct q^{(\ell)}).
+\label{eq:network}
+\end{equation}
+The function acts component by component. Repeating layers produces a
+composition of nonlinear functions. With only linear activations,
+all layers collapse into a single affine map, no matter how many are used.
+
+For example, $g(q)=\tanh q$ is smooth, ranges from $-1$ to $+1$,
+and has derivative $1-\tanh^2q$. A rectified linear unit is
+$\max(0,q)$ and is piecewise linear. The paper does not report its
+activation functions, so neither choice can be attributed to the authors.
+Likewise, an ordinary unbounded linear regression output is a possible
+choice, but the actual output activation is undocumented.
+
+\section{What the network is asked to learn}
+Here the input is the 84-component imaging vector, not a pupil image.
+The output is a vector of Zernike coefficients, not CD or PVB.
+The desired relationship is
+\[
+G_\Theta:\vct y\longmapsto\vct c,
+\]
+where $\Theta$ collects all trainable weights and biases.
+During training, the known simulator pair
+$(\vct y^{(r)},\vct c^{(r)})$ supplies the input and target.
+During use, a new desired imaging vector supplies the input.
+
+Calling this a backpropagation network describes how derivatives of the
+training loss are computed. It does not mean light is physically
+propagated backward through a Maxwell solver.
+Back prediction refers to the direction of the learned inverse mapping;
+backpropagation refers to the chain rule used to train it.
+
+\section{Interpreting the reported layer widths}
+The paper gives
+\[
+84,\ 84,\ 64,\ 64,\ 50,\ 36,\ 32,\ 25,\ 25.
+\]
+Read literally, the network has 84 inputs and 25 outputs. Its seven
+hidden layers have widths $84,64,64,50,36,32,25$.
+Figure 4 is a simplified schematic and does not depict these exact widths
+or the full hidden-layer count.
+
+A fully connected layer taking $d_{\rm in}$ inputs to $d_{\rm out}$
+outputs has $d_{\rm in}d_{\rm out}$ weights and $d_{\rm out}$ biases.
+The literal architecture therefore has
+\[
+\sum_{\ell=1}^8(d_{\ell-1}+1)d_\ell
+=7140+5440+4160+3250+1836+1184+825+650
+=24\,485
+\]
+trainable parameters. This calculation assumes the conventional dense
+architecture; the publication does not provide implementation code to
+confirm all details.
+
+The parameter count exceeds the number of simulated aberration cases.
+That does not mathematically prove overfitting: each case has multiple
+outputs, and training structure matters. It does make independent testing,
+preprocessing disclosure, and regularization choices important.
+The 25-output ambiguity discussed in Chapter \ref{ch:data} remains.
+
+\section{Why feature normalization matters}
+CD may be of order tens of nanometres while $\mathrm{PS}_y$ can be a small
+fraction of a nanometre. An optimizer acting on raw coordinates may assign
+very different numerical scales to these quantities.
+Featurewise min--max normalization to $[-1,1]$ is
+\begin{equation}
+\widetilde x=2\frac{x-x_{\min}}{x_{\max}-x_{\min}}-1.
+\label{eq:normalization}
+\end{equation}
+Solving for the physical value,
+\begin{equation}
+x=x_{\min}+\frac{\widetilde x+1}{2}(x_{\max}-x_{\min}).
+\label{eq:unnormalization}
+\end{equation}
+The paper names MATLAB's \texttt{mapminmax}, which performs rowwise
+range mapping and supports applying stored settings to new data
+\cite{mapminmax}.
+
+The minimum and maximum must be fitted on training data and saved.
+Use those same settings for validation, testing, and deployment.
+Recomputing them independently for a new batch changes the meaning
+of every network coordinate. Including held-out data when fitting them
+lets test information enter preprocessing.
+
+If $x_{\max}=x_{\min}$, the feature has no training variation and the
+formula divides by zero. It needs explicit handling.
+If a new value lies outside the training range, its normalized value
+lies outside $[-1,1]$; min--max mapping does not by itself clip it.
+Similarly, undoing output normalization does not impose a coefficient
+bound unless the output is explicitly bounded or clipped.
+
+\section{The training loss}
+Let $N$ be the number of training samples and $K$ the number of output
+coordinates actually trained. One common mean-square loss is
+\begin{equation}
+L(\Theta)=\frac{1}{NK}\sum_{r=1}^N\sum_{j=1}^K
+\left[\widehat c_j^{(r)}-c_j^{(r)}\right]^2.
+\label{eq:trainingMSE}
+\end{equation}
+Often the coefficients here are normalized coordinates.
+The paper says training uses MSE and a goal of $10^{-8}$, but does not
+supply enough preprocessing detail to turn that number into a guaranteed
+physical coefficient error.
+
+If, purely as an example, one output spans
+$[-20,+20]\,\mathrm{m}\lambda$ and is mapped to $[-1,1]$, then
+a normalized RMSE $10^{-4}$ corresponds to
+$0.002\,\mathrm{m}\lambda$ for that coordinate.
+The square root of an average training MSE does not bound each output,
+does not describe held-out error, and does not bound image error after
+the nonlinear forward map.
+
+\section{Backpropagation is repeated application of the chain rule}
+For clarity use a one-sample loss
+$L=\tfrac12\norm{\widehat{\vct c}-\vct c}^2$.
+For a linear output layer, the derivative with respect to its preactivation is
+\[
+\vct\delta^{(L)}=\widehat{\vct c}-\vct c.
+\]
+For a nonlinear output, multiply componentwise by $g_L'$.
+At each earlier layer,
+\begin{equation}
+\vct\delta^{(\ell)}
+=\left[(A^{(\ell+1)})^T\vct\delta^{(\ell+1)}\right]
+\odot g_\ell'(\vct q^{(\ell)}).
+\label{eq:backprop}
+\end{equation}
+The symbol $\odot$ means componentwise multiplication.
+To understand the transpose, note that one hidden neuron influences
+every neuron in the next layer; its derivative sums all those downstream
+paths, weighted by the connecting weights.
+
+The parameter derivatives are
+\begin{equation}
+\frac{\partial L}{\partial A^{(\ell)}}=
+\vct\delta^{(\ell)}(\vct a^{(\ell-1)})^T,\qquad
+\frac{\partial L}{\partial\vct b^{(\ell)}}=\vct\delta^{(\ell)}.
+\label{eq:networkgrad}
+\end{equation}
+Average or sum over samples as required by the loss normalization.
+Backpropagation computes these derivatives efficiently by reusing
+intermediate derivatives, rather than perturbing every weight separately.
+
+\worked{One hidden neuron}
+Take $a=\tanh(wx+b)$, $\hat c=va+d$, and
+$L=\tfrac12(\hat c-c)^2$.
+With $e=\hat c-c$,
+\[
+\frac{\partial L}{\partial v}=ea,\quad
+\frac{\partial L}{\partial d}=e,\quad
+\frac{\partial L}{\partial w}=ev(1-a^2)x,\quad
+\frac{\partial L}{\partial b}=ev(1-a^2).
+\]
+Every factor has a role: residual, downstream weight, activation slope,
+and upstream input. A deep network repeats the same multiplication and
+summation pattern across more paths.
+
+\section{Deriving the Levenberg--Marquardt update}
+Flatten all training residuals into a vector $\vct e(\Theta)$ and let
+$J_e=\partial\vct e/\partial\Theta$.
+This \emph{training Jacobian} differentiates residuals with respect to
+network parameters. It is distinct from the imaging Jacobian
+$\partial\vct y/\partial\vct c$.
+
+For a small parameter change $\Delta\Theta$,
+$\vct e(\Theta+\Delta\Theta)\simeq\vct e+J_e\Delta\Theta$.
+Minimize the locally linearized residual with a damping penalty:
+\[
+\frac12\norm{\vct e+J_e\Delta\Theta}^2
++\frac{\mu}{2}\norm{\Delta\Theta}^2.
+\]
+Differentiate with respect to $\Delta\Theta$, set the derivative to zero,
+and obtain
+\begin{equation}
+(J_e^TJ_e+\mu I)\Delta\Theta=-J_e^T\vct e.
+\label{eq:LM}
+\end{equation}
+Solve this linear system; do not explicitly form a matrix inverse
+in a numerical implementation.
+
+For small $\mu$, the step approaches Gauss--Newton.
+For very large $\mu$,
+$\Delta\Theta\simeq-\mu^{-1}J_e^T\vct e$,
+which is a small gradient-descent step.
+The optimizer adjusts damping according to whether a proposed step
+improves the loss. This is the mathematical reason LM can combine
+rapid local convergence with caution away from a good fit.
+
+For a squared-residual loss, the exact Hessian contains
+$J_e^TJ_e+\sum_i e_i\nabla^2e_i$.
+Gauss--Newton drops the second term, which is often small near a
+good fit. LM adds the stabilizing diagonal term.
+It does not guarantee finding a global optimum of a deep network.
+
+The paper identifies MATLAB's LM training function. Its official
+documentation distinguishes the MSE performance goal from
+validation-based stopping and documents the damping update
+\cite{trainlm}. These software facts confirm the interpretation of the
+algorithm; the derivation above follows directly from the local
+least-squares problem.
+
+\section{Training, validation, and test have different jobs}
+Training data determine the weights. Validation data guide choices such
+as stopping time or architecture. Test data estimate performance after
+those choices are fixed. Repeatedly changing the architecture after
+looking at the same test set makes that set part of model selection.
+
+The paper says training stops below MSE $10^{-8}$ or after six rounds
+without an obvious decrease. Standard MATLAB \texttt{trainlm} uses a
+six-failure default for \emph{validation} performance.
+The paper's wording does not settle whether its implemented condition
+was precisely this default or a different training criterion.
+Record that ambiguity rather than equating training stagnation with
+validation failure.
+
+\section{What the learning theory does and does not promise}
+The Introduction cites approximation results for neural networks.
+Such results motivate using nonlinear networks to approximate continuous
+functions under suitable conditions. They do not establish that this
+particular architecture, finite dataset, and optimizer will recover a
+stable inverse of an ambiguous optical map.
+
+In particular, they do not guarantee extrapolation beyond the training
+region, compliance with coefficient bounds, a manufacturable optical
+system, or reliable behavior when the source or mask changes.
+The paper's useful evidence is its forward-simulation validation,
+not the general existence of approximation theorems.
+
+\chapter{Errors, percentages, and what validation means}\label{ch:errors}
+\paperloc{Equations (2)--(3), Figs.~5--10, and the statements about small PS values.}
+
+\section{Root mean square error}
+For predictions $\hat y_i$ and reference values $y_i$, define
+$e_i=\hat y_i-y_i$. Then
+\begin{equation}
+\mathrm{RMSE}=\sqrt{\frac1N\sum_{i=1}^Ne_i^2}.
+\label{eq:RMSE}
+\end{equation}
+This is the paper's Eq.~(2). Squaring prevents positive and negative
+errors from cancelling. Taking the square root restores the units.
+RMSE of a CD in nm is in nm. RMSE of a coefficient in waves is in waves.
+The figure axis must be checked before comparing magnitudes.
+
+If $\bar e$ is the error mean and
+$s_e^2=N^{-1}\sum_i(e_i-\bar e)^2$, direct expansion gives
+\[
+\mathrm{RMSE}^2=\bar e^2+s_e^2.
+\]
+RMSE combines systematic bias and scatter.
+It is not the maximum error. For example, 99 exact predictions and one
+1 nm error have RMSE 0.1 nm over 100 cases.
+
+\section{Mean absolute percentage error}
+The paper's Eq.~(3) is
+\begin{equation}
+\mathrm{MAPE}
+=\frac{100\%}{N}\sum_{i=1}^N
+\left|\frac{\hat y_i-y_i}{y_i}\right|.
+\label{eq:MAPE}
+\end{equation}
+The absolute value makes each term nonnegative, including for negative
+reference values. The denominator makes the statistic dimensionless.
+It also gives large weight to small reference magnitudes and is undefined
+when $y_i=0$.
+
+For a 14 nm CD, an error of 0.014 nm is 0.1 percent.
+For a 0.01 nm pattern shift, the same 0.014 nm error is 140 percent.
+The second percentage looks alarming, but the physical displacement
+error is identical. Conversely, a 1 percent error on a large quantity
+can exceed a stringent absolute tolerance.
+
+\figteach{percentage_error}{1.0}{A fixed absolute error of 0.01 nm
+produces an arbitrarily large percentage as the reference shift approaches
+zero. The right panel shows that the physical error does not diverge.}
+
+\section{Why near-zero shifts are especially awkward}
+Zero is often the desired shift. A metric that becomes undefined exactly
+at the target is a poor sole measure of control quality.
+The paper separates values around 0.14 nm in Fig.~8 and around 0.1 nm
+in Fig.~10. The 0.14 nm scale is $1\%$ of the nominal 14 nm width;
+it is not the paper's final $\pm0.4\nm$ acceptance boundary.
+
+The text describes values above and below these thresholds but does not
+fully document how signed shifts, exact zeros, or removed values were
+handled. A careful replication would define whether the split uses
+$|y_i|$, explicitly state any denominator floor, and report the sample
+count in each group.
+
+A worsening MAPE for smaller $|y|$ can occur with unchanged absolute
+error. Therefore the graph alone does not demonstrate that a neural
+network intrinsically cannot predict small numbers.
+Noise, feature scaling, cancellation between coefficients, weak
+observability, target density, and preprocessing can all contribute.
+The paper's explanation should be treated as a suggested account,
+not a mathematical inevitability of neural networks.
+
+\section{Better companion measures for a placement budget}
+Keep RMSE and add interpretable quantities:
+\begin{align}
+\mathrm{MAE}&=\frac1N\sum_i|e_i|,\\
+e_{\max}&=\max_i|e_i|,\\
+\mathrm{pass\ fraction}&=
+\frac{\#\{i:|\mathrm{PS}_{y,i}^{\rm verified}|\leq b\}}{N}.
+\end{align}
+For a specified tolerance $b>0$, a useful normalized error is
+$|e_i|/b$. Its denominator remains meaningful at zero target shift.
+Quantiles show tail behavior; signed mean error detects systematic bias.
+None of these removes the need to state which patterns and operating
+conditions are included.
+
+\worked{A candidate near the boundary}
+Suppose desired shift is 0.395 nm and the prediction-to-simulation
+error is $+0.020\nm$. The verified shift is 0.415 nm and fails a
+0.4 nm limit. A small absolute discrepancy is consequential here.
+The same discrepancy at a target of zero would still meet the limit.
+The relevant question is error relative to remaining margin, not just
+whether a number sounds small.
+
+\section{Coefficient error versus image error}
+For a held-out original pair $(\vct c,\vct y=F(\vct c))$,
+the network outputs $\hat{\vct c}=G(\vct y)$.
+Two separate residuals are
+\[
+\vct r_c=\hat{\vct c}-\vct c,\qquad
+\vct r_y=F(\hat{\vct c})-\vct y.
+\]
+Figure 5 concerns coefficient differences. Figures 6 and 7 concern the
+imaging differences after forward simulation.
+A sizeable $\vct r_c$ can coexist with a small $\vct r_y$ if the two
+wavefronts are nearly equivalent for the selected indicators.
+However, coefficient disagreement by itself does not prove a valid
+alternative: the forward residual must actually be checked.
+
+Agreement in a few scalar metrics also does not establish identical
+full contours, NILS, stochastic defect behavior, or performance on
+unseen pattern classes. The paper validates the indicators it measures.
+
+\section{What an independent simulation test establishes}
+The 118 additional target vectors provide a useful test beyond the model's
+training/validation set, as described by the authors.
+Their proposed coefficients are sent through the same type of forward
+simulator under the same lithographic conditions.
+This tests consistency with the simulated model and conditions.
+It is not an experimental measurement on a fabricated projector or wafer.
+
+Using the same simulator for training labels and final checking can
+validate the inverse approximation while leaving a common forward-model
+bias invisible. Actual engineering deployment also needs calibrated
+mask, resist, optical, and metrology models.
+These limitations define the scope of the evidence rather than negate
+the usefulness of a simulation-based study.

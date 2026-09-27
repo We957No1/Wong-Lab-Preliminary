@@ -1,0 +1,457 @@
+\chapter{Wavefront aberrations and what RMS does not tell you}\label{ch:aberration}
+\paperloc{Introduction, Section 2, and the motivation for an imaging-based budget.}
+\reading{Born--Wolf \S5.1, printed pp.~203--206 (begin at PDF p.~232);
+\S9.1.2, p.~462 (PDF p.~557); \S9.1.3, pp.~463--464
+(PDF pp.~556--555); \S9.3, pp.~468--469 (PDF pp.~551--550).
+The backward PDF order is real.}
+
+\section{The reference sphere and the aberration function}
+An ideal converging wave reaches its intended image point with the same
+phase contribution from every admitted pupil location. On a suitable
+reference sphere centered at that image point, its phase is constant.
+The actual wave has residual phase variation $2\pi W/\lambda$.
+The real-valued function $W(\rho,\theta)$ is the wave aberration.
+
+The coordinate $(\rho,\theta)$ identifies a point in the pupil, not
+a point on the wafer. A pupil map is therefore not a picture of an
+aberrated contact hole. To get that picture, multiply the pupil field by
+the phase factor and perform the diffraction calculation.
+
+At a different field point on the wafer, the same optical system may
+have a different pupil wavefront:
+\[
+W=W(\rho,\theta;\vct H),
+\]
+where $\vct H$ denotes image-field position. A set of coefficients for
+one field point is not automatically valid across an entire exposure
+field. Likewise, scan time and thermal state may add dependencies.
+
+\section{The familiar named aberrations}
+For a centred rotationally symmetric system, a low-order expansion
+at field height $H$ contains terms schematically of the form
+\begin{align}
+W={}&A\rho^4
++B H\rho^3\cos\theta
++C H^2\rho^2\cos^2\theta\\
+&+D H^2\rho^2
++E H^3\rho\cos\theta+\cdots.
+\label{eq:seidel}
+\end{align}
+The coefficients and axes depend on convention, but the shapes reveal
+the standard families:
+\begin{itemize}
+\item \textbf{Spherical aberration:} different pupil radii have different
+focal behavior; the wavefront has a quartic radial contribution.
+\item \textbf{Coma:} an off-axis asymmetric wavefront component, often
+producing a lopsided point image.
+\item \textbf{Astigmatism:} different meridional directions focus differently.
+At a suitable intermediate focus, its wavefront has a
+$\rho^2\cos2\theta$ or $\rho^2\sin2\theta$ component.
+\item \textbf{Field curvature:} best focus varies across the image field.
+\item \textbf{Distortion:} field-dependent placement error; a point may
+remain locally sharp while its position is incorrect.
+\end{itemize}
+Piston, tilt, and defocus specify a constant phase, a linear pupil phase,
+and a quadratic radial phase. Whether they are called aberrations or
+alignment freedoms depends on the measurement purpose. The paper includes
+low-order coefficients because image placement and focus behavior matter.
+
+Equation \eqref{eq:seidel} is an illustrative classical expansion, not the
+prescription of the paper's off-axis multi-mirror projector. A real EUV
+system need not have the centred-system symmetries used to derive this form.
+
+\section{Piston does not change intensity}
+If $W$ is replaced by $W+c_0$, then every field contribution receives the
+same factor:
+\[
+U_{\rm image}\mapsto\ee^{\ii2\pi c_0/\lambda}U_{\rm image}.
+\]
+The intensity is unchanged because
+$|\ee^{\ii2\pi c_0/\lambda}|^2=1$.
+Consequently intensity-derived CD, PS, and PVB cannot recover global
+piston. This is an exact invariance within the model, not a failure of
+neural-network training.
+
+\section{Tilt moves the image}
+Consider a linear OPD in the normalized frequency pupil,
+$W=t_xu+t_yv$. Then
+\[
+P(\vct f)=P_0(\vct f)
+\exp\!\left[\ii2\pi\left(\frac{t_x}{\NA}f_x
++\frac{t_y}{\NA}f_y\right)\right].
+\]
+Substituting in the inverse Fourier integral shows
+\begin{equation}
+U(\vct x)=U_0\!\left(\vct x+\frac{\vct t}{\NA}\right),
+\qquad
+\Delta\vct x=-\frac{\vct t}{\NA}.
+\label{eq:tilt}
+\end{equation}
+Thus ideal pure tilt shifts a complete image without changing its shape.
+An image registered back to its own centre has the same CD and contrast.
+An unregistered image has a nonzero placement error.
+
+The sign follows our transfer-function convention. The measurable
+magnitude and the distinction between shape and placement are the
+important points. When metrology removes tilt before quoting RMS,
+that RMS cannot subsequently bound the removed placement error.
+
+\section{Defocus changes the reference image plane}
+Equation \eqref{eq:defocusphase} gives a quadratic pupil phase when the
+observation plane moves. Equivalently, a quadratic aberration can be partly
+compensated by changing focus. A report of best-focus RMS may therefore
+exclude a defocus term that still matters at a fixed wafer plane.
+
+The paper varies the focus setting by $\pm15\nm$ while also changing
+aberration coefficients. To reconstruct this experiment one must know
+whether the Zernike coefficients are defined at a fixed reference focus,
+whether refocusing is permitted, and whether focus is reapplied separately
+for every candidate. The publication does not fully specify this convention.
+
+\section{Deriving the small-aberration Strehl relation}
+For a clear, uniformly illuminated pupil and an on-axis point source,
+the normalized field at the chosen reference image point is
+\[
+\frac{U(0)}{U_{\rm ideal}(0)}
+=\avg{\ee^{\ii\phi}},\qquad \phi=\frac{2\pi W}{\lambda}.
+\]
+Expand the exponential:
+\[
+\avg{\ee^{\ii\phi}}\simeq
+1+\ii\avg{\phi}-\frac12\avg{\phi^2}.
+\]
+Multiplying by its conjugate and retaining terms through second order,
+\begin{equation}
+S_{\rm ref}\simeq1-\avg{\phi^2}+\avg{\phi}^2
+=1-\left(\frac{2\pi\sigma_W}{\lambda}\right)^2.
+\label{eq:strehl}
+\end{equation}
+The exponential form often used for small wavefront errors is
+\begin{equation}
+S\simeq\exp[-(2\pi\sigma_W/\lambda)^2].
+\label{eq:marechal}
+\end{equation}
+It shares the leading expansion. It is also the exact squared modulus
+of the characteristic function for a zero-mean Gaussian phase distribution
+under the corresponding average. An arbitrary deterministic aberration
+does not make that exponential exact.
+
+The usual Strehl ratio compares peak intensities under consistent total
+power and aperture conditions. Equation \eqref{eq:strehl} initially evaluates
+a chosen reference point. To discuss the optimized peak, remove or optimize
+the appropriate tilt and focus and specify that choice.
+With a nonuniform pupil, the amplitude weighting in the coherent field
+average must also be treated explicitly.
+
+\worked{Interpreting a $\lambda/50$ RMS requirement}
+At 13.5 nm, $\lambda/50=0.27\nm=20\,\mathrm{m}\lambda$.
+If this is piston-removed RMS in a suitable small-aberration setting,
+\[
+\sigma_\phi=2\pi/50=0.125664,\qquad
+S\simeq\ee^{-(2\pi/50)^2}=0.98433.
+\]
+A high Strehl ratio describes concentration of a point image. It does
+not guarantee a subnanometre PS for every periodic contact image.
+Pure tilt illustrates the distinction particularly clearly.
+
+\section{Equal RMS is not equal lithographic performance}
+RMS measures a mean-square phase error over the pupil. A periodic mask
+uses particular sets of pupil locations and their phase differences.
+Two maps with identical RMS can give different phase differences at
+those locations. Their CD, PS, and process window can therefore differ.
+
+This is the physical motivation for the paper. It does not imply that
+RMS is useless. RMS remains a compact measure of optical quality and a
+useful control variable. It means that RMS alone is not a complete
+description of a pattern-specific imaging requirement.
+
+\chapter{Zernike polynomials from the beginning}\label{ch:zernike}
+\paperloc{Equation (1), Table 1, and the coefficient axes in Figs.~5, 9, 11, and 12.}
+\reading{Born--Wolf \S9.2.1, printed pp.~464--466
+(PDF pp.~555, 554, 553), including its radial-polynomial table.
+Its normalization differs from the RMS-normalized real basis used here.}
+
+\section{Why use orthogonal functions?}
+Suppose we tried to describe $W$ with $1,\rho^2,\rho^4,\ldots$.
+These functions overlap under disk averaging:
+$\avg{\rho^2}=1/2$ and $\avg{\rho^2\rho^4}=1/4$, not zero.
+Changing one fitted coefficient can compensate another.
+Orthogonal functions separate those overlapping contributions.
+
+Define the inner product
+\[
+(f,g)=\avg{fg}
+=\frac1\pi\int_0^{2\pi}\int_0^1fg\,\rho\dd\rho\dd\theta.
+\]
+Orthogonal means $(f,g)=0$ for different modes.
+Orthonormal means each mode also has $(f,f)=1$.
+The analogy is perpendicular unit axes in ordinary Euclidean geometry,
+but the vectors here are functions over a disk.
+
+\section{Constructing the first modes explicitly}
+The constant mode is $Z_0^0=1$. Its RMS is one.
+For a tilt, $\rho\cos\theta=u$ and $\avg{u^2}=1/4$,
+so the unit-RMS tilt is
+\[
+Z_1^1=2\rho\cos\theta,\qquad
+Z_1^{-1}=2\rho\sin\theta.
+\]
+To create defocus orthogonal to piston, subtract the mean from $\rho^2$:
+$\rho^2-1/2$. Its mean square is
+$1/3-1/4=1/12$, giving
+\begin{equation}
+Z_2^0=\sqrt3(2\rho^2-1).
+\end{equation}
+For astigmatism, angular averaging already removes piston:
+\[
+\avg{(\rho^2\cos2\theta)^2}
+=\frac12\avg{\rho^4}=\frac16.
+\]
+Hence
+$Z_2^2=\sqrt6\rho^2\cos2\theta$ and
+$Z_2^{-2}=\sqrt6\rho^2\sin2\theta$.
+
+For a coma-shaped mode, start from
+$(\rho^3-a\rho)\cos\theta$. Remove its overlap with tilt:
+\[
+0=\avg{(\rho^3-a\rho)\rho\cos^2\theta}
+=\frac12\left(\frac13-\frac a2\right),
+\]
+which gives $a=2/3$. Rescale the radial polynomial to equal one at
+the rim, giving $3\rho^3-2\rho$. Its normalized real mode is
+\begin{equation}
+Z_3^1=\sqrt8(3\rho^3-2\rho)\cos\theta.
+\label{eq:coma}
+\end{equation}
+The sine partner is $Z_3^{-1}$. Notice the subtracted tilt. A balanced
+Zernike coma mode is not just the monomial $\rho^3\cos\theta$.
+
+For spherical aberration, start with $\rho^4+a\rho^2+b$ and require
+orthogonality to $1$ and $\rho^2$:
+\[
+\frac13+\frac a2+b=0,\qquad
+\frac14+\frac a3+\frac b2=0.
+\]
+Solving gives $a=-1$, $b=1/6$. Rim normalization and unit RMS produce
+\begin{equation}
+Z_4^0=\sqrt5(6\rho^4-6\rho^2+1).
+\label{eq:spherical}
+\end{equation}
+This explains why the spherical Zernike mode contains defocus and piston
+terms: they make it independent of the lower radial modes.
+
+\section{The general definition}
+Let $n\geq0$ be radial degree and $m$ be an integer with
+$|m|\leq n$ and $n-|m|$ even. Define
+\begin{equation}
+R_n^{|m|}(\rho)=
+\sum_{s=0}^{(n-|m|)/2}
+(-1)^s
+\frac{(n-s)!}
+{s!\,[(n+|m|)/2-s]!\,[(n-|m|)/2-s]!}
+\rho^{n-2s}.
+\label{eq:radial}
+\end{equation}
+The allowed parity ensures all factorials have nonnegative integer
+arguments and all powers have the correct angular symmetry.
+The rim value is $R_n^{|m|}(1)=1$.
+
+Our real RMS-normalized convention is
+\begin{equation}
+Z_n^m=
+\begin{cases}
+\sqrt{n+1}\,R_n^0,&m=0,\\
+\sqrt{2(n+1)}\,R_n^m\cos(m\theta),&m>0,\\
+\sqrt{2(n+1)}\,R_n^{|m|}\sin(|m|\theta),&m<0.
+\end{cases}
+\label{eq:Zdef}
+\end{equation}
+The radial orthogonality identity is
+\[
+\int_0^1R_n^mR_{n'}^m\,\rho\dd\rho
+=\frac{\delta_{nn'}}{2(n+1)}.
+\]
+Angular integration gives $2\pi$ for constant modes and $\pi$ for
+the square of each nonconstant sine or cosine. Combining those factors
+with Eq.~\eqref{eq:Zdef} gives
+\begin{equation}
+\avg{Z_n^mZ_{n'}^{m'}}=\delta_{nn'}\delta_{mm'}.
+\label{eq:Zorth}
+\end{equation}
+The Kronecker delta $\delta_{ab}$ equals one if $a=b$ and zero otherwise.
+This is the formal statement that the modes form independent unit axes
+under this pupil-area metric.
+
+\section{A radial table sufficient to understand low-order budgets}
+Every $m>0$ entry below has both a cosine and sine partner. Apply the
+normalization in Eq.~\eqref{eq:Zdef}; the table lists only radial factors.
+\begin{longtable}{@{}ccp{.64\textwidth}@{}}
+\toprule $n$ & $|m|$ & $R_n^{|m|}(\rho)$\\ \midrule\endhead
+0&0&$1$\\
+1&1&$\rho$\\
+2&0&$2\rho^2-1$\\
+2&2&$\rho^2$\\
+3&1&$3\rho^3-2\rho$\\
+3&3&$\rho^3$\\
+4&0&$6\rho^4-6\rho^2+1$\\
+4&2&$4\rho^4-3\rho^2$\\
+4&4&$\rho^4$\\
+5&1&$10\rho^5-12\rho^3+3\rho$\\
+5&3&$5\rho^5-4\rho^3$\\
+5&5&$\rho^5$\\
+6&0&$20\rho^6-30\rho^4+12\rho^2-1$\\
+6&2&$15\rho^6-20\rho^4+6\rho^2$\\
+6&4&$6\rho^6-5\rho^4$\\
+6&6&$\rho^6$\\
+\bottomrule
+\end{longtable}
+There are $n+1$ real modes at degree $n$. Through degree six there are
+$1+2+\cdots+7=28$ modes, including piston.
+This is a complete sequence by radial degree.
+It is deliberately not presented as the paper's unspecified single-index
+list of 25 terms.
+
+\figteach{zernike_atlas}{.93}{Original atlas of selected real,
+RMS-normalized modes. Red and blue indicate opposite OPD signs; the same
+colour scale is used throughout. The labels are $(n,m)$, not the paper's
+single-index coefficient numbers.}
+
+\section{Recovering coefficients and calculating RMS}
+Expand a square-integrable wavefront as
+\begin{equation}
+W(\rho,\theta)=\sum_{n,m}c_n^mZ_n^m(\rho,\theta).
+\end{equation}
+Multiply by $Z_{n'}^{m'}$ and average. Orthogonality removes all other
+terms:
+\begin{equation}
+c_{n'}^{m'}=\avg{WZ_{n'}^{m'}}.
+\label{eq:projection}
+\end{equation}
+Each coefficient has the units of $W$. If $W$ is in nanometres, so is $c$.
+If $W/\lambda$ is expanded, the coefficients are in waves.
+
+Because $\avg{Z_0^0}=1$ and all other mode means are zero,
+$\avg W=c_0^0$. Expanding the square and using orthogonality gives
+\begin{equation}
+\sigma_W^2=\sum_{(n,m)\ne(0,0)}(c_n^m)^2.
+\label{eq:rss}
+\end{equation}
+This identity depends on the unit-RMS normalization, complete disk,
+uniform area weighting, and explicit removal of piston.
+Other removed modes must also be excluded. With an unnormalized
+basis, the corresponding modal norm factors remain in the sum.
+
+\worked{A coefficient is not a peak-to-valley value}
+For defocus $W=cZ_2^0$, the centre value is $-\sqrt3c$ and the rim value
+is $+\sqrt3c$. Thus
+$\mathrm{PV}=2\sqrt3|c|$, while $\sigma_W=|c|$.
+For $c=0.27\nm$, RMS is 0.27 nm but PV is about 0.9353 nm.
+For the normalized tilt $W=2cu$, PV is $4|c|$.
+Equal coefficients mean equal RMS for these modes, not equal PV.
+
+\worked{Why per-mode limits are not a total RMS limit}
+If 24 independent orthonormal, nonpiston modes each have magnitude
+$20\,\mathrm{m}\lambda$, then
+\[
+\sigma_W=20\sqrt{24}\,\mathrm{m}\lambda
+=97.9796\,\mathrm{m}\lambda=1.32272\nm.
+\]
+The input box $|c_j|\leq20\,\mathrm{m}\lambda$ therefore does not mean
+total RMS is at most $\lambda/50$. If all coefficients are independent
+uniform variables on that interval, then
+$\E[c_j^2]=(20\,\mathrm{m}\lambda)^2/3$, and
+\[
+\sqrt{\E[\sigma_W^2]}=20\sqrt{24/3}
+=56.5685\,\mathrm{m}\lambda.
+\]
+This is the square root of the expected squared RMS, not the expectation
+of RMS itself. Both calculations are conditional teaching results:
+the paper does not state the normalization needed to apply them directly
+to its coefficient arrays.
+
+\section{Single-index numbering is a convention, not a law}
+Many programs replace $(n,m)$ by a single integer $j$.
+Noll, Fringe, OSA/ANSI, and software-specific sequences differ.
+Some start counting at zero, some at one; some normalize each mode to
+unit RMS and some do not. Axes, sine/cosine assignment, and sign can differ.
+
+The paper writes
+\[
+W(\rho,\theta)=\sum_i Z_iF_i(\rho,\theta).
+\]
+Here its $Z_i$ are \emph{coefficients}, while its $F_i$ are basis
+functions. In this book $Z_n^m$ names a basis function and $c_n^m$ its
+coefficient. These are two notation systems for the same expansion idea.
+Confusing them changes the meaning of an equation.
+
+The paper does not supply the explicit $F_i$ table or normalization.
+We therefore cannot safely identify its $Z_{20}$, $Z_{21}$, or $Z_{22}$
+with particular named modes. Its report that these coefficients have
+narrow ranges is meaningful in its own simulator coordinates, but a
+physical mode-name interpretation requires that missing dictionary.
+
+\section{Mode orientation and rotating axes}
+For a sine/cosine pair of the same $n$ and $m>0$,
+\[
+c_c\cos m\theta+c_s\sin m\theta
+=C\cos[m(\theta-\theta_0)],
+\]
+where
+$C=\sqrt{c_c^2+c_s^2}$ and
+$\theta_0=\operatorname{atan2}(c_s,c_c)/m$.
+The coefficient pair rotates when axes rotate, but $C$ stays unchanged.
+Astigmatism has $m=2$, so a $45^\circ$ rotation in physical axes
+interchanges the character of its cosine and sine partners.
+This matters when comparing horizontal and vertical pattern sensitivities.
+
+\section{Balanced spherical aberration as a minimization}
+Suppose a surface produces raw quartic OPD $B\rho^4$. Permit a compensating
+defocus $d\rho^2$ and remove piston afterward. Its variance is
+\[
+V(d)=B^2\Var(\rho^4)+d^2\Var(\rho^2)
++2Bd\,\Cov(\rho^4,\rho^2).
+\]
+Using disk averages,
+\[
+\Var(\rho^4)=\frac4{45},\quad
+\Var(\rho^2)=\frac1{12},\quad
+\Cov(\rho^4,\rho^2)=\frac14-\frac16=\frac1{12}.
+\]
+Differentiate:
+$V'(d)=d/6+B/6=0$, giving $d=-B$.
+After piston removal the balanced residual is
+\[
+W_{\rm bal}=B(\rho^4-\rho^2+1/6)
+=\frac{B}{6\sqrt5}Z_4^0,
+\]
+so
+\begin{equation}
+\sigma_{\rm bal}=\frac{|B|}{\sqrt{180}}.
+\end{equation}
+The original piston-removed quartic had
+$\sigma=2|B|/\sqrt{45}$, exactly four times larger.
+Allowing refocus changes the budget. That change is meaningful only
+if refocus is an available adjustment under the actual imaging requirement.
+
+\section{Sampling, obscurations, and amplitude weighting}
+Real measured pupils contain discrete points and may have missing regions.
+For samples $\vct w$, let $B_{\ell j}=Z_j(\rho_\ell,\theta_\ell)$ and
+let $Q$ be a diagonal matrix of area or uncertainty weights.
+Weighted least squares minimizes
+$(B\vct c-\vct w)^TQ(B\vct c-\vct w)$ and gives
+\begin{equation}
+(B^TQB)\vct c=B^TQ\vct w.
+\label{eq:modalfit}
+\end{equation}
+For a masked or nonuniformly weighted pupil, $B^TQB$ is generally not
+the identity. Modes orthogonal on a full disk need not remain orthogonal
+under that new metric.
+
+Pupil \emph{intensity} weighting in wavefront metrology and pupil
+\emph{amplitude} weighting in coherent on-axis interference are also
+different. State which quantity is weighted before interpreting RMS,
+Strehl, or fitted coefficients.
+
+\checkpoint{Why can you not square and sum an arbitrary exported list
+of coefficients to get RMS? You must first know basis normalization,
+pupil support and weight, units, and which modes were removed.}

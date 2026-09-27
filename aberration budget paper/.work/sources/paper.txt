@@ -1,0 +1,471 @@
+
+===== PDF PAGE 1 =====
+  7270     Vol. 62, No. 27 / 20 September 2023 / Applied Optics                                  Research Article
+
+
+
+
+Aberration budget analysis of EUV lithography
+from the imaging performance of a contact layer
+in a 5 nm technology node
+
+Zhishu Chen,1,2,* Lisong Dong,1,2,3,4 Huwen Ding,1,2  AND Yayi Wei1,2,3,5
+
+1Institute of Microelectronics of Chinese Academy of Sciences, Beijing 100029, China
+2University of Chinese Academy of Sciences, Beijing 100049, China
+3Guangdong Greater Bay Area Applied Research Institute of Integrated Circuit and Systems, Guangzhou 510700, China
+4donglisong@ime.ac.cn
+5weiyayi@ime.ac.cn
+*1410038422@qq.com
+
+Received 25 May 2023; revised 31 August 2023; accepted 2 September 2023; posted 5 September 2023; published 15 September 2023
+
+
+    By analyzing the impact of aberration in an extreme ultraviolet lithography projector on the imaging indicators
+      of the test patterns for a contact layer in a 5 nm technology node, this paper establishes a mathematical aberration
+     model based on the back propagating neutral network. On the basis of an aberration model, a method for esti-
+     mating the aberration budget is proposed, which can help reduce the difﬁculty of achieving imaging performance
+      thresholds in actual production. The performance of the results given by this method is veriﬁed by using a rigorous
+      simulation. The results show that the model is highly accurate in predicting an aberration distribution that meets
+      the requirements through an inverse sensitivity analysis and can calculate the wavefront aberration margin based
+     on imaging indicators.  © 2023 Optica Publishing Group
+
+      https://doi.org/10.1364/AO.496461
+
+
+
+1. INTRODUCTION
+
+From the technology node of 5 nm and beyond, the technology
+of extreme ultraviolet lithography (EUVL) with a 13.5 nm
+wavelength, as shown in Fig. 1, has been utilized in the expo-
+sure process of the critical layer [1,2]. The dramatic reduction
+in the wavelength and numerical aperture (NA) has obvious
+advantages for the resolution and depth of focus. However, the
+reduction of the wavelength also causes many optical effects
+that were practically insigniﬁcant in traditional deep ultra-
+violet lithography (DUVL) tools. A signiﬁcant factor in the
+degradation of lithographic image ﬁdelity is optical wavefront
+aberration [3]. As lens aberration  is inversely proportional
+to the wavelength, the aberration in EUVL is above 10 times
+larger than that in DUVL under the condition of the same
+wavefront error [4]. For example, a 1.5 nm root mean square
+(RMS) wavefront error at a 193 nm wavelength corresponds
+to around 8 MMW of aberration, while the same error at a      Fig. 1.   Schematic diagram of light propagation of an NXT3400
+13.5 nm wavelength is more than 100 MMW [5]. In EUVL,    EUV lithography system from ASML. Inside the orange box is the
+                                                                        source system; inside the blue box is the mask; inside the crimson box isthe aberration of projection optics brings in the adverse effects,
+                                                                        the exposure system, and inside the black box is the wafer.
+such as reducing the available process window [6], deteriorating
+the image ﬁdelity [3], causing the loss of the normalized image
+log slope and the center offset of the pattern on the wafer, and
+emerging the unwanted imaging artifacts [7]. Therefore, it is       To reduce the aberration effect of speciﬁc patterns, the
+extremely important to control aberrations and mitigate the     Nikon’s technology of aberration optimization (Technology
+impact of aberrations onlithographicimaging.                        for Aberration Optimization [TAO]) is applied to adjust the
+
+
+1559-128X/23/277270-10 Journal © 2023 Optica Publishing Group
+
+===== PDF PAGE 2 =====
+  Research Article                                                           Vol. 62, No. 27 / 20 September 2023 / Applied Optics   7271
+
+
+aberration of the projection lens in DUVL, and the effective-      estimating the aberration budget is proposed. According to the
+ness of this technique is proved by taking the patterns of line      variation range of the imaging indicator provided by IRDS [20],
+space and contact hole as examples [8]. Based on the model    many sets of Zernike coefﬁcient combinations are generated
+of wavefront aberration, a predictive controller of aberration     by the aberration model, which can be served as the candidates
+is proposed, and it can compensate for the thermally induced      for optical designers. The performances of aberrations are
+wavefront aberration [9]. The approaches of reducing the heat      simulated and compared by commercial software. The simu-
+in the projection lens and compensating knob are employed to      lation results show that, when setting the limit of the PS in the
+control the thermal aberration, and the wavefront performance    Y direction to ±0.4 nm, the aberration with 25 Zernike terms
+is improved by using the technologies of the optical design and      calculated by this model can meet the requirements; other imag-
+lens processing [10]. In an (ASML) immersion scanner, a novel      ing indices corresponding to the output aberration are close
+high resolution wavefront manipulator named FlexWave was      to the input part, and most of the mean absolute percentage
+equipped. Wavefront control with FlexWave can minimize ther-      error (MAPE) is less than 1%. Although the optical designer can
+mal lens aberrations and compensatefor process induced effects,      obtain the aberration distribution with a smaller RMS value by
+such as mask 3D effects [11]. Adopting the mapping of pupil      using professional optical design software, it is not based on the
+intensity, a thermal aberration model of the projection lens is     imaging performance of the speciﬁc layer. The proposed ﬂow
+proposed, and this model can quickly predict the aberration and      in this paper can provide multiple groups of aberrations that
+its variation [12]. The projector in EUVL is a reﬂective optical     meet the requirements of imaging quality, and these aberrations
+system, whichhas severaladvantages,suchasanabsenceofchro-       will act as the reference for optical designers in the process of
+matic aberrations and low sensitivity to changes of temperature      aberration control. As the aberration is designed according to
+and air pressure. Imaging using an EUVL projector requires      theimagingrequirementofonespeciﬁclayer,ithasthepotential
+a wavefront aberration of better than 1/50λ, where λ is the      toreducethedifﬁcultyofopticaldesignandmanufacturing.
+working wavelength [13]. In order to satisfy the requirement of      The remaining part of this paper is organized as follows: In
+aberration, many methods have been proposed to optimize the      Section 2, we introduce the detail and ﬂow of the aberration
+initial structure in literature. By using the technique of ﬁnite-     model; the statistical performance of the model is also discussed.
+aberration quantity, the unstable regions in the optimization of      In Section 3, the application of the above model in analyzing the
+an EUV mirror system can be avoided [12]. A grouping method      aberration budget is presented. Finally, the conclusion of this
+with a real ray tracing model was developed by Li’s groups to      paperisprovidedinSection4.
+acquire the initial conﬁgurations for a reﬂective optical system;
+the aberration was corrected by optical design software [14,15].
+                                                        2. ABERRATION MODELAfter dividing the optical system into the groups of the objective
+lens and image lens, the simulated annealing particle swarm      In optical imaging, aberration is one of the important indices
+algorithm is used to optimize the initial structure of an EUVL      to evaluate the imaging quality of an optical lens. Due to the
+projector based on the combination of an aberration theory and      imperfection in the process of material growth, surface machin-
+spatial ray tracing theory, and RMS wavefront errors better than      ing, lens coating, machining, and adjustment, the amplitude
+1/70λ and 1/30λ for the projectors with NAs of 0.33 and 0.55     and phase of the transmitted beam in the projection objective
+[16,17]. In the above literature, the indicator of RMS is utilized      inevitablychange[21].
+toevaluate the wavefronterroroftheopticalsystem.                 At present, the orthogonal Zernike polynomial is a com-
+  Asmostoftheresearchfocusesonthecontrolofthermalaber-     monly used decomposition method for the optical system with
+ration in DUVL or the aberration control in the optical design      a circular pupil, and the wavefront characterized by this eigen
+stage of EUVL from the perspective of RMS values, Zhao et al.     polynomial can be directly related to geometric aberration. In
+established the aberration models based on a neutral network      the ﬁeld of lithography simulation, the Zernike terms and their
+and found an optimum aberration distribution corresponding      coefﬁcients are generally used to characterize the aberration of
+to all test patterns [18,19]. However, the neutral network in the      theprojectionobjective.Theaberrationcanbedenotedas
+above work is trained separately, which means each imaging
+                                                     ∞
+indicator has one network. In addition, the imaging indicators
+                                     W (ρ, θ) = X Zi Fi (ρ, θ) ,             (1)of the test patterns are averaged in a train set and test set. The
+                                                                                                 i=1
+extent to which different patterns are affected by aberrations is
+nottruly represented.                                        where W(ρ, θ) is the optical path difference, Zi  is the ith
+  For the contact layer in a 5 nm technology node, this paper      Zernike coefﬁcient, and Fi(ρ, θ) is a polynomial term. The
+ﬁrst establishes a mathematical aberration model based on the      ﬁrst25termsofZernikecoefﬁcientsareconsideredinthispaper.
+back propagating neutral network (BPNN). In the process of        In this paper, the aberration model for EUVL technology
+preparing training sets and test sets, the square and rectangle        is established from the perspective of a simulation analysis of
+holes with through pitch are selected as test patterns. The varia-      lithography imaging performance. The process is summarized
+tions of the ﬁrst 25 Zernike coefﬁcients are in the range of −20      asfollows.
+and 20 mλ. The imaging indicators include the critical dimen-
+sion (CD), pattern shift (PS), and process variation band (PVB)
+                                                          A. Data Preparation
+of the horizontal and vertical orientations. Imaging indicators
+of all test patterns are involved in training and testing, rather     Aiming at the contact hole layer of a 5 nm technology node,
+than average. On the basis of the aberration model, a method for      the simulation conditions and imaging performance index are
+
+===== PDF PAGE 3 =====
+   7272     Vol. 62, No. 27 / 20 September 2023 / Applied Optics                               Research Article
+
+
+Table 1.   Simulation Parameters Setting for
+Photolithography System in Experiments
+
+Index                                      Value
+
+Wavelength                                 13.5 nm
+NA                                         0.33
+CRAO                                         6◦
+Illumination                     Quasar (inner radius: 0.6, outer
+                                       radius: 0.8, angle: 30◦, rotation
+                                     Angle: 45◦, shown in Fig. 2)
+Topography                   Ta6N4 (15 nm in wafer scale,        Fig. 3.   Square contact hole with 38 nm pitch, and CD is 14 nm:
+                                   shown in Fig. 3)                 (a) lateral view and (b) top view.
+Multilayer                     Mo/Si (Mo:0.725 nm, Si:1 nm in
+                                    wafer scale, shown in Fig. 3)
+Focus value                     −15 nm, 0, 15 nm
+Exposure dose                    ±5%
+Zernike item                       Z2 −Z25
+Zernike coefﬁcient            −20 mλ −20 mλ, step is 1 mλ
+
+
+Table 2.  CD and Pitch Setting for Contact Layer Mask
+Pattern
+
+           CDx   CDy      Pitchx        Pitchy
+              (nm)     (nm)      (nm)        (nm)
+
+Regular         14       14     38,40,42,46,   38,40,42,46,
+square via                          50,80,120     50,80,120
+Regular         14       28     56,60,64,70,   70,74,78,84,
+rectangle via                       80,100,150    94,114,164
+
+
+
+                                                                   Fig. 4.   Schematic diagram of the simpliﬁed neural network model.
+
+
+                                                                     calculated from the optical design [22]. When the wavelength of
+                                                                 the light source is constant, larger NA values indicate that light
+                                                                       rays can enter the lens or objective at wider angles, enabling the
+                                                              system to resolve ﬁner details. In other words, a larger NA can
+                                                                  achieve a higher resolution, allowing the lithography system to
+                                                                        fabricate smaller and more intricate patterns. The chief ray angle
+                                                           atobject(CRAO)istheraythatpassesthroughtheaperturestop
+                                                                    of the optical system and the line between the entrance pupil’s
+                                                                   center and the object point, so that off-axis illumination helps
+                                                          improve the depth of focus and resolution [23], which is shown
+                                                                    in the blue box in Fig. 1. Since the EUV lithography system uses
+                                                                 a reﬂective mask, the pattern of the mask consists of a multilayer
+                                                   ﬁlm and an absorbing topography. Different exposure doses
+                                                       and depths of focus are used to determine the PVB under the
+                                                            premisethatotherconditionsremainunchanged.
+                                                                In this paper, the aberration combination can be divided
+Fig. 2.   Quasar pupil made with illumination setting in Table 1.                                                                   into three groups:  single  aberration, combined aberration
+                                                                given by the deﬁnitive screening design method, and randomly
+designed. The test pattern covers both horizontal and vertical     combined aberration. The ﬁrst group has 984 (= 41 ∗24)
+directions, and the performance index includes the CD and the     combinations which consist of variations of a single aberration
+pattern of the center position of the PS and PVB. The minimum     from −20 to 20 mλ with an increment of 1 mλ, while all other
+CD value of the test patterns is 14 nm, and the speciﬁc setup is      aberrations remained at 0. The second group has 77 combina-
+shown in Tables 1 and2.                                             tions which contain only the values of −20 mλ, 0, and 20 mλ.
+  In Table 1, the NA of an optical imaging system (e.g., the     The last group contains 972 combinations which is generated
+EUV lithography imaging system) is a measure for its angular     randomly to ensure diversity and sufﬁcient quantity of data
+acceptance for incoming light. It is deﬁned based on geometrical      for modeling. By using the commercial simulation software
+considerations and  is thus a theoretical parameter which  is      developed by Synopsys Inc., the imaging performance of the test
+
+===== PDF PAGE 4 =====
+  Research Article                                                           Vol. 62, No. 27 / 20 September 2023 / Applied Optics   7273
+
+
+patterns under aberration conditions is evaluated; the indices
+include the CD, PS, andPVB.
+
+
+B. Algorithm Selection and Evaluation
+
+The relationship between aberrations and imaging quality is
+complex and cannot be simpliﬁed as independent variables.
+The quality of lithography imaging is affected by a combination
+of multiple Zernike terms. Due to this complexity, it is not
+possible to deduce the required aberrations based on imaging
+quality requirements using physical laws or equations. It is fea-
+sible to model the numerical relationship between aberrations
+and lithography performance metrics in a “reverse” manner,
+allowing for accurate predictions of the required Zernike term
+combination that meet the requirements through inverse calcu-      Fig. 5.  RMSE of predicted Zernike coefﬁcients compared to the
+lations of the lithography performance metrics with appropriate       original ones corresponding to the same imaging metrics.
+algorithms and data-aidedmodeling.
+  In this study, we selected a BPNN to establish the relationship
+between aberrations and lithography imaging quality. The
+                                                          Table 3.   Representation of the Horizontal/Vertical
+BPNN is a type of feedforward neural network that can learn
+                                                          Axis of the Subsequent Bar Chart
+and approximate complex nonlinear mappings between inputs
+and outputs [24,25], which has been widely used in various                   CD_X   CD_Y   Pitch_X    Pitch_Y
+ﬁelds, such as fault location [26], risk assessment [27], price      Pattern    Name     (nm)    (nm)     (nm)      (nm)
+prediction [28,29], and capacity prediction [30]. The simpliﬁed    REC      Pattern_1     14      28       38        38
+model of this network is shown in Fig. 4. Compared to other    REC      Pattern_2     14      28       40        40
+modelingtechniques,theBPNNhastheadvantageofbeingable    REC      Pattern_3     14      28       42        42
+to handle complex and nonlinear relationships between vari-    REC      Pattern_4     14      28       46        46
+ables, and it has shown good performance in many real-world    REC      Pattern_5     14      28       50        50
+applications.                                     REC      Pattern_6     14      28       80        80
+  Based on the BPNN algorithm, the back prediction model of    REC      Pattern_7     14      28       120       120
+                                              SQ        Pattern_1     14      14       56        56aberration is established. The indicators to measure the model
+                                              SQ        Pattern_2     14      14       60        74
+accuracy are the root meansquareerror(RMSE)andMAPE:
+                                              SQ        Pattern_3     14      14       64        78
+          v    n                        SQ        Pattern_4     14      14       70        84
+          u                           SQ        Pattern_5     14      14       80        94         RMSE = u X                         (2)            t1                      n      (byi−yi)2,               SQ        Pattern_6     14      14       100       114
+                               i=1                                              SQ        Pattern_7     14      14       150       164
+
+                                     n
+                 100%                                                                     including one input layer, seven hidden layers, and one         MAPE =         X  byi−yi   .             (3)
+                      n              yi                              outputlayer.                                 i=1
+
+                                                    The input of the aberration model is the imaging perform-
+  In Eqs. (2) and (3), byi represents the predicted result, and yi      ance index of the test pattern, and the output is the Zernikerepresents the actual result, with n being the number of samples
+involved in the calculation. RMSE represents the overall differ-      coefﬁcient of aberration. The training function of the model is
+ence between the predicted and actual values for the entire test      the Levenberg–Marquardt function, and the training perform-
+set.                                                          ance is measured by the MSE. When the MSE is below 10−8, or
+                                                  when the MSE does not decrease obviously after six consecutive
+                                                                roundsoftraining,thetrainingisstopped.
+C. Performance Summary of Aberration Model
+                                                    The performance of the aberration model is evaluated by
+By using  the  following  process,  the  aberration model  is     comparing the lithography quality index values obtained from
+established.                                                      a rigorous simulation with those from the test set. The lower
+                                                                 the absolute difference between the two, the better is the per-(1) Filtering out some of the data that was difﬁcult to ﬁt accu-
+     rately or had a low ﬁtting values (input data less than 0.001)     formance of the model. The comparison is not made between
+    from the output part, i.e., the Zernike terms of the aberra-      the predicted and actual values of the Zernike coefﬁcient com-
+     tions;                                                           binations, as the relationship between the Zernike coefﬁcients
+(2) Normalizing the data using the Matlab function “mapmin-     and lithography performance index is not one-to-one. Different
+    max” [31];                                                Zernikecoefﬁcientcombinationscanleadtosimilarlithography
+(3) Increasing the number of network layers, resulting in a       quality, which is the basis of this study on Zernike coefﬁcient
+    network structure of 84, 84, 64, 64, 50, 36, 32, 25, 25,      optimization.
+
+===== PDF PAGE 5 =====
+   7274     Vol. 62, No. 27 / 20 September 2023 / Applied Optics                               Research Article
+
+
+
+
+
+Fig. 6.  RMSE of the aberration model. (a) CD value, (b) PS values, and (c) PVB values.
+
+
+
+  Table 3 gives the illustrations of horizontal/vertical meanings       sections. Figure 8 illustrates the performance comparison of our
+of the histogram in the following ﬁgures. In Table 3, REC means      model’s predictions and the commercial simulation software’s
+rectangle pattern, andSQmeanssquarepattern.                     veriﬁcation results for the Y-directional PS values in the test set,
+  The statistical RMSE of the aberration model is denoted      using a threshold of 0.14 nm (1% of 14 nm). It shows that our
+in Fig. 5. The results demonstrate that the model produces a     model performs signiﬁcantly better for Y-directional PS values
+markedly different aberration combination based on the same     greaterthan0.14nmcomparedtothosebelow0.14nm.
+imaging performance index, with a few outcomes being rel-
+atively close to the original aberration. However, it would be
+                                                        3. ABERRATION BUDGET ANALYSISmisleading to interpret this divergence as an indication of inac-
+curacy; this indicates that the model could predict an alternative     According to the technical white paper published by IEEE
+solution under the sameimagingperformancerequirement.       IRDS in 2021 regarding the 5 nm technology node, it can be
+   Utilizing the commercial simulation software, a comparison      inferred that the absolute value of the Y-directional PS for the
+was conducted between the calculated results and the input     5 nm contact hole layer must be less than 1 nm. This section
+imaging parameters, as depicted in Figs. 6 and 7. The analysis       will present the calculation process of the relevant predictions
+indicated that the majority of the results were in close agree-     obtainedthroughourmodelregardingthisrequirement.
+ment, with the exception of the Y-directional PS portion, which          First, we  generate 118  sets  of  imaging  indices  with
+displayed a considerable deviation in terms of the overall statisti-      Y-directional PS values ranging from −0.4 to 0.4 nm. These
+cal variance. Despite this anomaly, the model still outperformed      indices were obtained from other simulations under identical
+its predecessor, showing a marked improvement for the ﬁrst      lithography conditions, and were not involved in the training
+25 groups. The deviation observed in the Y-directional PS was     and validation of the model. Then we input these 118 sets of
+attributed to the presence of small values in the data, which is      data into the model and obtained 118 sets of aberrations from
+known to introduce noticeable bias in the neural network model      the model. For the CD, PVB, and PS in the X direction, we
+when dealing with values less than 0.05 (nm). Conversely, for      require these values to be within the range of the dataset in
+valuesgreaterthan0.1(nm),themodelperformedexceptionally     model training, as shown in Table 4. Finally, the lithography
+well, as evidenced by the close agreement of the results. These     performance according to these aberrations was simulated for
+ﬁndings will be further expounded upon in the subsequent     veriﬁcation,andtheeffectivenessofthemodelwasconﬁrmed.
+
+===== PDF PAGE 6 =====
+  Research Article                                                           Vol. 62, No. 27 / 20 September 2023 / Applied Optics   7275
+
+
+
+
+
+Fig. 7.  MAPE of the aberration model. (a) CD values, (b) PVB values, (c) PS in the X direction, and (d) PS in the Y direction.
+
+
+
+
+
+Fig. 8.  MAPE of the Y-directional PS predicted by the model. (a) PS values larger than 0.14 nm and (b) PS values smaller than 0.14 nm.
+
+
+
+Table 4.  Range of Rest Input Values of the Imaging Index to the Model
+
+                Type         CD_X (nm)     CD_Y (nm)      PS_X (nm)      PVB_X (nm)        PVB_X (nm)
+
+Max          REC               29.636            27.447             4.233             2.888                 2.676
+Min                                 26.927            25.520             2.319             1.850                 1.881
+Max          SQ                13.488            12.663             4.190             7.238                 8.755
+Min                                 12.023            9.7623             2.083             3.079                 3.791
+
+===== PDF PAGE 7 =====
+   7276     Vol. 62, No. 27 / 20 September 2023 / Applied Optics                               Research Article
+
+
+
+
+
+Fig. 9.    (a) Maximum and minimum values of the ﬁrst 25 sets of predicted aberrations, (b) RMSE of the predicted aberrations compared to
+the input imaging metrics, (c) MAPE of the predicted aberrations compared to the input imaging metrics (excluding the Y-directional PS), and
+(d) MAPE of the predicted the Y-directional PS compared to the original ones.
+
+
+
+  As shown in Fig. 9(a), the variation ranges of many Zernike     Although the difference of the PS in the Y direction in Fig. 11
+terms are low, such as Z3, Z20, Z21, and Z22. These terms can        is relatively large, the absolute values are small, which can be
+affect the PS in the Y direction.                                    reasonablyignored.
+  The Y-directional PS value statistics shown in Figs. 9(b)         After  being  simulated  by  commercial  software,  the
+and 9(c) indicate that the MAPE is not as good as previously      Y-directional PS values of 118 aberration combinations are
+mentioned due to the absence of ﬁltering in the input portion        all below 0.4 nm. Through the analysis of these data, we can
+and the participation of small datasets in the comparison, which     draw a conclusion that the model performs well in the predic-
+results in a signiﬁcant increase in the MAPE. However, the      tion of different indicators, especially for some indicators with
+MAPE for PS values above 0.1 nm has high predicted ability.       large values, and the prediction results are consistent with the
+Figure 10 displays a comparison between the Y-directional PS      actual situation. However, for some indicators with small values,
+values in the test set and those obtained from the commercial      the predicted results are slightly biased, but this deviation has
+software, using a 0.1 nm threshold. It is evident that the model’s        little inﬂuence on the overall results in actual production. In
+predictive ability is much stronger for Y-directional PS values      order to improve the performance of the model, it is necessary to
+above 0.1 nm than forthosebelow0.1nm.                        furtheranalyzeandoptimizethedataofpossibleanomalies.
+  To further analyze the performance of the aberration model,
+we select two aberrations from the 118 datasets. The Zernike
+                                                        4. CONCLUSION
+terms and comparison of lithography performance are denoted
+in Figs. 11 and 12. In these ﬁgures, “_pred” represents the results     Based on BPNN method, this paper established an aberration
+predicted by the aberration model, and “_ref” represents the     model for the EUV lithography projector. The test patterns
+results simulated by commercialsoftware.                        were selected from the contact layer in a 5 nm technology node,
+  From Figs. 11 and 12, it can be seen that the lithography per-     and the indictors of lithography imaging performance include
+formance predicted by the aberration model is almost the same      the CD, PS, and PVB. On the basis of the aberration model, a
+as that from the simulation, except the PS is in the Y direction.     method for estimating aberration budget was proposed. The
+
+===== PDF PAGE 8 =====
+  Research Article                                                           Vol. 62, No. 27 / 20 September 2023 / Applied Optics   7277
+
+
+
+
+
+Fig. 10.  MAPE of the Y-directional PS predicted by the model. (a) PS values larger than 0.1 nm and (b) PS values smaller than 0.1 nm.
+
+
+
+
+
+Fig. 11.   Zernike terms and comparison of lithography performance according to aberration 1. (a) Zernike terms; (b) comparison of the CD values;
+(c) comparison of the PVB and PS in the X direction; and (d) comparison of the PS in the Y direction.
+
+
+
+simulation results indicated that the model had a high predic-        Furthermore, it should be pointed out that the source shape is
+tion accuracy and could screen the aberration distribution that     not good enough for the contact layer, and the test patterns have
+meets the requirements through an inverse sensitivity analy-     not been corrected by optical proximity correction technology
+sis. Furthermore, it has the ability to calculate the wavefront     due to the absence of simulation tools. The optimized source
+aberration margin basedonlithographyimagingindicators.        and corrected test pattern would be considered in our further
+
+===== PDF PAGE 9 =====
+   7278     Vol. 62, No. 27 / 20 September 2023 / Applied Optics                               Research Article
+
+
+
+
+
+Fig. 12.   Zernike terms and comparison of lithography performance according to aberration 2. (a) Zernike terms; (b) comparison of the CD values;
+(c) comparison of the PVB and PS in the X direction; and (d) comparison of the PS in the Y direction.
+
+
+
+work to obtain a practical aberration distribution for the optical         4. Y. Nakajima, T. Sato, R. Inanami, et al., “Aberration budget in extreme
+designer.                                                                                  ultraviolet lithography,” Proc. SPIE 6921, 379–388 (2008).
+                                                                                      5. M. D. Smith, T. Graves, J. Biafore, et al., “Comprehensive EUV lithog-
+Funding.  Guangdong Province Research and Development Program in          raphy model,” Proc. SPIE 7969, 60–69 (2011).
+Key Fields (2021B0101280002); Ministry of Science and Technology of the         6. J. E. Gortych and D. M. Williamson, “Effects of higher order aberra-
+People’s Republic of China (2019YFB2205005); National Natural Science           tions on the process window,” Proc. SPIE 1463, 368–381 (1991).
+Foundation of China (62204257, 62274181); University of Chinese Academy         7. B. W. Smith and R. E. Schlief, “Understanding lens aberration and
+of Sciences (118900M032); Fundamental Research Funds for the Central           influences to lithographic imaging,” Proc. SPIE 4000, 294–306
+Universities (E2ET3801); Youth Innovation Promotion Association of the                                                                                      (2000).
+Chinese Academy of Sciences (2021115); Beijing Institute of Electronics;
+                                                                                      8. W. Meier, G. Weirauch, M. Hoepfl, et al., “Application of aberration
+Beijing Association for Science and Technology.
+                                                                                 optimization for specific pattern using Nikon’s TAO method,” Proc.
+                                                                    SPIE 6154, 1261–1268 (2006).
+Disclosures.  The authors declare no conﬂicts of interest.
+                                                                                      9. A. Haber, A. Polo,  I. Maj, et  al., “Predictive control of thermally
+Data availability.  Data underlying the results presented in this paper are          induced wavefront aberrations,” Opt. Express 21, 21530–21541
+not publicly available at this time but may be obtained from the authors upon            (2013).
+reasonable request.                                                           10. Y. Ohmura, T. Ogata, T. Hirayama, et al., “An aberration control of
+                                                                                   projection optics for multi-patterning lithography,” Proc. SPIE 7973,
+                                                                   328–338 (2011).
+REFERENCES                                                        11. F. Staals, A. Andryzhyieuskaya, H. Bakker, et al., “Advanced wave-
+                                                                                          front engineering for improved imaging and overlay applications on a
+ 1. N. Fu, Y. Liu, X. Ma, et al., “EUV lithography: state-of-the-art review,”
+                                                                            1.35 NA immersion scanner,” Proc. SPIE 7973, 491–503 (2011).    J. Microelectron. Manuf. 2, 1–6 (2019).
+ 2. R. M. M. Hasan and X. Luo, “Promising lithography techniques for       12. B. Zhu, S. Li, Y. Mao, et al., “Fast thermal aberration model for litho-
+    next-generation logic devices,” Nanomanuf. Metrol. 1, 67–81 (2018).           graphic projection lenses,” Opt. Express 27, 34038–34049 (2019).
+ 3. G. L. Fenger, S. Raghunathan, L. Sun, et al., “EUVL resist-based       13. M. Lowisch, P. Kuerz, O. Conradi, et al., “Optics for ASML’s NXE:
+    aberration metrology,” Proc. SPIE 8679, 152–161 (2013).                  3300B platform,” Proc. SPIE 8679, 404–412 (2013).
+
+===== PDF PAGE 10 =====
+  Research Article                                                           Vol. 62, No. 27 / 20 September 2023 / Applied Optics   7279
+
+
+
+14. Z. Cao, Y. Li, and F. Liu, “Grouping design method with real ray tracing       23. Gray Optics, “What is the image sensor chief ray angle spec?”
+   model for extreme ultraviolet lithographic objective,” Opt. Eng. 52,            retrieved    https://www.grayoptics.com/articles/what-is-the-chief-
+   125102 (2013).                                                                  ray-angle/.
+15. F. Liu and Y. Li, “Grouping design of eight-mirror projection objec-       24. K. Hornik, “Approximation capabilities of multilayer feedforward net-
+     tive for high-numerical aperture EUV lithography,” Appl. Opt. 52,          work,” Neural Netw. 4, 251–257 (1991).
+   7137–7144 (2013).                                                       25. M. Leshno, V. Y. Lin, A. Pinkus, et al., “Multilayer feedforward net-
+16. Y. Wu, L. Wang, J. Yu, et al., “Design method for off-axis aspheric         works with a nonpolynomial activation function can approximate any
+    reflective optical system with extremely low aberration and large field            function,” Neural Netw. 6, 861–867 (1993).
+    of view,” Appl. Opt. 59, 10185–10193 (2020).                              26. W. E. Wong and Y. Qi, “BP neural network-based effective fault locali-
+17. Y. Wu, L. Wang, X. Zhang, et al., “Design method for an off-axis            zation,” Int. J. Softw. Eng. Knowl. Eng. 19, 573–597 (2009).
+    reflective anamorphic optical system with aberration balance and       27. Y. Changwei, L. Zonghao, G. Xueyan, et al., “Application of BP neural
+    constraint control,” Appl. Opt. 60, 4557–4566 (2021).                        network model in risk evaluation of railway construction,” Complex
+18. R. Zhao, L. Dong, C. Bo, et al., “Analysis and modulation of aberra-          2019, 1 (2019).
+    tion in an extreme ultraviolet lithography projector via rigorous simu-       28. L. Huo, B. Jiang, T. Ning, et al., “A BP neural network predictor model
+    lation and a back propagation neural network,” Appl. Opt. 59, 7074–            for stock price,” in International Conference on Intelligent Computing
+   7082 (2020).                                                                     (Springer, 2014), pp. 362–368.
+19. R. Zhao, L. Dong, R. Chen, et al., “Aberration optimization in an       29. J. Zong and Q. Zhu, “Price forecasting for agricultural products
+   extreme ultraviolet lithography projector via a BP neural network and         based on BP and RBF Neural Network,”  in IEEE International
+    simulated annealing algorithm,” Appl. Opt. 60, 1341–1348 (2021).             Conference on Computer Science and Automation Engineering
+20. “LER white paper  for the IRDS,” retrieved  https://irds.ieee.org/           (IEEE, 2012), pp. 607–610.
+    images/files/pdf/2021/LER_white_paper.pdf.                             30. G. Hu, Y. Zhao, L. Wang, et al., “Application of BP neural network
+21. C. Mack, Fundamental Principles of Optical Lithography: The Science         model  in  productivity prediction and evaluation  of CBM wells
+    of Microfabrication (Wiley, 2007).                                                  fracturing,” IOP Conf. Ser. 397, 012070 (2018).
+22. “Numerical  aperture, explained by RP; NA,  optical  fiber,  lens,       31. “Process  matrices by mapping row minimum and maximum
+    objective,   acceptance    angle,”    retrieved    https://www.rp-          values  to  [−1  1]  - MATLAB mapminmax,”  retrieved  https://
+    photonics.com/numerical_aperture.html.                                  www.mathworks.com/help/deeplearning/ref/mapminmax.html.

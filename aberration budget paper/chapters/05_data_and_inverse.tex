@@ -1,0 +1,333 @@
+\chapter{Reconstructing the paper's dataset and assumptions}\label{ch:data}
+\paperloc{Section 2A, Tables 1--3, and the preprocessing in Section 2C.}
+
+\section{The optical conditions that define this particular experiment}
+An aberration-to-image map is conditional on many fixed inputs.
+More explicitly, one should write
+\[
+\vct y=F(\vct c;\lambda,\NA,S,\mathcal M,\mathcal R,\mathcal Q),
+\]
+where $S$ is illumination, $\mathcal M$ is mask geometry and material
+response, $\mathcal R$ is resist or contour extraction, and
+$\mathcal Q$ is the set of sampled process conditions.
+Changing any of these changes the map to be learned.
+
+\begin{table}[htbp]\centering\small
+\caption{The paper's Table 1, expressed with explicit meanings.
+Values are reported from the publication; qualifications below are this
+guide's interpretation.}
+\begin{tabularx}{\textwidth}{@{}p{.31\textwidth}Y@{}}
+\toprule Quantity & Reported value\\ \midrule
+Vacuum wavelength & 13.5 nm\\
+Projection NA & 0.33\\
+Chief-ray angle at object & $6^\circ$\\
+Illumination & Quasar: inner radius 0.6, outer radius 0.8,
+angle $30^\circ$, rotation $45^\circ$\\
+Absorbing topography & $\mathrm{Ta}_6\mathrm{N}_4$,
+15 nm in wafer scale\\
+Reflecting multilayer & Mo/Si, respectively 0.725 nm and 1 nm
+in wafer scale\\
+Focus settings & $-15,0,+15\nm$\\
+Exposure-dose variation & $\pm5\%$\\
+Zernike indices & $Z_2$ through $Z_{25}$\\
+Coefficient sweep & $-20$ to $+20\,\mathrm{m}\lambda$,
+step $1\,\mathrm{m}\lambda$\\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+The optical constant database, complete multilayer termination,
+number of periods, exact source discretization, polarization,
+mask sidewalls, pupil apodization, and resist settings are not specified
+well enough for a numerical reconstruction. A student should understand
+their role rather than infer them from typical values.
+
+\section{The intended pattern families in Table 2}
+\begin{table}[htbp]\centering\small
+\caption{Pattern specification reported in the paper's Table 2.
+Each pitch list contains seven entries; rectangular pitch pairs are
+read position by position.}
+\begin{tabularx}{\textwidth}{@{}L{.22\textwidth}L{.14\textwidth}Y Y@{}}
+\toprule Family & $(\mathrm{CD}_x,\mathrm{CD}_y)$ (nm)
+& $p_x$ (nm) & $p_y$ (nm)\\ \midrule
+Square vias & $(14,14)$ & 38, 40, 42, 46, 50, 80, 120
+& 38, 40, 42, 46, 50, 80, 120\\
+Rectangular vias & $(14,28)$ & 56, 60, 64, 70, 80, 100, 150
+& 70, 74, 78, 84, 94, 114, 164\\
+\bottomrule
+\end{tabularx}
+\end{table}
+Through-pitch testing means holding a nominal feature type or size while
+varying its neighbourhood spacing. This probes proximity effects and
+different pupil sampling. It does not mean changing the wavelength or
+continuously scanning every possible pitch.
+
+The count suggested by two families and seven variants is 14 patterns.
+Each contributes six scalar indicators:
+\[
+(\mathrm{CD}_x,\mathrm{CD}_y,\mathrm{PS}_x,\mathrm{PS}_y,
+\mathrm{PVB}_x,\mathrm{PVB}_y).
+\]
+Thus $14\times6=84$ explains the reported network input width.
+This is a consistent reconstruction of the feature count, not a
+published list of the exact vector ordering.
+
+\section{The conflicting plot-label table}
+The paper's Table 3 assigns the following parameters to the bars labelled
+REC and SQ. It is important to preserve this discrepancy:
+\begin{table}[htbp]\centering\small
+\caption{Paper Table 3 as printed. Every row uses CD $(14,28)$ nm for
+REC and $(14,14)$ nm for SQ. These pitch assignments disagree with Table 2.}
+\begin{tabular}{@{}crrrr@{}}
+\toprule & \multicolumn{2}{c}{REC pitch (nm)}
+& \multicolumn{2}{c}{SQ pitch (nm)}\\
+Pattern & $p_x$ & $p_y$ & $p_x$ & $p_y$\\ \midrule
+1&38&38&56&56\\
+2&40&40&60&74\\
+3&42&42&64&78\\
+4&46&46&70&84\\
+5&50&50&80&94\\
+6&80&80&100&114\\
+7&120&120&150&164\\
+\bottomrule
+\end{tabular}
+\end{table}
+The pitch families appear exchanged relative to the shape assignments
+in Table 2. The first SQ pair $(56,56)$ also differs from the rectangular
+pair $(56,70)$ in Table 2.
+The text says REC means rectangle and SQ means square, but does not
+resolve which table reflects the actual simulation layout.
+
+When reading the graphs, retain the authors' labels and pattern numbers.
+When performing this book's educational calculation, use explicitly
+declared geometry. Do not claim that a chosen correction reproduces
+the authors' dataset.
+
+\section{Three groups of aberration inputs}
+The stated simulation sets are:
+\begin{enumerate}
+\item \textbf{Individual-mode sweeps:} 41 coefficient values
+$-20,-19,\ldots,+20\,\mathrm{m}\lambda$ for each of 24 indices,
+with all others zero. This gives $41\times24=984$ rows.
+\item \textbf{Definitive screening design:} 77 combined cases using
+levels $-20,0,+20\,\mathrm{m}\lambda$.
+\item \textbf{Random combinations:} 972 additional cases.
+\end{enumerate}
+Their nominal total is $984+77+972=2033$ before any filtering.
+The paper does not give a complete split into training, validation,
+and testing, nor the exact random distribution, seed, or retained row count.
+
+The individual sweeps include the all-zero vector 24 times.
+They therefore contain at most $984-23=961$ distinct vectors.
+Duplicates between groups may further reduce the distinct count.
+This matters in a replication: randomly splitting duplicate optical
+cases between training and test sets would weaken the independence
+of the test. The paper does not establish that such leakage occurred;
+it simply leaves the handling undocumented.
+
+\section{Why a screening design is used}
+A local quadratic response in $K$ variables has
+\[
+1+K+K+\frac{K(K-1)}2
+\]
+coefficients: intercept, linear terms, squares, and pairwise interactions.
+For $K=24$ this is $325$.
+An efficient screening design seeks useful information about dominant
+effects from far fewer than a full factorial set of runs, usually under
+sparsity or low-order assumptions.
+
+Three levels allow curvature to be distinguished from a simple straight
+line. Carefully chosen combinations can separate some effects better
+than arbitrary combinations. However, 77 runs cannot independently
+estimate all 325 coefficients of an unrestricted quadratic model.
+The exact design matrix and its aliasing properties are not supplied.
+No specific orthogonality guarantee for these 77 rows can be reconstructed.
+
+If every coefficient took all 41 grid values, a full 24-dimensional
+grid would contain
+\[
+41^{24}=5.091110945\ldots\times10^{38}
+\]
+points. This count is a hypothetical grid comparison, not a claim that
+the random group follows that grid. It illustrates why a few thousand
+cases can only sample a minute portion of the possible coefficient space.
+
+\section{What is one machine-learning sample?}
+The natural forward row is
+\[
+\vct c^{(r)}
+\stackrel{F}{\longrightarrow}
+\vct y^{(r)}\in\R^{84},
+\]
+where the vector holds all patterns and metrics for aberration case $r$.
+The inverse training row reverses the pair:
+$\vct y^{(r)}$ is input, $\vct c^{(r)}$ is target.
+The 14 patterns are therefore features within one optical case.
+They are not automatically 14 independent realizations of the same input.
+
+Keeping them separate is physically useful. For two patterns with
+responses $\delta y_1=c$ and $\delta y_2=-c$, averaging produces zero
+and loses all sensitivity to $c$. A feature vector $(c,-c)$ preserves it.
+This is the paper's motivation for avoiding averages over pattern
+performance during learning.
+
+\section{The 24-versus-25 output issue}
+The inclusive range $Z_2,\ldots,Z_{25}$ contains 24 coefficients.
+The $984=41\times24$ count and plotted axes support 24 varied terms.
+However, the prose repeatedly refers to the first 25 terms and the
+reported network has 25 output neurons.
+
+One possible explanation is inclusion of a fixed piston coordinate,
+but the paper does not confirm that explanation. If piston is included
+as an unconstrained output, intensity indicators cannot determine it.
+A reconstruction must establish the exact output dictionary rather
+than fabricate a twenty-fifth observable aberration.
+
+\section{Filtering and scaling are part of the model}
+Section 2C describes filtering poorly fitted or low-valued data and
+mentions a 0.001 threshold, but its wording mixes input data and
+output Zernike terms. It does not establish which rows or coordinates
+were removed, the units before filtering, or whether the decision used
+test information.
+
+This ambiguity affects reproducibility and performance interpretation.
+For example, removing all near-zero shift examples can improve a
+percentage-error score while making predictions near the desired zero
+shift less well supported. Filtering must be defined from the training
+workflow and recorded; it is not just a harmless plotting choice.
+
+\chapter{The inverse problem: existence, ambiguity, and feasible targets}\label{ch:inverse}
+\section{Three separate questions}
+Given desired metrics $\vct y_*$, ask:
+\begin{enumerate}
+\item \textbf{Existence:} is there any allowed wavefront with
+$F(\vct c)=\vct y_*$, or sufficiently close?
+\item \textbf{Uniqueness:} if a solution exists, is it the only one?
+\item \textbf{Stability:} do small changes in desired metrics lead to
+small changes in the required coefficients?
+\end{enumerate}
+A forward simulator may be perfectly deterministic even when the
+inverse fails one or more of these tests.
+
+\section{More indicators than coefficients does not settle uniqueness}
+With about 24 varied coefficients and 84 metrics, there are more
+reported numbers than unknowns. This does not imply either uniqueness
+or nonuniqueness by itself. Metrics can be correlated, insensitive,
+or redundant; nonlinear maps can also have multiple branches.
+
+Locally, $J$ has 84 rows and 24 columns. If it has full column rank,
+small coefficient changes are locally distinguishable by the measured
+metrics. If its rank is lower, some first-order changes are invisible.
+Even full local rank does not rule out two distant coefficient vectors
+with the same metrics.
+
+Piston is an exact unobservable direction if included. A simple
+additional teaching example is $F(c)=c^2$: both $c=1$ and $c=-1$
+give the same output. In symmetric optical settings, sign ambiguities
+can arise from similar even dependence, but they should be established
+for the actual source and mask rather than assumed from a mode name.
+
+\section{The singular-value decomposition explains sensitivity}
+Any real Jacobian can be written
+\begin{equation}
+J=U\Sigma V^T.
+\label{eq:svd}
+\end{equation}
+The columns of $V$ are orthogonal coefficient-space directions.
+Applying $J$ to direction $\vct v_j$ gives
+$J\vct v_j=\sigma_j\vct u_j$.
+The singular value $\sigma_j$ measures how much that coefficient
+combination changes the measured outputs.
+
+A small $\sigma_j$ means weak observability. Formally inverting this
+component divides by $\sigma_j$, amplifying measurement and modelling
+error. A zero value is a linear null direction.
+This is a more precise concept than calling one single Zernike term
+unimportant: a weak direction can be a correlated combination of many terms.
+
+Before calculating an SVD, scale coordinates appropriately. Otherwise
+replacing nm by milliwaves changes numerical singular values simply by
+changing units. A useful scaled Jacobian uses coefficient allowance
+scales in its columns and metric tolerance scales in its rows.
+
+\section{Linear inverse and regularization}
+For desired change $\delta\vct y$, a weighted least-squares inverse solves
+\begin{equation}
+\min_{\delta\vct c}
+\frac12\norm{Q_y^{1/2}(J\delta\vct c-\delta\vct y)}^2
++\frac{\alpha}{2}\norm{L\delta\vct c}^2.
+\label{eq:regularized}
+\end{equation}
+$Q_y$ weights metric errors; $L$ can penalize coefficient magnitude
+or difficult-to-manufacture combinations; $\alpha\geq0$ balances the terms.
+Differentiation gives
+\begin{equation}
+(J^TQ_yJ+\alpha L^TL)\delta\vct c=J^TQ_y\delta\vct y.
+\end{equation}
+With $Q_y=I$ and $L=I$, an SVD component is multiplied by
+$\sigma_j/(\sigma_j^2+\alpha)$ rather than $1/\sigma_j$.
+Small, unreliable directions are suppressed.
+The penalty is a design preference, not additional optical data.
+
+\section{Feasible outputs occupy a structured subset}
+If $\vct c$ varies in a $K$-dimensional region, its smooth image in
+84-dimensional metric space has at most $K$ local degrees of freedom.
+Many metric combinations are therefore unattainable.
+
+Being inside the minimum and maximum of each training feature is a
+necessary range check, but not a sufficient physical-feasibility check.
+For example, data satisfying $y_2=y_1^2$ with $-1\leq y_1\leq1$ have
+coordinate ranges $y_1\in[-1,1]$ and $y_2\in[0,1]$.
+The point $(0,1)$ lies inside both ranges but not on the curve.
+
+The paper's 118 target vectors come from other simulations under the same
+lithographic conditions and were not used in training or validation,
+according to Section 3. That is stronger than choosing 84 coordinates
+independently within a box. The paper nevertheless does not release the
+vectors or their generation procedure, so their precise coverage is unknown.
+
+\section{Why averaging inverse solutions can fail}
+Suppose training pairs have identical input $y=1$ and two valid targets
+$c=+1$ and $c=-1$ under $F(c)=c^2$.
+A deterministic model trained by squared coefficient error minimizes
+\[
+L(\hat c)=\tfrac12[(\hat c-1)^2+(\hat c+1)^2]=\hat c^2+1.
+\]
+Its minimizer is $\hat c=0$, but $F(0)=0\ne1$.
+The mean of valid inverse solutions is not necessarily valid.
+
+More generally, squared-error regression favors the conditional mean
+$\E[\vct c\mid\vct y]$, which can fall between distinct feasible branches.
+A good test is therefore the forward consistency
+\begin{equation}
+\vct r_{\rm image}=F(G(\vct y))-\vct y,
+\label{eq:forwardconsistency}
+\end{equation}
+not only the coefficient residual $G(\vct y)-\vct c_{\rm original}$.
+The paper's forward re-simulation is an important part of its logic.
+It checks whether a proposed alternative actually retains useful imaging.
+
+\section{One output per input versus a distribution of solutions}
+A deterministic feedforward network returns one coefficient vector
+for one specified metric vector. Giving it 118 different target vectors
+can produce 118 candidates. That does not mean the same trained network
+samples all allowable wavefronts for a single fixed target.
+
+To obtain diverse alternatives for the same target one could use multiple
+optimization initializations, explicit latent inputs, or a conditional
+generative model, followed by forward verification. These are possible
+extensions, not methods reported in this paper.
+
+\section{The feasible set is the real object of a budget}
+Let permitted coefficient conditions be $\vct c\in\mathcal C$ and
+imaging limits be $\vct y\in\mathcal Y_{\rm allowed}$.
+The acceptable wavefront set is
+\begin{equation}
+\mathcal A=\{\vct c\in\mathcal C:F(\vct c)\in\mathcal Y_{\rm allowed}\}.
+\label{eq:feasibleset}
+\end{equation}
+The paper identifies a finite collection of candidates in or near this set,
+as judged by its simulator. The shape, volume, boundary, robustness, and
+manufacturability of the entire set require further analysis.
+Chapter \ref{ch:budget} develops the distinction between candidate
+examples and a guaranteed tolerance region.

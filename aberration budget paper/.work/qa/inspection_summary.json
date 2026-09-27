@@ -1,0 +1,23 @@
+{
+  "pdf_pages": 98,
+  "main_chapters": 17,
+  "appendices": 3,
+  "source_word_tokens": 24164,
+  "pdf_text_words": 31805,
+  "missing_labels": [],
+  "duplicate_labels": [],
+  "missing_citations": [],
+  "page_issues": [],
+  "latex_warnings": [],
+  "figures": 7,
+  "contact_sheets": [
+    "contact_001_016.png",
+    "contact_017_032.png",
+    "contact_033_048.png",
+    "contact_049_064.png",
+    "contact_065_080.png",
+    "contact_081_095.png",
+    "contact_081_096.png",
+    "contact_097_098.png"
+  ]
+}

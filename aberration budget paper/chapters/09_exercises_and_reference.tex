@@ -1,0 +1,517 @@
+\chapter{Two derivations worth doing in full}\label{app:derivations}
+\section{Deriving the Zernike radial formula and orthogonality}
+Chapter \ref{ch:zernike} constructed low-order modes by subtracting
+overlaps. Here is a general construction that proves the normalization
+used throughout the book.
+
+Take $m\geq0$, $k\geq0$, $n=m+2k$, and $t=\rho^2$.
+Define
+\begin{equation}
+Q_k(t)=\frac{t^{-m}}{k!}
+\frac{\dd^k}{\dd t^k}\left[t^{m+k}(t-1)^k\right],
+\qquad R_{m+2k}^m(\rho)=t^{m/2}Q_k(t).
+\label{eq:rodrigues}
+\end{equation}
+Although $t^{-m}$ appears, the derivative contains a factor $t^m$,
+so $Q_k$ is an ordinary polynomial of degree $k$.
+At $t=1$, only the term in which all $k$ derivatives act on
+$(t-1)^k$ survives. Its value is $k!$, giving $Q_k(1)=1$
+and $R_n^m(1)=1$.
+
+Expand the bracket:
+\[
+t^{m+k}(t-1)^k
+=\sum_{s=0}^k(-1)^{k-s}\binom ks t^{m+k+s}.
+\]
+Taking $k$ derivatives gives
+\[
+R_{m+2k}^m(\rho)
+=\sum_{s=0}^k
+\frac{(-1)^{k-s}(m+k+s)!}
+{s!(k-s)!(m+s)!}\rho^{m+2s}.
+\]
+Set $j=k-s$, so that $m+2s=n-2j$ and $m+k+s=n-j$.
+This becomes
+\[
+R_n^m(\rho)=\sum_{j=0}^{(n-m)/2}
+\frac{(-1)^j(n-j)!}
+{j![(n-m)/2-j]![(n+m)/2-j]!}\rho^{n-2j},
+\]
+which is Eq.~\eqref{eq:radial}.
+The factorial formula is therefore the expanded form of a weighted
+polynomial orthogonalization construction.
+
+To prove orthogonality, take $\ell<k$ and evaluate
+\begin{align}
+\int_0^1 R_{m+2k}^mR_{m+2\ell}^m\,\rho\dd\rho
+&=\frac12\int_0^1t^mQ_k(t)Q_\ell(t)\dd t\\
+&=\frac1{2k!}\int_0^1Q_\ell(t)
+\frac{\dd^k}{\dd t^k}[t^{m+k}(t-1)^k]\dd t.
+\end{align}
+Integrate by parts $k$ times. Boundary terms vanish: the bracket has
+sufficient zeros at both $t=0$ and $t=1$.
+The remaining integral contains $\dd^kQ_\ell/\dd t^k$, which is zero
+because $Q_\ell$ has degree less than $k$.
+This proves orthogonality for different radial degrees at fixed $m$.
+
+For the norm, the leading coefficient of $Q_k$ is
+\[
+A_k=\frac{(m+2k)!}{k!(m+k)!}.
+\]
+Hence $\dd^kQ_k/\dd t^k=k!A_k$, and integration by parts gives
+\begin{align}
+\int_0^1[R_{m+2k}^m]^2\rho\dd\rho
+&=\frac{A_k}{2}\int_0^1t^{m+k}(1-t)^k\dd t\\
+&=\frac{A_k}{2}\frac{(m+k)!\,k!}{(m+2k+1)!}\\
+&=\frac{1}{2(m+2k+1)}=\frac1{2(n+1)}.
+\end{align}
+The middle integral follows by repeated integration by parts:
+$\int_0^1t^a(1-t)^b\dd t=a!b!/(a+b+1)!$ for nonnegative integer
+$a,b$. Angular sine/cosine orthogonality supplies the remaining
+normalization factors in Eq.~\eqref{eq:Zdef}.
+
+\section{Why phase can move edges without changing total energy}
+For $U=\FT^{-1}[\widetilde tP]$, Parseval's identity gives
+\begin{equation}
+\int|U(\vct x)|^2\dd^2x
+=\int|\widetilde t(\vct f)|^2|P(\vct f)|^2\dd^2f.
+\end{equation}
+If only phase changes and $|P|$ stays fixed, the integrated image energy
+is unchanged. For oblique illumination replace $P(\vct f)$ by
+$P(\vct f+\vct s)$; the same conclusion holds for a fixed source point.
+Source averaging preserves it.
+
+Yet local intensity contains cross terms between frequencies.
+Their phase differences change with $W$. Energy is redistributed,
+altering maxima, minima, slopes, and threshold edges.
+Phase aberration does not have to absorb light to degrade printing.
+
+For periodic images, use energy per unit cell rather than an infinite
+integral over repeated cells:
+\[
+\frac1{p_xp_y}\int_{\rm cell}|U|^2\dd x\dd y
+=\sum_{m,n}|a_{mn}P_{mn}|^2.
+\]
+Distinct orders average to zero in the integrated cross terms,
+but those cross terms remain essential locally.
+If amplitude, aperture support, or coating reflectance changes too,
+the total collected energy can change. The phase-only pupil model
+isolates one mechanism rather than describing every physical perturbation.
+
+\chapter{Exercises with worked solutions}\label{app:exercises}
+Try each problem before reading its solution. Numerical examples use
+this book's conventions unless explicitly stated otherwise.
+
+\section{Phase, geometry, and diffraction}
+\subsection*{1. Convert milliwaves into length and phase}
+\textbf{Problem.} At 13.5 nm, convert $20\,\mathrm{m}\lambda$
+into OPD and phase. Does this number alone specify RMS or PV?
+
+\textbf{Solution.}
+$W=13.5(20/1000)=0.270\nm$ and
+$\phi=2\pi(0.020)=0.125664$ rad.
+The conversion gives the size of the stated OPD quantity. Whether it
+is a coefficient, RMS, PV, or local error must be specified separately.
+For an RMS-normalized coefficient, its magnitude is its RMS contribution.
+
+\subsection*{2. Convert a mirror-height error}
+\textbf{Problem.} A local mirror height error is 0.10 nm at $6^\circ$
+incidence from the normal. Estimate OPD and phase magnitude.
+
+\textbf{Solution.}
+$|\delta W|\simeq2(0.10)\cos6^\circ=0.19890\nm$.
+At 13.5 nm this is about 14.734 milliwaves and 0.09257 rad.
+The local geometric estimate excludes coating phase and changed ray
+intersections.
+
+\subsection*{3. Separate resolution and focus scaling}
+\textbf{Problem.} At fixed wavelength, NA increases from 0.33 to 0.55.
+How do $\lambda/\NA$ and $\lambda/\NA^2$ change?
+
+\textbf{Solution.}
+Their ratios are $0.33/0.55=0.60$ and
+$(0.33/0.55)^2=0.36$.
+The lateral diffraction scale decreases by 40 percent; the focus
+scale decreases by 64 percent. Process-specific constants may also
+change, so these are scaling comparisons.
+
+\subsection*{4. Explain why one admitted order cannot draw a contact}
+\textbf{Problem.} Show that one transmitted diffraction order has uniform
+intensity. Why does the 38 nm example benefit from oblique light?
+
+\textbf{Solution.}
+With $U=a\ee^{\ii2\pi(f_xx+f_yy)}$, $|U|^2=|a|^2$ everywhere.
+At the stated wavelength and NA, first-order normalized spacing for
+38 nm pitch is 1.07656, outside the unit pupil for on-axis illumination.
+Oblique source points shift several orders into the pupil, allowing
+spatially varying interference cross terms.
+
+\subsection*{5. Recover the phase-to-shift relation}
+\textbf{Problem.} Two image orders separated by frequency $1/(38\nm)$
+receive relative phase 0.10 rad. Find the fringe shift.
+
+\textbf{Solution.}
+$\Delta x=-p\Delta\phi/(2\pi)
+=-38(0.10)/(2\pi)\simeq-0.60479\nm$.
+This is a differential-phase result for two orders, not a general
+coefficient-to-PS calibration.
+
+\subsection*{6. Add amplitudes before intensities}
+\textbf{Problem.} Two coherent equal-amplitude fields each have intensity
+one. Find total intensity for relative phases 0, $\pi/2$, and $\pi$.
+What if the sources are mutually incoherent?
+
+\textbf{Solution.}
+$I=2+2\cos\Delta\phi$, giving 4, 2, and 0.
+For incoherent contributions the averaged cosine term vanishes and
+intensity is 2. Averaging intensities prematurely loses interference.
+
+\section{Wavefront statistics and Zernike modes}
+\subsection*{7. Normalize defocus}
+\textbf{Problem.} For $W=B\rho^2$, find its mean and piston-removed
+RMS. Express the nonpiston part using $Z_2^0$.
+
+\textbf{Solution.}
+$\avg W=B/2$ and $\sigma_W^2=B^2(1/3-1/4)=B^2/12$.
+The residual is
+$B(\rho^2-1/2)=[B/(2\sqrt3)]Z_2^0$.
+Its unit-RMS coefficient is $B/(2\sqrt3)$.
+
+\subsection*{8. Distinguish raw and balanced spherical aberration}
+\textbf{Problem.} Why is $B\rho^4$ not pure $Z_4^0$?
+Find the best quadratic compensation in RMS.
+
+\textbf{Solution.}
+The raw quartic overlaps piston and defocus. For
+$B\rho^4+d\rho^2$, minimizing piston-removed variance gives $d=-B$.
+The residual after mean removal is
+$B(\rho^4-\rho^2+1/6)=[B/(6\sqrt5)]Z_4^0$.
+Its RMS is $|B|/\sqrt{180}$.
+
+\subsection*{9. Count modes and total RMS}
+\textbf{Problem.} How many real disk modes exist through degree six?
+What RMS results if 24 orthonormal nonpiston coefficients are all
+20 milliwaves?
+
+\textbf{Solution.}
+There are $\sum_{n=0}^6(n+1)=28$ modes including piston.
+RMS is $\sqrt{24}(20)=97.9796$ milliwaves.
+Neither calculation determines the paper's unspecified single-index ordering.
+
+\subsection*{10. Find a pure-tilt placement allowance}
+\textbf{Problem.} For $W=cZ_1^{-1}$ and NA 0.33, what $|c|$
+corresponds to 0.4 nm vertical shift?
+
+\textbf{Solution.}
+$Z_1^{-1}=2v$ gives $|\Delta y|=2|c|/\NA$.
+Thus $|c|=0.4(0.33)/2=0.066\nm=4.88889$ milliwaves at 13.5 nm.
+This assumes the declared basis and no later removal of the translation.
+
+\subsection*{11. Decide which error a Strehl calculation omits}
+\textbf{Problem.} A report removes piston, tilt, and defocus before giving
+a high Strehl estimate. Does it guarantee small absolute pattern shift
+at a fixed wafer plane?
+
+\textbf{Solution.}
+No. Tilt changes absolute placement while preserving registered shape;
+defocus compensation changes the observation plane.
+The residual quality excludes those freedoms. Placement and fixed-plane
+focus must be constrained separately.
+
+\section{Image edges and process variation}
+\subsection*{12. Distinguish CD change from PS change}
+\textbf{Problem.} Left and right edges move by $-0.2$ and $+0.3$ nm.
+Find width and centre changes.
+
+\textbf{Solution.}
+$\delta\mathrm{CD}=0.3-(-0.2)=0.5\nm$.
+$\delta\mathrm{PS}=[0.3+(-0.2)]/2=0.05\nm$.
+Most of the change is widening, with a small net translation.
+
+\subsection*{13. Use the edge-slope formula}
+\textbf{Problem.} At a bright feature's right edge, $I'=-0.1$ intensity
+units per nm and $\delta I=+0.02$. Find edge displacement.
+
+\textbf{Solution.}
+$\delta x=-\delta I/I'=+0.2\nm$.
+The edge moves outward. If the left slope is $+0.1$ with the same
+perturbation, that edge moves $-0.2\nm$, so width increases 0.4 nm
+and the centre stays fixed.
+
+\subsection*{14. Check NILS with an exactly soluble image}
+\textbf{Problem.} Let $I(x)=I_0\exp[-x^2/(2s^2)]$ and $T=I_0/2$.
+Find nominal width, NILS, and width sensitivity to $\ln D$.
+
+\textbf{Solution.}
+The positive edge is $r=s\sqrt{2\ln2}$, width is $w=2r$, and
+$|\partial\ln I/\partial x|=r/s^2$.
+Thus $\mathrm{NILS}=2r^2/s^2=4\ln2$.
+At dose $D$,
+\[
+w(D)=2s\sqrt{2\ln(2D)},\qquad
+\frac{\dd w}{\dd\ln D}=\frac{2s}{\sqrt{2\ln(2D)}}.
+\]
+At $D=1$, this equals $2w/\mathrm{NILS}$, verifying the two-edge
+formula.
+
+\subsection*{15. Show that PVB is not always CD range}
+\textbf{Problem.} A 14 nm feature translates between centres
+$-0.3$ and $+0.3$ nm over process conditions. Find edge-band widths
+and CD range.
+
+\textbf{Solution.}
+Each edge translates over 0.6 nm, so $B_L=B_R=0.6\nm$.
+Every width remains 14 nm, so $B_{\rm CD}=0$.
+Contour variation cannot be inferred from CD range alone.
+
+\section{Data and neural-network reasoning}
+\subsection*{16. Audit the sample count}
+\textbf{Problem.} Why does the single-mode sweep have 984 rows but at
+most 961 distinct wavefronts?
+
+\textbf{Solution.}
+$41(24)=984$ rows, but the all-zero vector appears 24 times.
+Removing 23 extra copies leaves at most 961 distinct vectors.
+Other groups can contain further duplicates.
+
+\subsection*{17. Check normalization and extrapolation}
+\textbf{Problem.} A feature trained over $[10,30]$ nm maps to $[-1,1]$.
+Find normalized values at 20 and 35 nm.
+
+\textbf{Solution.}
+$\tilde x=2(x-10)/20-1$ gives 0 and 1.5.
+The latter input is outside the observed range. Scaling does not clip
+it or make extrapolation reliable.
+
+\subsection*{18. Count a network's parameters}
+\textbf{Problem.} Count parameters in a dense $84\to64\to25$ network
+with biases.
+
+\textbf{Solution.}
+There are $(84+1)64=5440$ in the first layer and
+$(64+1)25=1625$ in the second, totaling 7065.
+The paper's longer literal architecture has 24,485.
+Input entries are not themselves trainable parameters.
+
+\subsection*{19. Calculate one LM step}
+\textbf{Problem.} For $e(\theta)=2\theta-1$, start at $\theta=0$
+with damping $\mu=1$. Find the LM step.
+
+\textbf{Solution.}
+$e=-1$, $J_e=2$, and
+$(2^2+1)\Delta\theta=-2(-1)$.
+Hence $\Delta\theta=0.4$ and the new residual is $-0.2$.
+With $\mu=0$, the linear problem is solved exactly by $\Delta\theta=0.5$.
+
+\subsection*{20. Explain a valid coefficient mismatch}
+\textbf{Problem.} For $F(c_1,c_2)=c_1+c_2$, an original pair is
+$(1,0)$ and the inverse proposes $(0,1)$. Is it necessarily wrong?
+
+\textbf{Solution.}
+Both produce output 1. Coefficient error is nonzero, but forward
+consistency error is zero. An additional indicator such as $c_1-c_2$
+would distinguish them. Equivalence depends on the selected requirements.
+
+\subsection*{21. Explain an invalid mean of valid inverses}
+\textbf{Problem.} For $F(c)=c^2$, targets $+1$ and $-1$ both yield
+input $y=1$. What single prediction minimizes their average squared
+coefficient loss, and is it feasible?
+
+\textbf{Solution.}
+Loss is $\hat c^2+1$, minimized at $\hat c=0$.
+But $F(0)=0$, not 1. Inverse ambiguity can undermine regression even
+when every training pair is physically valid.
+
+\section{Validation and budgeting}
+\subsection*{22. Compare percentage and absolute error}
+\textbf{Problem.} Reference shift is 0.005 nm and prediction is 0.015 nm.
+Find absolute and percentage error. Does the prediction meet a 0.4 nm
+magnitude limit?
+
+\textbf{Solution.}
+Absolute error is 0.010 nm; percentage error is
+$100(0.010/0.005)=200\%$.
+The predicted 0.015 nm magnitude is below 0.4 nm.
+A large percentage need not imply a physical limit violation.
+
+\subsection*{23. Derive a safe two-coefficient box}
+\textbf{Problem.} A local shift change is
+$\delta y=2\delta c_1-\delta c_2$ and remaining allowance is 0.3.
+Assign equal independent bounds $|\delta c_j|\leq a$.
+
+\textbf{Solution.}
+Maximum absolute change is $2a+a=3a$, so $a\leq0.1$.
+Testing the first coefficient alone would allow 0.15; testing the
+second alone would allow 0.3. Those individual limits cannot be
+simultaneously permitted independently.
+
+\subsection*{24. Propagate correlated uncertainty}
+\textbf{Problem.} Use gradient $\vct g=(1,2)^T$ and covariance
+$C=\begin{pmatrix}0.01&0.005\\0.005&0.04\end{pmatrix}\mathrm{nm}^2$
+to find metric variance.
+
+\textbf{Solution.}
+$\vct g^TC\vct g=0.01+4(0.04)+4(0.005)=0.19\,\mathrm{nm}^2$.
+Standard deviation is $0.43589\nm$.
+Ignoring covariance gives $0.17\,\mathrm{nm}^2$ and underestimates
+variance for this gradient.
+
+\subsection*{25. Identify what remains unknown}
+\textbf{Problem.} What essential information is missing for reproducing
+every bar in the paper's Fig.~9 exactly?
+
+\textbf{Solution.}
+The coefficient convention; mask layouts resolving Tables 2 and 3;
+source, stack, polarization, and simulator settings; metric extraction
+definitions; training and test arrays; filtering and scaling settings;
+network activations, weights, and split; and all 118 target and
+verification vectors. The paper explains a workflow but does not
+supply these artifacts. A reproduction must obtain or explicitly replace them.
+
+\chapter{Reading map, notation, and source audit}\label{app:reading}
+\section{Verified entry points into the supplied textbooks}
+Printed page numbers refer to numbers on book pages.
+PDF page numbers are one-based viewer positions in the supplied files.
+The table gives verified entry points, not an assumed constant offset.
+
+\begin{longtable}{@{}L{.27\textwidth}L{.44\textwidth}L{.20\textwidth}@{}}
+\toprule Topic & Section and printed page & PDF page\\ \midrule\endhead
+Scalar waves & Born--Wolf \S1.3, p.~14 &43\\
+Reflection/refraction & Born--Wolf \S1.5, p.~36 &65\\
+Layered media & Born--Wolf \S1.6, p.~51 &80\\
+Characteristic matrices & Born--Wolf \S1.6.2, p.~55 &84\\
+Periodic layers & Born--Wolf \S1.6.5, p.~66 &95\\
+Geometrical-optics limit & Born--Wolf \S3.1, p.~109 &138\\
+Stops and pupils & Born--Wolf \S4.8.2, p.~186 &215\\
+Wave/ray aberrations & Born--Wolf \S5.1, p.~203 &232\\
+Diffraction integral & Born--Wolf \S8.3.1, p.~375 &413\\
+Circular-aperture diffraction & Born--Wolf \S8.5.2,
+formula on p.~396 &434\\
+Microscope resolution & Born--Wolf \S8.6.3, p.~419 &459\\
+Aberration diffraction & Born--Wolf \S9.1.1, p.~460 &559\\
+Reference-sphere changes & Born--Wolf \S9.1.2, p.~462 &557\\
+Small-error intensity & Born--Wolf \S9.1.3, p.~463 &556\\
+Zernike definition & Born--Wolf \S9.2.1, p.~464 &555\\
+Radial-polynomial table & Born--Wolf \S9.2.1, p.~465 &554\\
+Wavefront expansion & Born--Wolf \S9.2.2, p.~466 &553\\
+Aberration tolerances & Born--Wolf \S9.3, p.~468 &551\\
+Small-error criterion & Born--Wolf \S9.3, p.~469 &550\\
+Coherent image transfer & Born--Wolf \S9.5.1, p.~483 &534\\
+Incoherent transfer & Born--Wolf \S9.5.2, p.~486 &531\\
+Mutual intensity & Born--Wolf \S10.4.1, p.~507 &510\\
+Extended incoherent source & Born--Wolf \S10.4.2, p.~508 &509\\
+Hopkins propagation & Born--Wolf \S10.4.2(b), p.~512 &505\\
+\midrule
+Wave-optics postulates & Saleh--Teich \S2.1, p.~40 &62\\
+Complex wave amplitude & Saleh--Teich \S2.2, pp.~41--42 &63--64\\
+Interference & Saleh--Teich \S2.5, p.~58 &80\\
+Spatial harmonics & Saleh--Teich \S4.1, p.~105 &127\\
+Angular spectrum & Saleh--Teich \S4.1, pp.~106--107 &128--129\\
+Optical Fourier transform & Saleh--Teich \S4.2, p.~116 &138\\
+Diffraction & Saleh--Teich \S4.3, p.~121 &143\\
+Airy diffraction & Saleh--Teich \S4.3, p.~123 &145\\
+Image formation & Saleh--Teich \S4.4, p.~127 &149\\
+Coherent transfer function & Saleh--Teich \S4.4, p.~130 &152\\
+Defocused pupil & Saleh--Teich \S4.4, p.~133 &155\\
+Electromagnetic theory & Saleh--Teich \S5.1, p.~152 &174\\
+Reflection/polarization & Saleh--Teich \S6.2, p.~209 &231\\
+\bottomrule
+\end{longtable}
+
+For a first pass, use Saleh--Teich for waves and Fourier imaging, then
+Born--Wolf for wave aberrations, Zernike theory, and partial coherence.
+Born--Wolf uses older notation and electromagnetic unit conventions in
+places. This guide uses SI for Maxwell's equations and explicitly
+declares its complex-phase and polynomial normalization conventions.
+Do not equate symbols across books by appearance alone.
+
+The statistical-optics chapter in Saleh--Teich is absent from the
+provided file. Its Fourier-transform appendices are also outside the
+supplied excerpt. The needed definitions and derivations are included here.
+
+\section{Symbol dictionary}
+\begin{longtable}{@{}L{.22\textwidth}L{.53\textwidth}L{.16\textwidth}@{}}
+\toprule Symbol & Meaning here & Units\\ \midrule\endhead
+$\lambda,\lambda_0$ & Vacuum wavelength; also the wavelength in
+vacuum image space &length\\
+$k_0$ &$2\pi/\lambda_0$ &inverse length\\
+$n,\widetilde n$ &Real or complex refractive index &dimensionless\\
+$U,\vct U$ &Scalar or vector complex field amplitude &field scale\\
+$I$ &Time-averaged intensity, often normalized &power/area or relative\\
+$\mathcal L$ &Optical path length $\int n\dd\ell$ &length\\
+$W$ &Actual-minus-reference phase-equivalent OPD &length\\
+$\phi$ &Phase $2\pi W/\lambda$ &radians\\
+$\sigma_W$ &Piston-removed RMS, unless other removals are stated &length\\
+$\rho,\theta$ &Normalized pupil radius and azimuth &dimensionless; rad\\
+$u,v$ &Normalized Cartesian pupil coordinates &dimensionless\\
+$a$ &Physical pupil radius; opening width in rectangle examples
+when stated locally &length\\
+$\vct f$ &Transverse spatial-frequency vector &inverse length\\
+$f_c$ &Image coherent cutoff $\NA/\lambda$ &inverse length\\
+$P$ &Complex coherent pupil transfer function &relative amplitude\\
+$S(\vct s)$ &Source weight density &reciprocal coordinate area\\
+$Z_n^m$ &This guide's RMS-normalized real basis function &dimensionless\\
+$c_n^m$ &Coefficient multiplying that function &length\\
+$Z_i,F_i$ &Paper notation: coefficient and basis function &its convention\\
+$z$ &Image-space focus displacement &length\\
+$D$ &Relative dose multiplier in the contour example &dimensionless\\
+$T$ &Fixed exposure threshold &exposure scale\\
+$\vct y$ &Vector of imaging indicators &usually nm\\
+$F,G$ &Forward imaging map and learned inverse &by arguments\\
+$J$ &Imaging Jacobian $\partial\vct y/\partial\vct c$
+&metric / coefficient\\
+$J_e$ &Training-residual Jacobian versus network parameters &training scale\\
+$\Theta$ &All trainable weights and biases &parameter-dependent\\
+$\mu$ &LM damping; $\mu_{12}$ denotes coherence elsewhere &context-dependent\\
+$B$ &Physical-variable-to-wavefront influence matrix &coefficient / control\\
+\bottomrule
+\end{longtable}
+
+\section{Publication issues that must remain visible}
+\begin{longtable}{@{}L{.31\textwidth}L{.63\textwidth}@{}}
+\toprule Issue & Consequence\\ \midrule\endhead
+Unspecified Zernike ordering and normalization
+&Named high-index modes, RMS conversion, and transfer to another
+simulator cannot be fixed uniquely.\\
+$Z_2$--$Z_{25}$ versus 25 outputs
+&There are 24 listed varied coordinates; the extra output is unexplained.\\
+Tables 2 and 3 disagree
+&Plot labels cannot be converted into a unique mask prescription.\\
+Table 3 first SQ pitch pair
+&$(56,56)$ also differs from Table 2's rectangular $(56,70)$.\\
+Table 4 repeats PVB\_X
+&Interpreting the second as PVB\_Y is plausible but unconfirmed.\\
+Table 4 REC horizontal CDs
+&Values near 27--30 nm differ strongly from the nominal 14 nm
+horizontal size; the cause is unresolved.\\
+CRAO and source shaping mixed in prose
+&Chief-ray geometry and off-axis source distribution are distinct.\\
+Figure 9 extrema exceed training sweep
+&Output extrapolation or a scale issue needs clarification;
+hard coefficient-box enforcement is not demonstrated.\\
+Small-value filtering description
+&Retained data, threshold units, and zero treatment are not reproducible.\\
+Training split and activations absent
+&Layer widths alone do not specify a trained model.\\
+Metric extraction not fully defined
+&Different CD/PS/PVB conventions can give different bars.\\
+Roadmap-to-PS allocation not derived
+&The 1 nm motivation is not a universal projector allowance.\\
+Data and network weights absent
+&The guide reproduces its teaching calculations, not the authors'
+exact dataset.\\
+\bottomrule
+\end{longtable}
+
+\section{A checklist for your own future experiment}
+Record wavelength; image and object NA; magnification; physical and
+wafer-referred geometry; pupil axes and support; OPD sign and units;
+Zernike functions and normalization; removed modes and reference focus;
+source weights; polarization; mask stack and materials; image or resist
+model; contour measurement rules; dose-focus sampling; coefficient bounds;
+training design and duplicate handling; split, scaling, and filtering;
+network activations, loss, stopping, and random seed; and forward
+verification of each candidate.
+
+That record turns an interesting calculation into something another
+researcher can examine, repeat, and improve.

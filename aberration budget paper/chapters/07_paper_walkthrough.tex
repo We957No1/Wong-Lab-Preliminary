@@ -1,0 +1,414 @@
+\chapter{Read the paper with this chapter beside it}\label{ch:walkthrough}
+\section{Title, abstract, and the actual claim}
+The title joins three ideas: an aberration budget, an EUV projector, and
+the image quality of a contact layer. The budget is conditional on that
+layer's selected patterns and imaging indicators. The paper does not
+claim to characterize every possible mask pattern.
+
+The abstract's phrase back propagating neutral network should be read as
+\emph{backpropagation neural network}. The learned map takes imaging
+indicators as inputs and proposes wavefront coefficients as outputs.
+Forward re-simulation tests the resulting images.
+The important conclusion is that the authors obtained candidate
+wavefront distributions with useful simulated imaging performance under
+their chosen conditions.
+
+The phrase wavefront aberration margin should not immediately be read
+as a certified independent tolerance on each mirror or each Zernike
+coefficient. A margin needs a defined region, perturbation model, and
+worst-case or probabilistic guarantee. The paper primarily demonstrates
+successful coefficient combinations.
+
+\section{Introduction: why this work was attempted}
+\subsection{Shorter wavelength makes a fixed OPD more serious}
+The 193 nm versus 13.5 nm comparison is worked through in
+Chapter \ref{ch:waves}. In physical length units, the error is unchanged.
+In waves and radians, it is about 14.3 times larger at EUV wavelength.
+The consequences listed in the paper have distinct meanings:
+\begin{itemize}
+\item Reduced process window means fewer focus-dose combinations meet
+all imaging tolerances.
+\item Lower image fidelity means the printed contour departs more
+from its intended shape.
+\item Lower NILS means a shallower relative edge slope and generally
+greater edge sensitivity.
+\item Pattern centre offset is a placement error even if width is unchanged.
+\item Unwanted artifacts can include distorted, bridged, or otherwise
+undesired image features; the paper does not provide a separate
+artifact-rate study.
+\end{itemize}
+
+\subsection{The earlier aberration-control methods}
+The Introduction discusses several classes of prior work.
+They are context, not additional algorithms implemented and validated
+in this paper.
+
+\textbf{Pattern-specific wavefront adjustment} uses available optical
+controls to improve selected pattern images. The Nikon TAO example
+illustrates that an optimum for one pattern need not minimize a
+pattern-independent wavefront norm.
+
+\textbf{Thermal prediction and control} models how absorbed power changes
+optical shape or index and adjusts compensators before or during exposure.
+A simple control description is
+$\vct c(t)=\vct c_{\rm thermal}(t)+B\vct u(t)$,
+where $\vct u$ represents actuator commands and $B$ their wavefront
+influence. Predictive control uses a future estimate of
+$\vct c_{\rm thermal}$ when choosing $\vct u$.
+This equation is explanatory, not the controller in any cited instrument.
+
+\textbf{Wavefront manipulators} provide practical degrees of freedom to
+alter the pupil phase. The Introduction's FlexWave example concerns DUV
+immersion equipment. It should not be read as a statement that arbitrary
+25-dimensional phase changes are independently available in an EUV scanner.
+
+\textbf{Optical prescription optimization} adjusts mirror shapes,
+locations, and aspheric coefficients. Grouping methods divide a
+complicated optical system into tractable subassemblies.
+Ray tracing calculates actual surface intersections and directions.
+Finite-aberration methods evaluate finite departures beyond a solely
+infinitesimal paraxial analysis. These approaches operate on physical
+design parameters rather than directly on an unconstrained image-to-mode map.
+
+\textbf{Global search heuristics} mentioned in the references include
+simulated annealing and particle swarm methods. Annealing sometimes
+accepts a worsening objective by a temperature-dependent rule to escape
+local minima. Particle swarm search updates candidate locations using
+their own and the group's best positions.
+The present paper's stated training algorithm is LM; it does not
+report applying those design algorithms in its own 118-candidate test.
+
+The quoted $\lambda/50$, $\lambda/70$, and $\lambda/30$ wavefront scales
+belong to the cited contexts. At 13.5 nm they are 0.270, 0.19286, and
+0.450 nm respectively. Comparisons require the same RMS definition,
+removed modes, aperture weighting, field points, and wavelength.
+
+\section{Figure 1: the optical system}
+\paperloc{PDF p.~1 / journal p.~7270.}
+Read the drawing as a map of functional stages:
+illumination creates the source distribution at the mask; the reflective
+mask diffracts the field; projection optics form the wafer image.
+The colored boxes identify these components, not separate mathematical
+wavefront-error budgets.
+
+The EUV system is reflective, unlike an ordinary camera drawn with glass
+lenses. The naming issue in the caption was noted in Chapter \ref{ch:euv}.
+Nothing in the figure gives a mirror prescription, surface sensitivity
+matrix, or actuator range. Consequently it cannot turn predicted
+Zernike coefficients into a unique hardware design.
+
+\section{Equation (1): the entire wavefront represented by coefficients}
+\paperloc{PDF p.~2 / journal p.~7271.}
+The equation
+\[
+W(\rho,\theta)=\sum_{i=1}^{\infty}Z_iF_i(\rho,\theta)
+\]
+is a basis expansion. Its technical content is explained in
+Chapter \ref{ch:zernike}. A finite implementation replaces the infinite
+sum by a selected set of terms. Truncation neglects all remaining
+wavefront structure; it does not prove that those higher terms vanish
+in a real projector.
+
+The coefficients are not independent physical defects merely because
+the basis is orthogonal. A single mirror alignment error may excite
+several coefficients, and a single coefficient may receive contributions
+from many surfaces.
+The missing basis normalization and index dictionary are necessary for
+quantitative comparisons with another optical program.
+
+\section{Table 1 and Figure 2: illumination and process conditions}
+\paperloc{PDF p.~3 / journal p.~7272.}
+Table 1 fixes wavelength, numerical aperture, incidence geometry,
+source shape, nominal stack, focus range, and coefficient sweep.
+Together these define the conditional forward map.
+Figure 2 shows the angular distribution of illumination in normalized
+pupil coordinates. Bright regions are active source directions.
+They are not four holes in the physical mask and not four printed contacts.
+
+The source is separated from the projection pupil: the source chooses
+incident directions, and the projection pupil selects diffracted outgoing
+components. Chapter \ref{ch:partial} derives how they interact.
+At the end of the paper the authors state that this source was not well
+optimized for the contact layer. That limitation applies to the learned
+aberration preferences as well.
+
+\section{Table 2 and Figure 3: what the mask represents}
+\paperloc{PDF p.~3 / journal p.~7272.}
+The top view in Fig.~3 depicts the opening and absorber in a periodic
+mask cell. The side view depicts absorber topography on a multilayer.
+The square example is 14 nm wide on 38 nm pitch in wafer-referred units.
+The diagram makes it clear that a hole in the absorber exposes a
+reflective region; it is not a transparent hole through an ordinary lens mask.
+
+The absorber and multilayer phases affect the complex diffraction orders.
+Their geometry is one reason horizontal and vertical imaging can differ.
+Table 2 gives two feature families and through-pitch examples.
+The conflict with Table 3 must be remembered whenever translating
+a plot's Pattern\_1 through Pattern\_7 into an actual mask layout.
+
+\section{Figure 4: the simplified network}
+\paperloc{PDF p.~3 / journal p.~7272.}
+Each circle is a scalar neuron and each connection represents a trainable
+weight. The arrows of evaluation run from imaging metrics to aberration
+coefficients. During training, derivative information moves backward
+through the computational graph.
+
+The figure is explicitly simplified. The reported architecture in
+Section 2C has seven hidden layers, while the schematic shows fewer
+hidden groups. Use the written widths for the literal parameter-count
+calculation, while recognizing the implementation details remain incomplete.
+The diagram provides no activation functions, output constraints, or
+training/test split.
+
+\section{Equations (2) and (3): comparing errors}
+\paperloc{PDF p.~4 / journal p.~7273.}
+Equation (2) is RMSE; Eq.~(3) is MAPE. Their derivations and
+limitations are in Chapter \ref{ch:errors}.
+Every time an error is quoted, identify the target quantity, physical
+units, aggregation set, and treatment of zeros.
+
+An RMSE across coefficients is not an RMSE across printed CDs.
+A percentage error in a small signed shift is not interchangeable
+with a percentage error in a 14 nm width.
+These distinctions explain why several later plots can look very different
+without a logical contradiction.
+
+\section{Table 3: labels for all subsequent bar charts}
+\paperloc{PDF p.~4 / journal p.~7273.}
+REC and SQ are described as rectangular and square patterns, with
+seven variants each. The pitch assignments conflict with Table 2,
+as transcribed in Chapter \ref{ch:data}.
+Until this is resolved, a comparison such as REC versus SQ can be
+reported using the authors' labels but should not support a precise
+claim about a particular reconstructed pitch family.
+
+The bars retain information by pattern and direction rather than averaging
+all of them into one number. That preserves, for example, a poor result
+for one sparse pitch that an overall average might conceal.
+
+\section{Figure 5: different coefficients for similar requested images}
+\paperloc{PDF p.~4 / journal p.~7273.}
+Each bar summarizes disagreement between a predicted coefficient and
+the original simulator coefficient associated with the input image metrics.
+The vertical axis is in wavelengths. Larger bars mean the inverse model
+has not simply recovered the original wavefront.
+
+The authors interpret this as evidence of alternative aberration
+combinations. That interpretation is plausible only together with the
+subsequent image re-simulation. By itself, Fig.~5 is also compatible
+with inverse prediction error.
+Nearly equivalent images may come from weakly observable combinations
+or nonlinear inverse ambiguity, as discussed in Chapter \ref{ch:inverse}.
+
+The plotted coefficient labels run from $Z_2$ to $Z_{25}$.
+They reinforce the 24-varied-coordinate interpretation, but do not
+resolve the network's 25-output statement.
+The figure is not a measurement of mirror surface error or a tolerance
+specification.
+
+\section{Figure 6: physical errors after forward re-simulation}
+\paperloc{PDF p.~5 / journal p.~7274.}
+\textbf{Panel (a), CD:} the simulator is run with predicted coefficients,
+and the resulting widths are compared with the input target widths.
+Bars are separated into $x/y$ and REC/SQ. The vertical unit is nm.
+The graph shows noticeably different errors by pattern family and pitch,
+so an overall accuracy number would hide structure.
+
+\textbf{Panel (b), PS:} this is the same comparison for feature-centre
+shift. Direction matters. Several vertical-shift bars for the SQ-labelled
+family are visibly larger than the corresponding horizontal-shift bars.
+The physically relevant result is their absolute size in nm and their
+relation to a specified placement tolerance.
+
+\textbf{Panel (c), PVB:} the comparison concerns process-contour
+variation, not nominal feature width. A good CD prediction does not
+imply a good PVB prediction because the latter depends on several
+focus-dose conditions.
+
+The figure gives aggregate RMSE values, not maximum per-case residuals.
+The paper does not release numerical arrays for these bars; fine numerical
+values should not be inferred from raster-image heights.
+
+\section{Figure 7: percentages tell a different story}
+\paperloc{PDF p.~6 / journal p.~7275.}
+Panels (a) and (b) show MAPE for CD and PVB. Panel (c) shows horizontal
+PS, and panel (d) vertical PS. Most plotted errors for the first three
+categories are relatively small percentages, while vertical PS has
+substantially larger percentages.
+
+This is the expected danger when $\mathrm{PS}_y$ is close to zero:
+the reference denominator becomes small. The statement that most errors
+are below 1 percent does not describe every bar, especially not the
+vertical-shift category.
+RMSE and MAPE summarize different functions of the residuals, so
+their relative bar ordering need not match.
+
+\section{Figure 8: splitting around 0.14 nm}
+\paperloc{PDF p.~6 / journal p.~7275.}
+Panel (a) concerns the larger-shift subset and panel (b) the smaller-shift
+subset, using the stated 0.14 nm threshold.
+The smaller-reference subset has much worse percentage errors.
+The graph supports that descriptive statement.
+
+To decide whether the underlying physical prediction is worse, one also
+needs absolute errors, counts, and uncertainty within each subset.
+The mathematical denominator effect alone can generate the observed trend.
+The threshold is a diagnostic choice motivated by 1 percent of 14 nm;
+it is not a pass/fail criterion for lithographic placement.
+
+\section{Section 3: the additional 118 cases}
+\paperloc{PDF pp.~5--7 / journal pp.~7274--7276.}
+The authors refer to a 2021 IRDS white paper and infer a requirement
+that vertical contact placement be within 1 nm. The paper does not give
+an explicit allocation derivation from that roadmap to a standalone
+projector-wavefront PS allowance. Treat 1 nm as the authors' stated
+motivation rather than a universal independently established per-mode limit.
+
+They then use a tighter target range, $-0.4$ to $+0.4\nm$, for vertical
+shift in 118 sets of imaging indicators. The remaining indicators are
+kept within training-data ranges. The targets originate in other
+simulations under the same stated conditions, not in arbitrary independent
+coordinate draws. The model produces 118 coefficient vectors and the
+forward simulator checks their imaging.
+
+\section{Table 4: the remaining target ranges}
+\paperloc{PDF p.~6 / journal p.~7275.}
+\begin{table}[htbp]\centering\small
+\caption{Paper Table 4 transcribed without silently correcting its repeated
+last header. All entries are nm. The final column is likely intended to
+represent vertical PVB, but that is an inference.}
+\begin{tabular}{@{}llrrrrr@{}}
+\toprule Family & Bound & $\mathrm{CD}_x$ & $\mathrm{CD}_y$
+& $\mathrm{PS}_x$ & PVB column 1 & PVB column 2\\ \midrule
+REC & Maximum &29.636&27.447&4.233&2.888&2.676\\
+REC & Minimum &26.927&25.520&2.319&1.850&1.881\\
+SQ & Maximum &13.488&12.663&4.190&7.238&8.755\\
+SQ & Minimum &12.023&9.7623&2.083&3.079&3.791\\
+\bottomrule
+\end{tabular}
+\end{table}
+The publication labels both final columns PVB\_X.
+Using one as PVB\_Y is a reasonable hypothesis because six metrics include
+both directions, but it is not confirmed.
+
+The REC horizontal widths in this table are also near 27--30 nm despite
+the nominal horizontal CD of 14 nm elsewhere. Printed CD can differ
+from nominal CD, but the discrepancy and the earlier table conflict
+prevent us from deciding whether this is a measurement convention,
+strong image bias, an axis swap, or a publication error.
+Do not relabel the numbers to force agreement.
+
+These are training-range conditions, not independently justified
+production acceptance limits for all five indicators.
+In particular, allowing horizontal shifts of several nm within the
+training range does not prove they satisfy a complete overlay budget.
+
+\section{Figure 9: candidate ranges and accuracy}
+\paperloc{PDF p.~7 / journal p.~7276.}
+\textbf{Panel (a):} the minimum and maximum predicted values are plotted
+for each coefficient. The authors identify small ranges for $Z_3$,
+$Z_{20}$, $Z_{21}$, and $Z_{22}$ and connect them with vertical PS.
+These are observations within their selected candidate population.
+They do not by themselves identify independent sensitivities or prove
+that each coefficient must always be tightly bounded.
+
+The coefficient axis is in \emph{waves}. Some visible extrema are
+roughly $-0.065\lambda$ or $+0.05\lambda$, well beyond the stated
+training sweep of $\pm0.020\lambda$.
+Those are approximate visual readings, not digitized data.
+They flag an important issue: the inverse output may extrapolate beyond
+the sampled coefficient range, or the publication may contain an
+unexplained scale/reporting difference.
+The paper does not establish a hard output-bound enforcement rule.
+
+The caption's reference to the first 25 sets is also unclear in relation
+to the 118 proposed combinations and 24 plotted coefficient indices.
+It should not be converted into an undocumented sample count.
+
+\textbf{Panel (b):} absolute RMSE of verified imaging indicators versus
+target indicators is shown by pattern.
+\textbf{Panel (c):} MAPE is shown for the indicators other than vertical
+PS. \textbf{Panel (d):} vertical-PS MAPE is shown separately and is
+large for some patterns. The paper text refers to panels (b) and (c)
+when discussing PS percentage behavior, but the dedicated PS MAPE
+panel is (d); use the actual axis and legend to interpret it.
+
+The panel (a) intervals are \emph{marginal ranges across candidates}.
+Taking the largest allowed value from every bar and combining them
+does not generally produce another valid candidate.
+Correlations between coefficients may be responsible for successful
+compensation. Chapter \ref{ch:budget} provides an explicit counterexample.
+
+\section{Figure 10: a second small-value split}
+\paperloc{PDF p.~8 / journal p.~7277.}
+This figure repeats the larger-versus-smaller vertical-shift comparison
+for the new application cases using 0.1 nm instead of 0.14 nm.
+The smaller-reference group again has larger MAPE.
+The two split thresholds belong to different analyses; there is no
+single fixed 0.14 nm filtering rule governing all later results.
+
+Since the new targets were deliberately selected near zero, strong
+percentage penalties are unsurprising. To judge a 0.4 nm budget, inspect
+the signed verified values and worst-case absolute errors as well.
+The figure does not provide those complete arrays.
+
+\section{Figures 11 and 12: two individual candidates}
+\paperloc{PDF pp.~8--9 / journal pp.~7277--7278.}
+Each figure has four parts:
+\begin{enumerate}
+\item \textbf{(a) Coefficient vector:} a particular proposed wavefront,
+plotted in waves. The vertical scales differ between the figures.
+Compare numerical axes rather than visual bar height.
+\item \textbf{(b) CD:} paired bars compare the relevant target/prediction
+and simulator-reference widths for both families and directions.
+\item \textbf{(c) Horizontal PS and PVB:} the same candidate is evaluated
+for additional imaging requirements and process robustness.
+\item \textbf{(d) Vertical PS:} the small signed shifts are shown
+separately so that discrepancies are visible near zero.
+\end{enumerate}
+The prose defines the suffixes \texttt{\_pred} and \texttt{\_ref}.
+Operationally, however, the network outputs \emph{coefficients};
+it does not output the CD bars directly in the described architecture.
+The meaningful comparison is the requested/input image vector against
+the forward-simulated image vector for the proposed coefficients.
+This distinction prevents misreading these graphs as an independently
+trained forward imaging network.
+
+Figure 11 includes small shifts near or across zero.
+Figure 12 includes negative vertical shifts.
+These signed examples reinforce why an absolute-value tolerance must
+be used and why zero handling matters in MAPE.
+The authors report that all 118 proposed combinations satisfy the
+intended 0.4 nm vertical-shift condition after simulation.
+The two illustrated examples support the qualitative comparison, but
+are not a substitute for the unreleased full validation table.
+
+\section{Conclusion and the limits explicitly acknowledged}
+The authors conclude that the inverse model can propose aberration
+distributions satisfying selected imaging requirements and can assist
+budget analysis. They also state that the chosen source is not well
+optimized for the contact layer and that the patterns were not corrected
+by OPC. They propose including improved illumination and corrected
+patterns in future work.
+
+OPC changes $\widetilde t$ or the rigorous mask-order amplitudes.
+Source optimization changes $S$. Both change the forward map $F$.
+A coefficient combination preferred before those changes is not
+guaranteed to remain preferred afterward.
+
+The data-availability statement says the underlying data are not public
+and may be obtained from the authors on request.
+No such request has been made for this guide. The absent data limit
+exact numerical reproduction; they do not prevent deriving the physics
+or critically understanding the published experiment.
+
+\section{The claim you should be able to explain accurately}
+Under a fixed simulated EUV contact-layer setup, the authors train an
+inverse neural model from selected image metrics to Zernike coefficients,
+then verify proposed combinations by forward simulation. They find
+alternative wavefronts with useful agreement in the selected indicators
+and report acceptable vertical shifts for their 118 application cases.
+This supports pattern-dependent aberration selection within the studied
+setup. It does not establish a unique inverse, independent per-mode
+tolerances, a manufacturable mirror prescription, or general production
+performance across arbitrary layers.

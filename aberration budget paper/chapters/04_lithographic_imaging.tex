@@ -1,0 +1,535 @@
+\chapter{Partially coherent images of periodic contact holes}\label{ch:partial}
+\paperloc{Illumination, test patterns, and the commercial imaging calculations.}
+\reading{Saleh--Teich \S4.4, especially printed pp.~129--134
+(PDF pp.~151--156), for coherent transfer functions.
+Born--Wolf \S9.5 for coherent/incoherent imaging;
+\S10.4 for mutual intensity (printed p.~507 is PDF p.~510);
+Hopkins' propagation formula begins at printed p.~512 (PDF p.~505).}
+
+\section{Why one coherent calculation is not the full image}
+An extended illumination source contains many emitting regions.
+The field arriving from one effective source point is coherent across
+the mask for the idealized source-point calculation. Fields from distinct
+source points may have rapidly varying relative phases. A resist exposure
+averages over times long compared with those phase fluctuations.
+
+Let source point $s$ produce $U_s$ with random phase $\phi_s(t)$.
+Then
+\[
+\avg{\left|\sum_sU_s\ee^{\ii\phi_s(t)}\right|^2}_t
+=\sum_s|U_s|^2+
+\sum_{s\ne s'}U_sU_{s'}^*
+\avg{\ee^{\ii(\phi_s-\phi_{s'})}}_t.
+\]
+For mutually incoherent source points the last average vanishes.
+We must sum \emph{intensities} across source points, even though we
+sum \emph{field amplitudes} across diffraction orders from the same point.
+Confusing these two sums produces a different physical model.
+
+More generally, the mutual intensity is
+\begin{equation}
+J(\vct r_1,\vct r_2)
+=\avg{U(\vct r_1,t)U^*(\vct r_2,t)}_t,
+\qquad
+\mu_{12}=\frac{J_{12}}{\sqrt{I_1I_2}}.
+\end{equation}
+$|\mu_{12}|\leq1$ measures coherence; unity means full coherence at the
+two points and zero means no average cross term.
+If $U_{\rm out}(x)=\int h(x,r)U_{\rm in}(r)\dd r$, substitution gives
+\[
+I_{\rm out}(x)=
+\iint h(x,r_1)h^*(x,r_2)J_{\rm in}(r_1,r_2)\dd r_1\dd r_2.
+\]
+The incoherent-source integral below is a convenient special form of this
+general propagation rule.
+
+\section{The source-point or Abbe imaging equation}
+Let $\vct s$ be an illumination spatial frequency, expressed in
+wafer-equivalent coordinates. The incident field on a thin mask is
+$\ee^{\ii2\pi\vct s\cdot\vct x}$.
+Multiplying the mask function $t$ by this phase shifts its spectrum:
+\[
+\FT[t(\vct x)\ee^{\ii2\pi\vct s\cdot\vct x}]
+=\widetilde t(\vct f-\vct s).
+\]
+Propagate through pupil $P_z$, change the integration variable to the
+mask frequency, and obtain
+\begin{equation}
+U_{\vct s}(\vct x)=
+\ee^{\ii2\pi\vct s\cdot\vct x}
+\int\widetilde t(\vct f)P_z(\vct f+\vct s)
+\ee^{\ii2\pi\vct f\cdot\vct x}\dd^2f.
+\end{equation}
+The leading carrier has unit magnitude. For nonnegative source weights
+$S$ normalized so that $\int S(\vct s)\dd^2s=1$,
+\begin{equation}
+I(\vct x;W,z)=
+\int S(\vct s)
+\left|\int\widetilde t(\vct f)P_z(\vct f+\vct s)
+\ee^{\ii2\pi\vct f\cdot\vct x}\dd^2f\right|^2\dd^2s.
+\label{eq:abbe}
+\end{equation}
+The source shifts the spectrum relative to the pupil. It does not
+enlarge the physical projection aperture.
+
+\section{The Hopkins transmission cross coefficient}
+Expand the squared modulus in Eq.~\eqref{eq:abbe} and interchange
+integrals:
+\begin{align}
+I(\vct x)
+={}&\iint\widetilde t(\vct f_1)\widetilde t^*(\vct f_2)
+T(\vct f_1,\vct f_2)\\
+&\hspace{12mm}\times
+\ee^{\ii2\pi(\vct f_1-\vct f_2)\cdot\vct x}
+\dd^2f_1\dd^2f_2,\\
+T(\vct f_1,\vct f_2)
+={}&\int S(\vct s)
+P_z(\vct f_1+\vct s)P_z^*(\vct f_2+\vct s)\dd^2s.
+\label{eq:tcc}
+\end{align}
+$T$ is a transmission cross coefficient (TCC). It tells us how strongly
+each pair of object frequencies interferes after source averaging.
+Its phase contains the pupil-phase difference between the two sampled
+locations. The two formulations are equivalent under their shared
+thin-mask, scalar, shift-invariant assumptions.
+
+A thick EUV mask can have a source-dependent scattering response.
+Then its order amplitudes are $a_{mn}(\vct s,\mathrm{polarization})$,
+and one cannot generally factor out a single source-independent
+$\widetilde t$ as above. The source-point sum remains useful with the
+rigorously computed amplitudes inserted separately.
+
+\section{Diffraction coefficients of a rectangular opening}
+Consider an ideal binary opening of width $a$ repeated every $p_x$
+and height $b$ repeated every $p_y$. Within a period,
+$t(x,y)=1$ inside the centred rectangle and zero elsewhere.
+Its Fourier series is
+\[
+t(x,y)=\sum_{m,n}a_{mn}
+\ee^{\ii2\pi(mx/p_x+ny/p_y)}.
+\]
+Direct integration gives
+\begin{align}
+a_{mn}
+&=\frac{1}{p_xp_y}
+\int_{-a/2}^{a/2}\ee^{-\ii2\pi mx/p_x}\dd x
+\int_{-b/2}^{b/2}\ee^{-\ii2\pi ny/p_y}\dd y\\
+&=\frac{ab}{p_xp_y}
+\sinc\!\left(\frac{ma}{p_x}\right)
+\sinc\!\left(\frac{nb}{p_y}\right),
+\label{eq:rectcoeff}
+\end{align}
+where $\sinc q=\sin(\pi q)/(\pi q)$ and $\sinc0=1$.
+The prefactor is the open-area fraction. A narrower hole spreads its
+spectrum more widely, but the pupil still limits the orders that contribute.
+
+For one source point, neglecting the irrelevant carrier,
+\begin{equation}
+U_{\vct s}(x,y)=\sum_{m,n}a_{mn}
+P_z\!\left(\vct s+\left(\frac m{p_x},\frac n{p_y}\right)\right)
+\ee^{\ii2\pi(mx/p_x+ny/p_y)}.
+\label{eq:orders}
+\end{equation}
+The integer pair $(m,n)$ names a diffraction order.
+Each admitted order is a plane-wave component of the image field.
+Their relative phases and amplitudes determine the shape.
+
+\section{Understanding the quasar illumination}
+Table 1 specifies inner and outer normalized source radii 0.6 and 0.8,
+angle $30^\circ$, and rotation $45^\circ$.
+Figure 2 shows four off-axis source regions around diagonal directions.
+Their radii are normalized to the relevant projection-pupil scale;
+0.8 is not an angle of 0.8 radians.
+The exact software interpretation of the angle setting is not documented.
+The drawing in this book uses four annular sectors with full angular
+width $30^\circ$ as an explicit teaching convention.
+
+At pitch $38\nm$,
+\[
+\Delta u=\frac{1/p}{f_c}
+=\frac{\lambda}{\NA p}
+=\frac{13.5}{0.33(38)}\simeq1.07656.
+\]
+For on-axis illumination the first axial orders lie beyond a unit pupil.
+Only the zero order survives in the ideal scalar square lattice,
+so it cannot create the desired periodic modulation.
+For a source point at radius 0.7 and azimuth $45^\circ$,
+$\vct u_s=(0.49497,0.49497)$.
+Now the orders $(0,0),(-1,0),(0,-1),(-1,-1)$ all lie inside the pupil.
+The oblique source has made several useful orders available simultaneously.
+
+\figteach{quasar_orders}{1.0}{Original pupil diagrams. Left: an idealized
+four-sector quasar source. Right: shifted order locations for one diagonal
+source point and a 38 nm square pitch. Accepted orders can interfere to
+create a two-dimensional contact image. This is a thin-mask explanation,
+not a reproduction of the commercial simulator.}
+
+Increasing pitch reduces order spacing in the pupil. Different pitches
+therefore sample different phases even when CD stays fixed.
+Changing a rectangle's aspect ratio changes the weights $a_{mn}$ in
+the two directions. This is why the authors keep many pitches and both
+orientations instead of one averaged contact pattern.
+
+\section{A two-order derivation of pattern shift}
+Consider
+\[
+U(x)=a+b\ee^{\ii(qx+\Delta\phi)},\qquad q=2\pi/p,
+\]
+with real positive $a,b$. Its intensity is
+\begin{equation}
+I(x)=a^2+b^2+2ab\cos(qx+\Delta\phi).
+\label{eq:twoorder}
+\end{equation}
+The maximum previously at $x=0$ is now at
+\begin{equation}
+\Delta x=-\frac{\Delta\phi}{q}
+=-\frac{p}{2\pi}\Delta\phi.
+\label{eq:fringeshift}
+\end{equation}
+If the differential phase is due to pupil OPD,
+$\Delta\phi=2\pi(W_b-W_a)/\lambda$, then
+\[
+\Delta x=-\frac p\lambda(W_b-W_a).
+\]
+At $p=38\nm$, a differential OPD of $0.1\nm$ gives a displacement
+magnitude of $0.28148\nm$ in this two-order example.
+The controlling quantity is a \emph{difference at sampled pupil points},
+not the pupil's global RMS.
+
+\section{An even phase perturbation changes shape}
+With symmetric side orders,
+\[
+U(x)=a+b\ee^{\ii\phi}\ee^{\ii qx}
++b\ee^{\ii\phi}\ee^{-\ii qx}
+=a+2b\ee^{\ii\phi}\cos qx,
+\]
+so
+\begin{equation}
+I(x)=a^2+4b^2\cos^2qx+4ab\cos\phi\cos qx.
+\label{eq:threeorder}
+\end{equation}
+The image remains even in $x$, but its intensity profile changes.
+A fixed threshold therefore gives a different printed width.
+Because $\cos\phi=1-\phi^2/2+\cdots$, the leading response at this
+symmetric operating point is second order.
+There need not be a nonzero linear sensitivity to every aberration.
+
+\figteach{phase_to_image}{1.0}{Exact teaching examples. A differential
+phase between two orders shifts fringes. A common phase on symmetric
+side orders changes an even intensity profile. A real contact combines
+many such interference terms and an incoherent source average.}
+
+\section{Defocus, symmetry, and source design}
+An order at normalized radius $\rho$ acquires the defocus phase
+$-\pi z\NA^2\rho^2/\lambda$ in the paraxial model.
+Two orders at equal radius receive the same defocus phase and preserve
+their relative phase. This is one reason suitable off-axis illumination
+can improve focus robustness for selected patterns.
+For unequal radii, the difference is
+\[
+\Delta\phi_z=-\frac{\pi z\NA^2}{\lambda}
+(\rho_2^2-\rho_1^2).
+\]
+One source design cannot generally equalize every important order pair
+for all pitches and both rectangular dimensions.
+Source optimization is a pattern-dependent interference problem.
+
+\chapter{From light intensity to CD, PS, PVB, and NILS}\label{ch:metrics}
+\paperloc{The six imaging indicators used throughout the paper.}
+
+\section{An aerial image is not yet a resist contour}
+The aerial image is the optical intensity in the image plane.
+Exposure dose is energy per area, obtained by integrating intensity
+over time. A full resist model may include photon absorption,
+secondary electrons, chemical reactions, diffusion, and development.
+The paper does not provide enough resist-model detail to reconstruct
+that stage exactly.
+
+To derive the basic geometry, use a declared constant-threshold model:
+\begin{equation}
+D\,I(x,y;z,W)=T.
+\label{eq:threshold}
+\end{equation}
+$D$ is a relative dose multiplier and $T$ is a fixed exposure threshold
+in consistent units. This is a teaching approximation. It captures how
+intensity perturbations move edges without claiming a full EUV resist model.
+For a bright contact opening, the printed interior is taken to be the
+region above threshold; resist tone can reverse that interpretation.
+
+\section{Critical dimension and centre position}
+On a specified horizontal cut through a feature, let threshold crossings
+be $x_L$ and $x_R$. Define
+\begin{equation}
+\mathrm{CD}_x=x_R-x_L,\qquad
+x_c=\frac{x_R+x_L}{2},\qquad
+\mathrm{PS}_x=x_c-x_{\rm target}.
+\label{eq:CDPS}
+\end{equation}
+Use analogous definitions in $y$. For a nonrectangular contour, the
+measurement cut, bounding box, fitted shape, or centroid definition must
+be specified. A centroid computed from the whole intensity distribution
+need not equal the midpoint between two threshold edges.
+
+Small edge changes satisfy
+\begin{equation}
+\delta\mathrm{CD}_x=\delta x_R-\delta x_L,\qquad
+\delta\mathrm{PS}_x=\frac{\delta x_R+\delta x_L}{2}.
+\label{eq:edgecombine}
+\end{equation}
+Equal edge motion shifts the pattern. Opposite edge motion changes its
+width. These two combinations explain why CD and PS provide different
+information about a wavefront.
+
+\section{Deriving the edge-displacement formula}
+Let an original edge satisfy $I_0(x_e)=T$ at nominal dose one.
+Perturb the image by $\delta I$ and the edge by $\delta x$:
+\[
+I_0(x_e+\delta x)+\delta I(x_e+\delta x)=T.
+\]
+Keeping first-order terms,
+$I_0(x_e)+I_0'(x_e)\delta x+\delta I(x_e)=T$.
+Cancel the original threshold equation:
+\begin{equation}
+\delta x=-\frac{\delta I(x_e)}{I_0'(x_e)}.
+\label{eq:edge}
+\end{equation}
+The same intensity error causes a larger edge displacement when the
+edge slope is shallow.
+For a two-dimensional contour, normal displacement is
+\[
+\delta n=-\frac{\delta I}{|\nabla I_0|},
+\]
+with the signed normal chosen along increasing intensity.
+At a vanishing slope, the linear formula fails: an opening may appear,
+disappear, split, or merge. These topology changes also make learned
+metric maps difficult to approximate smoothly.
+
+\section{NILS makes the slope dimensionless}
+For characteristic width $w$, define the magnitude of normalized image
+log slope at an edge:
+\begin{equation}
+\mathrm{NILS}=w\left|\frac{\partial\ln I}{\partial x}\right|_{x_e}
+=w\frac{|I'(x_e)|}{I(x_e)}.
+\label{eq:nils}
+\end{equation}
+Different reporting conventions retain or remove the slope sign.
+The dimensionless magnitude is what matters for this sensitivity argument.
+
+A relative dose change $\epsilon=\delta D/D$ multiplies the image
+by approximately $1+\epsilon$, so $\delta I=\epsilon I$.
+Equation \eqref{eq:edge} gives
+\begin{equation}
+|\delta x|\simeq\frac{w}{\mathrm{NILS}}|\epsilon|.
+\label{eq:nilsdose}
+\end{equation}
+For a symmetric bright feature with equal slope magnitudes at the two
+edges, both edges move outward when dose increases:
+\[
+|\delta\mathrm{CD}|\simeq
+\frac{2w}{\mathrm{NILS}}|\epsilon|.
+\]
+The factor of two comes from two moving edges. It must not be silently
+carried into a one-edge placement formula.
+
+\worked{A 5 percent dose perturbation}
+If $w=14\nm$ and NILS is 2, one edge moves approximately
+$14(0.05)/2=0.35\nm$ under a 5 percent dose change.
+The full CD changes by approximately $0.70\nm$ in the symmetric example.
+These assumed slopes are not measured values from the paper.
+The example explains why contrast loss can enlarge process variation
+even if nominal CD is adjusted back to target by changing dose.
+
+\section{Focus-exposure matrices and process windows}
+For each focus $z$ and relative dose $D$, simulate a contour and compute
+$\mathrm{CD}(z,D)$, $\mathrm{PS}(z,D)$, and other required measures.
+Plots of CD against focus at several doses are often called Bossung curves.
+A process window is the set of focus-dose pairs satisfying \emph{all}
+chosen acceptance conditions:
+\[
+\mathcal P=\{(z,D):\mathrm{CD}_{\min}\leq\mathrm{CD}(z,D)
+\leq\mathrm{CD}_{\max},\ |\mathrm{PS}(z,D)|\leq b,\ldots\}.
+\]
+An attractive nominal image at $z=0,D=1$ can coexist with a very small
+process window. Aberration-induced sensitivity to focus and dose is
+therefore physically significant.
+
+The paper gives $z=-15,0,+15\nm$ and dose variation $\pm5\%$.
+If one uses doses $0.95,1.00,1.05$, a teaching focus-dose matrix has
+nine conditions. This is a declared sampling choice here, not proof that
+the authors used exactly that grid or only those dose samples.
+
+\section{What a process variation band can mean}
+For contours $C(z,D)$, their envelope is the region swept out by edge
+positions over the chosen process conditions.
+On a horizontal cut, define edge-band widths
+\begin{equation}
+B_L=\max x_L-\min x_L,\qquad
+B_R=\max x_R-\min x_R.
+\label{eq:pvbedges}
+\end{equation}
+A scalar horizontal PVB might be the larger edge-band width, a
+specified average, or another software-defined contour measure.
+By contrast, CD range is
+\begin{equation}
+B_{\rm CD}=\max(x_R-x_L)-\min(x_R-x_L).
+\label{eq:cdspan}
+\end{equation}
+These quantities are not generally equal. For pure translation,
+$B_{\rm CD}=0$ while both edge bands can be large.
+For symmetric expansion/contraction, each edge band can be half
+the CD range.
+
+\careful{The paper does not give a mathematical extraction rule for
+$\mathrm{PVB}_x$ and $\mathrm{PVB}_y$. Use its term as a reported
+process-contour variation indicator. Do not assume without verification
+that it is simply maximum CD minus minimum CD. The laboratory in this
+book reports the specific edge-band widths of Eq.~\eqref{eq:pvbedges}.}
+
+\section{Placement error, overlay, and edge placement error}
+Pattern shift concerns one feature relative to its intended location.
+Overlay concerns alignment between layers or exposures.
+An aberration-induced shift can consume part of an overlay allowance,
+but stage alignment, mask registration, wafer distortion, and other
+contributors also matter.
+
+For a one-dimensional target with left and right edges, small
+edge placement errors combine CD and PS:
+\begin{equation}
+\mathrm{EPE}_R=\mathrm{PS}+\frac{\delta\mathrm{CD}}2,\qquad
+\mathrm{EPE}_L=\mathrm{PS}-\frac{\delta\mathrm{CD}}2.
+\label{eq:epe}
+\end{equation}
+This algebra shows why controlling only the feature centre is insufficient
+to control every edge. A contact can be correctly centred but too large.
+Conversely, its width can be perfect while its entire position is wrong.
+
+\section{Why horizontal and vertical errors differ}
+The mask incidence plane establishes a preferred direction. A rectangular
+hole has different spectra in $x$ and $y$. A quasar source has discrete
+angular structure. A wavefront mode has its own orientation.
+The interplay can make one direction more sensitive than the other.
+
+The paper's relatively large $\mathrm{PS}_x$ and small
+$\mathrm{PS}_y$ should not be interpreted as a universal property of all
+EUV contacts. The incidence azimuth, coordinate conventions, baseline
+placement, and definition of the reported shifts would need to be known.
+A small denominator in a percentage error is a separate statistical issue,
+addressed in Chapter \ref{ch:errors}.
+
+\chapter{How an aberration coefficient changes a metric}\label{ch:sensitivity}
+\section{Differentiating the pupil and the field}
+Let $W=\sum_jc_jZ_j$ with coefficients in length units.
+Then
+\begin{equation}
+\frac{\partial P}{\partial c_j}
+=\frac{\ii2\pi}{\lambda}Z_jP.
+\label{eq:pupilDerivative}
+\end{equation}
+For a fixed thin-mask spectrum and one source point,
+\[
+\frac{\partial U_{\vct s}}{\partial c_j}
+=\frac{\ii2\pi}{\lambda}
+\int \widetilde t(\vct f)\,
+Z_j\!\left(\frac{\vct f+\vct s}{f_c}\right)
+P(\vct f+\vct s)\ee^{\ii2\pi\vct f\cdot\vct x}\dd^2f.
+\]
+Differentiate $I=UU^*$:
+\begin{equation}
+\frac{\partial I}{\partial c_j}
+=2\Real\left\{U^*\frac{\partial U}{\partial c_j}\right\}.
+\label{eq:intDerivative}
+\end{equation}
+For a partially coherent source, integrate this expression over source
+weights. In a vector calculation, replace the scalar product with the
+appropriate polarization sum.
+
+The derivative is physically a measure of how a phase change in one
+mode perturbs the constructive and destructive interference in the image.
+It is not determined merely by how large the mode looks in a pupil plot.
+
+\section{Differentiating a printed edge}
+Apply implicit differentiation to
+$I(x_e(\vct c),\vct c)=T$:
+\[
+\frac{\partial I}{\partial x}\frac{\partial x_e}{\partial c_j}
++\frac{\partial I}{\partial c_j}=0.
+\]
+Therefore
+\begin{equation}
+\frac{\partial x_e}{\partial c_j}
+=-\frac{\partial I/\partial c_j}{\partial I/\partial x}.
+\label{eq:edgeSensitivity}
+\end{equation}
+Combine left and right derivatives using Eq.~\eqref{eq:edgecombine}
+to obtain the sensitivity of CD and PS. This supplies an explicit
+physics-based path from coefficient to metric.
+
+For $M$ measured indicators, define
+\begin{equation}
+J_{ij}=\left.\frac{\partial F_i}{\partial c_j}\right|_{\vct c_0},
+\qquad
+\delta\vct y\simeq J\,\delta\vct c.
+\label{eq:sensitivity}
+\end{equation}
+$J$ is the imaging Jacobian. Its rows correspond to particular patterns,
+orientations, and metrics; its columns correspond to modes.
+If coefficients and metrics are both in nm, its entries are dimensionless.
+If coefficients are in milliwaves, the entries have units
+nm per milliwave.
+
+\section{A numerical derivative when an analytic derivative is unavailable}
+With a black-box simulator, a centred finite difference gives
+\begin{equation}
+J_{ij}\simeq
+\frac{F_i(\vct c_0+h\vct e_j)-F_i(\vct c_0-h\vct e_j)}{2h}.
+\label{eq:finitedifference}
+\end{equation}
+Here $\vct e_j$ changes only coefficient $j$.
+Taylor expansion shows the leading truncation error is $O(h^2)$ for
+a sufficiently smooth map.
+Making $h$ extremely small is not always beneficial: numerical contour
+interpolation, solver convergence error, and cancellation can dominate.
+Check derivative stability over a sensible range of $h$ and ensure
+the same physical feature is being measured.
+
+\section{Interactions and nonlinear response}
+The second-order expansion of indicator $i$ is
+\begin{equation}
+\delta y_i\simeq\sum_jJ_{ij}\delta c_j+
+\frac12\sum_{j,k}H_{ijk}\delta c_j\delta c_k,
+\end{equation}
+where $H_{ijk}$ is a second derivative. Terms with $j\ne k$ describe
+interactions between modes. Single-mode sweeps do not by themselves
+measure those cross terms.
+
+For example, if $y=c_1c_2$, varying either coefficient while keeping the
+other zero produces no response. Yet both nonzero together produce a
+finite response. This elementary example explains why the paper
+supplements individual-mode sweeps with combined aberrations.
+
+\section{Symmetry predicts some zero sensitivities}
+If a complete imaging configuration is invariant under reflection
+$x\mapsto-x$, an even phase perturbation cannot by itself generate an
+odd placement change under conditions preserving that symmetry.
+Likewise, a quantity may depend on a coefficient through $c^2$ near zero,
+giving zero first derivative but nonzero second derivative.
+
+These conclusions require symmetry of the whole experiment: source,
+mask, pupil amplitude, aberration, focus, and metric definition.
+Oblique EUV mask scattering can destroy a symmetry present in a
+simplified scalar calculation. Mode names alone cannot establish
+which physical direction shifts.
+
+\section{Why a physical inverse is difficult but not impossible}
+The paper says required aberrations cannot be deduced using physical
+laws or equations because of complexity. The careful interpretation is
+that a convenient closed-form inverse is generally unavailable.
+The forward map is still governed by wave physics; its derivatives can
+be computed, and iterative constrained optimization can use them.
+The neural network offers an approximate, data-driven route to candidate
+solutions. It does not replace Maxwell's equations or prove that
+physics-based inverse design is impossible.
+
+\checkpoint{Can a coefficient with a small derivative at zero be given
+an unlimited budget? No. Higher-order effects, interactions, changes in
+the active contour, and other patterns can become important away from zero.}

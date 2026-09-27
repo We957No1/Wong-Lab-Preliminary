@@ -1,0 +1,113 @@
+% Main file. Compile with pdfLaTeX (three passes), latexmk -pdf, or Tectonic.
+% All illustrations are original teaching figures from tools/reproduce_examples.py.
+\documentclass[11pt,a4paper,oneside,openany]{book}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[margin=24mm,headheight=15pt]{geometry}
+\usepackage{amsmath,amssymb,mathtools,bm}
+\usepackage{microtype}
+\usepackage{xcolor,graphicx}
+\usepackage{booktabs,longtable,tabularx,array}
+\usepackage{enumitem}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,positioning,calc}
+\usepackage{fancyhdr}
+\usepackage{hyperref}
+\usepackage{bookmark}
+\definecolor{ink}{HTML}{17354C}
+\definecolor{teal}{HTML}{087E8B}
+\definecolor{rust}{HTML}{A84429}
+\hypersetup{hypertexnames=false,colorlinks=true,linkcolor=ink,citecolor=teal,urlcolor=teal,
+ pdftitle={Understanding the Aberration Budget Paper: A First-Principles Textbook},
+ pdfauthor={A self-study companion for a beginning graduate student},
+ pdfsubject={EUV lithography, wavefront aberrations, Zernike polynomials, partial coherence, and inverse design}}
+\graphicspath{{figures/}}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\color{ink}Understanding the aberration budget paper}
+\fancyhead[R]{\small\thepage}
+\renewcommand{\headrulewidth}{0.3pt}
+\fancypagestyle{plain}{\fancyhf{}\fancyfoot[C]{\thepage}\renewcommand{\headrulewidth}{0pt}}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{5pt plus 1pt}
+\setlength{\emergencystretch}{2em}
+\setlist{itemsep=3pt,topsep=5pt}
+\setcounter{tocdepth}{1}
+\setcounter{secnumdepth}{2}
+\allowdisplaybreaks[2]
+\newcommand{\dd}{\mathrm{d}}
+\newcommand{\ii}{\mathrm{i}}
+\newcommand{\ee}{\mathrm{e}}
+\newcommand{\vct}[1]{\bm{#1}}
+\newcommand{\avg}[1]{\left\langle #1\right\rangle}
+\newcommand{\abs}[1]{\left|#1\right|}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\nm}{\,\mathrm{nm}}
+\newcommand{\um}{\,\mu\mathrm{m}}
+\newcommand{\NA}{\mathrm{NA}}
+\newcommand{\OPD}{\mathrm{OPD}}
+\newcommand{\sinc}{\operatorname{sinc}}
+\newcommand{\Real}{\operatorname{Re}}
+\newcommand{\Imag}{\operatorname{Im}}
+\newcommand{\diag}{\operatorname{diag}}
+\newcommand{\Var}{\operatorname{Var}}
+\newcommand{\Cov}{\operatorname{Cov}}
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\FT}{\mathcal{F}}
+\newcommand{\paperloc}[1]{\textit{Paper location: #1}}
+\newcommand{\reading}[1]{\begin{quote}\small\color{teal}\textbf{Textbook connection.} #1\end{quote}}
+\newcommand{\physicalmeaning}[1]{\begin{quote}\textbf{\color{teal}Physical meaning.} #1\end{quote}}
+\newcommand{\careful}[1]{\begin{quote}\textbf{\color{rust}Read carefully.} #1\end{quote}}
+\newcommand{\checkpoint}[1]{\begin{quote}\textbf{Check your understanding.} #1\end{quote}}
+\newcommand{\worked}[1]{\subsection*{Worked example: #1}}
+\newcolumntype{Y}{>{\raggedright\arraybackslash}X}
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
+\newcommand{\figteach}[3]{\begin{figure}[tbp]\centering\includegraphics[width=#2\textwidth]{#1}\caption{#3}\end{figure}}
+\begin{document}
+\frontmatter
+\begin{titlepage}
+\color{ink}
+{\large A first-principles graduate self-study textbook\par}
+\vspace{18mm}
+{\Huge\bfseries Understanding the\\[3mm] Aberration Budget\\[3mm] Paper\par}
+\vspace{10mm}
+{\Large From waves and diffraction to EUV lithography,\\[2mm]
+Zernike modes, neural networks, and inverse design\par}
+\vspace{12mm}
+\rule{\textwidth}{0.8pt}
+\vspace{5mm}
+{\large A detailed companion to\par}
+\vspace{3mm}
+{\large Zhishu Chen, Lisong Dong, Huwen Ding, and Yayi Wei,\par}
+\textit{Aberration budget analysis of EUV lithography from the imaging
+performance of a contact layer in a 5 nm technology node},\\
+\textit{Applied Optics} \textbf{62}, 7270--7279 (2023).\\[3mm]
+\href{https://doi.org/10.1364/AO.496461}{doi:10.1364/AO.496461}
+\vfill
+{\large Built around the supplied Born--Wolf and Saleh--Teich textbooks\par}
+\vspace{5mm}
+{\small Original explanations, worked derivations, scientific diagrams,
+solved exercises, a source audit, and reproducible teaching calculations.\\
+Prepared 24 September 2026.\par}
+\end{titlepage}
+\input{chapters/00_how_to_use}
+\tableofcontents
+\mainmatter
+\part{The physical language of the paper}
+\input{chapters/01_foundations}
+\input{chapters/02_imaging_and_euv}
+\part{From wavefront errors to printed patterns}
+\input{chapters/03_wavefronts}
+\input{chapters/04_lithographic_imaging}
+\part{Understanding the authors' inverse model}
+\input{chapters/05_data_and_inverse}
+\input{chapters/06_learning_and_validation}
+\part{Reading the results and constructing a defensible budget}
+\input{chapters/07_paper_walkthrough}
+\input{chapters/08_budget_and_laboratory}
+\appendix
+\input{chapters/09_exercises_and_reference}
+\backmatter
+\input{bibliography}
+\end{document}

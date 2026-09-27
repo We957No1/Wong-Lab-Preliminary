@@ -1,0 +1,86 @@
+\chapter*{How to study this book}
+\addcontentsline{toc}{chapter}{How to study this book}
+This book assumes no previous optics, lithography, aberration theory, or
+machine-learning knowledge. Basic algebra is useful. Calculus, complex
+numbers, Fourier analysis, and matrix ideas are introduced as they become
+necessary. The aim is to make every technical step in Chen and colleagues'
+paper \cite{chen} understandable, including the steps compressed into
+phrases such as rigorous simulation, Zernike coefficient, process variation
+band, and inverse sensitivity analysis.
+
+The research paper contains only three numbered equations. Those equations
+are not the whole theory behind the work. The missing chain is
+\[
+\text{field}\ \longrightarrow\ \text{mask diffraction}\
+\longrightarrow\ \text{pupil phase}\ \longrightarrow\ \text{image}\
+\longrightarrow\ \text{edges}\ \longrightarrow\ \text{constraints}.
+\]
+The neural network is an approximate way to travel backward along part of
+this chain. Learning the forward physics first makes the backward problem
+much easier to understand.
+
+The explanations are original teaching material. Source equations are
+rederived in explicit conventions rather than copied without context.
+Numerical demonstrations labelled \emph{teaching examples} are calculations
+made for this book. They are not recovered data from the authors' commercial
+simulations. In particular, no trained version of their neural network,
+mask-simulator settings file, or proprietary dataset has been supplied.
+
+\section*{A practical study sequence}
+\begin{enumerate}
+\item Read Chapters \ref{ch:story}--\ref{ch:waves} with a notebook. You
+should be able to convert nanometres of optical path into radians of phase
+and explain why field amplitudes interfere.
+\item Study Chapters \ref{ch:diffraction}--\ref{ch:zernike}. Draw a pupil,
+an image plane, a defocused wavefront, and a Zernike mode. Do the small
+integrals yourself.
+\item Work through Chapters \ref{ch:partial}--\ref{ch:sensitivity}.
+These connect optics to the three measured quantities in the paper.
+\item Read the data and learning chapters, then open the paper alongside
+Chapter \ref{ch:walkthrough}. Every numbered equation, table, and figure
+has a corresponding explanation.
+\item Finish the budget and laboratory chapters and the solved exercises.
+Try each exercise before looking at its answer.
+\end{enumerate}
+Do not try to memorize 25 polynomial labels. Understand the pupil function,
+the unit convention, and the map from phase to edges. Those ideas remain
+useful when the numbering convention or lithographic pattern changes.
+
+\section*{What was actually available in the source files}
+\begin{itemize}
+\item The paper is complete: 10 PDF pages, journal pages 7270--7279.
+Paper p.~3 means the third PDF page, journal page 7272.
+\item The supplied \emph{Principles of Optics} scan is the fourth edition
+of Born and Wolf \cite{bw}, with 859 PDF pages. Its printed pagination
+and PDF pagination differ, and a central run is reversed. For example,
+printed pages 464, 465, and 466 are PDF pages 555, 554, and 553.
+Use the verified entry points in Appendix \ref{app:reading}, then follow
+the printed page numbers.
+\item The file named \texttt{Saleh \& Teich Foundations of Photonics.pdf}
+actually contains \emph{Fundamentals of Photonics}, second edition
+\cite{st}. It has 300 PDF pages and ends at printed page 278.
+The useful chapters on ray optics, waves, Fourier optics,
+electromagnetic optics, and polarization are present. Chapter 11,
+\emph{Statistical Optics}, is listed in the contents but is not included.
+This book therefore uses Born--Wolf for the missing partial-coherence
+foundation and supplies its own complete derivations.
+\end{itemize}
+
+\section*{How to interpret statements in this book}
+\textbf{Reported result} means something explicitly stated or displayed
+in the paper. \textbf{Derived result} follows from equations and assumptions
+written here. \textbf{Teaching example} uses a stated simplified model.
+\textbf{Unresolved detail} means the publication does not supply enough
+information to settle it. These distinctions matter because an attractive
+graph is not a complete simulation specification.
+
+Several publication issues deserve particular attention: the pattern tables
+disagree, the output count and stated Zernike range disagree, a Table 4
+column header is repeated, and the source-to-pupil conventions are incomplete.
+The guide preserves the reported information and identifies the uncertainty.
+It does not quietly choose a correction and present it as an author's fact.
+
+This textbook concerns the supplied 2023 study. Its conclusions are read
+in the context of its patterns, illumination, simulation conditions, and
+validation data. It supplies the underlying education without treating a
+simulation study as a complete production qualification.

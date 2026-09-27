@@ -1,0 +1,682 @@
+\chapter{What problem is the paper trying to solve?}\label{ch:story}
+\paperloc{Title, abstract, Introduction, and Conclusion.}
+
+\section{Printing a pattern with light}
+A semiconductor chip is made by repeatedly creating patterns in thin
+layers on a wafer. In optical lithography, light illuminates a patterned
+mask, an optical system projects a smaller image onto a light-sensitive
+material called photoresist, and chemical processing turns the exposure
+into a material pattern. Etching or deposition then transfers or uses that
+pattern. The paper concerns the optical exposure part of this sequence.
+
+A \emph{contact hole} is an opening intended to connect device regions or
+conducting layers. A \emph{via} is also an interconnection opening, commonly
+between conducting levels. For the optical argument, both are small
+two-dimensional features whose position and size must be controlled.
+A square or rectangle in the mask does not automatically print as an
+identical square or rectangle: diffraction rounds corners and mixes light
+from nearby features.
+
+The \emph{critical dimension}, abbreviated CD, is a specified feature width.
+A rectangle needs at least a horizontal width $\mathrm{CD}_x$ and a vertical
+width $\mathrm{CD}_y$. \emph{Pitch} is the centre-to-centre repetition
+distance of a periodic pattern. It is not the width of a hole and not the
+space between neighbouring edges. For a 14 nm square hole on 38 nm pitch,
+the nominal edge-to-edge gap along an axis is $38-14=24\nm$.
+
+The name \emph{5 nm technology node} does not mean that every printed line,
+hole, or transistor dimension is 5 nm. It labels a technology generation.
+The authors use nominal hole widths of 14 nm and 28 nm. The 2021 IRDS
+lithography roadmap explicitly separates node labels from physical
+dimensions \cite{irds}. Always identify the layer and feature before
+assigning a physical length to a node name.
+
+\section{What makes an image imperfect?}
+Even a perfectly manufactured finite optical system has diffraction.
+That unavoidable spreading is different from \emph{aberration}, the
+departure of an actual optical wavefront from a chosen ideal wavefront.
+Aberrations change the phases with which light from different pupil
+locations contributes to an image.
+
+The important objects form a hierarchy:
+\begin{enumerate}
+\item \textbf{Physical hardware:} mirror shapes, positions, coatings,
+the mask stack, and illumination optics.
+\item \textbf{Optical response:} amplitude, phase, polarization, and the
+diffraction orders admitted by the pupil.
+\item \textbf{Image:} a continuous distribution of optical intensity.
+\item \textbf{Printed geometry:} edges selected by the resist process.
+\item \textbf{Performance indicators:} widths, shifts, and changes under
+focus and exposure variations.
+\end{enumerate}
+A neural network operating on the final indicators does not directly
+specify a set of manufacturable mirror surfaces. It proposes a wavefront
+description that still needs an optical realization.
+
+\section{Why a budget is useful}
+Suppose a contact must remain within $0.4\nm$ of its intended vertical
+position. Many optical errors contribute to that position. A budget asks
+how much of each error can be tolerated while satisfying the performance
+requirement. A conventional budget might restrict the total RMS wavefront
+error. This paper instead explores combinations of wavefront coefficients
+that are acceptable for a particular contact-layer test set.
+
+Write a vector of aberration coefficients as
+$\vct c=(c_1,\ldots,c_K)^T$ and the computed imaging indicators as
+$\vct y=F(\vct c)$. The symbol $F$ stands for an entire optical and
+image-measurement calculation. The forward task calculates $\vct y$
+from known $\vct c$. The inverse task finds some $\vct c$ giving acceptable
+$\vct y$.
+
+The paper trains an approximate inverse map $G$:
+\[
+\vct c_{\rm candidate}=G(\vct y_{\rm desired}),\qquad
+F(\vct c_{\rm candidate})\approx\vct y_{\rm desired}.
+\]
+It then sends the proposed coefficients back through the commercial
+forward simulator. That final comparison is essential: a network output
+is a candidate, and its actual simulated image determines whether it works.
+
+\physicalmeaning{The central proposal is to choose allowable wavefronts using
+the imaging needs of a particular layer. The contribution is the
+layer-specific inverse modelling and candidate-screening workflow,
+not a new law of diffraction.}
+
+\section{Vocabulary you will repeatedly meet}
+\begin{longtable}{@{}p{.23\textwidth}p{.71\textwidth}@{}}
+\toprule Term & Meaning in this study\\ \midrule\endhead
+EUV & Extreme ultraviolet light; here the wavelength is 13.5 nm.\\
+DUV & Deep ultraviolet; the Introduction compares EUV with 193 nm light.\\
+Projector / objective & The optical system forming the mask image on
+the wafer; in EUV it uses reflective optics.\\
+Pupil & A representation of the aperture selecting ray directions or
+spatial-frequency components.\\
+Wavefront & A surface of equal optical phase at a specified time.\\
+OPD / WFE & Optical path difference / wavefront error relative to a
+specified ideal reference, usually expressed as a length.\\
+Zernike coefficient & The amplitude of one specified polynomial mode
+in a pupil-wavefront expansion.\\
+PS & Pattern shift: displacement of a specified printed feature centre.\\
+PVB & Process variation band: the spread of printed contours when
+specified process conditions change.\\
+NILS & Normalized image log slope: relative intensity steepness at an edge.\\
+BPNN & Backpropagation neural network, a trainable nonlinear function.\\
+OPC & Optical proximity correction: modification of the mask layout to
+improve the eventual printed pattern.\\
+\bottomrule
+\end{longtable}
+\checkpoint{If two patterns have the same CD, must they have the same
+pitch, centre position, or process robustness? No. These are separate
+properties; this is why the paper uses several indicators for many patterns.}
+
+\chapter{The mathematics we actually need}\label{ch:math}
+\section{Units and dimensionless ratios}
+One nanometre is $10^{-9}$ metres; one micrometre is $10^{-6}$ metres.
+An angle in radians is the ratio of arc length to radius and is dimensionless.
+An exponential must have a dimensionless argument.
+For example, $2\pi W/\lambda$ is legitimate because $W$ and $\lambda$
+are both lengths.
+
+A \emph{wave} of optical path error means one wavelength of OPD.
+A milliwave, written here as $\mathrm{m}\lambda$, is $10^{-3}$ waves:
+\begin{equation}
+W_{\rm nm}=\lambda_{\rm nm}\frac{c_{\mathrm{m}\lambda}}{1000}.
+\label{eq:milliwave}
+\end{equation}
+The paper's MMW is used in this milliwave sense. It is not a millimetre.
+At 13.5 nm, $1\,\mathrm{m}\lambda=0.0135\nm$ and
+$20\,\mathrm{m}\lambda=0.270\nm$.
+
+\section{Complex numbers are a language for phase}
+The imaginary unit obeys $\ii^2=-1$. A complex number $z=a+\ii b$ has
+conjugate $z^*=a-\ii b$, modulus $|z|=\sqrt{a^2+b^2}$, and squared modulus
+$zz^*=a^2+b^2$. Euler's formula is
+\begin{equation}
+\ee^{\ii\phi}=\cos\phi+\ii\sin\phi.
+\end{equation}
+Multiplication by $\ee^{\ii\phi}$ rotates a complex number by $\phi$.
+It changes phase without changing magnitude.
+
+Represent a real harmonic electric field by
+\begin{equation}
+E(\vct r,t)=\Real\{U(\vct r)\ee^{-\ii\omega t}\},\qquad
+U=A\ee^{\ii\phi}.
+\label{eq:phasor}
+\end{equation}
+The observable field is real. The complex quantity $U$ stores its
+amplitude and phase compactly. Time differentiation becomes multiplication
+by $-\ii\omega$, a major simplification.
+
+For two scalar fields $U_1$ and $U_2$, expand the intensity:
+\begin{align}
+|U_1+U_2|^2
+&=(U_1+U_2)(U_1^*+U_2^*)\\
+&=|U_1|^2+|U_2|^2+U_1U_2^*+U_1^*U_2\\
+&=A_1^2+A_2^2+2A_1A_2\cos(\phi_1-\phi_2).
+\label{eq:interference}
+\end{align}
+The last term is interference. Equal amplitudes in phase give intensity
+$4A^2$; equal amplitudes out of phase by $\pi$ give zero. The separate
+intensities were $A^2$ in both cases. This is why changing phase can
+change an image without changing the amount of light admitted by the pupil.
+
+\section{Derivatives, gradients, and Taylor expansion}
+A derivative measures a local change. For small displacement $\delta x$,
+\[
+I(x+\delta x)=I(x)+I'(x)\delta x+O(\delta x^2).
+\]
+Here $O(\delta x^2)$ denotes terms whose leading size is proportional
+to the square of the small displacement. A partial derivative varies
+one argument while holding the others fixed:
+\[
+\nabla_\perp W=\left(\frac{\partial W}{\partial x},
+\frac{\partial W}{\partial y}\right).
+\]
+For $W=A(x^2+y^2)^2$,
+$\nabla_\perp W=4A(x^2+y^2)(x,y)$.
+If $W$ is a length, this gradient is dimensionless; it will be related
+to an angular error.
+
+We frequently use
+\begin{align}
+\sqrt{1+\epsilon}&=1+\frac{\epsilon}{2}
+-\frac{\epsilon^2}{8}+O(\epsilon^3),\\
+\ee^{\ii\phi}&=1+\ii\phi-\frac{\phi^2}{2}+O(\phi^3),\\
+\ln(1+\epsilon)&=\epsilon+O(\epsilon^2).
+\end{align}
+These follow by evaluating successive derivatives at zero. They are
+approximations for small dimensionless arguments. Calling a formula
+paraxial or small-aberration specifies the expansion that has been made;
+it does not remove the need to check the argument's size.
+
+\worked{Changing to normalized pupil coordinates}
+Let $x_p=a u$, $y_p=a v$, where $a$ is the physical pupil radius,
+and $\widetilde W(u,v)=W(au,av)$. The chain rule gives
+\begin{equation}
+\frac{\partial W}{\partial x_p}
+=\frac{1}{a}\frac{\partial\widetilde W}{\partial u}.
+\label{eq:chain}
+\end{equation}
+For $\widetilde W=B u^2$, the physical slope is $2Bu/a$,
+not $2Bu$. Omitting $1/a$ changes both dimensions and physics.
+
+\section{Integrals over a disk}
+Use normalized polar coordinates $u=\rho\cos\theta$,
+$v=\rho\sin\theta$, $0\leq\rho\leq1$.
+The small area is $\dd u\,\dd v=\rho\,\dd\rho\,\dd\theta$.
+The uniformly weighted disk average is
+\begin{equation}
+\avg{f}=\frac{1}{\pi}\int_0^{2\pi}\int_0^1
+f(\rho,\theta)\rho\,\dd\rho\,\dd\theta.
+\label{eq:diskaverage}
+\end{equation}
+The factor $\rho$ accounts for the growing circumference of rings.
+Sampling equally spaced radii with equal weights is not uniform area sampling.
+For $q>-2$,
+\begin{equation}
+\avg{\rho^q}=2\int_0^1\rho^{q+1}\dd\rho=\frac{2}{q+2}.
+\label{eq:diskpowers}
+\end{equation}
+Thus $\avg{\rho^2}=1/2$, $\avg{\rho^4}=1/3$, and
+$\avg{\rho^8}=1/5$. Also $\avg{\rho^2\cos^2\theta}=1/4$
+because the angular average of $\cos^2\theta$ is $1/2$.
+
+The mean-subtracted RMS of a real wavefront is
+\begin{equation}
+\sigma_W=\sqrt{\avg{(W-\avg W)^2}}
+=\sqrt{\avg{W^2}-\avg W^2}.
+\label{eq:variance}
+\end{equation}
+It is a length. The mean $\avg W$ is called piston.
+For $W=B\rho^2$, $\sigma_W=|B|/\sqrt{12}$.
+
+\section{Vectors, matrices, and least squares}
+A vector is an ordered list. A matrix applies weighted sums to that list.
+If $A$ has $M$ rows and $K$ columns, $A\vct c$ has $M$ entries:
+\[
+(A\vct c)_i=\sum_{j=1}^K A_{ij}c_j.
+\]
+The transpose $A^T$ interchanges rows and columns. The Euclidean norm
+obeys $\norm{\vct c}^2=\vct c^T\vct c=\sum_jc_j^2$.
+To fit data $\vct b$ with $A\vct c$, minimize
+$L=\tfrac12\norm{A\vct c-\vct b}^2$.
+Expansion and differentiation give
+$\nabla_{\vct c}L=A^T(A\vct c-\vct b)$.
+At a stationary point,
+\begin{equation}
+A^TA\,\vct c=A^T\vct b.
+\label{eq:normal}
+\end{equation}
+These are the normal equations. A unique solution requires independent
+columns. If a nonzero $\vct v$ satisfies $A\vct v=0$, then $\vct c$
+and $\vct c+\vct v$ predict the same data. Such a vector is in the
+\emph{null space}. This idea becomes central to the paper's claim that
+different aberration combinations can have similar imaging performance.
+
+\section{Averages, random errors, and correlations}
+For samples $x_1,\ldots,x_N$, the mean is $\bar x=N^{-1}\sum_i x_i$.
+An expectation $\E[x]$ is the corresponding probability-weighted average.
+Variance is $\E[(x-\E[x])^2]$ and
+\[
+\Cov(x,y)=\E[(x-\E[x])(y-\E[y])].
+\]
+Expanding the square proves
+\begin{equation}
+\Var(x+y)=\Var(x)+\Var(y)+2\Cov(x,y).
+\label{eq:covsum}
+\end{equation}
+The root-sum-square rule follows only when covariance vanishes.
+Two fabrication errors that always move together do not behave like
+independent errors. Fixed errors do not become random simply because
+their signs are unknown.
+
+\section{Fourier analysis: a shape as a sum of ripples}
+A periodic function of period $p$ can be represented as
+\begin{equation}
+t(x)=\sum_{m=-\infty}^{\infty}a_m\ee^{\ii2\pi mx/p},\qquad
+a_m=\frac1p\int_{-p/2}^{p/2}t(x)\ee^{-\ii2\pi mx/p}\dd x.
+\label{eq:fourierseries}
+\end{equation}
+Substitute the series into the integral. The integral of
+$\ee^{\ii2\pi(m-n)x/p}$ over one period is zero unless $m=n$, when it
+equals $p$. The integral selects one ripple.
+
+For nonperiodic two-dimensional fields we use
+\begin{align}
+\widetilde U(\vct f)&=\int_{\R^2}U(\vct x)
+\ee^{-\ii2\pi\vct f\cdot\vct x}\dd^2x,\\
+U(\vct x)&=\int_{\R^2}\widetilde U(\vct f)
+\ee^{\ii2\pi\vct f\cdot\vct x}\dd^2f.
+\label{eq:fourierpair}
+\end{align}
+Spatial frequency $\vct f=(f_x,f_y)$ has units of inverse length.
+Fine detail needs higher spatial frequencies. A finite pupil removes
+some frequencies, so an image cannot reproduce arbitrary fine detail.
+
+Convolution, $(h*t)(x)=\int h(x-x')t(x')\dd x'$, means summing shifted
+responses to all object points. Substitution of the Fourier pair shows
+$\FT[h*t]=\widetilde h\,\widetilde t$: convolution in position becomes
+multiplication in frequency. This is the algebraic foundation of Fourier
+optics, not a separate empirical imaging rule.
+
+\chapter{Light, phase, rays, and optical path}\label{ch:waves}
+\reading{Saleh--Teich \S\S2.1--2.2, printed pp.~40--47 (PDF pp.~62--69),
+and \S2.5, p.~58 (PDF p.~80). Born--Wolf \S1.3, p.~14 (PDF p.~43),
+and \S3.1, p.~109 (PDF p.~138).}
+
+\section{From Maxwell's equations to a wave}
+In a homogeneous, source-free, linear, isotropic, nonmagnetic medium,
+Maxwell's equations include
+\[
+\nabla\times\vct E=-\mu_0\frac{\partial\vct H}{\partial t},\quad
+\nabla\times\vct H=\epsilon\frac{\partial\vct E}{\partial t},\quad
+\nabla\cdot\vct E=0.
+\]
+Take the curl of the first equation and substitute the second.
+Using $\nabla\times(\nabla\times\vct E)
+=\nabla(\nabla\cdot\vct E)-\nabla^2\vct E$ gives
+\begin{equation}
+\nabla^2\vct E-\mu_0\epsilon\frac{\partial^2\vct E}{\partial t^2}=0.
+\end{equation}
+The wave speed is $v=1/\sqrt{\mu_0\epsilon}=c/n$.
+For one frequency and a scalar component under a justified approximation,
+\begin{equation}
+\nabla^2 U+n^2k_0^2U=0,\qquad
+k_0=\frac{2\pi}{\lambda_0}=\frac{\omega}{c}.
+\label{eq:helmholtz}
+\end{equation}
+This is the Helmholtz equation. A solution
+$U=A\ee^{\ii\vct k\cdot\vct r}$ is a plane wave if
+$|\vct k|=nk_0$. Constant-phase surfaces are planes perpendicular to
+$\vct k$. given that $|\vct k|=nk_0$, $\lambda_{medium}  = \frac{2\pi}{|\vct k|} = \frac{\lambda}{n}$
+
+\subsection*{From the Poynting vector to optical intensity}
+We now derive the intensity formula rather than introduce it as a
+separate optical rule. The result for a travelling plane wave in a
+lossless, nonmagnetic dielectric is
+\[
+I=\frac{n\epsilon_0c}{2}|\vct E_0|^2.
+\]
+Here $\vct E_0$ is an electric-field phasor, measured in volts per metre,
+and its components are defined using peak rather than RMS amplitudes.
+The factor $1/2$ comes from averaging the real oscillating fields.
+The factor $n\epsilon_0c$ comes from the relation between the electric
+and magnetic fields. We will obtain these factors separately.
+
+\subsubsection*{1. The Poynting vector measures energy flow}
+For real, instantaneous fields in SI units, the Poynting vector is
+\begin{equation}
+\vct S(\vct r,t)=\vct E(\vct r,t)\times\vct H(\vct r,t)
+=\frac{1}{\mu_0}\vct E(\vct r,t)\times\vct B(\vct r,t),
+\label{eq:poynting-instant}
+\end{equation}
+where $\vct B=\mu_0\vct H$ in the nonmagnetic medium considered here.
+The cross product gives a direction of energy flow. Its units are
+\[
+[\vct S]=\frac{\mathrm V}{\mathrm m}
+          \frac{\mathrm A}{\mathrm m}
+=\frac{\mathrm W}{\mathrm m^2},
+\]
+so it is power per area. For a surface element $\dd A$ with unit normal
+$\widehat{\vct n}_A$, the signed power crossing it is
+$\vct S\cdot\widehat{\vct n}_A\,\dd A$.
+
+Why does this particular cross product describe energy?
+For a lossless, nondispersive dielectric with constant $\epsilon$,
+use the vector identity
+\[
+\nabla\cdot(\vct E\times\vct H)
+=\vct H\cdot(\nabla\times\vct E)
+-\vct E\cdot(\nabla\times\vct H).
+\]
+Substituting the source-free Maxwell equations above gives
+\begin{align}
+\nabla\cdot\vct S
+&=-\mu_0\vct H\cdot\frac{\partial\vct H}{\partial t}
+  -\epsilon\vct E\cdot\frac{\partial\vct E}{\partial t}
+\notag\\
+&=-\frac{\partial}{\partial t}
+  \left(\frac{\epsilon|\vct E|^2}{2}
+             +\frac{\mu_0|\vct H|^2}{2}\right).
+\end{align}
+The expression in parentheses is the electromagnetic energy density
+$u_{\rm em}$, in joules per cubic metre. Thus
+\begin{equation}
+\frac{\partial u_{\rm em}}{\partial t}+\nabla\cdot\vct S=0,
+\qquad
+\frac{\dd}{\dd t}\int_Vu_{\rm em}\,\dd V
+=-\oint_{\partial V}\vct S\cdot\widehat{\vct n}_A\,\dd A.
+\label{eq:poynting-conservation}
+\end{equation}
+The second equality follows from the divergence theorem: outward energy
+flow through a boundary reduces the energy stored inside it.
+This identifies $\vct S$ as an energy-flux density.
+The simple instantaneous formula for $u_{\rm em}$ assumes no material
+dispersion; the monochromatic flux calculation below only needs the
+real, lossless material parameters at the frequency of interest.
+
+\subsubsection*{2. Average the real fields, not just their phasors}
+An optical detector or resist exposure averages over many optical cycles.
+Let $T_{\rm opt}=2\pi/\omega$ and define a one-cycle average at a fixed point:
+\[
+\avg{\vct S}_t
+=\frac{1}{T_{\rm opt}}\int_{t_0}^{t_0+T_{\rm opt}}\vct S(t)\,\dd t.
+\]
+For an exactly monochromatic field this equals an average over any
+integer number of cycles. Write the real fields in terms of their
+complex spatial phasors:
+\begin{align*}
+\vct E(\vct r,t)
+&=\Real\{\widetilde{\vct E}(\vct r)\ee^{-\ii\omega t}\}
+=\frac12\left(
+\widetilde{\vct E}\ee^{-\ii\omega t}
++\widetilde{\vct E}^{\,*}\ee^{+\ii\omega t}\right),\\
+\vct H(\vct r,t)
+&=\Real\{\widetilde{\vct H}(\vct r)\ee^{-\ii\omega t}\}
+=\frac12\left(
+\widetilde{\vct H}\ee^{-\ii\omega t}
++\widetilde{\vct H}^{\,*}\ee^{+\ii\omega t}\right).
+\end{align*}
+Suppressing the common position argument, their cross product is
+\begin{align*}
+\vct E\times\vct H
+=\frac14\Bigl[&
+(\widetilde{\vct E}\times\widetilde{\vct H})\ee^{-2\ii\omega t}
++\widetilde{\vct E}\times\widetilde{\vct H}^{\,*}\\
+&+\widetilde{\vct E}^{\,*}\times\widetilde{\vct H}
++(\widetilde{\vct E}^{\,*}\times\widetilde{\vct H}^{\,*})
+\ee^{+2\ii\omega t}\Bigr].
+\end{align*}
+The first and last terms average to zero because
+$\avg{\ee^{\pm2\ii\omega t}}_t=0$.
+The two remaining terms are complex conjugates of one another.
+Since $z+z^*=2\Real z$, applied component by component,
+\begin{equation}
+\boxed{\avg{\vct S}_t
+=\frac12\Real\!\left(
+\widetilde{\vct E}\times\widetilde{\vct H}^{\,*}\right).}
+\label{eq:poynting-average}
+\end{equation}
+The conjugation and the real part are essential: an unmodified cross
+product of complex phasors is not the measured average power flow.
+This expression also applies to monochromatic fields that are not plane
+waves; the following reduction to electric-field magnitude alone uses
+the plane-wave assumptions.
+
+\subsubsection*{3. Maxwell's equations relate the two field amplitudes}
+For a travelling plane wave, write
+\[
+\widetilde{\vct E}(\vct r)
+=\vct E_0\ee^{\ii\vct k\cdot\vct r},\qquad
+\widetilde{\vct H}(\vct r)
+=\vct H_0\ee^{\ii\vct k\cdot\vct r},
+\qquad
+\vct k=k\widehat{\vct s},
+\]
+where $\widehat{\vct s}$ is a real unit vector in the propagation direction
+and $k=n\omega/c$.
+For the time convention $\ee^{-\ii\omega t}$, Faraday's law becomes
+\[
+\nabla\times\widetilde{\vct E}
+=\ii\omega\mu_0\widetilde{\vct H}.
+\]
+Taking the curl of the plane-wave exponential gives
+$\nabla\times\widetilde{\vct E}
+=\ii\vct k\times\widetilde{\vct E}$.
+Cancel the common exponential and $\ii$ to obtain
+\begin{equation}
+\vct H_0
+=\frac{\vct k\times\vct E_0}{\omega\mu_0}
+=\frac{1}{\eta}\widehat{\vct s}\times\vct E_0,
+\qquad
+\eta=\sqrt{\frac{\mu_0}{\epsilon}}
+=\frac{\eta_0}{n},\qquad
+\eta_0=\sqrt{\frac{\mu_0}{\epsilon_0}}.
+\label{eq:plane-wave-impedance}
+\end{equation}
+We used $\epsilon=n^2\epsilon_0$ and
+$c=1/\sqrt{\mu_0\epsilon_0}$.
+The quantity $\eta$ is the wave impedance: it sets the ratio of electric
+to magnetic field amplitude and has units of ohms.
+Also, $\nabla\cdot\widetilde{\vct E}=0$ gives
+$\widehat{\vct s}\cdot\vct E_0=0$, so the electric field is transverse.
+The magnetic field is transverse as well, and its direction follows from
+the cross product in Eq.~\eqref{eq:plane-wave-impedance}.
+
+\subsubsection*{4. Obtain the intensity and its direction}
+Because $\vct k$ is real, the spatial factors
+$\ee^{\ii\vct k\cdot\vct r}$ and
+$\ee^{-\ii\vct k\cdot\vct r}$ cancel in
+Eq.~\eqref{eq:poynting-average}. Because $\eta$ is real,
+\begin{align*}
+\avg{\vct S}_t
+&=\frac{1}{2\eta}
+\Real\!\left[\vct E_0\times
+             (\widehat{\vct s}\times\vct E_0^*)\right]\\
+&=\frac{1}{2\eta}
+\Real\!\left[
+\widehat{\vct s}(\vct E_0\cdot\vct E_0^*)
+-\vct E_0^*(\vct E_0\cdot\widehat{\vct s})\right]\\
+&=\frac{|\vct E_0|^2}{2\eta}\widehat{\vct s}.
+\end{align*}
+The second line is the vector triple-product identity.
+Transversality removes its second term, while
+$|\vct E_0|^2=\vct E_0\cdot\vct E_0^*
+=|E_{0x}|^2+|E_{0y}|^2+|E_{0z}|^2$ is real and nonnegative.
+Define the plane-wave intensity as the average power per area
+perpendicular to propagation:
+\begin{equation}
+\boxed{
+I=\avg{\vct S}_t\cdot\widehat{\vct s}
+=\frac{|\vct E_0|^2}{2\eta}
+=\frac{n\epsilon_0c}{2}|\vct E_0|^2.}
+\label{eq:plane-wave-intensity}
+\end{equation}
+For the last equality,
+$1/\eta=n/\eta_0=n\sqrt{\epsilon_0/\mu_0}=n\epsilon_0c$.
+The result holds for linear, elliptical, and circular polarization in
+this medium; it uses the sum of the squared component phasor magnitudes.
+
+If a detector surface normal makes angle $\alpha$ with
+$\widehat{\vct s}$, its incident power per detector area is
+$\avg{\vct S}_t\cdot\widehat{\vct n}_A=I\cos\alpha$, taking the normal
+toward the direction of energy flow. Thus one must specify the area
+orientation when converting flux into detected power.
+
+\subsubsection*{5. Check the factor of two with a real cosine wave}
+Take a linearly polarized wave travelling along $+z$:
+\[
+\vct E=\widehat{\vct x}E_{\rm pk}\cos(kz-\omega t),\qquad
+\vct H=\widehat{\vct y}\frac{E_{\rm pk}}{\eta}
+\cos(kz-\omega t).
+\]
+Then
+\[
+\vct S=\widehat{\vct z}\frac{E_{\rm pk}^2}{\eta}
+\cos^2(kz-\omega t),\qquad
+\avg{\cos^2(kz-\omega t)}_t=\frac12,
+\]
+which gives $I=E_{\rm pk}^2/(2\eta)$ directly.
+If the field is instead specified by
+$E_{\rm rms}=E_{\rm pk}/\sqrt2$, the same physical result is
+$I=E_{\rm rms}^2/\eta$.
+The two formulas use different amplitude conventions, so the factor
+$1/2$ must not be inserted twice.
+As a units-and-scale check, a vacuum plane wave with
+$E_{\rm pk}=1\,\mathrm{V/m}$ has
+$I=1/(2\eta_0)\simeq1.33\times10^{-3}\,\mathrm{W/m^2}$,
+using $\eta_0\simeq376.73\,\Omega$.
+
+\subsubsection*{6. Why scalar optics can write \texorpdfstring{$I=|U|^2$}{I = |U| squared}}
+For a fixed unit polarization vector $\widehat{\vct e}$, write
+$\widetilde{\vct E}=\widehat{\vct e}\,\mathcal E$ with
+$\widehat{\vct e}\cdot\widehat{\vct e}^{\,*}=1$.
+Here $\mathcal E$ is the scalar electric-field phasor in volts per metre.
+Under the travelling-wave relation just derived,
+\[
+I=\frac{n\epsilon_0c}{2}|\mathcal E|^2.
+\]
+Define a rescaled scalar amplitude
+\begin{equation}
+U=\sqrt{\frac{n\epsilon_0c}{2}}\,\mathcal E
+\quad\Longrightarrow\quad I=|U|^2.
+\label{eq:intensity-normalized-field}
+\end{equation}
+The constant is absorbed into the \emph{amplitude through its square root}.
+This $U$ has units $\mathrm{W}^{1/2}/\mathrm m$ if $I$ is in
+$\mathrm{W/m^2}$; it is no longer the numerical electric field in
+$\mathrm{V/m}$.
+Multiplying by a spatially constant factor leaves the homogeneous
+Helmholtz equation unchanged. In a scalar, paraxial imaging model with
+a common polarization and nearly common propagation direction, this
+normalization is why we may add the scalar fields and then take
+$|U|^2$ to obtain intensity.
+
+One may also divide intensity by a fixed reference intensity and use
+dimensionless fields. Neither rescaling changes the interference or
+edge-position argument, provided the threshold and dose use the same
+normalization. For absorbing media, standing waves, or fields with
+substantially different propagation directions, return to the full
+flux expression in Eq.~\eqref{eq:poynting-average}; the simple
+real-$n$ plane-wave prefactor is not a universal replacement for it.
+
+\section{Optical path is not just distance}
+Along a geometrical trajectory of arc length $\ell$,
+\begin{equation}
+\mathcal L=\int n(\vct r)\,\dd\ell.
+\label{eq:opl}
+\end{equation}
+A uniform slab of thickness $t$ and index $n$ has optical path $nt$.
+Phase accumulated along a ray is $k_0\mathcal L$ in the
+$\ee^{-\ii\omega t}$ convention. Comparing actual and reference optical
+paths gives OPD $W$ and phase error
+\begin{equation}
+\phi_W=k_0 W=\frac{2\pi W}{\lambda_0}.
+\label{eq:phaseOPD}
+\end{equation}
+A reference must be specified: usually an ideal spherical wave converging
+to a chosen image point. Moving that reference point changes the
+reported tilt and defocus, even when the physical system is unchanged.
+
+\worked{The wavelength comparison in the Introduction}
+For fixed physical RMS OPD of 1.5 nm,
+\[
+\frac{1.5}{193}=0.0077720\ {\rm waves}
+=7.7720\,\mathrm{m}\lambda,\qquad
+\frac{1.5}{13.5}=0.111111\ {\rm waves}
+=111.111\,\mathrm{m}\lambda.
+\]
+The ratio is $193/13.5=14.2963$. The length error has not grown.
+Its size measured in wavelengths, and therefore its phase error, has grown.
+This is the precise meaning of the paper's inverse-wavelength statement.
+
+\section{How rays emerge from wave theory}
+Write $U=A(\vct r)\ee^{\ii k_0S(\vct r)}$, where $S$ has length units.
+Substitute into the Helmholtz equation:
+\[
+\nabla^2 A+2\ii k_0\nabla A\cdot\nabla S
++\ii k_0A\nabla^2S-k_0^2A|\nabla S|^2+n^2k_0^2A=0.
+\]
+When amplitude and index vary slowly on the wavelength scale, the leading
+real terms require
+\begin{equation}
+|\nabla S|^2=n^2.
+\label{eq:eikonal}
+\end{equation}
+This is the eikonal equation. The unit ray direction is
+$\vct d=\nabla S/n$. Rays are normal to wavefronts.
+The next terms give amplitude transport; ray geometry alone does not
+determine interference.
+
+For nearby actual and reference eikonals, $S=S_0+W$, the first-order
+transverse direction-cosine difference is
+\begin{equation}
+\delta\vct d_\perp\simeq\frac{1}{n}\nabla_\perp W.
+\label{eq:raygradient}
+\end{equation}
+Over a paraxial propagation distance $L$, the corresponding displacement
+is approximately $L\nabla_\perp W/n$. This is a local geometrical statement.
+A finite-aperture lithographic image still requires field summation and
+source averaging.
+
+\careful{A coefficient's sign depends on the OPD definition, time convention,
+pupil axes, and image inversion. This book uses pupil phase
+$\exp(+\ii2\pi W/\lambda)$ and Eq.~\eqref{eq:fourierpair}.
+In transfer-function formulas the normalized pupil labels spatial
+frequency, $\vct u=\vct f/f_c$; it need not have the orientation of the
+physical exit-pupil coordinates in a ray drawing. Image-shift signs below
+follow the declared transfer-function convention.}
+
+\section{What a surface error does at a mirror}
+For a mirror displaced a small normal distance $h$, the incident and
+reflected segments each change optical path by approximately
+$h\cos\alpha$, with $\alpha$ measured from the surface normal.
+In vacuum and for fixed local ray geometry,
+\begin{equation}
+|\delta W|\simeq2|h|\cos\alpha.
+\label{eq:mirror}
+\end{equation}
+The sign depends on positive surface displacement. At normal incidence,
+a 0.1 nm height error gives about 0.2 nm OPD. Wavefront tolerance and
+surface-height tolerance must not be interchanged.
+
+This formula excludes coating phase, changed intersections, multiple-mirror
+coordinate mappings, and polarization. Those belong in a full sensitivity
+model. A lens-thickness perturbation in air often gives approximately
+$(n-1)\delta t$ OPD rather than the mirror factor of two.
+
+\section{Polarization and the limits of a scalar field}
+The electric field is a vector perpendicular to the propagation direction
+for a plane wave in an isotropic medium. The interference cross term is
+$2\Real(\vct U_1\cdot\vct U_2^*)$. Orthogonal polarizations therefore have
+no such cross term in total intensity. Reflection gives different
+amplitudes and phases to fields perpendicular and parallel to the
+incidence plane.
+
+Scalar optics is useful when these vector effects can be separated or
+neglected. At an EUV mask with finite-height absorbing features,
+wavelength-scale layers, oblique illumination, and polarization-dependent
+scattering, a full electromagnetic calculation may be necessary.
+Rigorous simulation refers to a more complete numerical treatment of the
+specified model; it does not eliminate missing inputs or manufacturing
+and resist uncertainty.

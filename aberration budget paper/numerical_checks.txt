@@ -1,0 +1,24 @@
+Zernike Gram matrix, 28 modes n<=6: max error 5.08e-14
+Balanced quartic RMS = |B|/sqrt(180): verified.
+lambda/NA = 40.909090909 nm
+lambda/NA^2 = 123.966942149 nm
+1.5 nm OPD at 193 nm = 7.772020725 m-waves
+1.5 nm OPD at 13.5 nm = 111.111111111 m-waves
+20 m-waves = 0.270000000 nm
+24 coefficients all at 20 m-waves: RMS 97.979589711 m-waves
+15 nm defocus, paraxial disk RMS = 0.235775416 nm
+RMS-normalized tilt, 1 m-wave: |shift| = 0.081818182 nm
+RMS-normalized tilt bound for 0.4 nm shift = 4.888888889 m-waves
+Data rows before filtering = 2033; full grid = 509111094534718962173411120845918138561
+Parameters for literal fully connected architecture = 24485
+4x-scaled multilayer Bragg estimate = 13.724402156 nm
+Geometric 60 nm absorber shadow /4 = 1.576563529 nm
+Teaching contact model threshold = 0.133690996572
+Tilt shift analytic -1.636363636 nm; numerical -1.636363699 nm
+reference: {"CDx_nm": 13.999998443596752, "PSx_nm": 0.0, "CDy_nm": 13.999998443596752, "PSy_nm": 0.0}
+x tilt, 20 m-waves: {"CDx_nm": 13.99999935843173, "PSx_nm": -1.6363636988796806, "CDy_nm": 13.999998443596752, "PSy_nm": -4.440892098500626e-16}
+defocus, 20 m-waves: {"CDx_nm": 13.94248854319034, "PSx_nm": 8.881784197001252e-16, "CDy_nm": 13.942488543190342, "PSy_nm": 8.881784197001252e-16}
+astigmatism, 20 m-waves: {"CDx_nm": 13.97131731608658, "PSx_nm": 0.0, "CDy_nm": 13.971317316086578, "PSy_nm": 8.881784197001252e-16}
+Teaching 3x3 focus-dose edge-band widths: left 0.974585592, right 0.974585592 nm
+Inverse-branch conditional-mean counterexample verified: mean target 0 is infeasible for a^2=1.
+All assertions passed. These checks validate teaching examples only.
