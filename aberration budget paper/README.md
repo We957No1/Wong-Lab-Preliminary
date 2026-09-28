@@ -10,7 +10,7 @@ and learning models, explains all 12 paper figures, all 4 tables, and all
 paper's ambiguities instead of silently correcting them.
 
 The compiled edition has 98 pages, 17 main chapters, 3 appendices, and
-7 original scientific figures. Start with **How to study this book**,
+8 original scientific figures. Start with **How to study this book**,
 then Chapters 1–3. Chapter 15 is the guide to keep beside the paper;
 Appendix C contains the textbook reading map and symbol dictionary.
 

@@ -177,7 +177,7 @@ Understanding the aberration budget paper
 iv
 4.5
 Resolution and depth-of-focus scaling . . . . . . . . . . . . . . . . . . . . . . . . . .
-17
+18
 4.6
 A quantitative focus check . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
 18
@@ -1407,14 +1407,76 @@ The ﬁrst zero of J1 is v ≃3.8317, so
 rﬁrst zero = 0.6098 λ
 NA.
 (4.8)
-This is the Airy pattern.
-Its rings redistribute energy rather than indicating geometric rays
-bouncing around the image.
 
 
 === PDF PAGE 26 ===
 Understanding the aberration budget paper
 17
+This is the Airy pattern.
+Its rings redistribute energy rather than indicating geometric rays
+bouncing around the image.
+Figure 4.1 shows the intensity given by Eq. (4.7). The central bright region, bounded by the ﬁrst
+dark ring, is the Airy disk; the full Airy pattern also includes the surrounding rings. The value
+0.6098λ/NA is the disk’s radius, not its diameter. At λ = 13.5 nm and NA = 0.33, this radius is
+about 24.95 nm.
+2
+1
+0
+1
+2
+x/( /NA)
+2
+1
+0
+1
+2
+y/( /NA)
+first dark ring
+(a) Intensity in the image plane
+0.00
+0.25
+0.50
+0.75
+1.00
+I(r)/I(0)
+central
+Airy disk
+first dark ring
+r = 0.6098 /NA
+(b) Radial intensity: linear scale
+0.0
+0.5
+1.0
+1.5
+2.0
+2.5
+Radius r/( /NA)
+10
+5
+10
+3
+10
+1
+I(r)/I(0)
+first bright ring
+1.75% of central peak
+(c) Same profile: logarithmic scale
+10
+5
+10
+3
+10
+1
+100
+Relative intensity I/I(0) (log scale)
+Figure 4.1: Airy intensity pattern for a uniformly illuminated, unobscured circular pupil with
+no aberration. Coordinates are measured in units of λ/NA, and intensity is normalized to its
+on-axis value. (a) The image-plane pattern uses a logarithmic colour scale to reveal the faint
+rings; colour does not represent wavelength. (b) The radial intensity on a linear scale shows the
+dominant central spot. The dashed line marks the ﬁrst dark ring at r = 0.6098λ/NA. (c) The
+same radial proﬁle on a logarithmic scale reveals the outer rings. The ﬁrst bright ring reaches
+only about 1.75 percent of the central peak. The logarithmic displays stop at I/I(0) = 10−5; the
+ideal dark-ring minima are zero.
 4.4
 Coherent and incoherent resolution are diﬀerent questions
 For coherent illumination, amplitudes from object points interfere before we square the ﬁeld. For
@@ -1430,6 +1492,11 @@ incoherent intensity cutoﬀ2NA/λ, whereas the on-axis coherent ﬁeld cutoﬀi
 coherence, used in lithography, requires the source-dependent formulation developed later.
 The Rayleigh two-point separation 0.61λ/NA is a criterion for distinguishing point-source images.
 It is not a universal minimum thresholded hole diameter. Periodic patterns, oblique illumination,
+
+
+=== PDF PAGE 27 ===
+Understanding the aberration budget paper
+18
 resist thresholds, and proximity correction pose a diﬀerent problem. Do not conclude that the
 paper’s 14 nm contacts are impossible merely because 0.61(13.5)/0.33 ≃24.95 nm.
 4.5
@@ -1469,11 +1536,6 @@ Increasing NA improves lateral resolution but generally makes focus more sensiti
 wavelength improves resolution but also reduces this focus scale at ﬁxed NA. Reducing NA has
 the opposite resolution eﬀect. The Introduction’s combined discussion of smaller wavelength and
 NA should be read with these two distinct scalings in mind.
-
-
-=== PDF PAGE 27 ===
-Understanding the aberration budget paper
-18
 4.6
 A quantitative focus check
 From Eq. (4.12),

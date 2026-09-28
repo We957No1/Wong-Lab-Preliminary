@@ -1,175 +1,175 @@
 \contentsline {chapter}{How to study this book}{i}{chapter*.1}%
-\contentsline {part}{I\hspace {1em}The physical language of the paper}{1}{part*.11}%
-\contentsline {chapter}{\numberline {1}What problem is the paper trying to solve?}{2}{chapter*.12}%
-\contentsline {section}{\numberline {1.1}Printing a pattern with light}{2}{section*.13}%
-\contentsline {section}{\numberline {1.2}What makes an image imperfect?}{2}{section*.14}%
-\contentsline {section}{\numberline {1.3}Why a budget is useful}{3}{section*.20}%
-\contentsline {section}{\numberline {1.4}Vocabulary you will repeatedly meet}{3}{section*.21}%
-\contentsline {chapter}{\numberline {2}The mathematics we actually need}{5}{chapter*.22}%
-\contentsline {section}{\numberline {2.1}Units and dimensionless ratios}{5}{section*.23}%
-\contentsline {section}{\numberline {2.2}Complex numbers are a language for phase}{5}{section*.25}%
-\contentsline {section}{\numberline {2.3}Derivatives, gradients, and Taylor expansion}{6}{section*.31}%
-\contentsline {section}{\numberline {2.4}Integrals over a disk}{6}{section*.37}%
-\contentsline {section}{\numberline {2.5}Vectors, matrices, and least squares}{7}{section*.41}%
-\contentsline {section}{\numberline {2.6}Averages, random errors, and correlations}{7}{section*.43}%
-\contentsline {section}{\numberline {2.7}Fourier analysis: a shape as a sum of ripples}{7}{section*.45}%
-\contentsline {chapter}{\numberline {3}Light, phase, rays, and optical path}{9}{chapter*.49}%
-\contentsline {section}{\numberline {3.1}From Maxwell's equations to a wave}{9}{section*.50}%
-\contentsline {section}{\numberline {3.2}Optical path is not just distance}{12}{section*.67}%
-\contentsline {section}{\numberline {3.3}How rays emerge from wave theory}{13}{section*.71}%
-\contentsline {section}{\numberline {3.4}What a surface error does at a mirror}{13}{section*.74}%
-\contentsline {section}{\numberline {3.5}Polarization and the limits of a scalar field}{14}{section*.76}%
-\contentsline {chapter}{\numberline {4}Pupils, diffraction, resolution, and focus}{15}{chapter*.77}%
-\contentsline {section}{\numberline {4.1}Aperture stops, pupils, and numerical aperture}{15}{section*.78}%
-\contentsline {section}{\numberline {4.2}Propagation as a sum of angular components}{15}{section*.80}%
-\contentsline {section}{\numberline {4.3}The pupil function and the point-spread function}{16}{section*.84}%
-\contentsline {section}{\numberline {4.4}Coherent and incoherent resolution are different questions}{17}{section*.89}%
-\contentsline {section}{\numberline {4.5}Resolution and depth-of-focus scaling}{17}{section*.91}%
-\contentsline {section}{\numberline {4.6}A quantitative focus check}{18}{section*.96}%
-\contentsline {chapter}{\numberline {5}Why EUV needs mirrors and a three-dimensional mask}{19}{chapter*.98}%
-\contentsline {section}{\numberline {5.1}The optical path through an EUV exposure system}{19}{section*.99}%
-\contentsline {section}{\numberline {5.2}Complex refractive index and absorption}{19}{section*.100}%
-\contentsline {section}{\numberline {5.3}Reflection at an interface}{20}{section*.102}%
-\contentsline {section}{\numberline {5.4}A thin film: summing all internal reflections}{20}{section*.104}%
-\contentsline {section}{\numberline {5.5}The Mo/Si period and the Bragg estimate}{20}{section*.106}%
-\contentsline {section}{\numberline {5.6}Finite absorber height breaks the ideal thin-mask picture}{21}{section*.108}%
-\contentsline {section}{\numberline {5.7}What a rigorous mask calculation has to do}{21}{section*.109}%
-\contentsline {part}{II\hspace {1em}From wavefront errors to printed patterns}{23}{part*.115}%
-\contentsline {chapter}{\numberline {6}Wavefront aberrations and what RMS does not tell you}{24}{chapter*.116}%
-\contentsline {section}{\numberline {6.1}The reference sphere and the aberration function}{24}{section*.117}%
-\contentsline {section}{\numberline {6.2}The familiar named aberrations}{24}{section*.118}%
-\contentsline {section}{\numberline {6.3}Piston does not change intensity}{25}{section*.121}%
-\contentsline {section}{\numberline {6.4}Tilt moves the image}{25}{section*.122}%
-\contentsline {section}{\numberline {6.5}Defocus changes the reference image plane}{25}{section*.124}%
-\contentsline {section}{\numberline {6.6}Deriving the small-aberration Strehl relation}{26}{section*.125}%
-\contentsline {section}{\numberline {6.7}Equal RMS is not equal lithographic performance}{26}{section*.129}%
-\contentsline {chapter}{\numberline {7}Zernike polynomials from the beginning}{27}{chapter*.130}%
-\contentsline {section}{\numberline {7.1}Why use orthogonal functions?}{27}{section*.131}%
-\contentsline {section}{\numberline {7.2}Constructing the first modes explicitly}{27}{section*.132}%
-\contentsline {section}{\numberline {7.3}The general definition}{28}{section*.136}%
-\contentsline {section}{\numberline {7.4}A radial table sufficient to understand low-order budgets}{29}{section*.140}%
-\contentsline {section}{\numberline {7.5}Recovering coefficients and calculating RMS}{29}{section*.142}%
-\contentsline {section}{\numberline {7.6}Single-index numbering is a convention, not a law}{31}{section*.148}%
-\contentsline {section}{\numberline {7.7}Mode orientation and rotating axes}{31}{section*.149}%
-\contentsline {section}{\numberline {7.8}Balanced spherical aberration as a minimization}{32}{section*.150}%
-\contentsline {section}{\numberline {7.9}Sampling, obscurations, and amplitude weighting}{32}{section*.152}%
-\contentsline {chapter}{\numberline {8}Partially coherent images of periodic contact holes}{33}{chapter*.154}%
-\contentsline {section}{\numberline {8.1}Why one coherent calculation is not the full image}{33}{section*.155}%
-\contentsline {section}{\numberline {8.2}The source-point or Abbe imaging equation}{34}{section*.157}%
-\contentsline {section}{\numberline {8.3}The Hopkins transmission cross coefficient}{34}{section*.160}%
-\contentsline {section}{\numberline {8.4}Diffraction coefficients of a rectangular opening}{34}{section*.164}%
-\contentsline {section}{\numberline {8.5}Understanding the quasar illumination}{35}{section*.168}%
-\contentsline {section}{\numberline {8.6}A two-order derivation of pattern shift}{36}{section*.170}%
-\contentsline {section}{\numberline {8.7}An even phase perturbation changes shape}{36}{section*.173}%
-\contentsline {section}{\numberline {8.8}Defocus, symmetry, and source design}{36}{section*.176}%
-\contentsline {chapter}{\numberline {9}From light intensity to CD, PS, PVB, and NILS}{38}{chapter*.177}%
-\contentsline {section}{\numberline {9.1}An aerial image is not yet a resist contour}{38}{section*.178}%
-\contentsline {section}{\numberline {9.2}Critical dimension and centre position}{38}{section*.180}%
-\contentsline {section}{\numberline {9.3}Deriving the edge-displacement formula}{39}{section*.183}%
-\contentsline {section}{\numberline {9.4}NILS makes the slope dimensionless}{39}{section*.185}%
-\contentsline {section}{\numberline {9.5}Focus-exposure matrices and process windows}{40}{section*.189}%
-\contentsline {section}{\numberline {9.6}What a process variation band can mean}{40}{section*.190}%
-\contentsline {section}{\numberline {9.7}Placement error, overlay, and edge placement error}{40}{section*.193}%
-\contentsline {section}{\numberline {9.8}Why horizontal and vertical errors differ}{41}{section*.195}%
-\contentsline {chapter}{\numberline {10}How an aberration coefficient changes a metric}{42}{chapter*.196}%
-\contentsline {section}{\numberline {10.1}Differentiating the pupil and the field}{42}{section*.197}%
-\contentsline {section}{\numberline {10.2}Differentiating a printed edge}{42}{section*.200}%
-\contentsline {section}{\numberline {10.3}A numerical derivative when an analytic derivative is unavailable}{43}{section*.203}%
-\contentsline {section}{\numberline {10.4}Interactions and nonlinear response}{43}{section*.205}%
-\contentsline {section}{\numberline {10.5}Symmetry predicts some zero sensitivities}{43}{section*.207}%
-\contentsline {section}{\numberline {10.6}Why a physical inverse is difficult but not impossible}{44}{section*.208}%
-\contentsline {part}{III\hspace {1em}Understanding the authors' inverse model}{45}{part*.209}%
-\contentsline {chapter}{\numberline {11}Reconstructing the paper's dataset and assumptions}{46}{chapter*.210}%
-\contentsline {section}{\numberline {11.1}The optical conditions that define this particular experiment}{46}{section*.211}%
-\contentsline {section}{\numberline {11.2}The intended pattern families in Table 2}{46}{section*.213}%
-\contentsline {section}{\numberline {11.3}The conflicting plot-label table}{47}{section*.215}%
-\contentsline {section}{\numberline {11.4}Three groups of aberration inputs}{47}{section*.217}%
-\contentsline {section}{\numberline {11.5}Why a screening design is used}{48}{section*.221}%
-\contentsline {section}{\numberline {11.6}What is one machine-learning sample?}{48}{section*.222}%
-\contentsline {section}{\numberline {11.7}The 24-versus-25 output issue}{48}{section*.223}%
-\contentsline {section}{\numberline {11.8}Filtering and scaling are part of the model}{49}{section*.224}%
-\contentsline {chapter}{\numberline {12}The inverse problem: existence, ambiguity, and feasible targets}{50}{chapter*.225}%
-\contentsline {section}{\numberline {12.1}Three separate questions}{50}{section*.226}%
-\contentsline {section}{\numberline {12.2}More indicators than coefficients does not settle uniqueness}{50}{section*.230}%
-\contentsline {section}{\numberline {12.3}The singular-value decomposition explains sensitivity}{50}{section*.231}%
-\contentsline {section}{\numberline {12.4}Linear inverse and regularization}{51}{section*.233}%
-\contentsline {section}{\numberline {12.5}Feasible outputs occupy a structured subset}{51}{section*.236}%
-\contentsline {section}{\numberline {12.6}Why averaging inverse solutions can fail}{51}{section*.237}%
-\contentsline {section}{\numberline {12.7}One output per input versus a distribution of solutions}{52}{section*.239}%
-\contentsline {section}{\numberline {12.8}The feasible set is the real object of a budget}{52}{section*.240}%
-\contentsline {chapter}{\numberline {13}The neural network and its training, step by step}{53}{chapter*.242}%
-\contentsline {section}{\numberline {13.1}A neuron is a weighted sum followed by a function}{53}{section*.243}%
-\contentsline {section}{\numberline {13.2}What the network is asked to learn}{53}{section*.245}%
-\contentsline {section}{\numberline {13.3}Interpreting the reported layer widths}{54}{section*.246}%
-\contentsline {section}{\numberline {13.4}Why feature normalization matters}{54}{section*.247}%
-\contentsline {section}{\numberline {13.5}The training loss}{54}{section*.250}%
-\contentsline {section}{\numberline {13.6}Backpropagation is repeated application of the chain rule}{55}{section*.252}%
-\contentsline {section}{\numberline {13.7}Deriving the Levenberg--Marquardt update}{55}{section*.256}%
-\contentsline {section}{\numberline {13.8}Training, validation, and test have different jobs}{56}{section*.258}%
-\contentsline {section}{\numberline {13.9}What the learning theory does and does not promise}{56}{section*.259}%
-\contentsline {chapter}{\numberline {14}Errors, percentages, and what validation means}{57}{chapter*.260}%
-\contentsline {section}{\numberline {14.1}Root mean square error}{57}{section*.261}%
-\contentsline {section}{\numberline {14.2}Mean absolute percentage error}{57}{section*.263}%
-\contentsline {section}{\numberline {14.3}Why near-zero shifts are especially awkward}{58}{section*.266}%
-\contentsline {section}{\numberline {14.4}Better companion measures for a placement budget}{58}{section*.267}%
-\contentsline {section}{\numberline {14.5}Coefficient error versus image error}{59}{section*.272}%
-\contentsline {section}{\numberline {14.6}What an independent simulation test establishes}{59}{section*.273}%
-\contentsline {part}{IV\hspace {1em}Reading the results and constructing a defensible budget}{60}{part*.274}%
-\contentsline {chapter}{\numberline {15}Read the paper with this chapter beside it}{61}{chapter*.275}%
-\contentsline {section}{\numberline {15.1}Title, abstract, and the actual claim}{61}{section*.276}%
-\contentsline {section}{\numberline {15.2}Introduction: why this work was attempted}{61}{section*.277}%
-\contentsline {subsection}{\numberline {15.2.1}Shorter wavelength makes a fixed OPD more serious}{61}{subsection*.278}%
-\contentsline {subsection}{\numberline {15.2.2}The earlier aberration-control methods}{62}{subsection*.279}%
-\contentsline {section}{\numberline {15.3}Figure 1: the optical system}{62}{section*.280}%
-\contentsline {section}{\numberline {15.4}Equation (1): the entire wavefront represented by coefficients}{62}{section*.281}%
-\contentsline {section}{\numberline {15.5}Table 1 and Figure 2: illumination and process conditions}{63}{section*.282}%
-\contentsline {section}{\numberline {15.6}Table 2 and Figure 3: what the mask represents}{63}{section*.283}%
-\contentsline {section}{\numberline {15.7}Figure 4: the simplified network}{63}{section*.284}%
-\contentsline {section}{\numberline {15.8}Equations (2) and (3): comparing errors}{64}{section*.285}%
-\contentsline {section}{\numberline {15.9}Table 3: labels for all subsequent bar charts}{64}{section*.286}%
-\contentsline {section}{\numberline {15.10}Figure 5: different coefficients for similar requested images}{64}{section*.287}%
-\contentsline {section}{\numberline {15.11}Figure 6: physical errors after forward re-simulation}{64}{section*.288}%
-\contentsline {section}{\numberline {15.12}Figure 7: percentages tell a different story}{65}{section*.289}%
-\contentsline {section}{\numberline {15.13}Figure 8: splitting around 0.14 nm}{65}{section*.290}%
-\contentsline {section}{\numberline {15.14}Section 3: the additional 118 cases}{65}{section*.291}%
-\contentsline {section}{\numberline {15.15}Table 4: the remaining target ranges}{65}{section*.292}%
-\contentsline {section}{\numberline {15.16}Figure 9: candidate ranges and accuracy}{66}{section*.294}%
-\contentsline {section}{\numberline {15.17}Figure 10: a second small-value split}{66}{section*.295}%
-\contentsline {section}{\numberline {15.18}Figures 11 and 12: two individual candidates}{67}{section*.296}%
-\contentsline {section}{\numberline {15.19}Conclusion and the limits explicitly acknowledged}{67}{section*.301}%
-\contentsline {section}{\numberline {15.20}The claim you should be able to explain accurately}{67}{section*.302}%
-\contentsline {chapter}{\numberline {16}Turning candidate wavefronts into an engineering budget}{68}{chapter*.303}%
-\contentsline {section}{\numberline {16.1}State the acceptance condition before assigning tolerances}{68}{section*.304}%
-\contentsline {section}{\numberline {16.2}A local constraint is a slab in coefficient space}{68}{section*.305}%
-\contentsline {section}{\numberline {16.3}The largest local RMS ball around a candidate}{68}{section*.307}%
-\contentsline {section}{\numberline {16.4}Independent box limits require a joint worst-case test}{69}{section*.309}%
-\contentsline {section}{\numberline {16.5}Ellipsoidal budgets and covariance}{69}{section*.314}%
-\contentsline {section}{\numberline {16.6}A mode-specific placement calculation}{71}{section*.317}%
-\contentsline {section}{\numberline {16.7}From wavefront coefficients to physical hardware}{71}{section*.319}%
-\contentsline {section}{\numberline {16.8}Nonlinear robustness and process variation}{72}{section*.322}%
-\contentsline {section}{\numberline {16.9}Finite success counts and probability}{72}{section*.323}%
-\contentsline {section}{\numberline {16.10}Optical determinism does not remove photon and resist noise}{72}{section*.324}%
-\contentsline {section}{\numberline {16.11}A defensible use of the paper's method}{73}{section*.325}%
-\contentsline {chapter}{\numberline {17}A reproducible laboratory for the key ideas}{74}{chapter*.326}%
-\contentsline {section}{\numberline {17.1}What the supplied calculation does}{74}{section*.327}%
-\contentsline {section}{\numberline {17.2}Declared optical and numerical assumptions}{74}{section*.328}%
-\contentsline {section}{\numberline {17.3}How the calculation is organized}{75}{section*.329}%
-\contentsline {section}{\numberline {17.4}Same RMS, different images}{75}{section*.335}%
-\contentsline {section}{\numberline {17.5}Focus and dose variation}{75}{section*.338}%
-\contentsline {section}{\numberline {17.6}Independent checks built into the script}{77}{section*.340}%
-\contentsline {section}{\numberline {17.7}Experiments you can perform after reading}{77}{section*.341}%
-\contentsline {chapter}{\numberline {A}Two derivations worth doing in full}{78}{chapter*.348}%
-\contentsline {section}{\numberline {A.1}Deriving the Zernike radial formula and orthogonality}{78}{section*.349}%
-\contentsline {section}{\numberline {A.2}Why phase can move edges without changing total energy}{79}{section*.356}%
-\contentsline {chapter}{\numberline {B}Exercises with worked solutions}{80}{chapter*.358}%
-\contentsline {section}{\numberline {B.1}Phase, geometry, and diffraction}{80}{section*.359}%
-\contentsline {section}{\numberline {B.2}Wavefront statistics and Zernike modes}{81}{section*.366}%
-\contentsline {section}{\numberline {B.3}Image edges and process variation}{82}{section*.372}%
-\contentsline {section}{\numberline {B.4}Data and neural-network reasoning}{82}{section*.377}%
-\contentsline {section}{\numberline {B.5}Validation and budgeting}{83}{section*.384}%
-\contentsline {chapter}{\numberline {C}Reading map, notation, and source audit}{85}{chapter*.389}%
-\contentsline {section}{\numberline {C.1}Verified entry points into the supplied textbooks}{85}{section*.390}%
-\contentsline {section}{\numberline {C.2}Symbol dictionary}{86}{section*.391}%
-\contentsline {section}{\numberline {C.3}Publication issues that must remain visible}{87}{section*.392}%
-\contentsline {section}{\numberline {C.4}A checklist for your own future experiment}{88}{section*.393}%
-\contentsline {chapter}{Bibliography and source notes}{89}{appendix*.394}%
+\contentsline {part}{I\hspace {1em}The physical language of the paper}{1}{part.11}%
+\contentsline {chapter}{\numberline {1}What problem is the paper trying to solve?}{2}{chapter.12}%
+\contentsline {section}{\numberline {1.1}Printing a pattern with light}{2}{section.13}%
+\contentsline {section}{\numberline {1.2}What makes an image imperfect?}{2}{section.14}%
+\contentsline {section}{\numberline {1.3}Why a budget is useful}{3}{section.20}%
+\contentsline {section}{\numberline {1.4}Vocabulary you will repeatedly meet}{3}{section.21}%
+\contentsline {chapter}{\numberline {2}The mathematics we actually need}{5}{chapter.23}%
+\contentsline {section}{\numberline {2.1}Units and dimensionless ratios}{5}{section.24}%
+\contentsline {section}{\numberline {2.2}Complex numbers are a language for phase}{5}{section.26}%
+\contentsline {section}{\numberline {2.3}Derivatives, gradients, and Taylor expansion}{6}{section.32}%
+\contentsline {section}{\numberline {2.4}Integrals over a disk}{6}{section.38}%
+\contentsline {section}{\numberline {2.5}Vectors, matrices, and least squares}{7}{section.42}%
+\contentsline {section}{\numberline {2.6}Averages, random errors, and correlations}{7}{section.44}%
+\contentsline {section}{\numberline {2.7}Fourier analysis: a shape as a sum of ripples}{7}{section.46}%
+\contentsline {chapter}{\numberline {3}Light, phase, rays, and optical path}{9}{chapter.50}%
+\contentsline {section}{\numberline {3.1}From Maxwell's equations to a wave}{9}{section.51}%
+\contentsline {section}{\numberline {3.2}Optical path is not just distance}{12}{section.68}%
+\contentsline {section}{\numberline {3.3}How rays emerge from wave theory}{13}{section.72}%
+\contentsline {section}{\numberline {3.4}What a surface error does at a mirror}{13}{section.75}%
+\contentsline {section}{\numberline {3.5}Polarization and the limits of a scalar field}{14}{section.77}%
+\contentsline {chapter}{\numberline {4}Pupils, diffraction, resolution, and focus}{15}{chapter.78}%
+\contentsline {section}{\numberline {4.1}Aperture stops, pupils, and numerical aperture}{15}{section.79}%
+\contentsline {section}{\numberline {4.2}Propagation as a sum of angular components}{15}{section.81}%
+\contentsline {section}{\numberline {4.3}The pupil function and the point-spread function}{16}{section.85}%
+\contentsline {section}{\numberline {4.4}Coherent and incoherent resolution are different questions}{17}{section.91}%
+\contentsline {section}{\numberline {4.5}Resolution and depth-of-focus scaling}{18}{section.93}%
+\contentsline {section}{\numberline {4.6}A quantitative focus check}{18}{section.98}%
+\contentsline {chapter}{\numberline {5}Why EUV needs mirrors and a three-dimensional mask}{19}{chapter.100}%
+\contentsline {section}{\numberline {5.1}The optical path through an EUV exposure system}{19}{section.101}%
+\contentsline {section}{\numberline {5.2}Complex refractive index and absorption}{19}{section.102}%
+\contentsline {section}{\numberline {5.3}Reflection at an interface}{20}{section.104}%
+\contentsline {section}{\numberline {5.4}A thin film: summing all internal reflections}{20}{section.106}%
+\contentsline {section}{\numberline {5.5}The Mo/Si period and the Bragg estimate}{20}{section.108}%
+\contentsline {section}{\numberline {5.6}Finite absorber height breaks the ideal thin-mask picture}{21}{section.110}%
+\contentsline {section}{\numberline {5.7}What a rigorous mask calculation has to do}{21}{section.111}%
+\contentsline {part}{II\hspace {1em}From wavefront errors to printed patterns}{23}{part.117}%
+\contentsline {chapter}{\numberline {6}Wavefront aberrations and what RMS does not tell you}{24}{chapter.118}%
+\contentsline {section}{\numberline {6.1}The reference sphere and the aberration function}{24}{section.119}%
+\contentsline {section}{\numberline {6.2}The familiar named aberrations}{24}{section.120}%
+\contentsline {section}{\numberline {6.3}Piston does not change intensity}{25}{section.123}%
+\contentsline {section}{\numberline {6.4}Tilt moves the image}{25}{section.124}%
+\contentsline {section}{\numberline {6.5}Defocus changes the reference image plane}{25}{section.126}%
+\contentsline {section}{\numberline {6.6}Deriving the small-aberration Strehl relation}{26}{section.127}%
+\contentsline {section}{\numberline {6.7}Equal RMS is not equal lithographic performance}{26}{section.131}%
+\contentsline {chapter}{\numberline {7}Zernike polynomials from the beginning}{27}{chapter.132}%
+\contentsline {section}{\numberline {7.1}Why use orthogonal functions?}{27}{section.133}%
+\contentsline {section}{\numberline {7.2}Constructing the first modes explicitly}{27}{section.134}%
+\contentsline {section}{\numberline {7.3}The general definition}{28}{section.138}%
+\contentsline {section}{\numberline {7.4}A radial table sufficient to understand low-order budgets}{29}{section.142}%
+\contentsline {section}{\numberline {7.5}Recovering coefficients and calculating RMS}{29}{section.145}%
+\contentsline {section}{\numberline {7.6}Single-index numbering is a convention, not a law}{31}{section.151}%
+\contentsline {section}{\numberline {7.7}Mode orientation and rotating axes}{31}{section.152}%
+\contentsline {section}{\numberline {7.8}Balanced spherical aberration as a minimization}{32}{section.153}%
+\contentsline {section}{\numberline {7.9}Sampling, obscurations, and amplitude weighting}{32}{section.155}%
+\contentsline {chapter}{\numberline {8}Partially coherent images of periodic contact holes}{33}{chapter.157}%
+\contentsline {section}{\numberline {8.1}Why one coherent calculation is not the full image}{33}{section.158}%
+\contentsline {section}{\numberline {8.2}The source-point or Abbe imaging equation}{34}{section.160}%
+\contentsline {section}{\numberline {8.3}The Hopkins transmission cross coefficient}{34}{section.163}%
+\contentsline {section}{\numberline {8.4}Diffraction coefficients of a rectangular opening}{34}{section.167}%
+\contentsline {section}{\numberline {8.5}Understanding the quasar illumination}{35}{section.171}%
+\contentsline {section}{\numberline {8.6}A two-order derivation of pattern shift}{36}{section.173}%
+\contentsline {section}{\numberline {8.7}An even phase perturbation changes shape}{36}{section.176}%
+\contentsline {section}{\numberline {8.8}Defocus, symmetry, and source design}{36}{section.179}%
+\contentsline {chapter}{\numberline {9}From light intensity to CD, PS, PVB, and NILS}{38}{chapter.180}%
+\contentsline {section}{\numberline {9.1}An aerial image is not yet a resist contour}{38}{section.181}%
+\contentsline {section}{\numberline {9.2}Critical dimension and centre position}{38}{section.183}%
+\contentsline {section}{\numberline {9.3}Deriving the edge-displacement formula}{39}{section.186}%
+\contentsline {section}{\numberline {9.4}NILS makes the slope dimensionless}{39}{section.188}%
+\contentsline {section}{\numberline {9.5}Focus-exposure matrices and process windows}{40}{section.192}%
+\contentsline {section}{\numberline {9.6}What a process variation band can mean}{40}{section.193}%
+\contentsline {section}{\numberline {9.7}Placement error, overlay, and edge placement error}{40}{section.196}%
+\contentsline {section}{\numberline {9.8}Why horizontal and vertical errors differ}{41}{section.198}%
+\contentsline {chapter}{\numberline {10}How an aberration coefficient changes a metric}{42}{chapter.199}%
+\contentsline {section}{\numberline {10.1}Differentiating the pupil and the field}{42}{section.200}%
+\contentsline {section}{\numberline {10.2}Differentiating a printed edge}{42}{section.203}%
+\contentsline {section}{\numberline {10.3}A numerical derivative when an analytic derivative is unavailable}{43}{section.206}%
+\contentsline {section}{\numberline {10.4}Interactions and nonlinear response}{43}{section.208}%
+\contentsline {section}{\numberline {10.5}Symmetry predicts some zero sensitivities}{43}{section.210}%
+\contentsline {section}{\numberline {10.6}Why a physical inverse is difficult but not impossible}{44}{section.211}%
+\contentsline {part}{III\hspace {1em}Understanding the authors' inverse model}{45}{part.212}%
+\contentsline {chapter}{\numberline {11}Reconstructing the paper's dataset and assumptions}{46}{chapter.213}%
+\contentsline {section}{\numberline {11.1}The optical conditions that define this particular experiment}{46}{section.214}%
+\contentsline {section}{\numberline {11.2}The intended pattern families in Table 2}{47}{section.216}%
+\contentsline {section}{\numberline {11.3}The conflicting plot-label table}{47}{section.218}%
+\contentsline {section}{\numberline {11.4}Three groups of aberration inputs}{47}{section.220}%
+\contentsline {section}{\numberline {11.5}Why a screening design is used}{48}{section.224}%
+\contentsline {section}{\numberline {11.6}What is one machine-learning sample?}{48}{section.225}%
+\contentsline {section}{\numberline {11.7}The 24-versus-25 output issue}{49}{section.226}%
+\contentsline {section}{\numberline {11.8}Filtering and scaling are part of the model}{49}{section.227}%
+\contentsline {chapter}{\numberline {12}The inverse problem: existence, ambiguity, and feasible targets}{50}{chapter.228}%
+\contentsline {section}{\numberline {12.1}Three separate questions}{50}{section.229}%
+\contentsline {section}{\numberline {12.2}More indicators than coefficients does not settle uniqueness}{50}{section.233}%
+\contentsline {section}{\numberline {12.3}The singular-value decomposition explains sensitivity}{50}{section.234}%
+\contentsline {section}{\numberline {12.4}Linear inverse and regularization}{51}{section.236}%
+\contentsline {section}{\numberline {12.5}Feasible outputs occupy a structured subset}{51}{section.239}%
+\contentsline {section}{\numberline {12.6}Why averaging inverse solutions can fail}{51}{section.240}%
+\contentsline {section}{\numberline {12.7}One output per input versus a distribution of solutions}{52}{section.242}%
+\contentsline {section}{\numberline {12.8}The feasible set is the real object of a budget}{52}{section.243}%
+\contentsline {chapter}{\numberline {13}The neural network and its training, step by step}{53}{chapter.245}%
+\contentsline {section}{\numberline {13.1}A neuron is a weighted sum followed by a function}{53}{section.246}%
+\contentsline {section}{\numberline {13.2}What the network is asked to learn}{53}{section.248}%
+\contentsline {section}{\numberline {13.3}Interpreting the reported layer widths}{54}{section.249}%
+\contentsline {section}{\numberline {13.4}Why feature normalization matters}{54}{section.250}%
+\contentsline {section}{\numberline {13.5}The training loss}{54}{section.253}%
+\contentsline {section}{\numberline {13.6}Backpropagation is repeated application of the chain rule}{55}{section.255}%
+\contentsline {section}{\numberline {13.7}Deriving the Levenberg--Marquardt update}{55}{section.259}%
+\contentsline {section}{\numberline {13.8}Training, validation, and test have different jobs}{56}{section.261}%
+\contentsline {section}{\numberline {13.9}What the learning theory does and does not promise}{56}{section.262}%
+\contentsline {chapter}{\numberline {14}Errors, percentages, and what validation means}{57}{chapter.263}%
+\contentsline {section}{\numberline {14.1}Root mean square error}{57}{section.264}%
+\contentsline {section}{\numberline {14.2}Mean absolute percentage error}{57}{section.266}%
+\contentsline {section}{\numberline {14.3}Why near-zero shifts are especially awkward}{58}{section.269}%
+\contentsline {section}{\numberline {14.4}Better companion measures for a placement budget}{58}{section.270}%
+\contentsline {section}{\numberline {14.5}Coefficient error versus image error}{59}{section.275}%
+\contentsline {section}{\numberline {14.6}What an independent simulation test establishes}{59}{section.276}%
+\contentsline {part}{IV\hspace {1em}Reading the results and constructing a defensible budget}{60}{part.277}%
+\contentsline {chapter}{\numberline {15}Read the paper with this chapter beside it}{61}{chapter.278}%
+\contentsline {section}{\numberline {15.1}Title, abstract, and the actual claim}{61}{section.279}%
+\contentsline {section}{\numberline {15.2}Introduction: why this work was attempted}{61}{section.280}%
+\contentsline {subsection}{\numberline {15.2.1}Shorter wavelength makes a fixed OPD more serious}{61}{subsection.281}%
+\contentsline {subsection}{\numberline {15.2.2}The earlier aberration-control methods}{62}{subsection.282}%
+\contentsline {section}{\numberline {15.3}Figure 1: the optical system}{62}{section.283}%
+\contentsline {section}{\numberline {15.4}Equation (1): the entire wavefront represented by coefficients}{62}{section.284}%
+\contentsline {section}{\numberline {15.5}Table 1 and Figure 2: illumination and process conditions}{63}{section.285}%
+\contentsline {section}{\numberline {15.6}Table 2 and Figure 3: what the mask represents}{63}{section.286}%
+\contentsline {section}{\numberline {15.7}Figure 4: the simplified network}{63}{section.287}%
+\contentsline {section}{\numberline {15.8}Equations (2) and (3): comparing errors}{64}{section.288}%
+\contentsline {section}{\numberline {15.9}Table 3: labels for all subsequent bar charts}{64}{section.289}%
+\contentsline {section}{\numberline {15.10}Figure 5: different coefficients for similar requested images}{64}{section.290}%
+\contentsline {section}{\numberline {15.11}Figure 6: physical errors after forward re-simulation}{64}{section.291}%
+\contentsline {section}{\numberline {15.12}Figure 7: percentages tell a different story}{65}{section.292}%
+\contentsline {section}{\numberline {15.13}Figure 8: splitting around 0.14 nm}{65}{section.293}%
+\contentsline {section}{\numberline {15.14}Section 3: the additional 118 cases}{65}{section.294}%
+\contentsline {section}{\numberline {15.15}Table 4: the remaining target ranges}{65}{section.295}%
+\contentsline {section}{\numberline {15.16}Figure 9: candidate ranges and accuracy}{66}{section.297}%
+\contentsline {section}{\numberline {15.17}Figure 10: a second small-value split}{66}{section.298}%
+\contentsline {section}{\numberline {15.18}Figures 11 and 12: two individual candidates}{67}{section.299}%
+\contentsline {section}{\numberline {15.19}Conclusion and the limits explicitly acknowledged}{67}{section.304}%
+\contentsline {section}{\numberline {15.20}The claim you should be able to explain accurately}{67}{section.305}%
+\contentsline {chapter}{\numberline {16}Turning candidate wavefronts into an engineering budget}{68}{chapter.306}%
+\contentsline {section}{\numberline {16.1}State the acceptance condition before assigning tolerances}{68}{section.307}%
+\contentsline {section}{\numberline {16.2}A local constraint is a slab in coefficient space}{68}{section.308}%
+\contentsline {section}{\numberline {16.3}The largest local RMS ball around a candidate}{68}{section.310}%
+\contentsline {section}{\numberline {16.4}Independent box limits require a joint worst-case test}{69}{section.312}%
+\contentsline {section}{\numberline {16.5}Ellipsoidal budgets and covariance}{69}{section.317}%
+\contentsline {section}{\numberline {16.6}A mode-specific placement calculation}{71}{section.320}%
+\contentsline {section}{\numberline {16.7}From wavefront coefficients to physical hardware}{71}{section.322}%
+\contentsline {section}{\numberline {16.8}Nonlinear robustness and process variation}{72}{section.325}%
+\contentsline {section}{\numberline {16.9}Finite success counts and probability}{72}{section.326}%
+\contentsline {section}{\numberline {16.10}Optical determinism does not remove photon and resist noise}{72}{section.327}%
+\contentsline {section}{\numberline {16.11}A defensible use of the paper's method}{73}{section.328}%
+\contentsline {chapter}{\numberline {17}A reproducible laboratory for the key ideas}{74}{chapter.329}%
+\contentsline {section}{\numberline {17.1}What the supplied calculation does}{74}{section.330}%
+\contentsline {section}{\numberline {17.2}Declared optical and numerical assumptions}{74}{section.331}%
+\contentsline {section}{\numberline {17.3}How the calculation is organized}{75}{section.332}%
+\contentsline {section}{\numberline {17.4}Same RMS, different images}{75}{section.338}%
+\contentsline {section}{\numberline {17.5}Focus and dose variation}{75}{section.341}%
+\contentsline {section}{\numberline {17.6}Independent checks built into the script}{77}{section.343}%
+\contentsline {section}{\numberline {17.7}Experiments you can perform after reading}{77}{section.344}%
+\contentsline {chapter}{\numberline {A}Two derivations worth doing in full}{78}{appendix.351}%
+\contentsline {section}{\numberline {A.1}Deriving the Zernike radial formula and orthogonality}{78}{section.352}%
+\contentsline {section}{\numberline {A.2}Why phase can move edges without changing total energy}{79}{section.359}%
+\contentsline {chapter}{\numberline {B}Exercises with worked solutions}{80}{appendix.361}%
+\contentsline {section}{\numberline {B.1}Phase, geometry, and diffraction}{80}{section.362}%
+\contentsline {section}{\numberline {B.2}Wavefront statistics and Zernike modes}{81}{section.369}%
+\contentsline {section}{\numberline {B.3}Image edges and process variation}{82}{section.375}%
+\contentsline {section}{\numberline {B.4}Data and neural-network reasoning}{82}{section.380}%
+\contentsline {section}{\numberline {B.5}Validation and budgeting}{83}{section.387}%
+\contentsline {chapter}{\numberline {C}Reading map, notation, and source audit}{85}{appendix.392}%
+\contentsline {section}{\numberline {C.1}Verified entry points into the supplied textbooks}{85}{section.393}%
+\contentsline {section}{\numberline {C.2}Symbol dictionary}{86}{section.395}%
+\contentsline {section}{\numberline {C.3}Publication issues that must remain visible}{87}{section.397}%
+\contentsline {section}{\numberline {C.4}A checklist for your own future experiment}{88}{section.399}%
+\contentsline {chapter}{Bibliography and source notes}{89}{appendix*.400}%

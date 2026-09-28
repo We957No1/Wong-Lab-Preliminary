@@ -9,11 +9,12 @@ import json
 from math import factorial
 import numpy as np
 from numpy.polynomial.legendre import leggauss
-from scipy.special import j1
+from scipy.special import j1, jn_zeros
 import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 from matplotlib.patches import Circle, Rectangle, Wedge
+from matplotlib.colors import LogNorm
 
 OUT = Path(__file__).resolve().parents[1]
 FIG = OUT / "figures"
@@ -33,6 +34,80 @@ def save(fig, name):
     fig.savefig(FIG / (name + ".pdf"))
     fig.savefig(FIG / (name + ".png"), dpi=160)
     plt.close(fig)
+
+def draw_airy_pattern():
+    """Clear circular pupil: coordinates are in units of lambda / NA."""
+    def intensity(radius):
+        v = 2*np.pi*np.asarray(radius, dtype=float)
+        amplitude = np.ones_like(v)
+        np.divide(2*j1(v), v, out=amplitude, where=(v != 0))
+        return amplitude**2
+
+    first_zero = float(jn_zeros(1, 1)[0]/(2*np.pi))
+    # d[J1(v)/v]/dv = -J2(v)/v; the first positive J2 zero
+    # is the maximum of the first bright ring.
+    first_peak = float(jn_zeros(2, 1)[0]/(2*np.pi))
+    peak_value = float(intensity(first_peak))
+    coordinates = np.linspace(-2.4, 2.4, 801)
+    xx, yy = np.meshgrid(coordinates, coordinates)
+    radius = np.linspace(0, 2.5, 5001)
+    curve = intensity(radius)
+
+    with plt.rc_context({"font.size": 11, "axes.titlesize": 11}):
+        fig = plt.figure(figsize=(9.6, 5.7), layout="constrained")
+        grid = fig.add_gridspec(2, 2, width_ratios=(1.05, 1.0))
+        image_ax = fig.add_subplot(grid[:, 0])
+        linear_ax = fig.add_subplot(grid[0, 1])
+        log_ax = fig.add_subplot(grid[1, 1], sharex=linear_ax)
+
+        picture = image_ax.imshow(
+            intensity(np.hypot(xx, yy)), extent=(-2.4, 2.4, -2.4, 2.4),
+            origin="lower", cmap="magma", norm=LogNorm(vmin=1e-5, vmax=1),
+            interpolation="nearest")
+        image_ax.set(
+            title="(a) Intensity in the image plane",
+            xlabel=r"$x/(\lambda/\mathrm{NA})$",
+            ylabel=r"$y/(\lambda/\mathrm{NA})$",
+            xticks=(-2, -1, 0, 1, 2), yticks=(-2, -1, 0, 1, 2))
+        image_ax.annotate(
+            "first dark ring",
+            xy=(-first_zero/np.sqrt(2), first_zero/np.sqrt(2)),
+            xytext=(-2.15, 1.85), color="white", fontsize=10,
+            arrowprops={"arrowstyle": "->", "color": "white", "lw": 1})
+        colorbar = fig.colorbar(
+            picture, ax=image_ax, orientation="horizontal", pad=.08,
+            fraction=.055, ticks=(1e-5, 1e-3, 1e-1, 1))
+        colorbar.set_label(r"Relative intensity $I/I(0)$ (log scale)")
+
+        for ax in (linear_ax, log_ax):
+            ax.plot(radius, curve, color="#087e8b", lw=1.5)
+            ax.axvline(first_zero, color="#a84429", ls="--", lw=1)
+            ax.set(xlim=(0, 2.5), ylabel=r"$I(r)/I(0)$")
+        linear_ax.set(ylim=(-.025, 1.05),
+                      title="(b) Radial intensity: linear scale")
+        linear_ax.tick_params(labelbottom=False)
+        linear_ax.axvspan(0, first_zero, color="#087e8b", alpha=.09)
+        linear_ax.text(.39, .88, "central\nAiry disk", ha="center",
+                       va="center", color="#17354c", fontsize=10)
+        linear_ax.annotate(
+            "first dark ring\n" + r"$r=0.6098\,\lambda/\mathrm{NA}$",
+            xy=(first_zero, 0), xytext=(1.12, .40), fontsize=10,
+            color="#a84429",
+            arrowprops={"arrowstyle": "->", "color": "#a84429", "lw": 1})
+        log_ax.set(yscale="log", ylim=(1e-5, 1.5),
+                   xlabel=r"Radius $r/(\lambda/\mathrm{NA})$",
+                   title="(c) Same profile: logarithmic scale")
+        log_ax.grid(axis="y", which="major", alpha=.15)
+        log_ax.plot(first_peak, peak_value, "o", color="#a84429", ms=4)
+        log_ax.annotate(
+            f"first bright ring\n{100*peak_value:.2f}% of central peak",
+            xy=(first_peak, peak_value), xytext=(1.15, .16),
+            fontsize=10, color="#a84429",
+            arrowprops={"arrowstyle": "->", "color": "#a84429", "lw": 1})
+        save(fig, "airy_pattern")
+    say(f"Airy first dark radius = {first_zero:.9f} lambda/NA"
+        f" = {first_zero*LAMBDA/NA:.6f} nm at the paper's wavelength and NA")
+    say(f"Airy first bright ring peak = {100*peak_value:.6f}% of central peak")
 
 def radial(n, m, rho):
     m = abs(m)
@@ -139,6 +214,8 @@ def main():
     say(f"Parameters for literal fully connected architecture = {sum((a+1)*b for a,b in zip(sizes,sizes[1:]))}")
     say(f"4x-scaled multilayer Bragg estimate = {2*(.725+1)*4*np.cos(np.deg2rad(6)):.9f} nm")
     say(f"Geometric 60 nm absorber shadow /4 = {60*np.tan(np.deg2rad(6))/4:.9f} nm")
+
+    draw_airy_pattern()
 
     # Original educational pupil atlas.
     grid=np.linspace(-1,1,241)
