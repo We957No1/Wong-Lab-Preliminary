@@ -177,112 +177,112 @@ Understanding the aberration budget paper
 iv
 4.5
 Resolution and depth-of-focus scaling . . . . . . . . . . . . . . . . . . . . . . . . . .
-18
+21
 4.6
 A quantitative focus check . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
-18
+21
 5
 Why EUV needs mirrors and a three-dimensional mask
-19
+22
 5.1
 The optical path through an EUV exposure system . . . . . . . . . . . . . . . . . .
-19
+22
 5.2
 Complex refractive index and absorption . . . . . . . . . . . . . . . . . . . . . . . .
-19
+22
 5.3
 Reﬂection at an interface
 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
-20
+23
 5.4
 A thin ﬁlm: summing all internal reﬂections . . . . . . . . . . . . . . . . . . . . . .
-20
+23
 5.5
 The Mo/Si period and the Bragg estimate . . . . . . . . . . . . . . . . . . . . . . .
-20
+23
 5.6
 Finite absorber height breaks the ideal thin-mask picture
 . . . . . . . . . . . . . .
-21
+24
 5.7
 What a rigorous mask calculation has to do . . . . . . . . . . . . . . . . . . . . . .
-21
+24
 II
 From wavefront errors to printed patterns
-23
+26
 6
 Wavefront aberrations and what RMS does not tell you
-24
+27
 6.1
 The reference sphere and the aberration function . . . . . . . . . . . . . . . . . . .
-24
+27
 6.2
 The familiar named aberrations . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
-24
+27
 6.3
 Piston does not change intensity
 . . . . . . . . . . . . . . . . . . . . . . . . . . . .
-25
+28
 6.4
 Tilt moves the image . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
-25
+28
 6.5
 Defocus changes the reference image plane . . . . . . . . . . . . . . . . . . . . . . .
-25
+28
 6.6
 Deriving the small-aberration Strehl relation
 . . . . . . . . . . . . . . . . . . . . .
-26
+29
 6.7
 Equal RMS is not equal lithographic performance . . . . . . . . . . . . . . . . . . .
-26
+29
 7
 Zernike polynomials from the beginning
-27
+30
 7.1
 Why use orthogonal functions? . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
-27
+30
 7.2
 Constructing the ﬁrst modes explicitly . . . . . . . . . . . . . . . . . . . . . . . . .
-27
+30
 7.3
 The general deﬁnition
 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
-28
+31
 7.4
 A radial table suﬃcient to understand low-order budgets . . . . . . . . . . . . . . .
-29
+32
 7.5
 Recovering coeﬃcients and calculating RMS . . . . . . . . . . . . . . . . . . . . . .
-29
+32
 7.6
 Single-index numbering is a convention, not a law . . . . . . . . . . . . . . . . . . .
-31
+34
 7.7
 Mode orientation and rotating axes . . . . . . . . . . . . . . . . . . . . . . . . . . .
-31
+34
 7.8
 Balanced spherical aberration as a minimization
 . . . . . . . . . . . . . . . . . . .
-32
+35
 7.9
 Sampling, obscurations, and amplitude weighting . . . . . . . . . . . . . . . . . . .
-32
+35
 8
 Partially coherent images of periodic contact holes
-33
+36
 8.1
 Why one coherent calculation is not the full image . . . . . . . . . . . . . . . . . .
-33
+36
 8.2
 The source-point or Abbe imaging equation . . . . . . . . . . . . . . . . . . . . . .
-34
+37
 8.3
 The Hopkins transmission cross coeﬃcient . . . . . . . . . . . . . . . . . . . . . . .
-34
+37
 8.4
 Diﬀraction coeﬃcients of a rectangular opening . . . . . . . . . . . . . . . . . . . .
-34
+37
 
 
 === PDF PAGE 6 ===
@@ -290,263 +290,263 @@ Understanding the aberration budget paper
 v
 8.5
 Understanding the quasar illumination . . . . . . . . . . . . . . . . . . . . . . . . .
-35
+38
 8.6
 A two-order derivation of pattern shift . . . . . . . . . . . . . . . . . . . . . . . . .
-36
+39
 8.7
 An even phase perturbation changes shape . . . . . . . . . . . . . . . . . . . . . . .
-36
+39
 8.8
 Defocus, symmetry, and source design . . . . . . . . . . . . . . . . . . . . . . . . .
-36
+39
 9
 From light intensity to CD, PS, PVB, and NILS
-38
+41
 9.1
 An aerial image is not yet a resist contour . . . . . . . . . . . . . . . . . . . . . . .
-38
+41
 9.2
 Critical dimension and centre position . . . . . . . . . . . . . . . . . . . . . . . . .
-38
+41
 9.3
 Deriving the edge-displacement formula
 . . . . . . . . . . . . . . . . . . . . . . . .
-39
+42
 9.4
 NILS makes the slope dimensionless
 . . . . . . . . . . . . . . . . . . . . . . . . . .
-39
+42
 9.5
 Focus-exposure matrices and process windows . . . . . . . . . . . . . . . . . . . . .
-40
+43
 9.6
 What a process variation band can mean . . . . . . . . . . . . . . . . . . . . . . . .
-40
+43
 9.7
 Placement error, overlay, and edge placement error . . . . . . . . . . . . . . . . . .
-40
+43
 9.8
 Why horizontal and vertical errors diﬀer . . . . . . . . . . . . . . . . . . . . . . . .
-41
+44
 10 How an aberration coeﬃcient changes a metric
-42
+45
 10.1 Diﬀerentiating the pupil and the ﬁeld
 . . . . . . . . . . . . . . . . . . . . . . . . .
-42
+45
 10.2 Diﬀerentiating a printed edge . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
-42
+45
 10.3 A numerical derivative when an analytic derivative is unavailable . . . . . . . . . .
-43
+46
 10.4 Interactions and nonlinear response . . . . . . . . . . . . . . . . . . . . . . . . . . .
-43
+46
 10.5 Symmetry predicts some zero sensitivities . . . . . . . . . . . . . . . . . . . . . . .
-43
+46
 10.6 Why a physical inverse is diﬃcult but not impossible . . . . . . . . . . . . . . . . .
-44
+47
 III
 Understanding the authors’ inverse model
-45
+48
 11 Reconstructing the paper’s dataset and assumptions
-46
+49
 11.1 The optical conditions that deﬁne this particular experiment
 . . . . . . . . . . . .
-46
+49
 11.2 The intended pattern families in Table 2 . . . . . . . . . . . . . . . . . . . . . . . .
-47
+50
 11.3 The conﬂicting plot-label table
 . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
-47
+50
 11.4 Three groups of aberration inputs . . . . . . . . . . . . . . . . . . . . . . . . . . . .
-47
+50
 11.5 Why a screening design is used . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
-48
+51
 11.6 What is one machine-learning sample? . . . . . . . . . . . . . . . . . . . . . . . . .
-48
+51
 11.7 The 24-versus-25 output issue . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
-49
+52
 11.8 Filtering and scaling are part of the model . . . . . . . . . . . . . . . . . . . . . . .
-49
+52
 12 The inverse problem: existence, ambiguity, and feasible targets
-50
+53
 12.1 Three separate questions . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
-50
+53
 12.2 More indicators than coeﬃcients does not settle uniqueness . . . . . . . . . . . . .
-50
+53
 12.3 The singular-value decomposition explains sensitivity . . . . . . . . . . . . . . . . .
-50
+53
 
 
 === PDF PAGE 7 ===
 Understanding the aberration budget paper
 vi
 12.4 Linear inverse and regularization . . . . . . . . . . . . . . . . . . . . . . . . . . . .
-51
+54
 12.5 Feasible outputs occupy a structured subset . . . . . . . . . . . . . . . . . . . . . .
-51
+54
 12.6 Why averaging inverse solutions can fail . . . . . . . . . . . . . . . . . . . . . . . .
-51
+54
 12.7 One output per input versus a distribution of solutions . . . . . . . . . . . . . . . .
-52
+55
 12.8 The feasible set is the real object of a budget . . . . . . . . . . . . . . . . . . . . .
-52
+55
 13 The neural network and its training, step by step
-53
+56
 13.1 A neuron is a weighted sum followed by a function . . . . . . . . . . . . . . . . . .
-53
+56
 13.2 What the network is asked to learn . . . . . . . . . . . . . . . . . . . . . . . . . . .
-53
+56
 13.3 Interpreting the reported layer widths
 . . . . . . . . . . . . . . . . . . . . . . . . .
-54
+57
 13.4 Why feature normalization matters . . . . . . . . . . . . . . . . . . . . . . . . . . .
-54
+57
 13.5 The training loss . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
-54
+57
 13.6 Backpropagation is repeated application of the chain rule
 . . . . . . . . . . . . . .
-55
+58
 13.7 Deriving the Levenberg–Marquardt update
 . . . . . . . . . . . . . . . . . . . . . .
-55
+58
 13.8 Training, validation, and test have diﬀerent jobs
 . . . . . . . . . . . . . . . . . . .
-56
+59
 13.9 What the learning theory does and does not promise . . . . . . . . . . . . . . . . .
-56
+59
 14 Errors, percentages, and what validation means
-57
+60
 14.1 Root mean square error
 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
-57
+60
 14.2 Mean absolute percentage error . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
-57
+60
 14.3 Why near-zero shifts are especially awkward . . . . . . . . . . . . . . . . . . . . . .
-58
+61
 14.4 Better companion measures for a placement budget . . . . . . . . . . . . . . . . . .
-58
+61
 14.5 Coeﬃcient error versus image error . . . . . . . . . . . . . . . . . . . . . . . . . . .
-59
+62
 14.6 What an independent simulation test establishes
 . . . . . . . . . . . . . . . . . . .
-59
+62
 IV
 Reading the results and constructing a defensible budget
-60
+63
 15 Read the paper with this chapter beside it
-61
+64
 15.1 Title, abstract, and the actual claim
 . . . . . . . . . . . . . . . . . . . . . . . . . .
-61
+64
 15.2 Introduction: why this work was attempted . . . . . . . . . . . . . . . . . . . . . .
-61
+64
 15.3 Figure 1: the optical system . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
-62
+65
 15.4 Equation (1): the entire wavefront represented by coeﬃcients . . . . . . . . . . . .
-62
+65
 15.5 Table 1 and Figure 2: illumination and process conditions . . . . . . . . . . . . . .
-63
+66
 15.6 Table 2 and Figure 3: what the mask represents . . . . . . . . . . . . . . . . . . . .
-63
+66
 15.7 Figure 4: the simpliﬁed network . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
-63
+66
 15.8 Equations (2) and (3): comparing errors . . . . . . . . . . . . . . . . . . . . . . . .
-64
+67
 15.9 Table 3: labels for all subsequent bar charts . . . . . . . . . . . . . . . . . . . . . .
-64
+67
 15.10Figure 5: diﬀerent coeﬃcients for similar requested images . . . . . . . . . . . . . .
-64
+67
 15.11Figure 6: physical errors after forward re-simulation
 . . . . . . . . . . . . . . . . .
-64
+67
 
 
 === PDF PAGE 8 ===
 Understanding the aberration budget paper
 vii
 15.12Figure 7: percentages tell a diﬀerent story . . . . . . . . . . . . . . . . . . . . . . .
-65
+68
 15.13Figure 8: splitting around 0.14 nm . . . . . . . . . . . . . . . . . . . . . . . . . . .
-65
+68
 15.14Section 3: the additional 118 cases . . . . . . . . . . . . . . . . . . . . . . . . . . .
-65
+68
 15.15Table 4: the remaining target ranges . . . . . . . . . . . . . . . . . . . . . . . . . .
-65
+68
 15.16Figure 9: candidate ranges and accuracy . . . . . . . . . . . . . . . . . . . . . . . .
-66
+69
 15.17Figure 10: a second small-value split . . . . . . . . . . . . . . . . . . . . . . . . . .
-66
+69
 15.18Figures 11 and 12: two individual candidates
 . . . . . . . . . . . . . . . . . . . . .
-67
+70
 15.19Conclusion and the limits explicitly acknowledged
 . . . . . . . . . . . . . . . . . .
-67
+70
 15.20The claim you should be able to explain accurately . . . . . . . . . . . . . . . . . .
-67
+70
 16 Turning candidate wavefronts into an engineering budget
-68
+71
 16.1 State the acceptance condition before assigning tolerances . . . . . . . . . . . . . .
-68
+71
 16.2 A local constraint is a slab in coeﬃcient space . . . . . . . . . . . . . . . . . . . . .
-68
+71
 16.3 The largest local RMS ball around a candidate . . . . . . . . . . . . . . . . . . . .
-68
+71
 16.4 Independent box limits require a joint worst-case test . . . . . . . . . . . . . . . . .
-69
+72
 16.5 Ellipsoidal budgets and covariance
 . . . . . . . . . . . . . . . . . . . . . . . . . . .
-69
+72
 16.6 A mode-speciﬁc placement calculation . . . . . . . . . . . . . . . . . . . . . . . . .
-71
+74
 16.7 From wavefront coeﬃcients to physical hardware . . . . . . . . . . . . . . . . . . .
-71
+74
 16.8 Nonlinear robustness and process variation
 . . . . . . . . . . . . . . . . . . . . . .
-72
+75
 16.9 Finite success counts and probability . . . . . . . . . . . . . . . . . . . . . . . . . .
-72
+75
 16.10Optical determinism does not remove photon and resist noise . . . . . . . . . . . .
-72
+75
 16.11A defensible use of the paper’s method . . . . . . . . . . . . . . . . . . . . . . . . .
-73
+76
 17 A reproducible laboratory for the key ideas
-74
+77
 17.1 What the supplied calculation does . . . . . . . . . . . . . . . . . . . . . . . . . . .
-74
+77
 17.2 Declared optical and numerical assumptions . . . . . . . . . . . . . . . . . . . . . .
-74
+77
 17.3 How the calculation is organized
 . . . . . . . . . . . . . . . . . . . . . . . . . . . .
-75
+78
 17.4 Same RMS, diﬀerent images . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
-75
+78
 17.5 Focus and dose variation . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
-75
+78
 17.6 Independent checks built into the script . . . . . . . . . . . . . . . . . . . . . . . .
-77
+80
 17.7 Experiments you can perform after reading
 . . . . . . . . . . . . . . . . . . . . . .
-77
+80
 A Two derivations worth doing in full
-78
+81
 A.1 Deriving the Zernike radial formula and orthogonality
 . . . . . . . . . . . . . . . .
-78
+81
 A.2 Why phase can move edges without changing total energy . . . . . . . . . . . . . .
-79
+82
 B Exercises with worked solutions
-80
+83
 B.1
 Phase, geometry, and diﬀraction
 . . . . . . . . . . . . . . . . . . . . . . . . . . . .
-80
+83
 B.2 Wavefront statistics and Zernike modes . . . . . . . . . . . . . . . . . . . . . . . . .
-81
+84
 B.3
 Image edges and process variation
 . . . . . . . . . . . . . . . . . . . . . . . . . . .
-82
+85
 
 
 === PDF PAGE 9 ===
@@ -554,28 +554,28 @@ Understanding the aberration budget paper
 viii
 B.4
 Data and neural-network reasoning . . . . . . . . . . . . . . . . . . . . . . . . . . .
-82
+85
 B.5 Validation and budgeting
 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
-83
+86
 C Reading map, notation, and source audit
-85
+88
 C.1 Veriﬁed entry points into the supplied textbooks
 . . . . . . . . . . . . . . . . . . .
-85
+88
 C.2
 Symbol dictionary
 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
-86
+89
 C.3
 Publication issues that must remain visible
 . . . . . . . . . . . . . . . . . . . . . .
-87
+90
 C.4 A checklist for your own future experiment
 . . . . . . . . . . . . . . . . . . . . . .
-88
+91
 Bibliography and source notes
-89
+92
 
 
 === PDF PAGE 10 ===
@@ -1499,13 +1499,226 @@ Understanding the aberration budget paper
 18
 resist thresholds, and proximity correction pose a diﬀerent problem. Do not conclude that the
 paper’s 14 nm contacts are impossible merely because 0.61(13.5)/0.33 ≃24.95 nm.
+Worked example: A sinusoidal mask between the two cutoﬀs
+Figure 4.2 illustrates a case in which spatially incoherent imaging preserves modulation that
+normally incident coherent illumination loses. We specify both the optical system and the source:
+changing coherence alone is not a complete experimental description.
+Optical system and mask, common to both cases
+Use a scalar, paraxial, linear, shift-invariant imaging system in air (n ≃1), at best focus, with
+unit lateral magniﬁcation |M| = 1. The objective is free of aberration and has a clear, uniformly
+weighted, unobscured circular pupil. Its image-side NA is 0.05, and the wavelength is 500 nm.
+Both sources are suﬃciently narrowband that we may use this single wavelength; the polarization
+is ﬁxed and treated as scalar. Thus the coherent ﬁeld transfer is
+P(fx, fy) = 1√
+f2x+f2y ≤fc,
+fc = NA
+λ
+= 0.100 µm−1.
+Here µm−1 denotes cycles per micrometre. The detector measures time-averaged optical intensity,
+with suﬃcient spatial sampling; noise, resist processing, and thresholding are outside this example.
+Let the thin mask have real, positive amplitude transmittance
+t(x) = t0 + ϵ cos(2πqx),
+t0 = 0.50,
+ϵ = 0.05,
+q = 1.5fc.
+(4.10)
+It is uniform in y and periodically extended in x, so there are no ﬁnite-mask edge eﬀects in
+the model. Its amplitude varies from 0.45 to 0.55; its intensity transmission is |t|2, not t. The
+modulation is weak because ϵ/t0 = 0.10. The spatial frequency is q = 0.150 µm−1, and its period
+is p = 1/q = 6.67 µm. In particular, fc < q < 2fc. All positions are expressed in the common
+object/image length scale.
+Source conditions
+Case A: coherent
+Case B: incoherent imaging response
+Illumination
+One collimated, normally incident
+plane wave, with uniform amplitude
+over the mask.
+A centred, extended angular source:
+mutually incoherent plane-wave
+components ﬁll a circular illumination
+pupil.
+Angular support
+A single source point at transverse
+frequency s = 0.
+Uniform weight per area in
+transverse-frequency space for |s| ≤3fc;
+illumination NA = 0.15.
+Phase relation
+The ﬁeld across the mask has a stable
+spatial phase relation.
+Diﬀerent source directions have no
+time-averaged mutual interference;
+their image intensities are added.
+In both cases the central wavelength is 500 nm. In Case B, an extended narrowband source in
+a condenser’s illumination pupil provides a model for the angular distribution; exposure is long
+enough to average the relative phase ﬂuctuations. This is not a single normally incident wave
+with an arbitrary label of incoherence.
+The ﬁnite source in Case B reproduces the spatially incoherent imaging formula for this particular
+mask. Its ﬁeld spectrum contains only 0, +q, −q. Every source direction that can send one of
+
+
+=== PDF PAGE 28 ===
+Understanding the aberration budget paper
+19
+those orders through the objective lies within |s| ≤q + fc = 2.5fc. The uniform source of radius
+3fc therefore covers all the relevant pupil-overlap regions. After the calibration below, averaging
+over these source directions gives the full pupil autocorrelation in Eq. (4.9). A ﬁnite source need
+not have zero spatial coherence at every separation to give this response for the speciﬁed spectrum.
+Chapter 8 develops the source-point calculation.
+Intensity calibration. We normalize each case to its response to a uniform mask t = t0, giving
+the reference level t2
+0 = 0.25 in both cases. With equal incident irradiance, the uniform angular
+source of radius 3fc sends only 1/9 of its power through the objective for a uniform mask in this
+model. Case B is therefore divided by that reference throughput, or equivalently its source power
+could be increased by nine. The ﬁgure compares pattern contrast after this stated calibration; it
+does not compare photon eﬃciency or signal-to-noise ratio.
+Case A: the pupil removes the ﬁeld sidebands
+Writing the cosine as two exponentials,
+t(x) = t0 + ϵ
+2e+i2πqx + ϵ
+2e−i2πqx.
+Normal incidence places the three ﬁeld orders at 0, +q, −q in the pupil-frequency plane. Since
+q > fc, both sidebands are blocked:
+UA(x) = t0,
+IA(x) = |UA(x)|2 = t2
+0 = 0.25.
+(4.11)
+Only a spatially constant ﬁeld survives, so the image has no sinusoidal modulation.
+Case B: some intensity modulation survives
+For a clear circular pupil, the normalized overlap area in Eq. (4.9) gives the real, nonnegative
+intensity transfer
+T(f) =
+
+
+
+2
+π
+h
+cos−1 ν −ν
+√
+1 −ν2
+i
+,
+0 ≤ν ≤1,
+0,
+ν > 1,
+ν = |f|
+2fc
+.
+(4.12)
+Here T(f) = OTF(f, 0) and T(0) = 1. Its support extends to 2fc, but its value falls toward zero:
+being below the cutoﬀdoes not mean being transmitted at full contrast. At our chosen frequency,
+ν = 0.75 and T(q) = 0.144294.
+Expand the object intensity exactly:
+|t(x)|2 = t2
+0 + ϵ2
+2 + 2t0ϵ cos(2πqx) + ϵ2
+2 cos(4πqx).
+In incoherent imaging, each intensity Fourier component is multiplied by T. The DC term passes
+unchanged, the term at q is attenuated, and the term at 2q = 3fc is removed. Thus
+IB(x) = t2
+0 + ϵ2
+2 + 2t0ϵT(q) cos(2πqx)
+= 0.25125 + 0.00721468 cos(2πqx).
+(4.13)
+Dropping terms of order ϵ2 gives the weak-modulation expression IB ≃t2
+0 + 2t0ϵT(q) cos(2πqx).
+The ﬁgure retains the exact ϵ2/2 DC term; this explains why the mean of the incoherent curve
+sits slightly above the coherent curve.
+
+
+=== PDF PAGE 29 ===
+Understanding the aberration budget paper
+20
+For a quantitative comparison, deﬁne Michelson contrast
+C = Imax −Imin
+Imax + Imin
+.
+The mask’s intensity transmission has C = 19.80 percent, the coherent image has C = 0, and
+the incoherent image has C = 2.87 percent. The original period survives in Case B with reduced
+contrast.
+0.0
+0.5
+1.0
+1.5
+2.0
+Spatial frequency f/fc
+0.0
+0.2
+0.4
+0.6
+0.8
+1.0
+Transfer
+q = 1.5fc
+T(q) = 0.1443
+(a) Same pupil; different quantities are transferred
+Coherent field transfer P(f, 0)
+Incoherent intensity transfer T(f)
+0
+1
+2
+3
+Position x/p
+Mask |t|2
+A: coherent
+B: incoherent
+(b) Pattern appearance: one common grayscale
+0.0
+0.5
+1.0
+1.5
+2.0
+2.5
+3.0
+Position x/p  (p = 6.67 m)
+0.8
+0.9
+1.0
+1.1
+1.2
+Calibrated intensity I/t2
+0
+(c) The coherent image is flat; some incoherent contrast survives
+Mask |t|2
+A: coherent image
+B: incoherent image
+0.8
+1.0
+1.2
+I/t2
+0
+= 500 nm, NA = 0.05, M = 1, q = 1.5fc, t0 = 0.5, = 0.05
+Figure 4.2: Sinusoidal-mask comparison under the optical and source conditions stated in Sec-
+tion 4.4. (a) The coherent curve transfers ﬁeld amplitude; the incoherent curve transfers intensity
+modulation. Their common pupil has ﬁeld cutoﬀfc, while q = 1.5fc lies inside the intensity
+cutoﬀ2fc. (b) Mask intensity transmission and the two images use one common grayscale, with
+no separate contrast stretching. (c) The corresponding proﬁles are divided by t2
+0 after the stated
+ﬂat-ﬁeld calibration. Case A uses one normally incident coherent wave; Case B averages a uni-
+form disk of mutually incoherent source directions with illumination NA 0.15. The objective NA
+is 0.05 in both cases. The incoherent image retains 2.87 percent contrast; the coherent image is
+uniform.
+No objective aperture has become larger in Case B. For example, a source direction sx = −q/2
+places the zero and +q orders at −0.75fc and +0.75fc, both inside the same pupil. Their interfer-
+ence can produce intensity variation at their diﬀerence frequency q. The source average retains
+some of that modulation. This advantage is speciﬁc to the stated comparison: oblique coherent
+
+
+=== PDF PAGE 30 ===
+Understanding the aberration budget paper
+21
+illumination can also transmit an appropriate pair of orders. The paper’s quasar source is a
+separate, partially coherent arrangement, studied in Chapter 8; the present visible-light example
+isolates the coherence and cutoﬀmechanism.
 4.5
 Resolution and depth-of-focus scaling
 Lithography often summarizes a process-dependent minimum feature scale as
 CD ∼k1
 λ
 NA,
-(4.10)
+(4.14)
 where k1 absorbs pattern, illumination, mask, resist, and process choices. For 14 nm, 13.5 nm
 wavelength, and 0.33 NA, the numerical ratio is k1 = 14(0.33)/13.5 ≃0.3422. This calculation
 characterizes the geometry; it does not prove a process window or assign the same k1 to every
@@ -1516,17 +1729,17 @@ Defocus adds a relative phase from Eq. (4.2). Subtract the on-axis piston:
 q
 1 −NA2ρ2 −1
 
-(4.11)
+(4.15)
 ≃−πzNA2
 λ
 ρ2.
-(4.12)
+(4.16)
 When the pupil-edge phase becomes a ﬁxed tolerable number, the corresponding defocus scales
 as λ/NA2:
 DOF ∼k2
 λ
 NA2 .
-(4.13)
+(4.17)
 Whether DOF denotes a half-range or a full range changes the convention for k2. The paper
 speciﬁes sampled focus values, not a universal k2.
 At its conditions,
@@ -1538,7 +1751,7 @@ the opposite resolution eﬀect. The Introduction’s combined discussion of sma
 NA should be read with these two distinct scalings in mind.
 4.6
 A quantitative focus check
-From Eq. (4.12),
+From Eq. (4.16),
 Wz(ρ) ≃−zNA2
 2
 ρ2.
@@ -1547,7 +1760,7 @@ Remove its mean and use Var(ρ2) = 1/12:
 4
 √
 3 .
-(4.14)
+(4.18)
 At z = 15 nm, σW,z = 0.235775 nm = 17.4648 mλ. The pupil-edge-to-centre OPD is 0.81675 nm.
 These two values are diﬀerent because RMS, peak-to-valley, and edge-to-centre error are diﬀerent
 statistics.
@@ -1557,7 +1770,7 @@ The exact angular formula gives an edge OPD 15[1 −
 value is a useful approximation, not an exact high-angle propagation result.
 
 
-=== PDF PAGE 28 ===
+=== PDF PAGE 31 ===
 Chapter 5
 Why EUV needs mirrors and a
 three-dimensional mask
@@ -1592,12 +1805,12 @@ I(z) = I(0)e−µabsz,
 µabs = 4πβ
 λ .
 (5.1)
-19
+22
 
 
-=== PDF PAGE 29 ===
+=== PDF PAGE 32 ===
 Understanding the aberration budget paper
-20
+23
 The real part aﬀects phase; the imaginary part attenuates amplitude. Material optical constants
 therefore inﬂuence both image contrast and phase. Treating an absorber as merely a perfectly
 black two-dimensional painted region omits this physics.
@@ -1651,9 +1864,9 @@ the normal obeys
 (5.4)
 
 
-=== PDF PAGE 30 ===
+=== PDF PAGE 33 ===
 Understanding the aberration budget paper
-21
+24
 This is a design estimate; the full result follows from the complex multilayer calculation above,
 including interfaces, absorption, and termination.
 The paper gives Mo thickness 0.725 nm, Si thickness 1 nm, and absorber height 15 nm, explicitly
@@ -1700,9 +1913,9 @@ and defocus.
 source points, and extract image or resist contours.
 
 
-=== PDF PAGE 31 ===
+=== PDF PAGE 34 ===
 Understanding the aberration budget paper
-22
+25
 For a periodic permittivity ϵ(x, z) = P
 g ϵg(z)eigx, expanding the ﬁeld in the same harmonics turns
 multiplication by ϵ into convolution of Fourier coeﬃcients. The diﬀraction orders become coupled
@@ -1714,14 +1927,14 @@ mine its exact electromagnetic solver, numerical convergence, material database,
 tion procedure. Those items remain unknown rather than being supplied by the word rigorous.
 
 
-=== PDF PAGE 32 ===
+=== PDF PAGE 35 ===
 Part II
 From wavefront errors to printed
 patterns
-23
+26
 
 
-=== PDF PAGE 33 ===
+=== PDF PAGE 36 ===
 Chapter 6
 Wavefront aberrations and what
 RMS does not tell you
@@ -1754,12 +1967,12 @@ W = Aρ4 + BHρ3 cos θ + CH2ρ2 cos2 θ
 The coeﬃcients and axes depend on convention, but the shapes reveal the standard families:
 • Spherical aberration: diﬀerent pupil radii have diﬀerent focal behavior; the wavefront
 has a quartic radial contribution.
-24
+27
 
 
-=== PDF PAGE 34 ===
+=== PDF PAGE 37 ===
 Understanding the aberration budget paper
-25
+28
 • Coma: an oﬀ-axis asymmetric wavefront component, often producing a lopsided point
 image.
 • Astigmatism: diﬀerent meridional directions focus diﬀerently. At a suitable intermediate
@@ -1811,14 +2024,14 @@ between shape and placement are the important points. When metrology removes til
 quoting RMS, that RMS cannot subsequently bound the removed placement error.
 6.5
 Defocus changes the reference image plane
-Equation (4.12) gives a quadratic pupil phase when the observation plane moves. Equivalently, a
+Equation (4.16) gives a quadratic pupil phase when the observation plane moves. Equivalently, a
 quadratic aberration can be partly compensated by changing focus. A report of best-focus RMS
 may therefore exclude a defocus term that still matters at a ﬁxed wafer plane.
 
 
-=== PDF PAGE 35 ===
+=== PDF PAGE 38 ===
 Understanding the aberration budget paper
-26
+29
 The paper varies the focus setting by ±15 nm while also changing aberration coeﬃcients. To
 reconstruct this experiment one must know whether the Zernike coeﬃcients are deﬁned at a ﬁxed
 reference focus, whether refocusing is permitted, and whether focus is reapplied separately for
@@ -1881,7 +2094,7 @@ remains a compact measure of optical quality and a useful control variable. It m
 alone is not a complete description of a pattern-speciﬁc imaging requirement.
 
 
-=== PDF PAGE 36 ===
+=== PDF PAGE 39 ===
 Chapter 7
 Zernike polynomials from the
 beginning
@@ -1944,12 +2157,12 @@ Hence Z2
 =
 √
 6ρ2 sin 2θ.
-27
+30
 
 
-=== PDF PAGE 37 ===
+=== PDF PAGE 40 ===
 Understanding the aberration budget paper
-28
+31
 For a coma-shaped mode, start from (ρ3 −aρ) cos θ. Remove its overlap with tilt:
 0 =
 D
@@ -2047,9 +2260,9 @@ The Kronecker delta δab equals one if a = b and zero otherwise. This is the for
 the modes form independent unit axes under this pupil-area metric.
 
 
-=== PDF PAGE 38 ===
+=== PDF PAGE 41 ===
 Understanding the aberration budget paper
-29
+32
 7.4
 A radial table suﬃcient to understand low-order budgets
 Every m > 0 entry below has both a cosine and sine partner. Apply the normalization in Eq. (7.5);
@@ -2150,9 +2363,9 @@ explicit removal of piston. Other removed modes must also be excluded. With an u
 basis, the corresponding modal norm factors remain in the sum.
 
 
-=== PDF PAGE 39 ===
+=== PDF PAGE 42 ===
 Understanding the aberration budget paper
-30
+33
 (n,m) = (0,0)
 (n,m) = (1,1)
 (n,m) = (1,-1)
@@ -2170,9 +2383,9 @@ OPD signs; the same colour scale is used throughout. The labels are (n, m), not 
 index coeﬃcient numbers.
 
 
-=== PDF PAGE 40 ===
+=== PDF PAGE 43 ===
 Understanding the aberration budget paper
-31
+34
 Worked example: A coeﬃcient is not a peak-to-valley value
 For defocus W = cZ0
 2, the centre value is −
@@ -2233,9 +2446,9 @@ character of its cosine and sine partners. This matters when comparing horizonta
 pattern sensitivities.
 
 
-=== PDF PAGE 41 ===
+=== PDF PAGE 44 ===
 Understanding the aberration budget paper
-32
+35
 7.8
 Balanced spherical aberration as a minimization
 Suppose a surface produces raw quartic OPD Bρ4.
@@ -2288,7 +2501,7 @@ ported list of coeﬃcients to get RMS? You must ﬁrst know basis normalization
 support and weight, units, and which modes were removed.
 
 
-=== PDF PAGE 42 ===
+=== PDF PAGE 45 ===
 Chapter 8
 Partially coherent images of periodic
 contact holes
@@ -2340,12 +2553,12 @@ Iout(x) =
 ZZ
 h(x, r1)h∗(x, r2)Jin(r1, r2)dr1dr2.
 The incoherent-source integral below is a convenient special form of this general propagation rule.
-33
+36
 
 
-=== PDF PAGE 43 ===
+=== PDF PAGE 46 ===
 Understanding the aberration budget paper
-34
+37
 8.2
 The source-point or Abbe imaging equation
 Let s be an illumination spatial frequency, expressed in wafer-equivalent coordinates. The incident
@@ -2427,9 +2640,9 @@ py
 (8.8)
 
 
-=== PDF PAGE 44 ===
+=== PDF PAGE 47 ===
 Understanding the aberration budget paper
-35
+38
 1.0
 0.5
 0.0
@@ -2511,9 +2724,9 @@ Increasing pitch reduces order spacing in the pupil. Diﬀerent pitches therefor
 phases even when CD stays ﬁxed. Changing a rectangle’s aspect ratio changes the weights amn
 
 
-=== PDF PAGE 45 ===
+=== PDF PAGE 48 ===
 Understanding the aberration budget paper
-36
+39
 in the two directions. This is why the authors keep many pitches and both orientations instead
 of one averaged contact pattern.
 8.6
@@ -2561,9 +2774,9 @@ One source design cannot generally equalize every important order pair for all p
 rectangular dimensions. Source optimization is a pattern-dependent interference problem.
 
 
-=== PDF PAGE 46 ===
+=== PDF PAGE 49 ===
 Understanding the aberration budget paper
-37
+40
 30
 20
 10
@@ -2607,7 +2820,7 @@ A common phase on symmetric side orders changes an even intensity proﬁle. A re
 combines many such interference terms and an incoherent source average.
 
 
-=== PDF PAGE 47 ===
+=== PDF PAGE 50 ===
 Chapter 9
 From light intensity to CD, PS, PVB,
 and NILS
@@ -2647,12 +2860,12 @@ Equal edge motion shifts the pattern.
 Opposite edge motion changes its width.
 These two
 combinations explain why CD and PS provide diﬀerent information about a wavefront.
-38
+41
 
 
-=== PDF PAGE 48 ===
+=== PDF PAGE 51 ===
 Understanding the aberration budget paper
-39
+42
 9.3
 Deriving the edge-displacement formula
 Let an original edge satisfy I0(xe) = T at nominal dose one. Perturb the image by δI and the
@@ -2705,9 +2918,9 @@ These assumed slopes are not measured values from the paper. The example explain
 loss can enlarge process variation even if nominal CD is adjusted back to target by changing dose.
 
 
-=== PDF PAGE 49 ===
+=== PDF PAGE 52 ===
 Understanding the aberration budget paper
-40
+43
 9.5
 Focus-exposure matrices and process windows
 For each focus z and relative dose D, simulate a contour and compute CD(z, D), PS(z, D), and
@@ -2757,9 +2970,9 @@ A contact can be correctly centred but too large. Conversely, its width can be p
 entire position is wrong.
 
 
-=== PDF PAGE 50 ===
+=== PDF PAGE 53 ===
 Understanding the aberration budget paper
-41
+44
 9.8
 Why horizontal and vertical errors diﬀer
 The mask incidence plane establishes a preferred direction.
@@ -2772,7 +2985,7 @@ deﬁnition of the reported shifts would need to be known. A small denominator i
 error is a separate statistical issue, addressed in Chapter 14.
 
 
-=== PDF PAGE 51 ===
+=== PDF PAGE 54 ===
 Chapter 10
 How an aberration coeﬃcient
 changes a metric
@@ -2829,12 +3042,12 @@ Therefore
 (10.3)
 Combine left and right derivatives using Eq. (9.3) to obtain the sensitivity of CD and PS. This
 supplies an explicit physics-based path from coeﬃcient to metric.
-42
+45
 
 
-=== PDF PAGE 52 ===
+=== PDF PAGE 55 ===
 Understanding the aberration budget paper
-43
+46
 For M measured indicators, deﬁne
 Jij = ∂Fi
 ∂cj
@@ -2888,9 +3101,9 @@ present in a simpliﬁed scalar calculation. Mode names alone cannot establish w
 direction shifts.
 
 
-=== PDF PAGE 53 ===
+=== PDF PAGE 56 ===
 Understanding the aberration budget paper
-44
+47
 10.6
 Why a physical inverse is diﬃcult but not impossible
 The paper says required aberrations cannot be deduced using physical laws or equations because
@@ -2904,14 +3117,14 @@ given an unlimited budget? No. Higher-order eﬀects, interactions, changes in t
 active contour, and other patterns can become important away from zero.
 
 
-=== PDF PAGE 54 ===
+=== PDF PAGE 57 ===
 Part III
 Understanding the authors’ inverse
 model
-45
+48
 
 
-=== PDF PAGE 55 ===
+=== PDF PAGE 58 ===
 Chapter 11
 Reconstructing the paper’s dataset
 and assumptions
@@ -2953,12 +3166,12 @@ The optical constant database, complete multilayer termination, number of period
 discretization, polarization, mask sidewalls, pupil apodization, and resist settings are not speciﬁed
 well enough for a numerical reconstruction. A student should understand their role rather than
 infer them from typical values.
-46
+49
 
 
-=== PDF PAGE 56 ===
+=== PDF PAGE 59 ===
 Understanding the aberration budget paper
-47
+50
 Table 11.2: Pattern speciﬁcation reported in the paper’s Table 2. Each pitch list contains seven
 entries; rectangular pitch pairs are read position by position.
 Family
@@ -3047,9 +3260,9 @@ The stated simulation sets are:
 dices, with all others zero. This gives 41 × 24 = 984 rows.
 
 
-=== PDF PAGE 57 ===
+=== PDF PAGE 60 ===
 Understanding the aberration budget paper
-48
+51
 2. Deﬁnitive screening design: 77 combined cases using levels −20, 0, +20 mλ.
 3. Random combinations: 972 additional cases.
 Their nominal total is 984 + 77 + 972 = 2033 before any ﬁltering. The paper does not give a
@@ -3093,9 +3306,9 @@ averaging produces zero and loses all sensitivity to c. A feature vector (c, −
 is the paper’s motivation for avoiding averages over pattern performance during learning.
 
 
-=== PDF PAGE 58 ===
+=== PDF PAGE 61 ===
 Understanding the aberration budget paper
-49
+52
 11.7
 The 24-versus-25 output issue
 The inclusive range Z2, . . . , Z25 contains 24 coeﬃcients. The 984 = 41 × 24 count and plotted
@@ -3116,7 +3329,7 @@ the desired zero shift less well supported. Filtering must be deﬁned from the 
 and recorded; it is not just a harmless plotting choice.
 
 
-=== PDF PAGE 59 ===
+=== PDF PAGE 62 ===
 Chapter 12
 The inverse problem: existence,
 ambiguity, and feasible targets
@@ -3148,12 +3361,12 @@ The singular-value decomposition explains sensitivity
 Any real Jacobian can be written
 J = UΣV T .
 (12.1)
-50
+53
 
 
-=== PDF PAGE 60 ===
+=== PDF PAGE 63 ===
 Understanding the aberration budget paper
-51
+54
 The columns of V are orthogonal coeﬃcient-space directions. Applying J to direction vj gives
 Jvj = σjuj. The singular value σj measures how much that coeﬃcient combination changes the
 measured outputs.
@@ -3209,9 +3422,9 @@ Its minimizer is ˆc = 0, but F(0) = 0̸ = 1. The mean of valid inverse solution
 valid.
 
 
-=== PDF PAGE 61 ===
+=== PDF PAGE 64 ===
 Understanding the aberration budget paper
-52
+55
 More generally, squared-error regression favors the conditional mean E[c | y], which can fall
 between distinct feasible branches. A good test is therefore the forward consistency
 rimage = F(G(y)) −y,
@@ -3239,7 +3452,7 @@ Chapter 16 develops the distinction between candidate examples and a guaranteed
 tolerance region.
 
 
-=== PDF PAGE 62 ===
+=== PDF PAGE 65 ===
 Chapter 13
 The neural network and its training,
 step by step
@@ -3278,12 +3491,12 @@ Calling this a backpropagation network describes how derivatives of the training
 puted. It does not mean light is physically propagated backward through a Maxwell solver. Back
 prediction refers to the direction of the learned inverse mapping; backpropagation refers to the
 chain rule used to train it.
-53
+56
 
 
-=== PDF PAGE 63 ===
+=== PDF PAGE 66 ===
 Understanding the aberration budget paper
-54
+57
 13.3
 Interpreting the reported layer widths
 The paper gives
@@ -3350,9 +3563,9 @@ i2 .
 (13.4)
 
 
-=== PDF PAGE 64 ===
+=== PDF PAGE 67 ===
 Understanding the aberration budget paper
-55
+58
 Often the coeﬃcients here are normalized coordinates. The paper says training uses MSE and
 a goal of 10−8, but does not supply enough preprocessing detail to turn that number into a
 guaranteed physical coeﬃcient error.
@@ -3412,9 +3625,9 @@ residual with a damping penalty:
 2 ∥∆Θ∥2 .
 
 
-=== PDF PAGE 65 ===
+=== PDF PAGE 68 ===
 Understanding the aberration budget paper
-56
+59
 Diﬀerentiate with respect to ∆Θ, set the derivative to zero, and obtain
 (JT
 e Je + µI)∆Θ = −JT
@@ -3458,7 +3671,7 @@ mask changes. The paper’s useful evidence is its forward-simulation validation
 existence of approximation theorems.
 
 
-=== PDF PAGE 66 ===
+=== PDF PAGE 69 ===
 Chapter 14
 Errors, percentages, and what
 validation means
@@ -3509,12 +3722,12 @@ For a 14 nm CD, an error of 0.014 nm is 0.1 percent. For a 0.01 nm pattern shift
 nm error is 140 percent. The second percentage looks alarming, but the physical displacement
 error is identical. Conversely, a 1 percent error on a large quantity can exceed a stringent absolute
 tolerance.
-57
+60
 
 
-=== PDF PAGE 67 ===
+=== PDF PAGE 70 ===
 Understanding the aberration budget paper
-58
+61
 10
 4
 10
@@ -3595,9 +3808,9 @@ None of these removes the need to state which patterns and operating conditions 
 included.
 
 
-=== PDF PAGE 68 ===
+=== PDF PAGE 71 ===
 Understanding the aberration budget paper
-59
+62
 Worked example: A candidate near the boundary
 Suppose desired shift is 0.395 nm and the prediction-to-simulation error is +0.020 nm.
 The
@@ -3629,14 +3842,14 @@ needs calibrated mask, resist, optical, and metrology models. These limitations 
 of the evidence rather than negate the usefulness of a simulation-based study.
 
 
-=== PDF PAGE 69 ===
+=== PDF PAGE 72 ===
 Part IV
 Reading the results and constructing
 a defensible budget
-60
+63
 
 
-=== PDF PAGE 70 ===
+=== PDF PAGE 73 ===
 Chapter 15
 Read the paper with this chapter
 beside it
@@ -3667,12 +3880,12 @@ The consequences listed in the paper have distinct meanings:
 • Pattern centre oﬀset is a placement error even if width is unchanged.
 • Unwanted artifacts can include distorted, bridged, or otherwise undesired image features;
 the paper does not provide a separate artifact-rate study.
-61
+64
 
 
-=== PDF PAGE 71 ===
+=== PDF PAGE 74 ===
 Understanding the aberration budget paper
-62
+65
 15.2.2
 The earlier aberration-control methods
 The Introduction discusses several classes of prior work. They are context, not additional algo-
@@ -3725,9 +3938,9 @@ i=1
 ZiFi(ρ, θ)
 
 
-=== PDF PAGE 72 ===
+=== PDF PAGE 75 ===
 Understanding the aberration budget paper
-63
+66
 is a basis expansion. Its technical content is explained in Chapter 7. A ﬁnite implementation
 replaces the inﬁnite sum by a selected set of terms. Truncation neglects all remaining wavefront
 structure; it does not prove that those higher terms vanish in a real projector.
@@ -3771,9 +3984,9 @@ count calculation, while recognizing the implementation details remain incomplet
 provides no activation functions, output constraints, or training/test split.
 
 
-=== PDF PAGE 73 ===
+=== PDF PAGE 76 ===
 Understanding the aberration budget paper
-64
+67
 15.8
 Equations (2) and (3): comparing errors
 Paper location: PDF p. 4 / journal p. 7273. Equation (2) is RMSE; Eq. (3) is MAPE. Their
@@ -3821,9 +4034,9 @@ Panel (c), PVB: the comparison concerns process-contour variation, not nominal f
 A good CD prediction does not imply a good PVB prediction because the latter depends on
 
 
-=== PDF PAGE 74 ===
+=== PDF PAGE 77 ===
 Understanding the aberration budget paper
-65
+68
 several focus-dose conditions.
 The ﬁgure gives aggregate RMSE values, not maximum per-case residuals. The paper does not
 release numerical arrays for these bars; ﬁne numerical values should not be inferred from raster-
@@ -3869,9 +4082,9 @@ earlier table conﬂict prevent us from deciding whether this is a measurement c
 image bias, an axis swap, or a publication error. Do not relabel the numbers to force agreement.
 
 
-=== PDF PAGE 75 ===
+=== PDF PAGE 78 ===
 Understanding the aberration budget paper
-66
+69
 Table 15.1: Paper Table 4 transcribed without silently correcting its repeated last header. All
 entries are nm. The ﬁnal column is likely intended to represent vertical PVB, but that is an
 inference.
@@ -3950,9 +4163,9 @@ surprising. To judge a 0.4 nm budget, inspect the signed veriﬁed values and wo
 errors as well. The ﬁgure does not provide those complete arrays.
 
 
-=== PDF PAGE 76 ===
+=== PDF PAGE 79 ===
 Understanding the aberration budget paper
-67
+70
 15.18
 Figures 11 and 12: two individual candidates
 Paper location: PDF pp. 8–9 / journal pp. 7277–7278. Each ﬁgure has four parts:
@@ -4000,7 +4213,7 @@ per-mode tolerances, a manufacturable mirror prescription, or general production
 across arbitrary layers.
 
 
-=== PDF PAGE 77 ===
+=== PDF PAGE 80 ===
 Chapter 16
 Turning candidate wavefronts into an
 engineering budget
@@ -4039,12 +4252,12 @@ Suppose an orthonormal coeﬃcient norm represents the retained RMS. For any ∥
 Cauchy–Schwarz gives
 |gT
 i δc| ≤∥gi∥R.
-68
+71
 
 
-=== PDF PAGE 78 ===
+=== PDF PAGE 81 ===
 Understanding the aberration budget paper
-69
+72
 A suﬃcient local guarantee is |ri| + ∥gi∥R ≤bi for every i. Hence a radius satisfying
 R ≤min
 i
@@ -4108,9 +4321,9 @@ assumptions are justiﬁed, a multiple of σyi can be related to a tail probabil
 tails or systematic errors, that interpretation may fail.
 
 
-=== PDF PAGE 79 ===
+=== PDF PAGE 82 ===
 Understanding the aberration budget paper
-70
+73
 1.0
 0.5
 0.0
@@ -4133,9 +4346,9 @@ This is why the min/max bars in the paper’s Fig. 9(a) are not independent guar
 The additional diagonal bound in this illustration only makes the plotted region ﬁnite.
 
 
-=== PDF PAGE 80 ===
+=== PDF PAGE 83 ===
 Understanding the aberration budget paper
-71
+74
 16.6
 A mode-speciﬁc placement calculation
 For our unit-RMS vertical tilt, W = cyZ−1
@@ -4186,9 +4399,9 @@ wavefront contributions would add in amplitude and give a diﬀerent allocation,
 strate how geometry and correlation enter a surface budget.
 
 
-=== PDF PAGE 81 ===
+=== PDF PAGE 84 ===
 Understanding the aberration budget paper
-72
+75
 16.8
 Nonlinear robustness and process variation
 The Jacobian approximations are local. If a bound Mi on the relevant Hessian norm is known
@@ -4237,9 +4450,9 @@ control as major lithographic concerns [5]. A wavefront that passes deterministi
 criteria does not thereby establish an acceptable missing-contact probability.
 
 
-=== PDF PAGE 82 ===
+=== PDF PAGE 85 ===
 Understanding the aberration budget paper
-73
+76
 16.11
 A defensible use of the paper’s method
 Use the inverse network as a candidate generator. Verify each candidate with the forward model
@@ -4251,7 +4464,7 @@ directly than a single RMS number. It also supplies the additional steps needed 
 examples into an engineering tolerance statement.
 
 
-=== PDF PAGE 83 ===
+=== PDF PAGE 86 ===
 Chapter 17
 A reproducible laboratory for the key
 ideas
@@ -4282,12 +4495,12 @@ Equal spacing in squared radius approximates uniform annular area weighting beca
 1
 2d(ρ2). These choices make the example reproducible; they are not inferred hidden settings from
 the paper.
-74
+77
 
 
-=== PDF PAGE 84 ===
+=== PDF PAGE 87 ===
 Understanding the aberration budget paper
-75
+78
 17.3
 How the calculation is organized
 For each source point:
@@ -4347,9 +4560,9 @@ a universal PVB identity. Because the centre remains ﬁxed here, the full CD ra
 edge-band width.
 
 
-=== PDF PAGE 85 ===
+=== PDF PAGE 88 ===
 Understanding the aberration budget paper
-76
+79
 10
 5
 0
@@ -4444,9 +4657,9 @@ Right: left and right edge positions for the nine stated focus-dose samples. Sha
 their individual process bands.
 
 
-=== PDF PAGE 86 ===
+=== PDF PAGE 89 ===
 Understanding the aberration budget paper
-77
+80
 17.6
 Independent checks built into the script
 The script uses Gauss–Legendre integration in ρ2 and uniform angular quadrature to check the
@@ -4479,7 +4692,7 @@ These exercises teach the mechanism behind the paper’s dataset. They do not re
 that the missing commercial simulation or neural-network weights are available.
 
 
-=== PDF PAGE 87 ===
+=== PDF PAGE 90 ===
 Appendix A
 Two derivations worth doing in full
 A.1
@@ -4552,12 +4765,12 @@ dtk [tm+k(t −1)k]dt.
 Integrate by parts k times. Boundary terms vanish: the bracket has suﬃcient zeros at both t = 0
 and t = 1. The remaining integral contains dkQℓ/dtk, which is zero because Qℓhas degree less
 than k. This proves orthogonality for diﬀerent radial degrees at ﬁxed m.
-78
+81
 
 
-=== PDF PAGE 88 ===
+=== PDF PAGE 91 ===
 Understanding the aberration budget paper
-79
+82
 For the norm, the leading coeﬃcient of Qk is
 Ak = (m + 2k)!
 k!(m + k)!.
@@ -4617,7 +4830,7 @@ energy can change. The phase-only pupil model isolates one mechanism rather than
 every physical perturbation.
 
 
-=== PDF PAGE 89 ===
+=== PDF PAGE 92 ===
 Appendix B
 Exercises with worked solutions
 Try each problem before reading its solution. Numerical examples use this book’s conventions
@@ -4648,12 +4861,12 @@ Solution.
 With U = aei2π(fxx+fyy), |U|2 = |a|2 everywhere.
 At the stated wavelength and
 NA, ﬁrst-order normalized spacing for 38 nm pitch is 1.07656, outside the unit pupil for on-axis
-80
+83
 
 
-=== PDF PAGE 90 ===
+=== PDF PAGE 93 ===
 Understanding the aberration budget paper
-81
+84
 illumination. Oblique source points shift several orders into the pupil, allowing spatially varying
 interference cross terms.
 5. Recover the phase-to-shift relation
@@ -4714,9 +4927,9 @@ Thus |c| = 0.4(0.33)/2 = 0.066 nm = 4.88889
 milliwaves at 13.5 nm. This assumes the declared basis and no later removal of the translation.
 
 
-=== PDF PAGE 91 ===
+=== PDF PAGE 94 ===
 Understanding the aberration budget paper
-82
+85
 11. Decide which error a Strehl calculation omits
 Problem. A report removes piston, tilt, and defocus before giving a high Strehl estimate. Does
 it guarantee small absolute pattern shift at a ﬁxed wafer plane?
@@ -4762,9 +4975,9 @@ Data and neural-network reasoning
 Problem. Why does the single-mode sweep have 984 rows but at most 961 distinct wavefronts?
 
 
-=== PDF PAGE 92 ===
+=== PDF PAGE 95 ===
 Understanding the aberration budget paper
-83
+86
 Solution. 41(24) = 984 rows, but the all-zero vector appears 24 times. Removing 23 extra copies
 leaves at most 961 distinct vectors. Other groups can contain further duplicates.
 17. Check normalization and extrapolation
@@ -4802,9 +5015,9 @@ dicted 0.015 nm magnitude is below 0.4 nm. A large percentage need not imply a p
 violation.
 
 
-=== PDF PAGE 93 ===
+=== PDF PAGE 96 ===
 Understanding the aberration budget paper
-84
+87
 23. Derive a safe two-coeﬃcient box
 Problem. A local shift change is δy = 2δc1 −δc2 and remaining allowance is 0.3. Assign equal
 independent bounds |δcj| ≤a.
@@ -4833,7 +5046,7 @@ vectors. The paper explains a workﬂow but does not supply these artifacts. A r
 obtain or explicitly replace them.
 
 
-=== PDF PAGE 94 ===
+=== PDF PAGE 97 ===
 Appendix C
 Reading map, notation, and source
 audit
@@ -4922,12 +5135,12 @@ Born–Wolf §10.4.2(b), p. 512
 Wave-optics postulates
 Saleh–Teich §2.1, p. 40
 62
-85
+88
 
 
-=== PDF PAGE 95 ===
+=== PDF PAGE 98 ===
 Understanding the aberration budget paper
-86
+89
 Topic
 Section and printed page
 PDF page
@@ -5036,9 +5249,9 @@ relative
 amplitude
 
 
-=== PDF PAGE 96 ===
+=== PDF PAGE 99 ===
 Understanding the aberration budget paper
-87
+90
 Symbol
 Meaning here
 Units
@@ -5137,9 +5350,9 @@ not derived
 The 1 nm motivation is not a universal projector allowance.
 
 
-=== PDF PAGE 97 ===
+=== PDF PAGE 100 ===
 Understanding the aberration budget paper
-88
+91
 Issue
 Consequence
 Data and network weights
@@ -5158,7 +5371,7 @@ That record turns an interesting calculation into something another researcher c
 repeat, and improve.
 
 
-=== PDF PAGE 98 ===
+=== PDF PAGE 101 ===
 Bibliography
 [1] Z. Chen, L. Dong, H. Ding, and Y. Wei, Aberration budget analysis of EUV lithography
 from the imaging performance of a contact layer in a 5 nm technology node, Applied Optics
@@ -5192,4 +5405,4 @@ documentation for rowwise scaling and reuse of stored settings. Accessed 24 Sept
 help/deeplearning/ref/trainlm.html. Oﬃcial documentation for damping, squared-error
 training, and validation-failure stopping. Accessed 24 September 2026. This guide explains
 the paper’s historical method rather than recommending a particular current MATLAB API.
-89
+92

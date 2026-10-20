@@ -10,6 +10,7 @@ from math import factorial
 import numpy as np
 from numpy.polynomial.legendre import leggauss
 from scipy.special import j1, jn_zeros
+from scipy.integrate import quad
 import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
@@ -108,6 +109,142 @@ def draw_airy_pattern():
     say(f"Airy first dark radius = {first_zero:.9f} lambda/NA"
         f" = {first_zero*LAMBDA/NA:.6f} nm at the paper's wavelength and NA")
     say(f"Airy first bright ring peak = {100*peak_value:.6f}% of central peak")
+
+def draw_coherence_comparison():
+    """Sinusoidal amplitude mask, circular pupil, and declared source models.
+
+    Image intensities are calibrated to the response of a uniform mask.
+    A finite uniform angular source of radius 3*f_c gives the incoherent
+    imaging response for this particular three-order field spectrum.
+    """
+    wavelength_nm, objective_na, illumination_na = 500., .05, .15
+    fc_per_um = objective_na/(wavelength_nm/1000)
+    q_over_fc, t0, epsilon = 1.5, .5, .05
+    period_um = 1/(q_over_fc*fc_per_um)
+
+    def circular_otf(f_over_fc):
+        nu = np.clip(np.abs(np.asarray(f_over_fc, dtype=float))/2, 0, 1)
+        return 2/np.pi*(np.arccos(nu)-nu*np.sqrt(1-nu**2))
+
+    transfer_at_q = float(circular_otf(q_over_fc))
+    cycles = np.linspace(0, 3, 1501)
+    phase = 2*np.pi*cycles
+    object_intensity = (t0+epsilon*np.cos(phase))**2
+    coherent = np.full_like(cycles, t0**2)
+    incoherent = t0**2+epsilon**2/2+2*t0*epsilon*transfer_at_q*np.cos(phase)
+    contrast_object = 2*t0*epsilon/(t0**2+epsilon**2)
+    contrast_incoherent = 2*t0*epsilon*transfer_at_q/(t0**2+epsilon**2/2)
+
+    # Independent check: integrate the common admitted source area for
+    # every pair of orders, then sum the resulting interference terms.
+    # The objective pupil has unit radius; the source has radius three.
+    frequencies = np.array([-q_over_fc, 0., q_over_fc])
+    coefficients = np.array([epsilon/2, t0, epsilon/2])
+    source_radius = illumination_na/objective_na
+    kernel = np.zeros((3, 3))
+    for i, fi in enumerate(frequencies):
+        for j, fj in enumerate(frequencies):
+            lo = max(-source_radius, -fi-1, -fj-1)
+            hi = min(source_radius, -fi+1, -fj+1)
+            if hi <= lo:
+                continue
+            def admitted_height(sx):
+                y2 = min(source_radius**2-sx**2,
+                         1-(sx+fi)**2, 1-(sx+fj)**2)
+                return 2*np.sqrt(max(0., y2))
+            switch = -(fi+fj)/2
+            points = [switch] if lo < switch < hi else None
+            kernel[i, j] = quad(admitted_height, lo, hi, points=points,
+                                epsabs=1e-12, epsrel=1e-12)[0]/np.pi
+    order_phases = np.exp(2j*np.pi*frequencies[:, None]
+                         *cycles[None, :]/q_over_fc)
+    source_average = np.einsum("i,j,ij,ix,jx->x", coefficients, coefficients,
+                               kernel, order_phases, order_phases.conj()).real
+    residual = float(np.max(np.abs(source_average-incoherent)))
+    assert residual < 1e-10, "Source average and incoherent formula disagree"
+
+    with plt.rc_context({"font.size": 10.5, "axes.titlesize": 11}):
+        fig, axes = plt.subplots(
+            3, 1, figsize=(8.8, 7.8), layout="constrained",
+            gridspec_kw={"height_ratios": (1.1, .8, 1.2)})
+        fig.suptitle(
+            r"$\lambda=500$ nm, NA = 0.05, $M=1$, "
+            r"$q=1.5f_c$, $t_0=0.5$, $\epsilon=0.05$", fontsize=11)
+        transfer_ax, strip_ax, profile_ax = axes
+        f = np.linspace(0, 2.2, 1501)
+        transfer_ax.plot([0, 1, 1, 2.2], [1, 1, 0, 0],
+                         color="#17354c", lw=1.7,
+                         label=r"Coherent field transfer $P(f,0)$")
+        transfer_ax.plot(f, circular_otf(f), color="#087e8b", lw=1.8,
+                         label=r"Incoherent intensity transfer $T(f)$")
+        transfer_ax.axvline(q_over_fc, ymin=0, ymax=.70,
+                            color=".6", ls=":", lw=1)
+        transfer_ax.plot(q_over_fc, transfer_at_q, "o", color="#a84429", ms=4)
+        transfer_ax.annotate(
+            r"$q=1.5f_c$"+"\n"+r"$T(q)=0.1443$",
+            xy=(q_over_fc, transfer_at_q), xytext=(1.63, .40),
+            fontsize=10, color="#a84429",
+            arrowprops={"arrowstyle": "->", "color": "#a84429", "lw": 1})
+        transfer_ax.set(
+            xlim=(0, 2.2), ylim=(-.03, 1.12), xticks=(0, .5, 1, 1.5, 2),
+            xlabel=r"Spatial frequency $f/f_c$", ylabel="Transfer",
+            title="(a) Same pupil; different quantities are transferred")
+        transfer_ax.legend(loc="upper right", fontsize=9, frameon=False)
+
+        strips = np.vstack((object_intensity, coherent, incoherent))/t0**2
+        raster = strip_ax.imshow(
+            strips, extent=(0, 3, 2.5, -.5), aspect="auto",
+            cmap="gray", interpolation="nearest", vmin=.8, vmax=1.22)
+        strip_ax.set(
+            title="(b) Pattern appearance: one common grayscale",
+            yticks=(0, 1, 2),
+            yticklabels=(r"Mask $|t|^2$", "A: coherent", "B: incoherent"),
+            xticks=(0, 1, 2, 3), xlabel=r"Position $x/p$")
+        for boundary in (.5, 1.5):
+            strip_ax.axhline(boundary, color="white", lw=2)
+        colorbar = fig.colorbar(raster, ax=strip_ax, pad=.02, fraction=.025,
+                               ticks=(.8, 1., 1.2))
+        colorbar.set_label(r"$I/t_0^2$")
+
+        profile_ax.plot(cycles, object_intensity/t0**2, color=".55",
+                        lw=1.3, label=r"Mask $|t|^2$")
+        profile_ax.plot(cycles, coherent/t0**2, color="#a84429",
+                        lw=1.5, ls="--", label="A: coherent image")
+        profile_ax.plot(cycles, incoherent/t0**2, color="#087e8b",
+                        lw=1.8, label="B: incoherent image")
+        profile_ax.set(
+            xlim=(0, 3), ylim=(.78, 1.24),
+            xlabel=r"Position $x/p$  ($p=6.67\,\mu$m)",
+            ylabel=r"Calibrated intensity $I/t_0^2$",
+            title="(c) The coherent image is flat; some incoherent contrast survives")
+        profile_ax.legend(loc="upper center", bbox_to_anchor=(.5, -.27),
+                          ncol=3, fontsize=9, frameon=False)
+        profile_ax.grid(axis="y", alpha=.15)
+        save(fig, "coherence_comparison")
+
+    result = {
+        "wavelength_nm": wavelength_nm, "objective_NA": objective_na,
+        "illumination_NA_case_B": illumination_na, "magnification": 1,
+        "fc_cycles_per_um": fc_per_um, "q_over_fc": q_over_fc,
+        "period_um": period_um, "t0": t0, "epsilon": epsilon,
+        "OTF_q": transfer_at_q, "object_Michelson_contrast": contrast_object,
+        "coherent_image_contrast": 0,
+        "incoherent_image_contrast": contrast_incoherent,
+        "incoherent_image_mean": t0**2+epsilon**2/2,
+        "incoherent_cosine_amplitude": 2*t0*epsilon*transfer_at_q,
+        "source_integration_max_error": residual,
+        "normalization": "Separate flat-field calibration; uniform mask image is t0^2",
+        "source_A": "One uniform normally incident coherent plane wave",
+        "source_B": "Uniform angular disk radius 3*fc; mutually incoherent source points",
+    }
+    (OUT/"coherence_comparison_results.json").write_text(
+        json.dumps(result, indent=2)+"\n", encoding="utf-8")
+    say(f"Sinusoidal mask: q/fc = {q_over_fc}, period = {period_um:.6f} um,"
+        f" circular OTF(q) = {transfer_at_q:.9f}")
+    say(f"Michelson contrast: object {100*contrast_object:.6f}%, coherent 0%,"
+        f" incoherent {100*contrast_incoherent:.6f}%")
+    say(f"Independent finite-source integral versus incoherent formula:"
+        f" max error {residual:.3g}")
 
 def radial(n, m, rho):
     m = abs(m)
@@ -216,6 +353,7 @@ def main():
     say(f"Geometric 60 nm absorber shadow /4 = {60*np.tan(np.deg2rad(6))/4:.9f} nm")
 
     draw_airy_pattern()
+    draw_coherence_comparison()
 
     # Original educational pupil atlas.
     grid=np.linspace(-1,1,241)

@@ -1,5 +1,5 @@
 # Fdb version 4
-["pdflatex"] 1790444648.16382 "c:/Users/fxl04/Desktop/Prof. Wong Grp Papers/aberration budget paper/aberration_budget_textbook.tex" "aberration_budget_textbook.pdf" "aberration_budget_textbook" 1790444649.62955 0
+["pdflatex"] 1792175462.5175 "c:/Users/fxl04/Desktop/Prof. Wong Grp Papers/aberration budget paper/aberration_budget_textbook.tex" "aberration_budget_textbook.pdf" "aberration_budget_textbook" 1792175464.08907 0
   "C:/Users/fxl04/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map" 1790441545 80909 eab91d9745dd2edfd62a31d53cd5fe15 ""
   "C:/Users/fxl04/AppData/Local/MiKTeX/miktex/data/le/pdftex/pdflatex.fmt" 1786982797 13367606 db35c82cd0f443355456b6f394c9fcf8 ""
   "C:/Users/fxl04/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-ec.enc" 1256929440 2375 baa924870cfb487815765f9094cf3728 ""
@@ -221,14 +221,14 @@
   "C:/Users/fxl04/AppData/Local/Programs/MiKTeX/tex/latex/tools/tabularx.sty" 1780057721 7243 98a9e0737a56460d15d6b41be1ecc3b8 ""
   "C:/Users/fxl04/AppData/Local/Programs/MiKTeX/tex/latex/url/url.sty" 1388490452 12796 8edb7d69a20b857904dd0ea757c14ec9 ""
   "C:/Users/fxl04/AppData/Local/Programs/MiKTeX/tex/latex/xcolor/xcolor.sty" 1729265222 55384 b454dec21c2d9f45ec0b793f0995b992 ""
-  "aberration_budget_textbook.aux" 1790444649 132064 a1cc49f684de84870693cafa3623de84 "pdflatex"
+  "aberration_budget_textbook.aux" 1792175463 135860 208f546c7c442ea5c7d6bab1f55ed60c "pdflatex"
   "aberration_budget_textbook.tex" 1790441538 4712 6fa2504767acb8d7c917f59a49380a5d ""
-  "aberration_budget_textbook.toc" 1790444649 17946 96d8799b7b7c4466388a5a6e0bc63023 "pdflatex"
+  "aberration_budget_textbook.toc" 1792175463 17950 26eac0e07b0c783764d1062fd21bf691 "pdflatex"
   "bibliography.tex" 1790253166 2975 490778ffe4401d0c1134c178028ffee5 ""
   "c:/Users/fxl04/Desktop/Prof. Wong Grp Papers/aberration budget paper/aberration_budget_textbook.tex" 1790441538 4712 6fa2504767acb8d7c917f59a49380a5d ""
   "chapters/00_how_to_use.tex" 1790250928 4853 b263222dce9ddcfdbaf313ae3b4a21f2 ""
   "chapters/01_foundations.tex" 1790444646 29052 9969d30e1603303df41ea395a7b37b8b ""
-  "chapters/02_imaging_and_euv.tex" 1790251464 16944 e32333bf955b9afdac905cc306c682db ""
+  "chapters/02_imaging_and_euv.tex" 1790628882 26192 dbf985fe09eb60277e61defc6e949429 ""
   "chapters/03_wavefronts.tex" 1790251652 17949 6d5588bc560f0962564bafbc15e2004f ""
   "chapters/04_lithographic_imaging.tex" 1790251864 21994 1f9ddebeb9450a23eb3e2b6067000140 ""
   "chapters/05_data_and_inverse.tex" 1790254050 15109 db02f01357f562fa474502f50ccda183 ""
@@ -236,6 +236,8 @@
   "chapters/07_paper_walkthrough.tex" 1790252349 21475 46e244226e188f311161b0a727ab4ffd ""
   "chapters/08_budget_and_laboratory.tex" 1790254278 17637 c1b052d45cb3bb1bae8e4a05cc0d567f ""
   "chapters/09_exercises_and_reference.tex" 1790254052 22018 7748de1366ef6c147b41d057c09ea4d6 ""
+  "figures/airy_pattern.pdf" 1790541328 126903 3dbd32c0f5a74339f78093479c1940b2 ""
+  "figures/coherence_comparison.pdf" 1790628949 33894 ed51ddefda1b460bd1db54d5eda20732 ""
   "figures/contact_profiles.pdf" 1790254280 19789 6aead7b45c45a69774e674f8152ac21b ""
   "figures/feasible_budget.pdf" 1790254281 25663 6d962f2da94558a0a8ed38e67c5c186f ""
   "figures/focus_dose_bands.pdf" 1790254281 20725 b94417e20e43218379ad4695ce59609a ""

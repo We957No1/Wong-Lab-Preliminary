@@ -1,0 +1,958 @@
+PAGE 1
+From Maxwell’s Equations to Lithographic Imaging
+Conventions Through The Document. Time dependence is e−iωt, λ0 is the vacuum wavelength,
+and λm = λ0/n is the wavelength in a lossless medium. Transverse coordinates are x = (x, y);
+f = (fx, fy) is spatial frequency in cycles per unit length. Except where a refractive index is
+explicitly retained, the diffraction and imaging calculations below use vacuum or air, with n = 1,
+λ = λ0, and k = 2π/λ.
+1
+From Maxwell’s equations to the intensity we measure
+1.1
+The wave equation and the meaning of a complex field
+In a linear, isotropic medium, D = ϵE and B = µH. Maxwell’s equations for the real fields are
+∇· (ϵE) = ρfree,
+∇· (µH) = 0,
+∇× E = −µ∂tH,
+∇× H = Jfree + ϵ∂tE.
+(1.1)
+The physical source involves charges and currents. In a homogeneous, source-free propagation
+region, set ρfree = 0, Jfree = 0, and take ϵ, µ constant. Taking a curl,
+∇× (∇× E) = −µ∂t(∇× H) = −µϵ∂2
+t E,
+∇(∇· E) −∇2E = −µϵ∂2
+t E
+=⇒
+∇2E −µϵ∂2
+t E = 0.
+(1.2)
+For one optical frequency, introduce a spatial phasor ˜︁E:
+E(r, t) = Re{ ˜︁E(r)e−iωt},
+(∇2 + k2
+m) ˜︁E = 0,
+km = ω√µϵ = 2πn
+λ0
+.
+(1.3)
+The second time derivative supplies −ω2. Equation (1.3) is the vector Helmholtz equation. Its
+components satisfy scalar Helmholtz equations in this homogeneous region, but also obey the
+Maxwell constraint ∇· ˜︁E = 0. For a common, approximately fixed polarization we use one scalar
+phasor E through ˜︁E = ˆ︁e E. This scalar imaging approximation needs revision when polarization
+and longitudinal-field effects matter.
+1.2
+Why is it that I ∝|E|2
+Intensity is averaged energy flux, so begin with S = E × H. For a travelling plane wave in a
+lossless medium, Faraday’s law relates its phasors:
+k × ˜︁E = ωµ ˜︂
+H,
+˜︂
+H = 1
+η
+ˆ︁s × ˜︁E,
+η =
+√︂
+µ/ϵ.
+(1.4)
+Here ˆ︁s is the propagation direction and ˆ︁s · ˜︁E = 0. For linear polarization, E = Aeiϕ gives the
+particularly transparent check
+E = A cos(ϕ −ωt),
+S∥= A2
+η cos2(ϕ −ωt),
+I =
+⟨︂
+S∥
+⟩︂
+optical = A2
+2η = |E|2
+2η .
+(1.5)
+Thus the factor 1/2 comes from the optical-cycle average, and 1/η from the magnetic-to-electric-field
+relation. Equivalently, using E = (Ee−iωt + E∗eiωt)/2,
+⟨︂
+E2⟩︂
+optical = 1
+4
+⟨︂
+E2e−2iωt + 2|E|2 + (E∗)2e2iωt⟩︂
+= 1
+2|E|2.
+1
+
+
+PAGE 2
+These are peak phasor amplitudes; an RMS amplitude already includes the factor 1/
+√
+2. In a
+nonmagnetic dielectric, 1/η = nϵ0c, so I = nϵ0c|E|2/2. The general monochromatic flux formula
+is ⟨S⟩optical = 1
+2 Re( ˜︁E × ˜︂
+H ∗). It remains the appropriate starting point for vector, absorbing, or
+standing-wave fields where the simple travelling-wave reduction is inadequate.
+1.3
+Exactly how E and U are linked
+We use an intensity-normalized scalar amplitude throughout the rest of these notes:
+U =
+E
+√2η,
+E(r, t) = Re{
+√︁
+2η U(r)e−iωt},
+I = |U|2.
+(1.6)
+Here E is the real field component along the chosen linear polarization. E is measured in V/m; U
+is measured in
+√
+W/m. Multiplying by a constant does not change the homogeneous Helmholtz
+equation, so U satisfies it too. An alternative convention calls the unscaled phasor itself U, in
+which case I = |U|2/(2η). The convention must be stated once and kept consistent.
+For a fluctuating narrowband source, write a slowly varying amplitude U(r, τ) and then measure
+I =
+⟨︁|U|2⟩︁
+exposure. Optical-cycle averaging and averaging relative-phase fluctuations are separate
+steps; the latter determines coherence. A source can therefore be described downstream by its field
+or its field correlations on a chosen plane, without solving its microscopic emission process each
+time. See Born–Wolf and Saleh–Teich for the electromagnetic and scalar-wave foundations [1, 2].
+1.4
+Helmholtz equation
+We can now make the transition from the real electric field to the spatial equation for U explicit.
+Retain a homogeneous, source-free, linear, isotropic, lossless medium, with constant ϵ and µ. The
+wave equation applies to each Cartesian electric-field component; representing the whole field by
+one scalar additionally uses the polarization approximation described above.
+1. Start from the time-dependent Maxwell equation. Taking the curl of Faraday’s law and
+using the source-free Ampere law gives ∇× (∇× E) = −µϵ∂2
+t E. Since constant ϵ and ∇· (ϵE) = 0
+imply ∇· E = 0, the curl–curl identity gives, for a real component E,
+∇2E −1
+v2
+∂2E
+∂t2 = 0,
+v =
+1
+√µϵ = c
+n.
+(1.7)
+2. Separate the single-frequency time dependence. For a monochromatic field, define the
+complex representation
+Ec(r, t) = E(r)e−iωt =
+√︁
+2η U(r)e−iωt,
+E = Re Ec.
+(1.8)
+The subscript c marks the complex representation. The phasor U(r) has no time dependence for
+this one frequency, but its amplitude and phase may both vary with position.
+3. Evaluate the derivatives separately. Because η is spatially constant in this medium,
+∇2Ec =
+√︁
+2η e−iωt∇2U,
+∂2Ec
+∂t2
+=
+√︁
+2η U(−iω)2e−iωt = −ω2√︁
+2η Ue−iωt.
+(1.9)
+The Laplacian differentiates the spatial phasor; the time derivatives act only on the exponential
+term.
+2
+
+
+PAGE 3
+4. Substitute and cancel the common factor. Insert Eq. (1.9) into Eq. (1.7), using its complex
+representation:
+0 =
+√︁
+2η e−iωt
+[︄
+∇2U + ω2
+v2 U
+]︄
+.
+The prefactor is nonzero, so the bracket must vanish. Define the wave number in the medium by
+km = ω
+v = nω
+c
+= nk0 = 2π
+λm
+,
+k0 = ω
+c = 2π
+λ0
+.
+(1.10)
+We obtain the scalar Helmholtz equation,
+∇2U + k2
+mU = 0,
+or
+∇2U + n2k2
+0U = 0.
+(1.11)
+For example, in Cartesian coordinates this means ∂2
+xU + ∂2
+yU + ∂2
+zU + k2
+mU = 0. The unscaled
+phasor E = √2η U obeys the same equation because the normalization is constant.
+5. Check the result with a plane wave. Let U = U0ei(kxx+kyy+kzz). Each second spatial
+derivative supplies a minus sign, giving
+∇2U = −(k2
+x + k2
+y + k2
+z)U
+=⇒
+k2
+x + k2
+y + k2
+z = k2
+m.
+(1.12)
+For a propagating plane wave with a real wavevector, |k| = km = 2π/λm, as expected.
+2
+After the source: pupils, spatial frequencies, and propagation
+2.1
+What each part of the optical system does
+Source
+Illumination
+optics
+Patterned
+mask
+Projection
+optics
+Wafer and
+photoresist
+The aperture stop limits the accepted ray cone. Its images through the preceding and following
+optics are the entrance and exit pupils. For an image-side cone of half-angle αmax,
+NA = n sin αmax,
+fc = NA
+λ0
+.
+(2.1)
+NA is dimensionless; fc is a field spatial-frequency cutoff. The illumination optics determine
+which directions reach the mask. The projection pupil determines which outgoing components the
+projector admits. A source distribution and a projection pupil are different objects.
+For a thin scalar mask with complex amplitude transmission or reflection t(x), the field just after
+the mask is
+Uo(x) = t(x)Uinc(x).
+(2.2)
+Later, the imaging optics apply their own amplitude and phase response. Mask reflectance belongs
+in t; projection-mirror losses belong in the system response. They do not count the same reflection
+twice. Setting Uinc = 1 assumes a spatially constant coherent field and chooses its amplitude as the
+unit. Normalization, uniformity, and coherence are independent concepts.
+2.2
+The pupils are the apparent stop
+Imagine looking into the two-lens system in Fig. 1 from each end. From the left, lens L1 makes the
+stop appear larger and at a different position: this apparent opening is the entrance pupil (EP).
+3
+
+
+PAGE 4
+From the right, lens L2 gives another apparent size and position: the exit pupil (XP). Both are
+images of the same physical stop [1, 2].
+L1: f = 80 mm
+z = 0 mm
+L2: f = 100 mm
+z = 100 mm
+Exit pupil (XP)
+D = 10 mm,  z = −50 mm
+Stop
+D = 4 mm
+z = 40 mm
+Entrance pupil (EP)
+D = 8 mm,  z = 80 mm
+(a) One on-axis source
+on-axis source
+L1
+L2
+Exit pupil (XP)
+D = 10 mm,  z = −50 mm
+Stop
+D = 4 mm
+z = 40 mm
+Entrance pupil (EP)
+D = 8 mm,  z = 80 mm
+(b) Add an off-axis source
+on-axis source
+off-axis source
+Figure 1: Pupil position and diameter D for (a) one on-axis source and (b) an added off-axis source.
+Thin solid rays pass through the stop. Purple dashed extensions of the incoming rays meet the
+EP edges; teal dashed extensions of the outgoing rays meet the XP edges. The coloured openings
+are virtual images of the physical stop. Both sources share the same pupils. Diameters share one
+vertical scale; axial distances use a different scale.
+The names entrance and exit refer to the viewing side.
+The entrance pupil describes the opening seen from the mask. The exit pupil’s diameter and
+distance from the wafer determine the image-side cone angle, and hence the Numerical Aperture
+and cutoff spatial frequency.
+2.3
+A spatial frequency is variation across a fixed plane
+Use the transverse Fourier pair
+˜︁U(f, z) =
+∫︂
+U(x, z)e−i2πf·xd2x,
+U(x, z) =
+∫︂
+˜︁U(f, z)ei2πf·xd2f.
+(2.3)
+For a plane wave tilted towards x by θ in a lossless medium,
+U(x, z) = U0 exp
+[︃
+i2πn
+λ0
+(x sin θ + z cos θ)
+]︃
+=⇒
+fx = n sin θ
+λ0
+.
+4
+
+
+PAGE 5
+Larger tilt means faster phase variation across the fixed z = constant plane.
+A fine mask pattern has large spatial frequencies in their transmittance/reflectance. Under normal,
+uniform illumination these also appear in Uo. Oblique illumination ei2πs·x shifts the field spectrum to
+˜︁t(f −s). The intensity |U|2 has its own frequencies, which are differences between field frequencies.
+2.4
+Exact propagation and evanescent components
+Fourier-transform the transverse derivatives in Helmholtz equation:
+∂2
+z ˜︁U +
+[︂
+k2
+m −(2π)2|f|2]︂
+˜︁U = 0.
+(2.4)
+For outgoing propagation into z > 0, choose the forward or decaying branch:
+˜︁U(f, z) = Hz(f) ˜︁U(f, 0),
+Hz(f) = eikzz,
+kz =
+√︂
+k2m −(2π)2|f|2,
+Re kz ≥0,
+Im kz ≥0.
+(2.5)
+Substituting km = 2πn/λ0 gives the exact propagation transfer function explicitly:
+Hz(fx, fy) = exp
+⎡
+⎣i2πz
+√︄(︃n
+λ0
+)︃2
+−f2x −f2y
+⎤
+⎦.
+(2.6)
+In vacuum, n = 1, λ = λ0, and k = 2π/λ, so this is
+Hz(f) = exp
+[︃
+ikz
+√︂
+1 −λ2|f|2
+]︃
+.
+The full square root is retained. Multiplying the input spectrum by Hz and taking the inverse
+transverse Fourier transform gives
+U(x, z) = F−1[︂
+Hz(f) ˜︁U(f, 0)
+]︂
+(x).
+(2.7)
+For |f| < n/λ0, kz is real: the component propagates, and Hz changes its phase. For |f| > n/λ0,
+kz = iκ,
+κ = 2π
+√︂
+|f|2 −(n/λ0)2,
+Hz = e−κz.
+(2.8)
+This is an evanescent component, with amplitude decay length 1/κ. It still satisfies k · k = k2
+m;
+the wavevector is complex, so the real-vector bound |k⊥| ≤km no longer applies. The equality
+|f| = n/λ0 is the grazing boundary, kz = 0.
+Transverse frequency
+Meaning for a clear circular pupil
+|f| ≤fc
+Within the pupil’s angular acceptance.
+fc < |f| < n/λ0
+Propagating, but rejected by this pupil.
+|f| > n/λ0
+Evanescent in this medium.
+A sharp edge requires a wide range of field frequencies: some propagate and are rejected by the
+pupil, while sufficiently high ones are confined near the edge. Both mechanisms limit transferred
+detail, for different reasons.
+5
+
+
+PAGE 6
+2.5
+Fresnel propagation is an approximation to this result
+In vacuum, expand the square root for λ|f| ≪1:
+kz = k
+√︂
+1 −λ2|f|2 ≃k −πλ|f|2,
+Hz(f) ≃eikze−iπλz|f|2.
+(2.9)
+Inverse transformation gives the convolution with a quadratic-phase kernel:
+U(x, z) = eikz
+iλz
+∫︂
+U(x′, 0) exp
+[︄
+iπ|x −x′|2
+λz
+]︄
+d2x′.
+(2.10)
+The plane called z = 0 is whichever input plane has a known field. Free propagation applies between
+optical elements. Reflection, refraction, masks, and coatings require their own boundary conditions
+or transfer factors. In a folded mirror train, a local axis may be chosen for each propagation
+segment.
+The scalar angular spectrum is exact for its homogeneous, source-free model, not for a complete
+scanner. Fresnel propagation is useful for suitable paraxial segments; high-angle fields and the
+material interfaces of an EUV mask can require vector Maxwell calculations.
+3
+How focusing and aberrations enter the point-spread function
+3.1
+The three phase terms that cancel at focus
+Consider a thin lens in air with focal length F, object distance so, image distance si, and pupil
+coordinate ξ. For an on-axis object and on-axis observation point, the pupil-dependent phases are
+k|ξ|2
+2so
+⏞⏟⏟⏞
+object to lens
+−k|ξ|2
+2F
+⏞⏟⏟⏞
+lens
++k|ξ|2
+2si
+⏞⏟⏟⏞
+lens to image
+= k|ξ|2
+2
+(︃1
+so
++ 1
+si
+−1
+F
+)︃
+.
+(3.1)
+When 1/so + 1/si = 1/F, the path-dependent phase vanishes: contributions from all pupil positions
+arrive in phase at the image point.
+3.2
+Point Spread Function and Optical Transfer Function
+Let B(ξ) contain the aperture, amplitude weighting, and residual phase error, while the ideal lens
+phase has already been written explicitly. For an object point at xo and an image-plane coordinate
+x, the Fresnel calculation is
+Ui(x; xo) ∝
+∫︂
+B(ξ) exp
+{︄
+ik
+2
+[︄
+|ξ −xo|2
+so
+−|ξ|2
+F
++ |x −ξ|2
+si
+]︄}︄
+d2ξ.
+(3.2)
+Expand the squares. At the imaging condition, the |ξ|2 term cancels, leaving a pupil-independent
+phase Φ0 = k(|xo|2/so + |x|2/si)/2 and
+Ui ∝eiΦ0
+∫︂
+B(ξ)e−i2πξ·(x−Mxo)/(λsi)d2ξ,
+M = −si
+so
+.
+(3.3)
+Use reference-sphere field envelopes to remove these known ideal quadratic phases, and absorb
+constant gains and the coordinate Jacobian in the field convention. With the pupil-axis convention
+f = −ξ/(λsi), the result is
+h(x) =
+∫︂
+P(f)ei2πf·xd2f = F−1[P](x),
+hj(x) = h(x −Mxo,j).
+(3.4)
+6
+
+
+PAGE 7
+h is the amplitude point-spread function (PSF): the image field from a unit point object. Its argument
+is a transverse image-plane displacement, not a propagation distance. The pupil integration variable
+f has inverse-length units; the condition is |f| ≤fc, not |x| ≤fc.
+For a circular pupil of physical radius a, the paraxial mapping gives fc ≃a/(λsi) = NA/λ. In the
+usual scalar pupil model,
+P(f) = A(f) 1|f|≤fc exp
+[︃i2π
+λ W
+(︃f
+fc
+)︃]︃
+.
+(3.5)
+A ≥0 describes amplitude attenuation or apodization; W is phase-equivalent optical path error
+relative to ideal imaging, including any residual coating phase assigned to the projector. The disk
+describes the support only: an aberrated P is a complex function on that disk. Other pupil shapes
+give other supports.
+Keep distinct. For an ideal clear system, P = 1 inside the disk means zero residual phase error.
+The lens or mirrors and their focusing action are already included in Eq. (3.4). A bare hole followed
+by arbitrary free propagation is a different optical system.
+Within a region where the system is approximately shift invariant, superposition gives, in image-
+equivalent object coordinates,
+Ui = h ∗Uo = F−1[P ˜︁Uo],
+Icoh = |Ui|2.
+(3.6)
+If Uinc = 1, then Uo = t and ˜︁Uo = ˜︁t.
+˜︁t describes which field components the mask supplies;
+P describes how the projector changes them. For physical mask coordinates, first apply the
+magnification and orientation mapping. In a 4:1 reduction, |M| = 1/4; an image frequency is four
+times the corresponding physical mask frequency.
+3.3
+The Airy pattern and what an aberration changes
+For a clear, uniformly weighted circular pupil, P = 1 within fc. Writing r = |x| and using polar
+pupil coordinates,
+h(r) =
+∫︂fc
+0
+f df
+∫︂2π
+0
+ei2πfr cos θdθ = 2π
+∫︂fc
+0
+fJ0(2πfr)df
+= fcJ1(2πfcr)
+r
+,
+h(0) = πf2
+c .
+(3.7)
+The angular integral defines 2πJ0; the radial integral uses d[vJ1(v)]/dv = vJ0(v). Squaring the
+amplitude yields
+I(r)
+I(0) =
+[︃2J1(v)
+v
+]︃2
+,
+v = 2πfcr,
+r0 = 3.8317
+2πfc
+= 0.6098 λ
+NA.
+(3.8)
+The first zero of J1 defines the radius of the central Airy disk.
+At 13.5 nm and NA = 0.33,
+r0 = 24.95 nm. Figure 2 shows why the rings look prominent on a logarithmic display but faint on
+the linear image: the first bright ring peaks at only 1.75% of the central intensity. All panels show
+the same physical PSF.
+7
+
+
+PAGE 8
+−2
+−1
+0
+1
+2
+x/(λ/NA)
+−2
+−1
+0
+1
+2
+y/(λ/NA)
+first dark ring
+(a) Image plane: linear intensity
+−2
+−1
+0
+1
+2
+x/(λ/NA)
+−2
+−1
+0
+1
+2
+y/(λ/NA)
+first dark ring
+(b) Image plane: logarithmic intensity
+0.0
+0.5
+1.0
+1.5
+2.0
+2.5
+Radius r/(λ/NA)
+0.0
+0.2
+0.4
+0.6
+0.8
+1.0
+I(r)/I(0)
+r0 = 0.6098 λ/NA
+(c) Radial intensity: linear scale
+0.0
+0.5
+1.0
+1.5
+2.0
+2.5
+Radius r/(λ/NA)
+10−5
+10−4
+10−3
+10−2
+10−1
+100
+I(r)/I(0)
+first bright ring: 1.75%
+(d) Same radial intensity: logarithmic scale
+0.00
+0.25
+0.50
+0.75
+1.00
+I/I(0) (linear scale)
+10−5
+10−3
+10−1
+100
+I/I(0) (log scale)
+Figure 2: Airy intensity for a clear circular pupil. (a,b) The same image-plane intensity on linear and
+logarithmic scales; (c,d) radial profiles. The linear panels show unlogged I/I(0); absolute irradiance
+requires a specified source strength. The dashed circle marks the first dark ring. Logarithmic
+displays stop at 10−5; ideal minima are zero.
+Aberration changes the phases in the pupil integral and therefore changes the PSF, even if the
+pupil intensity |P|2 is unchanged. A constant phase (piston) changes no intensity; a linear pupil
+phase translates the PSF; quadratic phase produces defocus. For an image plane displaced by ∆z
+beyond best focus, paraxial propagation gives, after removal of the common phase,
+P∆z(f) ≃P0(f)e−iπλ∆z|f|2.
+(3.9)
+For fixed A, Parseval’s theorem gives
+∫︁|h|2d2x =
+∫︁|P|2d2f: phase errors redistribute the point-
+image energy. They can lower the peak, distort edges, or shift features without changing the
+admitted power in this scalar model. The pupil and diffraction treatment follows the standard
+image-formation framework in [1, 2].
+4
+Coherence, interference averaging, and the doubled cutoff
+4.1
+Why coherent and incoherent images differ
+Take two object-point amplitudes a1(τ) and a2(τ) whose image fields overlap at the same observation
+point: Ui = a1h1 + a2h2, where hj = h(x −Mxo,j). After optical-cycle normalization, the exposure
+8
+
+
+PAGE 9
+average gives
+Ii =
+⟨︂
+|a1h1 + a2h2|2⟩︂
+=
+⟨︂
+|a1|2⟩︂
+|h1|2 +
+⟨︂
+|a2|2⟩︂
+|h2|2 + 2 Re
+⎡
+⎢⎣⟨a1a∗
+2⟩
+⏞⏟⏟⏞
+Γ12
+h1h∗
+2
+⎤
+⎥⎦.
+(4.1)
+For fixed magnitudes, Γ12 = A1A2
+⟨︂
+ei(ϕ1−ϕ2)⟩︂
+. A stable relative phase preserves interference. For
+mutually incoherent contributions Γ12 = 0; for example, uniformly sampled relative phase gives
+(2π)−1 ∫︁2π
+0
+eiϕdϕ = 0. If each contribution alone has image intensity I0, their sum has intensity 4I0
+in phase, zero in antiphase, and 2I0 when mutually incoherent. Averaging over the optical carrier
+alone does not remove interference between coherent waves of the same frequency.
+For many points,
+Ii(x) =
+∑︂
+j,k
+⟨aja∗
+k⟩hj(x)h∗
+k(x).
+Mutually incoherent object points remove all j̸ = k terms, leaving a sum of intensity PSFs. Passing
+to a continuous object and calibrating out the overall throughput gives
+Iincoh = p ∗Io,
+p(x) =
+|h(x)|2
+∫︁|h(x′)|2d2x′ ,
+∫︂
+p d2x = 1.
+(4.2)
+This is linear in object intensity; Eq. (3.6) is linear in object field. The same point-response shape
+|h|2 appears in both. Coherence changes how different point responses combine. For partial
+coherence the off-diagonal correlations are generally nonzero, so neither limiting convolution alone
+describes the image.
+4.2
+Deriving the unnormalized OTF as a pupil autocorrelation
+Define the unnormalized intensity transfer function C and normalized optical transfer function T
+by
+C(q) = F[|h|2](q),
+T(q) = C(q)
+C(0) = F[p](q).
+(4.3)
+Here q is an intensity spatial frequency. Insert h =
+∫︁P(f)ei2πf·xd2f:
+C(q) =
+∫︂∫︂
+P(f1)P ∗(f2)
+∫︂
+ei2π(f1−f2−q)·xd2x
+⏞
+⏟⏟
+⏞
+δ(2)(f1−f2−q)
+d2f1d2f2
+=
+∫︂
+P(f)P ∗(f −q)d2f
+=
+∫︂
+P(f + q/2)P ∗(f −q/2)d2f.
+(4.4)
+At zero separation, Parseval’s theorem yields
+C(0) =
+∫︂
+|P(f)|2d2f =
+∫︂
+|h(x)|2d2x,
+T(0) = 1,
+˜︁Ii(q) = T(q)˜︁Io(q).
+(4.5)
+To express the autocorrelation as a convolution, define P †(f) = P ∗(−f). Then
+C = P ∗P †.
+(4.6)
+It is a convolution with a conjugated and reflected copy, not generally P ∗P. For an unaberrated
+clear circular pupil, P is real and even, so the distinction disappears and we convolve two identical
+disk indicators.
+9
+
+
+PAGE 10
+4.3
+Disk overlap explains the support and the contrast loss
+The two factors in Eq. (4.4) are nonzero on disks of radius fc with centres separated by q = |q|. For
+the ideal unit-weight pupil, their product is one in the intersection and zero elsewhere. Consequently
+C(q) is the overlap area. For 0 ≤q ≤2fc, let θ = cos−1(q/2fc). The overlap is twice a circular
+sector minus its triangle:
+C(q) = 2
+⎡
+⎣f2
+c θ −q
+2
+√︄
+f2c −q2
+4
+⎤
+⎦,
+T(q) =
+⎧
+⎨
+⎩
+2
+π
+[︂
+cos−1 ν −ν
+√︁
+1 −ν2
+]︂
+,
+0 ≤ν ≤1,
+0,
+ν > 1,
+ν =
+q
+2fc
+.
+(4.7)
+We divided by C(0) = πf2
+c . For q > 2fc there is no overlap; at q = 2fc the disks touch at one point
+of zero area. Thus the incoherent intensity cutoff is 2fc = 2NA/λ.
+fc
+q = 0fc: T(q) = 1.0000
+separation q
+q = 1.5fc: T(q) = 0.1443
+separation q
+q = 2.2fc: T(q) = 0.0000
+Figure 3: The unnormalized OTF of a clear circular pupil is the shaded overlap of two frequency
+disks, each of radius fc. Their centre separation is the intensity frequency q. Dividing the overlap
+by πf2
+c gives the values shown. There is no overlap beyond 2fc. These disks are in spatial-frequency
+space, not two physical holes in the optical system.
+For an aberrated pupil, overlapping points also carry the phase factor
+exp
+{︃i2π
+λ
+[︃
+W
+(︃f + q/2
+fc
+)︃
+−W
+(︃f −q/2
+fc
+)︃]︃}︃
+.
+The OTF is then a weighted complex overlap integral: phase cancellation can reduce transfer even
+when the supports overlap. Its modulus |T| is the modulation transfer function (MTF); its phase
+describes phase shifts of intensity modulations. A cutoff alone does not tell us the contrast available
+below it.
+The difference-frequency interpretation follows directly from Eq. (4.4): two admitted field compo-
+nents at f1, f2 produce an intensity term at q = f1 −f2. Each field frequency lies within fc, but
+their separation can approach 2fc.
+Keep distinct. The coherent cutoff fc is the cutoff of a linear field transfer function. It does
+not assert that a coherent intensity image cannot contain a 2fc beat frequency. The incoherent
+cutoff 2fc describes linear intensity transfer. Incoherent imaging can retain finer object-intensity
+modulation than on-axis coherent illumination in a specified comparison, but it is not universally
+better. The pupil has not enlarged, and neither have evanescent fields been recovered.
+10
+
+
+PAGE 11
+5
+A sinusoidal-mask example between the two cutoffs
+Use an aberration-free circular objective in air, scalar paraxial imaging at best focus, |M| = 1,
+λ = 500 nm, and NA = 0.05. Then fc = 0.100 µm−1. The thin mask, uniform in y, has
+t(x) = t0 + ϵ cos(2πqx),
+t0 = 0.50,
+ϵ = 0.05,
+q = 1.5fc,
+p = 1/q = 6.67 µm.
+(5.1)
+This is amplitude transmission; its intensity transmission is |t|2. The mask is periodic, with no
+finite-edge effects.
+A: coherent, normal illumination. The field orders are 0, +q, −q, with amplitudes t0, ϵ/2, ϵ/2.
+Both sidebands lie outside the pupil:
+UA = t0P(0) + ϵ
+2P(q)ei2πqx + ϵ
+2P(−q)e−i2πqx = t0,
+IA = 0.25.
+(5.2)
+B: an illumination giving the incoherent imaging response. Choose mutually incoherent
+plane-wave directions uniformly filling |s| ≤3fc (illumination NA 0.15). For this three-order mask,
+every source direction admitting any order lies within |s| ≤q + fc = 2.5fc; the uniform source
+therefore covers every relevant overlap region. After calibration, its source average gives the full
+incoherent OTF for this example. This finite source need not be spatially incoherent at every
+separation for every possible object.
+Calibrate both cases to the response t2
+0 = 0.25 of a uniform mask t = t0. At equal incident power,
+B’s uniform-mask throughput is 1/9 of A’s in this model, so B is divided by that factor. The
+comparison concerns contrast after calibration, not photon efficiency.
+Expand the object intensity and apply T to its Fourier components:
+|t(x)|2 = t2
+0 + ϵ2
+2 + 2t0ϵ cos(2πqx) + ϵ2
+2 cos(4πqx),
+T(q) = 2
+π
+[︂
+cos−1(0.75) −0.75
+√︁
+1 −0.752
+]︂
+= 0.144294,
+T(2q) = 0,
+IB(x) = 0.25125 + 0.00721468 cos(2πqx).
+(5.3)
+The intensity modulation at q < 2fc survives; the harmonic at 2q = 3fc is removed. The ϵ2/2 term
+explains B’s slightly higher mean. Using Michelson contrast V = (Imax −Imin)/(Imax + Imin), the
+mask has 19.80% contrast, A has 0, and B has 2.87% (Fig. 4). This is a concrete case of higher
+cutoff preserving finer periodic structure, though with strongly attenuated contrast.
+11
+
+
+PAGE 12
+0.0
+0.5
+1.0
+1.5
+2.0
+Spatial frequency f/fc
+0.0
+0.2
+0.4
+0.6
+0.8
+1.0
+Transfer
+q = 1.5fc
+T(q) = 0.1443
+(a) Same pupil; different quantities are transferred
+Coherent field transfer P(f, 0)
+Incoherent intensity transfer T(f)
+0
+1
+2
+3
+Position x/p
+Mask |t|2
+A: coherent
+B: incoherent
+(b) Pattern appearance: one common grayscale
+0.0
+0.5
+1.0
+1.5
+2.0
+2.5
+3.0
+Position x/p  (p = 6.67 m)
+0.8
+0.9
+1.0
+1.1
+1.2
+Calibrated intensity I/t2
+0
+(c) The coherent image is flat; some incoherent contrast survives
+Mask |t|2
+A: coherent image
+B: incoherent image
+0.8
+1.0
+1.2
+I/t2
+0
+= 500 nm, NA = 0.05, M = 1, q = 1.5fc, t0 = 0.5, = 0.05
+Figure 4: Sinusoidal-mask comparison with the same objective. (a) Coherent field transfer and
+incoherent intensity transfer. (b) One common grayscale, without separate contrast stretching. (c)
+Profiles divided by t2
+0 after uniform-mask calibration. A uses normal coherent illumination; B uses
+mutually incoherent source directions uniformly filling a disk of radius 3fc.
+To see where B’s modulation comes from, a source direction sx = −q/2 places the zero and +q
+orders at −0.75fc and +0.75fc. Both fit inside the pupil and interfere at their difference frequency
+q. The source average retains some modulation. Appropriately oblique coherent illumination can
+also admit this pair; the result above compares B specifically with normal coherent illumination.
+12
+
+
+PAGE 13
+References
+[1] M. Born and E. Wolf, Principles of Optics: Electromagnetic Theory of Propagation, Interference
+and Diffraction of Light, 4th ed., Pergamon Press. See §1.3 for electromagnetic waves, §§1.5–1.6
+for reflection and films, §§8.3 and 8.5.2 for diffraction and the circular aperture, and §9.5 and
+§10.4 for imaging and coherence.
+[2] B. E. A. Saleh and M. C. Teich, Fundamentals of Photonics, 2nd ed., Wiley (2007). See §§2.1–2.2
+and 2.5 for wave and paraxial optics, §§4.1–4.4 for Fourier optics and image formation, and
+§6.2 for electromagnetic reflection.
+[3] Z. Chen, L. Dong, H. Ding, and Y. Wei, “Aberration budget analysis of EUV lithography from
+the imaging performance of a contact layer in a 5 nm technology node,” Applied Optics 62(27),
+7270–7279 (2023). doi:10.1364/AO.496461.
+13

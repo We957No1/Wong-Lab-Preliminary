@@ -1,0 +1,1204 @@
+**Photo 1 is an atlas of wavefront-error shapes across a circular pupil.** Each circle shows one Zernike mode. **Photo 2 explains how to change a mode’s orientation and how refocusing can reduce the residual wavefront RMS.**
+
+Let’s connect the pictures to the equations carefully.
+
+---
+
+**First, understand what a coloured circle represents.**
+
+Imagine looking directly at the pupil. A location inside the circle has normalized coordinates
+\[
+u=\rho\cos\theta,\qquad v=\rho\sin\theta.
+\]
+
+The centre is \(\rho=0\), and the edge is \(\rho=1\).
+
+At each pupil location, the colour represents the value of a wavefront-error function:
+
+- Red/warm colours correspond to positive values in the displayed convention.
+- Blue/cool colours correspond to negative values.
+- White corresponds approximately to zero.
+- Stronger colour indicates a larger magnitude on the common colour scale.
+
+For a particular mode, an actual wavefront contribution would be
+\[
+\boxed{
+W(\rho,\theta)=c_n^m Z_n^m(\rho,\theta).
+}
+\]
+
+The atlas shows the shapes \(Z_n^m\). The coefficient \(c_n^m\) sets their physical strength.
+
+For example, if
+\[
+c_n^m=0.1\,\mathrm{nm},
+\]
+then
+\[
+W=(0.1\,\mathrm{nm})Z_n^m.
+\]
+
+Changing the coefficient’s sign swaps the red and blue regions.
+
+**These are pupil OPD maps, rather than pictures of the image formed by the lens.** A coma pupil map therefore need not resemble the familiar comet-shaped coma image.
+
+To obtain the point-image intensity, we would still calculate
+\[
+\boxed{
+I_{\mathrm{point}}
+\propto
+\left|
+\mathcal F\!\left[Ae^{ikW}\right]
+\right|^2.
+}
+\]
+
+The colour in the atlas represents signed optical path error; it does not represent light intensity or absorption.
+
+---
+
+**The labels identify radial degree and angular order.**
+
+Each panel is labelled
+\[
+(n,m).
+\]
+
+In this convention:
+
+- \(n\) is the highest radial power.
+- \(|m|\) specifies the angular variation.
+- \(m=0\) means no angular dependence.
+- Positive \(m\) selects a cosine.
+- Negative \(m\) selects a sine.
+
+For example,
+\[
+(3,1)
+\quad\longrightarrow\quad
+Z_3^1=\sqrt8(3\rho^3-2\rho)\cos\theta,
+\]
+whereas
+\[
+(3,-1)
+\quad\longrightarrow\quad
+Z_3^{-1}=\sqrt8(3\rho^3-2\rho)\sin\theta.
+\]
+
+These are two orientations of the same coma family.
+
+The figure contains **selected modes**. It is not a complete sequence through its highest displayed degree.
+
+---
+
+**Here is the identification of all 12 panels.**
+
+Read each row from left to right.
+
+| Position | Label \((n,m)\) | Mode | What you see |
+|---|---:|---|---|
+| Row 1, column 1 | \((0,0)\) | Piston | One constant colour everywhere |
+| Row 1, column 2 | \((1,1)\) | Horizontal or \(x\)-tilt | Blue on the left, red on the right |
+| Row 1, column 3 | \((1,-1)\) | Vertical or \(y\)-tilt | Red at the top, blue at the bottom |
+| Row 1, column 4 | \((2,0)\) | Defocus | Blue centre and red outer region |
+| Row 2, column 1 | \((2,2)\) | Primary astigmatism, aligned with the coordinate axes | Red left/right and blue top/bottom |
+| Row 2, column 2 | \((2,-2)\) | Primary astigmatism, rotated \(45^\circ\) | Alternating signs in diagonal quadrants |
+| Row 2, column 3 | \((3,1)\) | Balanced \(x\)-coma | Left/right structure, with a radial sign reversal |
+| Row 2, column 4 | \((3,-1)\) | Balanced \(y\)-coma | The corresponding top/bottom structure |
+| Row 3, column 1 | \((3,3)\) | Trefoil | Three red and three blue angular sectors |
+| Row 3, column 2 | \((4,0)\) | Balanced primary spherical aberration | Red centre, blue annulus, red rim |
+| Row 3, column 3 | \((4,2)\) | Secondary astigmatism | Astigmatic angular structure with an additional radial reversal |
+| Row 3, column 4 | \((6,0)\) | Balanced secondary spherical aberration | Alternating concentric regions, beginning blue at the centre |
+
+The association of Zernike terms with balanced classical aberrations is standard; higher radial degrees introduce additional radial structure within an angular family. genui{"citation":{"ref":"turn23view3"}}
+
+Now let’s explain why those appearances follow from the formulas.
+
+---
+
+**The first three panels show piston and tilt.**
+
+For piston,
+\[
+Z_0^0=1.
+\]
+
+Every pupil point has the same OPD. Hence the circle has one colour.
+
+An actual piston contribution
+\[
+W=c_0^0
+\]
+multiplies the whole field by a common phase:
+\[
+e^{ikc_0^0}.
+\]
+
+It therefore leaves the intensity unchanged.
+
+There is a normalization distinction:
+
+- Its raw RMS as a basis function is one.
+- Its mean-subtracted RMS is zero.
+
+For the two tilts,
+\[
+\boxed{
+Z_1^1=2u,\qquad Z_1^{-1}=2v.
+}
+\]
+
+For \(2u\):
+
+- Left side: \(u<0\), so blue.
+- Centre vertical diameter: \(u=0\), so white.
+- Right side: \(u>0\), so red.
+
+For \(2v\), the same reasoning applies vertically.
+
+A pure tilt shifts the point image. Its intensity pattern retains its shape.
+
+---
+
+**Defocus produces one circular sign reversal.**
+
+The fourth panel is
+\[
+\boxed{
+Z_2^0=\sqrt3(2\rho^2-1).
+}
+\]
+
+Evaluate it at several radii.
+
+At the centre,
+\[
+Z_2^0(0)=-\sqrt3,
+\]
+so the centre is blue.
+
+It reaches zero when
+\[
+2\rho^2-1=0,
+\]
+giving
+\[
+\boxed{\rho=\frac1{\sqrt2}\approx0.707.}
+\]
+
+At the rim,
+\[
+Z_2^0(1)=+\sqrt3,
+\]
+so the outer region is red.
+
+Thus the white ring is the set of pupil locations where this defocus OPD is zero.
+
+This is a quadratic wavefront shape associated with a mismatch in focus.
+
+---
+
+**The astigmatism panels show opposite behaviour along two perpendicular directions.**
+
+The two primary astigmatism modes are
+\[
+\boxed{
+Z_2^2
+=
+\sqrt6\,\rho^2\cos2\theta
+=
+\sqrt6(u^2-v^2),
+}
+\]
+and
+\[
+\boxed{
+Z_2^{-2}
+=
+\sqrt6\,\rho^2\sin2\theta
+=
+2\sqrt6\,uv.
+}
+\]
+
+For \(u^2-v^2\):
+
+- On the horizontal axis, \(v=0\), so the value is positive.
+- On the vertical axis, \(u=0\), so the value is negative.
+- On the diagonals \(u=\pm v\), the value is zero.
+
+This explains the red horizontal regions, blue vertical regions, and white diagonal boundaries.
+
+For \(2uv\):
+
+- Upper-right and lower-left quadrants have \(uv>0\).
+- Upper-left and lower-right quadrants have \(uv<0\).
+- Both coordinate axes have \(uv=0\).
+
+Hence the diagonal arrangement.
+
+Physically, primary astigmatism gives different focusing behaviour in two perpendicular directions. The two panels describe different orientations of that effect.
+
+---
+
+**The coma panels contain a radial reversal because the tilt contribution has been subtracted.**
+
+For horizontal coma,
+\[
+\begin{aligned}
+Z_3^1
+&=\sqrt8(3\rho^3-2\rho)\cos\theta\\
+&=\boxed{\sqrt8\,u(3\rho^2-2)}.
+\end{aligned}
+\]
+
+There are two factors controlling its sign:
+
+1. \(u\), which changes sign between left and right.
+2. \(3\rho^2-2\), which changes sign with radius.
+
+The radial factor vanishes at
+\[
+3\rho^2-2=0,
+\]
+so
+\[
+\boxed{\rho=\sqrt{\frac23}\approx0.816.}
+\]
+
+Consider the right side, where \(u>0\):
+
+- Inside this radius, \(3\rho^2-2<0\), so the OPD is negative.
+- Outside this radius, \(3\rho^2-2>0\), so the OPD is positive.
+
+On the left, the signs reverse because \(u<0\).
+
+This creates the inner lobes and opposite-sign outer regions.
+
+For vertical coma,
+\[
+\boxed{
+Z_3^{-1}=\sqrt8\,v(3\rho^2-2),
+}
+\]
+so the same structure is oriented vertically.
+
+The term \(-2\rho\) is the tilt subtraction that makes these **balanced** coma modes.
+
+---
+
+**Trefoil has threefold angular structure.**
+
+The panel labelled \((3,3)\) is
+\[
+\boxed{
+Z_3^3=\sqrt8\,\rho^3\cos3\theta.
+}
+\]
+
+Going once around the pupil, \(\theta\) increases by \(2\pi\), so \(3\theta\) increases by \(6\pi\). The cosine therefore completes three cycles.
+
+Each cycle contains a positive and a negative region, producing:
+
+- Three positive sectors.
+- Three negative sectors.
+
+The factor \(\rho^3\) makes the magnitude small near the centre and larger toward the rim.
+
+Its sine partner,
+\[
+Z_3^{-3}=\sqrt8\,\rho^3\sin3\theta,
+\]
+is not shown. It would be the corresponding rotated trefoil.
+
+---
+
+**The two spherical-aberration panels are rotationally symmetric but differ in radial complexity.**
+
+Primary balanced spherical aberration is
+\[
+\boxed{
+Z_4^0=\sqrt5(6\rho^4-6\rho^2+1).
+}
+\]
+
+At the centre and rim,
+\[
+Z_4^0(0)=Z_4^0(1)=\sqrt5>0.
+\]
+
+At \(\rho=1/\sqrt2\),
+\[
+Z_4^0=-\frac{\sqrt5}{2}<0.
+\]
+
+Hence the pattern:
+
+\[
+\text{red centre}\;\to\;\text{blue annulus}\;\to\;\text{red rim}.
+\]
+
+The zero rings satisfy
+\[
+6\rho^4-6\rho^2+1=0.
+\]
+
+Setting \(t=\rho^2\),
+\[
+6t^2-6t+1=0,
+\]
+so
+\[
+t=\frac{3\pm\sqrt3}{6}.
+\]
+
+Therefore the ring radii are approximately
+\[
+\boxed{\rho=0.460,\qquad0.888.}
+\]
+
+The last panel is secondary balanced spherical aberration:
+\[
+\boxed{
+Z_6^0
+=
+\sqrt7(20\rho^6-30\rho^4+12\rho^2-1).
+}
+\]
+
+At its centre,
+\[
+Z_6^0(0)=-\sqrt7,
+\]
+and at its rim,
+\[
+Z_6^0(1)=+\sqrt7.
+\]
+
+It has three interior zero rings, producing more alternating radial regions than \(Z_4^0\).
+
+Both modes describe radial wavefront errors. Their different radial dependence means that they affect different pupil radii differently.
+
+---
+
+**Secondary astigmatism combines angular astigmatism with an extra radial reversal.**
+
+The panel labelled \((4,2)\) is
+\[
+\boxed{
+Z_4^2
+=
+\sqrt{10}(4\rho^4-3\rho^2)\cos2\theta.
+}
+\]
+
+Rewrite it as
+\[
+Z_4^2
+=
+\sqrt{10}\,\rho^2(4\rho^2-3)\cos2\theta.
+\]
+
+The \(\cos2\theta\) gives the same angular arrangement as primary astigmatism.
+
+However,
+\[
+4\rho^2-3=0
+\]
+at
+\[
+\boxed{\rho=\frac{\sqrt3}{2}\approx0.866.}
+\]
+
+Crossing this circle reverses the sign of each angular lobe.
+
+Thus secondary astigmatism has both:
+
+- Astigmatic angular variation.
+- Additional radial structure.
+
+A useful reading rule for these standard modes is:
+
+\[
+\boxed{
+\text{number of interior radial zero circles}
+=
+\frac{n-|m|}{2}.
+}
+\]
+
+For example:
+
+| Mode | Interior zero circles |
+|---|---:|
+| Primary astigmatism \((2,2)\) | 0 |
+| Coma \((3,1)\) | 1 |
+| Primary spherical \((4,0)\) | 2 |
+| Secondary astigmatism \((4,2)\) | 1 |
+| Secondary spherical \((6,0)\) | 3 |
+
+---
+
+**The common colour scale does not mean every mode has the same maximum value.**
+
+The modes are normalized according to
+\[
+\langle(Z_n^m)^2\rangle=1.
+\]
+
+That sets their RMS, rather than their peak value.
+
+For example,
+\[
+Z_0^0=1,
+\]
+while a tilt reaches
+\[
+Z_1^1(1,0)=2,
+\]
+and primary spherical reaches
+\[
+Z_4^0(0)=\sqrt5.
+\]
+
+Therefore some normalized modes have stronger extreme colours than others.
+
+The atlas also has no numerical colour bar specifying physical OPD in nanometres. To assign a physical OPD, we need the coefficient multiplying the mode.
+
+---
+
+**The equations above the atlas explain how to use these shapes to describe a measured wavefront.**
+
+Write
+\[
+W=\sum_{n,m}c_n^mZ_n^m.
+\]
+
+Multiply by a selected mode and average:
+\[
+\begin{aligned}
+\left\langle WZ_{n'}^{m'}\right\rangle
+&=
+\sum_{n,m}
+c_n^m
+\left\langle Z_n^mZ_{n'}^{m'}\right\rangle\\
+&=
+c_{n'}^{m'}.
+\end{aligned}
+\]
+
+Thus,
+\[
+\boxed{
+c_n^m=\left\langle WZ_n^m\right\rangle.
+}
+\]
+
+Each coefficient measures the wavefront’s projection onto one atlas shape.
+
+Because piston is \(Z_0^0=1\),
+\[
+\langle W\rangle=c_0^0.
+\]
+
+After removing piston,
+\[
+\boxed{
+\sigma_W^2
+=
+\sum_{(n,m)\ne(0,0)}(c_n^m)^2.
+}
+\]
+
+This assumes the stated unit-RMS normalization and uniform averaging over the full disk. A truncated representation must also account for any remaining fitting residual.
+
+---
+
+**Now turn to photo 2: a sine–cosine pair describes one aberration family with adjustable orientation.**
+
+For fixed \(n\) and positive \(m\), define the common radial factor
+\[
+F_n^m(\rho)
+=
+\sqrt{2(n+1)}\,R_n^m(\rho).
+\]
+
+Then
+\[
+Z_n^m=F_n^m\cos(m\theta),
+\qquad
+Z_n^{-m}=F_n^m\sin(m\theta).
+\]
+
+A combination of the pair is
+\[
+\begin{aligned}
+W_{\mathrm{pair}}
+&=c_cZ_n^m+c_sZ_n^{-m}\\
+&=
+F_n^m(\rho)
+\left[c_c\cos(m\theta)+c_s\sin(m\theta)\right].
+\end{aligned}
+\]
+
+The screenshot suppresses the common radial factor and studies the expression inside the brackets.
+
+---
+
+**We can turn the two coefficients into a strength and an orientation.**
+
+Seek a representation
+\[
+c_c\cos(m\theta)+c_s\sin(m\theta)
+=
+C\cos[m(\theta-\theta_0)].
+\]
+
+Use
+\[
+\cos(A-B)=\cos A\cos B+\sin A\sin B.
+\]
+
+The right-hand side becomes
+\[
+C\cos(m\theta)\cos(m\theta_0)
++
+C\sin(m\theta)\sin(m\theta_0).
+\]
+
+Matching coefficients gives
+\[
+\boxed{
+c_c=C\cos(m\theta_0),
+\qquad
+c_s=C\sin(m\theta_0).
+}
+\]
+
+Square and add:
+\[
+c_c^2+c_s^2
+=
+C^2[\cos^2(m\theta_0)+\sin^2(m\theta_0)]
+=
+C^2.
+\]
+
+Therefore,
+\[
+\boxed{C=\sqrt{c_c^2+c_s^2}.}
+\]
+
+The angle satisfying both sine and cosine conditions is
+\[
+\boxed{
+\theta_0
+=
+\frac{\operatorname{atan2}(c_s,c_c)}{m}.
+}
+\]
+
+The function \(\operatorname{atan2}(y,x)\) finds the angle with the correct quadrant. Using only \(\arctan(y/x)\) can lose that quadrant information.
+
+Thus the complete wavefront pair is
+\[
+\boxed{
+W_{\mathrm{pair}}
+=
+C F_n^m(\rho)\cos[m(\theta-\theta_0)].
+}
+\]
+
+Here:
+
+- \(C\) specifies the pair’s strength.
+- \(\theta_0\) specifies its orientation.
+
+If \(C=0\), the pair is absent and its orientation is undefined.
+
+---
+
+**An example makes the angle division by \(m\) concrete.**
+
+Suppose an astigmatism pair has
+\[
+c_c=0.03\,\mathrm{nm},
+\qquad
+c_s=0.04\,\mathrm{nm}.
+\]
+
+Its strength is
+\[
+C=\sqrt{0.03^2+0.04^2}
+=
+\boxed{0.05\,\mathrm{nm}}.
+\]
+
+The coefficient-vector angle is
+\[
+\operatorname{atan2}(0.04,0.03)=53.13^\circ.
+\]
+
+Astigmatism has \(m=2\), so its physical orientation is
+\[
+\boxed{\theta_0=26.565^\circ.}
+\]
+
+The division by two occurs because the angular function is \(\cos2\theta\): its argument changes twice as quickly as the physical angle.
+
+More generally, the rotation that converts a cosine partner into its positive sine partner satisfies
+\[
+m\Delta\theta=90^\circ.
+\]
+
+Therefore:
+
+| Family | \(m\) | Physical rotation from cosine to sine partner |
+|---|---:|---:|
+| Tilt or coma | 1 | \(90^\circ\) |
+| Astigmatism | 2 | \(45^\circ\) |
+| Trefoil | 3 | \(30^\circ\) |
+
+For example,
+\[
+\cos[2(\theta-45^\circ)]
+=
+\cos(2\theta-90^\circ)
+=
+\sin2\theta.
+\]
+
+This explains the relation between the two primary astigmatism panels.
+
+---
+
+**Rotating the coordinate axes changes the coefficients, even when the physical wavefront stays fixed.**
+
+Let the new axes be rotated counterclockwise by \(\alpha\).
+
+If a fixed pupil point has old angle \(\theta\) and new angle \(\theta'\), then
+\[
+\theta=\theta'+\alpha.
+\]
+
+Substitute into
+\[
+c_c\cos(m\theta)+c_s\sin(m\theta):
+\]
+\[
+c_c\cos[m(\theta'+\alpha)]
++
+c_s\sin[m(\theta'+\alpha)].
+\]
+
+Expanding and collecting the new cosine and sine terms gives
+\[
+\boxed{
+c_c'
+=
+c_c\cos(m\alpha)+c_s\sin(m\alpha),
+}
+\]
+\[
+\boxed{
+c_s'
+=
+-c_c\sin(m\alpha)+c_s\cos(m\alpha).
+}
+\]
+
+In matrix form,
+\[
+\boxed{
+\begin{pmatrix}
+c_c'\\
+c_s'
+\end{pmatrix}
+=
+\begin{pmatrix}
+\cos(m\alpha)&\sin(m\alpha)\\
+-\sin(m\alpha)&\cos(m\alpha)
+\end{pmatrix}
+\begin{pmatrix}
+c_c\\
+c_s
+\end{pmatrix}.
+}
+\]
+
+The coefficient pair rotates through \(m\alpha\) in coefficient space.
+
+Its squared magnitude remains unchanged:
+\[
+\boxed{
+(c_c')^2+(c_s')^2=c_c^2+c_s^2=C^2.
+}
+\]
+
+Because the two modes are orthonormal,
+\[
+\begin{aligned}
+\sigma_{\mathrm{pair}}^2
+&=
+\left\langle(c_cZ_n^m+c_sZ_n^{-m})^2\right\rangle\\
+&=
+c_c^2+c_s^2.
+\end{aligned}
+\]
+
+Thus,
+\[
+\boxed{\sigma_{\mathrm{pair}}=C}
+\]
+in every rotated coordinate system.
+
+---
+
+**The sign matters when interpreting the \(45^\circ\) statement.**
+
+For astigmatism, let \(m=2\) and rotate the axes by \(\alpha=45^\circ\). Then
+\[
+\cos(m\alpha)=0,\qquad \sin(m\alpha)=1.
+\]
+
+Hence,
+\[
+\boxed{
+c_c'=c_s,\qquad c_s'=-c_c.
+}
+\]
+
+A pure cosine mode becomes a negative sine mode in those new coordinates.
+
+If instead we physically rotate the aberration pattern counterclockwise by \(45^\circ\) while keeping the axes fixed,
+\[
+\cos[2(\theta-45^\circ)]=+\sin2\theta.
+\]
+
+These are different operations:
+
+- Rotating the **axes** describes the same physical pattern in new coordinates.
+- Rotating the **pattern** changes its orientation relative to fixed axes.
+
+The screenshot’s phrase “interchanges the character” of the partners is correct, with the sign depending on which operation and rotation convention is intended.
+
+For lithography, the relevant quantity is the aberration’s orientation **relative to the mask pattern and illumination**. Merely renaming the axes changes no physical prediction when everything is transformed consistently. Rotating a pattern relative to a fixed aberration can change its imaging performance while preserving the aberration RMS.
+
+---
+
+**Section 7.8 asks a different question: how much of a raw quartic error can be compensated by changing focus?**
+
+Start with
+\[
+\boxed{W_{\mathrm{raw}}=B\rho^4.}
+\]
+
+Here \(B\) is the quartic OPD coefficient. It has units of length.
+
+Permit a compensating quadratic term:
+\[
+\boxed{
+W_d=B\rho^4+d\rho^2.
+}
+\]
+
+The coefficient \(d\) also has units of length. It measures a defocus OPD contribution; it is not itself a physical displacement of the image plane.
+
+Changing focus introduces this quadratic type of wavefront adjustment.
+
+The question is:
+
+> Which \(d\) minimizes the wavefront RMS after removing piston?
+
+Since minimizing RMS is equivalent to minimizing its square, define
+\[
+\boxed{
+V(d)=\operatorname{Var}(W_d).
+}
+\]
+
+---
+
+**We first remove the mean explicitly.**
+
+The mean is
+\[
+\begin{aligned}
+\langle W_d\rangle
+&=
+B\langle\rho^4\rangle+d\langle\rho^2\rangle\\
+&=
+\boxed{\frac B3+\frac d2}.
+\end{aligned}
+\]
+
+Therefore,
+\[
+W_d-\langle W_d\rangle
+=
+B\left(\rho^4-\frac13\right)
++
+d\left(\rho^2-\frac12\right).
+\]
+
+Squaring and averaging,
+\[
+\begin{aligned}
+V(d)
+={}&
+B^2\left\langle\left(\rho^4-\frac13\right)^2\right\rangle\\
+&+
+d^2\left\langle\left(\rho^2-\frac12\right)^2\right\rangle\\
+&+
+2Bd\left\langle
+\left(\rho^4-\frac13\right)
+\left(\rho^2-\frac12\right)
+\right\rangle.
+\end{aligned}
+\]
+
+These three averages are a variance, another variance, and a covariance.
+
+For any two real functions \(X,Y\),
+\[
+\operatorname{Var}(X)=\langle X^2\rangle-\langle X\rangle^2,
+\]
+and
+\[
+\operatorname{Cov}(X,Y)
+=
+\langle XY\rangle-\langle X\rangle\langle Y\rangle.
+\]
+
+Consequently,
+\[
+\boxed{
+V(d)
+=
+B^2\operatorname{Var}(\rho^4)
++d^2\operatorname{Var}(\rho^2)
++2Bd\operatorname{Cov}(\rho^4,\rho^2).
+}
+\]
+
+This is the first equation in section 7.8.
+
+---
+
+**Now evaluate each average.**
+
+For the quartic term,
+\[
+\begin{aligned}
+\operatorname{Var}(\rho^4)
+&=
+\langle\rho^8\rangle-\langle\rho^4\rangle^2\\
+&=
+\frac15-\frac19\\
+&=
+\boxed{\frac4{45}}.
+\end{aligned}
+\]
+
+For the quadratic term,
+\[
+\begin{aligned}
+\operatorname{Var}(\rho^2)
+&=
+\langle\rho^4\rangle-\langle\rho^2\rangle^2\\
+&=
+\frac13-\frac14\\
+&=
+\boxed{\frac1{12}}.
+\end{aligned}
+\]
+
+For the covariance,
+\[
+\begin{aligned}
+\operatorname{Cov}(\rho^4,\rho^2)
+&=
+\langle\rho^6\rangle
+-\langle\rho^4\rangle\langle\rho^2\rangle\\
+&=
+\frac14-\frac13\cdot\frac12\\
+&=
+\boxed{\frac1{12}}.
+\end{aligned}
+\]
+
+The positive covariance has a simple interpretation: both \(\rho^2\) and \(\rho^4\) increase toward the pupil edge. A quadratic contribution with the opposite sign can therefore compensate part of the quartic variation.
+
+Substitute the results:
+\[
+\boxed{
+V(d)
+=
+\frac{4B^2}{45}
++\frac{d^2}{12}
++\frac{Bd}{6}.
+}
+\]
+
+---
+
+**Differentiate with respect to the adjustable coefficient \(d\).**
+
+Keeping \(B\) fixed,
+\[
+\frac{dV}{dd}
+=
+\frac d6+\frac B6.
+\]
+
+Set this equal to zero:
+\[
+\frac{d+B}{6}=0.
+\]
+
+Thus,
+\[
+\boxed{d_{\mathrm{opt}}=-B.}
+\]
+
+The second derivative is
+\[
+\frac{d^2V}{dd^2}=\frac16>0,
+\]
+so this is a minimum.
+
+We can make the result even more transparent by completing the square:
+\[
+\begin{aligned}
+V(d)
+&=
+\frac{(d+B)^2}{12}
++
+B^2\left(\frac4{45}-\frac1{12}\right)\\
+&=
+\boxed{
+\frac{(d+B)^2}{12}+\frac{B^2}{180}.
+}
+\end{aligned}
+\]
+
+The first term can be made zero by choosing \(d=-B\). The second remains.
+
+Therefore,
+\[
+\boxed{V_{\min}=\frac{B^2}{180}.}
+\]
+
+---
+
+**After this focus adjustment, remove piston to obtain the balanced wavefront.**
+
+Before piston removal,
+\[
+W_{\mathrm{opt}}=B\rho^4-B\rho^2.
+\]
+
+Its mean is
+\[
+\begin{aligned}
+\langle W_{\mathrm{opt}}\rangle
+&=
+B\left(\frac13-\frac12\right)\\
+&=-\frac B6.
+\end{aligned}
+\]
+
+Subtracting the mean gives
+\[
+\begin{aligned}
+W_{\mathrm{bal}}
+&=
+W_{\mathrm{opt}}-\langle W_{\mathrm{opt}}\rangle\\
+&=
+B\rho^4-B\rho^2+\frac B6.
+\end{aligned}
+\]
+
+Hence,
+\[
+\boxed{
+W_{\mathrm{bal}}
+=
+B\left(\rho^4-\rho^2+\frac16\right).
+}
+\]
+
+But
+\[
+Z_4^0
+=
+\sqrt5(6\rho^4-6\rho^2+1).
+\]
+
+Therefore,
+\[
+\boxed{
+W_{\mathrm{bal}}
+=
+\frac{B}{6\sqrt5}Z_4^0.
+}
+\]
+
+**This is exactly the primary spherical mode in row 3, column 2 of photo 1.**
+
+For \(B>0\), its values are
+\[
+W_{\mathrm{bal}}(0)=\frac B6,
+\]
+\[
+W_{\mathrm{bal}}\left(\frac1{\sqrt2}\right)=-\frac B{12},
+\]
+and
+\[
+W_{\mathrm{bal}}(1)=\frac B6.
+\]
+
+These values explain its red centre, blue annulus, and red rim.
+
+Since \(Z_4^0\) has unit RMS,
+\[
+\boxed{
+\sigma_{\mathrm{bal}}
+=
+\left|\frac{B}{6\sqrt5}\right|
+=
+\frac{|B|}{\sqrt{180}}.
+}
+\]
+
+---
+
+**The factor of four compares the same quartic coefficient before and after the allowed focus adjustment.**
+
+Without adding defocus, the piston-removed raw quartic is
+\[
+W_0=B\left(\rho^4-\frac13\right).
+\]
+
+Its variance is
+\[
+\sigma_0^2
+=
+B^2\operatorname{Var}(\rho^4)
+=
+\frac{4B^2}{45}.
+\]
+
+Thus,
+\[
+\boxed{\sigma_0=\frac{2|B|}{\sqrt{45}}.}
+\]
+
+Compare with
+\[
+\sigma_{\mathrm{bal}}=\frac{|B|}{\sqrt{180}}.
+\]
+
+Their ratio is
+\[
+\begin{aligned}
+\frac{\sigma_0}{\sigma_{\mathrm{bal}}}
+&=
+\frac{2|B|}{\sqrt{45}}
+\frac{\sqrt{180}}{|B|}\\
+&=
+2\sqrt4\\
+&=
+\boxed4.
+\end{aligned}
+\]
+
+So:
+
+- RMS decreases by a factor of four.
+- Variance decreases by a factor of sixteen.
+
+For example, if \(B=1\,\mathrm{nm}\),
+\[
+\sigma_0=0.2981\,\mathrm{nm},
+\]
+whereas
+\[
+\sigma_{\mathrm{bal}}=0.07454\,\mathrm{nm}.
+\]
+
+The quartic coefficient \(B\) has remained the same. The improvement comes from adding the optimal quadratic contribution.
+
+---
+
+**The Zernike expansion provides a second way to see the same minimization.**
+
+Recall
+\[
+\rho^2
+=
+\frac12+\frac{Z_2^0}{2\sqrt3},
+\]
+and
+\[
+\rho^4
+=
+\frac13+\frac{Z_2^0}{2\sqrt3}
++\frac{Z_4^0}{6\sqrt5}.
+\]
+
+Therefore,
+\[
+\begin{aligned}
+B\rho^4+d\rho^2
+={}&
+\left(\frac B3+\frac d2\right)\\
+&+
+\frac{B+d}{2\sqrt3}Z_2^0\\
+&+
+\frac{B}{6\sqrt5}Z_4^0.
+\end{aligned}
+\]
+
+This separates the wavefront into:
+
+| Component | Coefficient |
+|---|---:|
+| Piston | \(B/3+d/2\) |
+| Defocus \(Z_2^0\) | \((B+d)/(2\sqrt3)\) |
+| Balanced spherical \(Z_4^0\) | \(B/(6\sqrt5)\) |
+
+Choosing
+\[
+d=-B
+\]
+makes the defocus coefficient zero.
+
+After removing piston, only
+\[
+\frac{B}{6\sqrt5}Z_4^0
+\]
+remains.
+
+This also reproduces the variance immediately:
+\[
+\boxed{
+V(d)
+=
+\left(\frac{B+d}{2\sqrt3}\right)^2
++
+\left(\frac{B}{6\sqrt5}\right)^2.
+}
+\]
+
+It is the same completed-square expression obtained above.
+
+---
+
+**The physical meaning of “optimal focus” must match the actual imaging requirement.**
+
+The calculation finds the focus adjustment that minimizes the **wavefront variance under the stated pupil average**. For small aberrations, the Strehl relation connects this minimum variance with maximum reference-point intensity under the permitted adjustment. This small-aberration connection is part of standard diffraction-focus theory. genui{"citation":{"ref":"turn23view2"}}
+
+For lithography, a particular pattern’s best CD, position, or process-window performance may select a different focus criterion.
+
+If the exposure can be refocused, including that adjustment in the budget can be meaningful. If focus is fixed by the requirement, the corresponding defocus contribution remains part of the error. Removing a fitted defocus coefficient in analysis reports a different residual metric; physically applying the focus adjustment is what changes the exposure condition.

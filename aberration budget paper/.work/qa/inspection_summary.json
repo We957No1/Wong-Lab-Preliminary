@@ -1,15 +1,15 @@
 {
-  "pdf_pages": 98,
+  "pdf_pages": 101,
   "main_chapters": 17,
   "appendices": 3,
-  "source_word_tokens": 24326,
-  "pdf_text_words": 32060,
+  "source_word_tokens": 25353,
+  "pdf_text_words": 33328,
   "missing_labels": [],
   "duplicate_labels": [],
   "missing_citations": [],
   "page_issues": [],
   "latex_warnings": [],
-  "figures": 8,
+  "figures": 9,
   "contact_sheets": [
     "contact_001_016.png",
     "contact_017_032.png",
@@ -18,6 +18,7 @@
     "contact_065_080.png",
     "contact_081_095.png",
     "contact_081_096.png",
-    "contact_097_098.png"
+    "contact_097_098.png",
+    "contact_097_101.png"
   ]
 }

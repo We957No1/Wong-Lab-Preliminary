@@ -1,0 +1,207 @@
+\section{Complex optical constants: attenuation and phase}
+For a monochromatic plane wave travelling into a homogeneous material,
+\begin{align}
+E(z,t)&=\Rea\!\left\{E_0\ee^{\ii k_0\bn z}\ee^{-\ii\omega t}\right\},
+&\bn&=n+\ii\kappa,\\
+\widetilde E(z)&=E_0\underbrace{\ee^{-k_0\kappa z}}_{\text{amplitude decay}}
+\underbrace{\ee^{\ii k_0nz}}_{\text{phase accumulation}}.
+\end{align}
+The intensity of one forward wave in the same homogeneous medium is proportional to $|\widetilde E|^2$, so
+\begin{equation}
+\boxed{\frac{I(z)}{I(0)}=\ee^{-\alpha z},\qquad
+\alpha=2k_0\kappa=\frac{4\pi\kappa}{\lambda_0},\qquad
+\ell_I=\frac{1}{\alpha}.}
+\end{equation}
+The amplitude decay length is $1/(k_0\kappa)=2\ell_I$. These lengths must not be confused.
+
+Relative to an equal geometrical path $d$ in vacuum, the material changes the phase by
+\begin{equation}
+\Delta\phi_{\rm mat}=k_0(n-1)d.
+\end{equation}
+In EUV notation, $\bn=1-\delta+\ii\beta$:
+\begin{equation}
+\frac{\widetilde E_{\rm material}(d)}{\widetilde E_{\rm vacuum}(d)}
+=\ee^{-k_0\beta d}\ee^{-\ii k_0\delta d}.
+\end{equation}
+Thus an absorber is a complex optical element: it attenuates and changes phase. Even when transmission is weak, its interfaces and the underlying reflector affect the reflected complex amplitude.
+
+% \point{A binary black-paint model retains only a real amplitude mask. A local reflective model instead has $r(x,y)=|r(x,y)|\ee^{\ii\phi_r(x,y)}$. Where a scalar local model is adequate, a phase change gives an equivalent wavefront error $\Delta W=\Delta\phi_r/k_0$. At a reflection zero the phase is undefined; an unwrapped phase and a reference are needed elsewhere.}
+
+% The propagation factor alone does not include entry/exit reflections. For oblique propagation through a planar film, use $\ee^{\ii k_zd}$ rather than replacing $z$ by a guessed ray-path length. The conserved transverse wave number and boundary phases are part of the thin-film problem. For a patterned EUV absorber, diffraction couples different transverse components; a stack calculation is only the planar building block.
+
+% \textbf{Illustrative calculation, not a material measurement.} If $\lambda_0=13.5\,\mathrm{nm}$, $\delta=0.05$, $\beta=0.02$, and $d=20\,\mathrm{nm}$, then $I(d)/I(0)=\ee^{-4\pi\beta d/\lambda_0}\simeq0.689$ and $\Delta\phi_{\rm mat}\simeq-0.465\,\mathrm{rad}$. These chosen constants demonstrate the two simultaneous effects; they are not assigned to Mo, Si, or a particular absorber.
+
+\section{Maxwell boundary conditions and single-interface amplitudes}
+\subsection{Back to Griffiths: Tangential fields are continuous}
+From Griffiths we know,
+\begin{equation}
+\nabla\times\mathbf E=\ii\omega\mathbf B,
+\quad \nabla\times\mathbf H=\mathbf J_f-\ii\omega\mathbf D,
+\quad \nabla\cdot\mathbf D=\rho_f,
+\quad \nabla\cdot\mathbf B=0.
+\end{equation}
+Take a rectangular loop of length $L$ tangential to the interface and height $\varepsilon$ normal to it. Faraday's integral law has an electric circulation $(E_{1,\tau}-E_{0,\tau})L+O(\varepsilon)$ and a flux term $O(L\varepsilon)$ for bounded fields. Letting $\varepsilon\to0$ gives equality of the tangential electric fields. Ampere--Maxwell gives the corresponding magnetic relation, except that an imposed surface-current sheet can remain finite. With $\widehat{\mathbf n}$ directed from medium 0 to medium 1,
+\begin{equation}
+\boxed{\widehat{\mathbf n}\times(\mathbf E_1-\mathbf E_0)=0,
+\qquad \widehat{\mathbf n}\times(\mathbf H_1-\mathbf H_0)=\mathbf K_f.}
+\label{eq:bc}
+\end{equation}
+We take $\mathbf K_f=0$. A vanishing pillbox also gives
+$\widehat{\mathbf n}\cdot(\mathbf D_1-\mathbf D_0)=\sigma_f$ and
+$\widehat{\mathbf n}\cdot(\mathbf B_1-\mathbf B_0)=0$.
+Normal $E$ need not be continuous, because the permittivity can jump. These are conditions on \emph{total fields} on each side, not on the incident wave alone.
+
+Using a common fixed tangential electric axis, at the boundary
+\begin{equation}
+E_i+E_r=E_t,\qquad r=\frac{E_r}{E_i},\quad t=\frac{E_t}{E_i}
+\quad\Longrightarrow\quad\boxed{1+r=t.}
+\label{eq:Ebc}
+\end{equation}
+% This is a field-amplitude equation, not an equation for optical powers.
+
+\subsection{Side discovery: reflection and Snell's laws}
+At the plane $z=0$, the boundary condition must hold for every $x$ and time:
+\begin{equation}
+E_i\ee^{\ii k_{x,i}x-\ii\omega_i t}
++E_r\ee^{\ii k_{x,r}x-\ii\omega_r t}
+=E_t\ee^{\ii k_{x,t}x-\ii\omega_t t}.
+\end{equation}
+For a stationary, uniform, linear planar interface, a single incident Fourier component cannot produce a different surface frequency or transverse wave number. Hence
+\begin{equation}
+\omega_i=\omega_r=\omega_t,\qquad
+k_{x,i}=k_{x,r}=k_{x,t},\qquad k_{y,i}=k_{y,r}=k_{y,t}.
+\end{equation}
+The reflected longitudinal component changes sign in medium 0, giving the familiar equality of reflection and incidence angles. Since $k_x=k_0\bn\sin\theta$, the transmitted component obeys
+\begin{equation}
+\boxed{\bn_0\sin\theta_0=\bn_1\sin\theta_1.}
+\end{equation}
+This is Snell's law recovered directly from boundary phase matching: a side discovery of a previously known geometrical result.
+
+% For absorbing materials, a complex angle is an algebraic shorthand. It is safer numerically to compute
+% \begin{equation}
+% k_{z,j}=\sqrt{k_0^2\bn_j^2-k_\parallel^2}.
+% \label{eq:kz}
+% \end{equation}
+% Choose the passive outgoing branch: $\Ima k_{z,j}\geq0$, and the forward-energy branch in the lossless propagating limit. An evanescent transmitted field has positive imaginary $k_z$ and decays. A grating can change tangential momentum by reciprocal-lattice vectors; the uniform-interface argument does not forbid diffraction at a patterned mask.
+
+\subsection{Why the reflected magnetic field has a minus sign}
+For a plane wave, $\nabla\to\ii\mathbf k$ in Faraday's law:
+\begin{equation}
+\boxed{\mathbf H=\frac{1}{\mu_0\omega}\mathbf k\times\mathbf E.}
+\label{eq:kcrossE}
+\end{equation}
+At normal incidence, $\mathbf k\parallel+\widehat z$ and $\mathbf E\parallel\widehat x$ give $\mathbf H\parallel+\widehat y$. Reversing $\mathbf k$ while retaining the fixed electric axis reverses $\mathbf H$. Define $Y_j$ as the forward-wave ratio of the suitably oriented tangential magnetic field to tangential electric field. Then
+\begin{equation}
+H_i=Y_0E_i,\qquad H_r=-Y_0E_r,\qquad H_t=Y_1E_t.
+\end{equation}
+Magnetic continuity therefore gives
+\begin{equation}
+Y_0E_i-Y_0E_r=Y_1E_t
+\quad\Longrightarrow\quad\boxed{Y_0(1-r)=Y_1t.}
+\label{eq:Hbc}
+\end{equation}
+The minus sign expresses the reflected propagation direction; it is not a phenomenological absorption term.
+
+\subsection{Solving for reflection and transmission}
+Eliminate $t$ using \eqref{eq:Ebc}:
+\begin{align}
+Y_0(1-r)&=Y_1(1+r),\\
+Y_0-Y_1&=(Y_0+Y_1)r.
+\end{align}
+Thus
+\begin{equation}
+\boxed{r_{01}=\frac{Y_0-Y_1}{Y_0+Y_1},\qquad
+ t_{01}=1+r_{01}=\frac{2Y_0}{Y_0+Y_1}.}
+\label{eq:rt}
+\end{equation}
+If $Y_0=Y_1$, then $r=0,t=1$: the incident wave already satisfies both boundary conditions. A mismatch generally requires a reflected wave to make both fields match.
+
+\subsection{Secondary identities for the later film sum}
+Interchanging the incident and transmitted media, while keeping the same tangential-field convention,
+\begin{equation}
+r_{10}=\frac{Y_1-Y_0}{Y_0+Y_1}=-r_{01},\qquad
+ t_{10}=\frac{2Y_1}{Y_0+Y_1}.
+\end{equation}
+The product and square satisfy
+\begin{align}
+t_{01}t_{10}&=\frac{4Y_0Y_1}{(Y_0+Y_1)^2},\\
+1-r_{01}^2&=\frac{(Y_0+Y_1)^2-(Y_0-Y_1)^2}{(Y_0+Y_1)^2}
+=\frac{4Y_0Y_1}{(Y_0+Y_1)^2}.
+\end{align}
+Therefore
+\begin{equation}
+\boxed{r_{10}=-r_{01},\qquad t_{01}t_{10}=1-r_{01}^2.}
+\label{eq:identities}
+\end{equation}
+These are algebraic identities for complex amplitudes. The square is $r^2$, \emph{not} $|r|^2$. They remain valid for complex admittances within the stated interface model.
+
+\subsection{Field coefficients versus power coefficients}
+For a forward wave the normal time-averaged energy flux is
+$S_z=\tfrac12\Rea(Y)|E_\tau|^2$. With a lossless incident medium and flux evaluated at the interface,
+\begin{equation}
+\boxed{\mathcal R=|r|^2,\qquad
+\mathcal T=\frac{\Rea Y_1}{Y_0}|t|^2.}
+\end{equation}
+For real positive $Y_0,Y_1$, substitution into \eqref{eq:rt} verifies
+$\mathcal R+\mathcal T=[(Y_0-Y_1)^2+4Y_0Y_1]/(Y_0+Y_1)^2=1$.
+If medium 1 absorbs, $\mathcal T$ here is the flux entering it, which then decays with depth. In an absorbing incident medium, incident/reflected interference also contributes to net normal flux; the naive identification of a separately normalized $1-\mathcal R$ with net input needs care.
+
+\section{Polarization-specific admittances and Fresnel formulas}
+Let the incidence plane be $xz$ and the interface normal be $z$.
+The \textbf{vacuum wave impedance} is
+\begin{equation}
+\boxed{Z_{\rm vac}=\sqrt{\frac{\mu_0}{\epsilon_0}}=\mu_0c}
+% =\frac{1}{\epsilon_0c}\simeq376.73\,\Omega.}
+\end{equation}
+Here $\mu_0$ and $\epsilon_0$ are the vacuum permeability and permittivity, and $c=1/\sqrt{\mu_0\epsilon_0}$ is the speed of light in vacuum. For a travelling plane wave in vacuum, $Z_{\rm vac}$ is the ratio of electric- to magnetic-field amplitudes, $|\mathbf E|/|\mathbf H|$; its reciprocal is the vacuum wave admittance. The polarization-specific $Y$ below instead relates the oriented tangential magnetic field to the tangential electric field, so it also contains the incidence-angle factors.
+For nonmagnetic media, $\epsilon=\epsilon_0\bn^2$.
+
+\subsection{s (TE) polarization: derive its admittance}
+Here $\mathbf E=(0,E_y,0)$ and $\mathbf k=(k_x,0,k_z)$. From \eqref{eq:kcrossE},
+\begin{equation}
+\mathbf H=\frac{1}{\mu_0\omega}(-k_zE_y,0,k_xE_y).
+\end{equation}
+Choose $-H_x$ as the oriented tangential magnetic component of a forward wave. Then
+\begin{equation}
+\boxed{Y_s=\frac{-H_x}{E_y}=\frac{k_z}{\mu_0\omega}
+=\frac{\bn\cos\theta}{Z_{\rm vac}}.}
+\end{equation}
+A backward wave has $k_z\to-k_z$, giving the required opposite sign.
+
+\subsection{p (TM) polarization: derive its admittance}
+Now $\mathbf E=(E_x,0,E_z)$ and $\mathbf H=(0,H_y,0)$. In a homogeneous source-free isotropic medium, $\mathbf k\cdot\mathbf D=0$ gives
+\begin{equation}
+k_xE_x+k_zE_z=0\quad\Longrightarrow\quad E_z=-\frac{k_x}{k_z}E_x.
+\end{equation}
+For complex $\mathbf k$, this is a bilinear algebraic transversality condition, not ordinary Euclidean orthogonality to a real ray direction. Substitution gives
+\begin{align}
+H_y&=\frac{k_zE_x-k_xE_z}{\mu_0\omega}
+=\frac{k_z^2+k_x^2}{\mu_0\omega k_z}E_x
+=\frac{k_0^2\bn^2}{\mu_0\omega k_z}E_x,\\
+Y_p&=\frac{H_y}{E_x}=\frac{\omega\epsilon}{k_z}
+=\boxed{\frac{\bn}{Z_{\rm vac}\cos\theta}}.
+\end{align}
+Here the amplitude is $E_x$, the tangential electric component. Using the full $p$-field amplitude instead changes coefficient formulas.
+
+\subsection{The polarization-specific coefficients}
+Insert each admittance in \eqref{eq:rt}. The common $1/Z_{\rm vac}$ cancels:
+\begin{align}
+r_s&=\frac{\bn_0\cos\theta_0-\bn_1\cos\theta_1}
+{\bn_0\cos\theta_0+\bn_1\cos\theta_1},&
+t_s&=\frac{2\bn_0\cos\theta_0}
+{\bn_0\cos\theta_0+\bn_1\cos\theta_1},\\
+r_{p,\tau}&=\frac{\bn_0\cos\theta_1-\bn_1\cos\theta_0}
+{\bn_0\cos\theta_1+\bn_1\cos\theta_0},&
+t_{p,\tau}&=\frac{2\bn_0\cos\theta_1}
+{\bn_0\cos\theta_1+\bn_1\cos\theta_0}.
+\end{align}
+The $p$ expressions follow by multiplying numerator and denominator of the admittance ratios by $\cos\theta_0\cos\theta_1$. At normal incidence both tangential-field polarizations give
+\begin{equation}
+r=\frac{\bn_0-\bn_1}{\bn_0+\bn_1},\qquad
+ t=\frac{2\bn_0}{\bn_0+\bn_1}.
+\end{equation}
+For real propagating waves, the commonly used reflected $p$ basis may have a reversed tangential axis. In that convention $r_p^{\rm conventional}=-r_{p,\tau}$ and
+$t_p^{\rm full}=(\cos\theta_0/\cos\theta_1)t_{p,\tau}$. This sign difference is a basis choice; it must not be changed halfway through a multilayer sum.
+
+\textbf{A check: Brewster incidence.} For lossless positive indices, $Y_{p,0}=Y_{p,1}$ means $n_0\cos\theta_1=n_1\cos\theta_0$. Combining with Snell's law gives $\tan\theta_B=n_1/n_0$ (for distinct indices). Absorbing media generally have a reflectance minimum rather than an exactly zero real-angle reflection.
+\clearpage

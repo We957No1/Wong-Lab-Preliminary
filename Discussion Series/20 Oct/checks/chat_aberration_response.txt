@@ -1,0 +1,1170 @@
+This section connects **phase errors across the pupil** to **errors in the resulting image**.
+
+The central equation will be
+
+\[
+\boxed{
+\text{Actual pupil field}
+=
+\text{Ideal pupil field}\,
+e^{i2\pi W/\lambda}.
+}
+\]
+
+The function \(W\) tells us how much additional phase each pupil location contributes. We will derive why it is defined relative to a sphere, where the named aberrations come from, and why a constant \(W\) cannot affect intensity.
+
+For clarity, we work in image-side vacuum, appropriate to EUV imaging, so
+
+\[
+k=\frac{2\pi}{\lambda}.
+\]
+
+**1. First separate pupil position from image position.**
+
+There are several different coordinates in this section:
+
+| Symbol | Meaning |
+|---|---|
+| \((x_p,y_p)\) | A physical position in the pupil |
+| \(a\) | Pupil radius |
+| \((u,v)=(x_p/a,y_p/a)\) | Normalized pupil coordinates |
+| \((\rho,\theta)\) | Polar coordinates within the pupil |
+| \(\mathbf H\) | Intended image-field position |
+| \(W\) | Wave aberration, expressed as an optical path difference |
+
+The normalized pupil coordinates satisfy
+
+\[
+u=\rho\cos\theta,\qquad
+v=\rho\sin\theta,
+\]
+
+so
+
+\[
+\rho^2=u^2+v^2,
+\qquad
+0\leq\rho\leq1.
+\]
+
+Thus \(\rho=0\) means the pupil centre, while \(\rho=1\) means its edge.
+
+Two symbols have changed meaning from our previous discussion:
+
+- Here, \(\theta\) is the **azimuthal angle around the pupil**, rather than the incidence angle of a ray.
+- Here, \(H\) denotes an **image-field position or height**, rather than a magnetic field.
+
+A point in the pupil identifies a location through which light passes. A point on the wafer identifies a location where the contributions from many pupil locations combine.
+
+---
+
+**2. Why is the ideal reference wave spherical?**
+
+Suppose the intended image point is \(Q\). Pick a point \(P\) in the pupil, and let
+
+\[
+R(P)=|Q-P|
+\]
+
+be the remaining distance from that pupil point to \(Q\).
+
+Propagation from \(P\) to \(Q\) contributes a phase factor
+
+\[
+e^{ikR(P)}.
+\]
+
+For all pupil contributions to arrive at \(Q\) with the same phase, the field leaving the pupil should contain the compensating factor
+
+\[
+U_{\mathrm{ideal}}(P)
+=
+A(P)e^{-ikR(P)}.
+\]
+
+Then its contribution at \(Q\) contains
+
+\[
+\underbrace{A(P)e^{-ikR(P)}}_{\text{field leaving pupil}}
+\underbrace{e^{ikR(P)}}_{\text{propagation to }Q}
+=
+A(P).
+\]
+
+The position-dependent propagation phase cancels. Every admitted pupil location can therefore contribute constructively at \(Q\).
+
+Now ask where this ideal converging wave has constant phase. Its phase is
+
+\[
+\Phi_{\mathrm{ideal}}(P)=-kR(P).
+\]
+
+It is constant wherever
+
+\[
+R(P)=R_0.
+\]
+
+But points a fixed distance \(R_0\) from \(Q\) form a sphere:
+
+\[
+\boxed{|Q-P|=R_0.}
+\]
+
+That is the **reference sphere**, centred on the intended image point.
+
+It is an imaginary comparison surface, rather than an additional optical component.
+
+An important distinction is:
+
+**An ideal converging wave generally has varying phase across a flat pupil plane. Its phase is constant on the appropriate spherical wavefront.**
+
+Also, even an aberration-free system with a finite aperture produces a finite diffraction spot, such as an Airy pattern for a uniformly illuminated circular pupil.
+
+---
+
+**3. Define \(W\) as the departure from the ideal wave.**
+
+Let the actual field’s phase differ from the ideal phase by \(\Delta\Phi(P)\):
+
+\[
+\Phi_{\mathrm{actual}}(P)
+=
+\Phi_{\mathrm{ideal}}(P)+\Delta\Phi(P).
+\]
+
+We express this phase difference in equivalent optical-path units:
+
+\[
+\boxed{
+\Delta\Phi(P)=\frac{2\pi}{\lambda}W(P).
+}
+\]
+
+Equivalently,
+
+\[
+\boxed{
+W(P)=\frac{\lambda}{2\pi}\Delta\Phi(P).
+}
+\]
+
+Therefore,
+
+\[
+\begin{aligned}
+U_{\mathrm{actual}}(P)
+&=
+A(P)e^{i\Phi_{\mathrm{actual}}(P)}\\
+&=
+A(P)e^{i\Phi_{\mathrm{ideal}}(P)}
+e^{i2\pi W(P)/\lambda}.
+\end{aligned}
+\]
+
+Hence,
+
+\[
+\boxed{
+U_{\mathrm{actual}}
+=
+U_{\mathrm{ideal}}e^{i2\pi W/\lambda},
+}
+\]
+
+when their amplitudes are taken to be the same.
+
+For example,
+
+\[
+W=\frac{\lambda}{4}
+\quad\Longrightarrow\quad
+\Delta\Phi=\frac{\pi}{2}.
+\]
+
+The function \(W\) is real because it describes a real phase error. Amplitude variations, including attenuation, are represented separately by the pupil amplitude.
+
+This is also why \(W\) is not generally a literal mirror-height error. Optical geometry and the phase of a multilayer reflection coefficient can both contribute to it.
+
+The sign of \(W\) varies between references. Here we consistently define positive \(W\) through the factor \(e^{+ikW}\).
+
+---
+
+**4. Explain why a pupil aberration map is not a picture of the image.**
+
+At a pupil point, \(W(\rho,\theta)\) specifies a phase contribution. The image is produced only after all those contributions propagate and interfere.
+
+We can see this using the Fresnel propagation formula from our earlier discussion.
+
+Consider a simple focusing system whose pupil-to-image distance is \(f\). Near the axis,
+
+\[
+R=\sqrt{f^2+x_p^2+y_p^2}
+\approx
+f+\frac{x_p^2+y_p^2}{2f}.
+\]
+
+After dropping an irrelevant constant phase, the ideal converging pupil field is therefore approximately
+
+\[
+U_{\mathrm{ideal}}(x_p,y_p)
+=
+A(x_p,y_p)
+e^{-ik(x_p^2+y_p^2)/(2f)}.
+\]
+
+With aberration,
+
+\[
+U_{\mathrm{pupil}}
+=
+A(x_p,y_p)
+e^{-ik(x_p^2+y_p^2)/(2f)}
+e^{ikW(x_p,y_p)}.
+\]
+
+Propagate this to an image point with coordinates \((\xi,\eta)\):
+
+\[
+U_{\mathrm{image}}(\xi,\eta)
+=
+\frac{e^{ikf}}{i\lambda f}
+\iint U_{\mathrm{pupil}}(x_p,y_p)
+e^{\frac{ik}{2f}[(\xi-x_p)^2+(\eta-y_p)^2]}
+\,dx_p\,dy_p.
+\]
+
+Expand the propagation phase:
+
+\[
+(\xi-x_p)^2+(\eta-y_p)^2
+=
+\xi^2+\eta^2+x_p^2+y_p^2
+-2(\xi x_p+\eta y_p).
+\]
+
+The quadratic pupil phase cancels the corresponding part of the propagation phase:
+
+\[
+e^{-ik(x_p^2+y_p^2)/(2f)}
+e^{+ik(x_p^2+y_p^2)/(2f)}
+=1.
+\]
+
+Thus,
+
+\[
+\boxed{
+U_{\mathrm{image}}(\xi,\eta)
+=
+C e^{ik(\xi^2+\eta^2)/(2f)}
+\iint
+A(x_p,y_p)e^{ikW(x_p,y_p)}
+e^{-ik(\xi x_p+\eta y_p)/f}
+\,dx_p\,dy_p,
+}
+\]
+
+where \(C=e^{ikf}/(i\lambda f)\).
+
+The integral is a Fourier transform of the **aberrated pupil field**
+
+\[
+\boxed{
+\mathcal P(x_p,y_p)
+=
+A(x_p,y_p)e^{ikW(x_p,y_p)}.
+}
+\]
+
+The point-image intensity is
+
+\[
+\boxed{
+I_{\mathrm{point}}(\xi,\eta)
+\propto
+\left|
+\mathcal F\!\left[Ae^{ikW}\right]
+\right|^2,
+}
+\]
+
+with the appropriate coordinate scaling.
+
+That is the mathematical reason a wavefront map is not an image of a contact hole. A contact-hole image additionally requires the object or mask field and its imaging calculation.
+
+The comparison below uses a uniform circular pupil and illustrative coefficient strengths. The right panel shows the image of **one point**, on a common logarithmic intensity scale.
+
+visualize{"path":"/workspace/pupil-phase-and-image.html"}
+
+---
+
+**5. Derive a useful connection between wavefront shape and ray displacement.**
+
+The diffraction integral determines the image. A ray approximation provides a useful explanation of the named aberrations.
+
+We previously used the fact that a plane wave’s phase gradient gives its wave-vector components:
+
+\[
+k_x=\frac{\partial\Phi}{\partial x},
+\qquad
+k_y=\frac{\partial\Phi}{\partial y}.
+\]
+
+Locally, the same idea applies to a smoothly varying wavefront.
+
+For our converging field,
+
+\[
+\Phi(x_p,y_p)
+=
+-\frac{k(x_p^2+y_p^2)}{2f}
++kW(x_p,y_p).
+\]
+
+Therefore,
+
+\[
+\frac{k_x}{k}
+=
+-\frac{x_p}{f}
++
+\frac{\partial W}{\partial x_p},
+\]
+
+\[
+\frac{k_y}{k}
+=
+-\frac{y_p}{f}
++
+\frac{\partial W}{\partial y_p}.
+\]
+
+For small angles, a ray starting at \(x_p\) reaches the image plane at approximately
+
+\[
+\xi
+=
+x_p+f\frac{k_x}{k}.
+\]
+
+Substituting,
+
+\[
+\xi
+=
+x_p-x_p
++
+f\frac{\partial W}{\partial x_p}.
+\]
+
+Hence,
+
+\[
+\boxed{
+\xi=f\frac{\partial W}{\partial x_p},
+\qquad
+\eta=f\frac{\partial W}{\partial y_p}.
+}
+\]
+
+Using normalized pupil coordinates,
+
+\[
+\boxed{
+(\xi,\eta)
+=
+\frac{f}{a}
+\left(
+\frac{\partial W}{\partial u},
+\frac{\partial W}{\partial v}
+\right).
+}
+\]
+
+Under our sign convention, **wavefront slopes produce image displacements**.
+
+If every pupil location has the same slope error, the point image shifts. If the slope errors vary across the pupil, the different contributions no longer aim at one common image point.
+
+This ray relation explains the tendencies; the actual intensity distribution still comes from diffraction.
+
+---
+
+**6. Understand piston, tilt, and defocus before the higher-order terms.**
+
+A low-order wavefront can be written as
+
+\[
+W(u,v)
+=
+c_0+t_xu+t_yv+d_2(u^2+v^2)+\cdots.
+\]
+
+Each term has a distinct effect.
+
+For **piston**,
+
+\[
+W=c_0.
+\]
+
+Its gradient vanishes:
+
+\[
+\frac{\partial W}{\partial u}
+=
+\frac{\partial W}{\partial v}
+=0.
+\]
+
+It introduces no slope error. Every pupil contribution receives the same phase offset. We will prove its intensity invariance exactly below.
+
+For **tilt**,
+
+\[
+W=t_xu+t_yv.
+\]
+
+Then
+
+\[
+\frac{\partial W}{\partial u}=t_x,
+\qquad
+\frac{\partial W}{\partial v}=t_y.
+\]
+
+Therefore,
+
+\[
+\boxed{
+(\xi,\eta)=\frac{f}{a}(t_x,t_y).
+}
+\]
+
+Every pupil location receives the same image displacement, so pure tilt shifts the spot without introducing blur.
+
+The diffraction calculation gives the same result. For example,
+
+\[
+e^{ikW}
+=
+e^{ikt_xx_p/a}.
+\]
+
+Combining this with the image Fourier kernel gives
+
+\[
+e^{-ik\xi x_p/f}e^{ikt_xx_p/a}
+=
+e^{-ik(\xi-ft_x/a)x_p/f}.
+\]
+
+Thus,
+
+\[
+\boxed{
+U_{\mathrm{tilt}}(\xi,\eta)
+=
+U_0\!\left(\xi-\frac{ft_x}{a},\eta\right)
+}
+\]
+
+up to the known external phase factors.
+
+For **defocus**,
+
+\[
+W=d_2\rho^2
+=
+\frac{d_2}{a^2}(x_p^2+y_p^2).
+\]
+
+Adding this to the ideal focusing phase gives
+
+\[
+\Phi
+=
+-\frac{k(x_p^2+y_p^2)}{2f}
++
+\frac{kd_2}{a^2}(x_p^2+y_p^2).
+\]
+
+Rewrite it as
+
+\[
+\Phi
+=
+-\frac{k(x_p^2+y_p^2)}{2f_{\mathrm{new}}},
+\]
+
+where
+
+\[
+\boxed{
+\frac{1}{f_{\mathrm{new}}}
+=
+\frac1f-\frac{2d_2}{a^2}.
+}
+\]
+
+A quadratic radial wavefront term therefore changes the convergence distance.
+
+For a small change,
+
+\[
+\boxed{
+f_{\mathrm{new}}-f
+\approx
+\frac{2f^2d_2}{a^2}.
+}
+\]
+
+At the original image plane the spot is defocused; moving to the new focus can compensate a pure defocus term.
+
+---
+
+**7. Derive the form of the classical expansion from symmetry.**
+
+The page writes
+
+\[
+\begin{aligned}
+W={}&A\rho^4
++BH\rho^3\cos\theta
++CH^2\rho^2\cos^2\theta\\
+&+DH^2\rho^2
++EH^3\rho\cos\theta+\cdots.
+\end{aligned}
+\]
+
+Why these particular powers?
+
+For a centred, rotationally symmetric system, rotating the pupil position and image-field position together cannot change the optical physics.
+
+Let
+
+\[
+\boldsymbol u=(u,v)
+\]
+
+be the normalized pupil vector, and let \(\boldsymbol H\) specify field position.
+
+The basic scalar combinations unchanged by a common rotation are
+
+\[
+S=\boldsymbol u\cdot\boldsymbol u=\rho^2,
+\]
+
+\[
+T=\boldsymbol H\cdot\boldsymbol H=H^2,
+\]
+
+\[
+V=\boldsymbol H\cdot\boldsymbol u.
+\]
+
+Choose the field direction as the \(u\)-axis, so
+
+\[
+\boldsymbol H=(H,0).
+\]
+
+Then
+
+\[
+V=Hu=H\rho\cos\theta.
+\]
+
+The relevant fourth-degree combinations are:
+
+| Combination | Polar form |
+|---|---|
+| \(S^2\) | \(\rho^4\) |
+| \(SV\) | \(H\rho^3\cos\theta\) |
+| \(V^2\) | \(H^2\rho^2\cos^2\theta\) |
+| \(ST\) | \(H^2\rho^2\) |
+| \(TV\) | \(H^3\rho\cos\theta\) |
+
+Assign a coefficient to each:
+
+\[
+W=AS^2+BSV+CV^2+DST+ETV+\cdots.
+\]
+
+Substitution produces the page’s expansion.
+
+There can also be a term depending only on field position, such as \(T^2=H^4\). At one fixed field point, it is constant across the pupil and acts as a piston for that point’s wavefront.
+
+Symmetry determines the allowed forms. The actual optical prescription determines the coefficients.
+
+These are commonly called **third-order Seidel aberrations**, even though the displayed wavefront terms have total degree four. The pupil derivative used to obtain ray displacement reduces the degree by one. genui{"citation":{"ref":"turn14view0"}}
+
+---
+
+**8. Spherical aberration: why \(W=A\rho^4\) means different pupil radii focus differently.**
+
+On axis, \(H=0\), so the displayed classical expansion reduces to
+
+\[
+\boxed{W_{\mathrm{spherical}}=A\rho^4.}
+\]
+
+It is independent of pupil angle \(\theta\). All directions at the same pupil radius therefore have the same error.
+
+Its radial slope is
+
+\[
+\frac{\partial W}{\partial\rho}=4A\rho^3.
+\]
+
+Since physical pupil radius is \(r_p=a\rho\),
+
+\[
+\frac{\partial W}{\partial r_p}
+=
+\frac{4A}{a}\rho^3.
+\]
+
+The radial image displacement is consequently
+
+\[
+\boxed{
+\Delta r_{\mathrm{image}}
+=
+\frac{4fA}{a}\rho^3.
+}
+\]
+
+The outer pupil contributes much more strongly than the inner pupil.
+
+Could we remove this by changing focus? Changing focus adds a term \(d_2\rho^2\), giving
+
+\[
+W=A\rho^4+d_2\rho^2.
+\]
+
+Its slope is
+
+\[
+\frac{\partial W}{\partial\rho}
+=
+4A\rho^3+2d_2\rho.
+\]
+
+One choice of \(d_2\) cannot make this zero for every radius: a term proportional to \(\rho\) cannot cancel one proportional to \(\rho^3\) everywhere.
+
+Therefore, changing focus can improve the image, but cannot completely remove spherical aberration.
+
+The ideal spherical wavefront has already been subtracted in defining \(W\). The quartic term here is a **residual error**, rather than the ideal sphere’s own shape.
+
+---
+
+**9. Coma: why \(W=BH\rho^3\cos\theta\) produces an asymmetric image.**
+
+At a fixed field position, define
+
+\[
+b=BH.
+\]
+
+Using \(u=\rho\cos\theta\),
+
+\[
+\rho^3\cos\theta
+=
+u\rho^2
+=
+u(u^2+v^2).
+\]
+
+Thus,
+
+\[
+\boxed{
+W_{\mathrm{coma}}=b\,u(u^2+v^2).
+}
+\]
+
+Calculate its slopes:
+
+\[
+\frac{\partial W}{\partial u}
+=
+b(3u^2+v^2),
+\]
+
+\[
+\frac{\partial W}{\partial v}
+=
+2buv.
+\]
+
+The corresponding ray displacements are
+
+\[
+\boxed{
+\xi=\frac{fb}{a}(3u^2+v^2),
+\qquad
+\eta=\frac{2fb}{a}uv.
+}
+\]
+
+Compare opposite pupil points:
+
+\[
+(u,v)
+\quad\text{and}\quad
+(-u,-v).
+\]
+
+The quantities \(3u^2+v^2\) and \(uv\) do not change. Opposite pupil points therefore acquire the same displacement error.
+
+This differs from a symmetric radial error. Different pupil regions send light toward different positions in an asymmetric way, producing the familiar lopsided, often comet-like point image.
+
+Coma also differs from pure tilt: its slope varies with pupil location, so recentering the image cannot remove its blur.
+
+In this centred-system expansion, its strength is proportional to \(H\):
+
+\[
+b=BH.
+\]
+
+It vanishes at \(H=0\) under those symmetry assumptions and grows away from the axis.
+
+---
+
+**10. Astigmatism: separate the \(\cos^2\theta\) term into two parts.**
+
+The page initially writes
+
+\[
+W_{\mathrm{astig\ term}}
+=
+CH^2\rho^2\cos^2\theta.
+\]
+
+Use
+
+\[
+\cos^2\theta=\frac12(1+\cos2\theta).
+\]
+
+Then
+
+\[
+\boxed{
+CH^2\rho^2\cos^2\theta
+=
+\frac{CH^2}{2}\rho^2
++
+\frac{CH^2}{2}\rho^2\cos2\theta.
+}
+\]
+
+The first part is ordinary defocus. The second is the directional astigmatism.
+
+Including the displayed field-curvature term,
+
+\[
+\boxed{
+CH^2\rho^2\cos^2\theta+DH^2\rho^2
+=
+H^2\left(D+\frac C2\right)\rho^2
++
+\frac{CH^2}{2}\rho^2\cos2\theta.
+}
+\]
+
+At a suitable reference focus, the isotropic defocus component can be balanced, leaving a term proportional to
+
+\[
+\rho^2\cos2\theta.
+\]
+
+Now use
+
+\[
+\rho^2\cos2\theta=u^2-v^2.
+\]
+
+A pure astigmatism term therefore has the form
+
+\[
+\boxed{
+W_{\mathrm{astig}}=c(u^2-v^2).
+}
+\]
+
+Its slopes are
+
+\[
+\frac{\partial W}{\partial u}=2cu,
+\qquad
+\frac{\partial W}{\partial v}=-2cv.
+\]
+
+The two perpendicular directions receive opposite curvature changes.
+
+More explicitly, adding this to the ideal focusing phase gives different effective focusing distances:
+
+\[
+\boxed{
+\frac1{f_x}=\frac1f-\frac{2c}{a^2},
+\qquad
+\frac1{f_y}=\frac1f+\frac{2c}{a^2}.
+}
+\]
+
+Thus,
+
+\[
+f_x\neq f_y.
+\]
+
+At one axial position, one direction is focused while the perpendicular direction remains spread out, producing a line-like image. At another axial position, the perpendicular direction focuses instead.
+
+Rotating the astigmatism axes by \(\psi\) gives
+
+\[
+\rho^2\cos[2(\theta-\psi)].
+\]
+
+For \(\psi=45^\circ\),
+
+\[
+\cos[2(\theta-45^\circ)]=\sin2\theta.
+\]
+
+That explains why the page lists both
+
+\[
+\rho^2\cos2\theta
+\quad\text{and}\quad
+\rho^2\sin2\theta:
+\]
+
+they represent the same type of error with different orientations.
+
+---
+
+**11. Field curvature: why it looks like defocus at one field point.**
+
+Consider
+
+\[
+\boxed{
+W_{\mathrm{field}}=DH^2\rho^2.
+}
+\]
+
+At a fixed \(H\), this is just defocus, with coefficient
+
+\[
+d_2(H)=DH^2.
+\]
+
+Using our defocus result,
+
+\[
+\Delta f(H)
+\approx
+\frac{2f^2}{a^2}d_2(H),
+\]
+
+so
+
+\[
+\boxed{
+\Delta f(H)
+\approx
+\frac{2f^2D}{a^2}H^2.
+}
+\]
+
+The preferred image-plane position varies across the field.
+
+Points near the axis and points farther from it therefore have best focus at different axial positions. Their best-focus locations form a curved surface rather than one flat plane.
+
+That is **field curvature**.
+
+At one fixed field point it is indistinguishable from an ordinary defocus contribution. The name describes how that contribution changes across the field.
+
+When astigmatism is also present, the isotropic quadratic contribution includes the \(CH^2\rho^2/2\) part derived above, so the relationship between named coefficients depends on convention.
+
+---
+
+**12. Distortion: why the image can remain sharp while being misplaced.**
+
+The distortion term is
+
+\[
+W_{\mathrm{distortion}}
+=
+EH^3\rho\cos\theta.
+\]
+
+Since \(\rho\cos\theta=u\),
+
+\[
+\boxed{
+W_{\mathrm{distortion}}=EH^3u.
+}
+\]
+
+At any one field position, this is a linear pupil phase: a tilt.
+
+Its slopes are
+
+\[
+\frac{\partial W}{\partial u}=EH^3,
+\qquad
+\frac{\partial W}{\partial v}=0.
+\]
+
+Therefore,
+
+\[
+\boxed{
+\Delta\xi(H)=\frac{fE}{a}H^3,
+\qquad
+\Delta\eta(H)=0.
+}
+\]
+
+The displacement is independent of pupil position. All contributions still aim at the same point, but that point is misplaced.
+
+Thus pure distortion:
+
+- Changes where a point is imaged.
+- Can preserve the local point-image shape.
+- Changes by different amounts at different field positions.
+
+Schematically, the intended image coordinate \(H\) becomes
+
+\[
+H_{\mathrm{actual}}=H+\kappa H^3,
+\]
+
+where \(\kappa=fE/a\) in this simplified coordinate model.
+
+This gives the useful correspondence
+
+\[
+\boxed{
+\begin{aligned}
+\text{Field curvature}
+&=\text{field-dependent defocus},\\
+\text{Distortion}
+&=\text{field-dependent tilt}.
+\end{aligned}
+}
+\]
+
+A pupil measurement at one field point cannot by itself establish those field dependences; measurements across the field are needed. genui{"citation":{"ref":"turn14view2"}}
+
+---
+
+**13. Explain \(W=W(\rho,\theta;\mathbf H)\), and the limits of the classical expansion.**
+
+Every intended image point has its own converging bundle and its own reference sphere.
+
+Different bundles may encounter different parts of the optical surfaces or encounter them at different angles. Consequently, the residual pupil wavefront can change with image-field position:
+
+\[
+\boxed{
+W=W(\rho,\theta;\mathbf H).
+}
+\]
+
+Even in the displayed classical expansion, fixed system coefficients produce different local wavefronts:
+
+\[
+\text{coma strength}\propto H,
+\]
+
+\[
+\text{astigmatism and field-defocus strength}\propto H^2,
+\]
+
+\[
+\text{distortion strength}\propto H^3.
+\]
+
+More generally, a pupil-basis expansion can be written
+
+\[
+W(\rho,\theta;\mathbf H)
+=
+\sum_j a_j(\mathbf H)Z_j(\rho,\theta).
+\]
+
+The local coefficients \(a_j\) depend on field position. Time or thermal state can add further dependencies:
+
+\[
+W=W(\rho,\theta;\mathbf H,t,T,\ldots).
+\]
+
+The classical five-term expression assumes a centred rotationally symmetric system. An off-axis multi-mirror projector need not obey those symmetries, so that expression is an explanation of the familiar families rather than a complete prescription for the actual projector.
+
+Also, its monomials are not automatically identical to individual Zernike modes. For example, common unnormalized Zernike forms include
+
+\[
+Z_{\mathrm{defocus}}\propto2\rho^2-1,
+\]
+
+\[
+Z_{\mathrm{coma}}\propto(3\rho^3-2\rho)\cos\theta,
+\]
+
+\[
+Z_{\mathrm{spherical}}\propto6\rho^4-6\rho^2+1.
+\]
+
+These combine the higher-order terms with particular amounts of lower-order terms. Zernike spherical aberration, for example, includes a quartic term balanced with defocus and piston.
+
+The basis, normalization, and reference focus must therefore be specified before comparing numerical coefficients.
+
+---
+
+**14. Prove exactly that global piston does not change intensity.**
+
+Let the pupil field, after separating out the ideal reference phase, be
+
+\[
+\mathcal P_W(p)=A(p)e^{ikW(p)}.
+\]
+
+Here \(p\) denotes a pupil location.
+
+A general linear diffraction calculation can be written
+
+\[
+U_W(q)
+=
+\int K(q,p)A(p)e^{ikW(p)}\,dp,
+\]
+
+where \(q\) is an image location and \(K\) describes propagation through the system.
+
+Now add a real constant \(c_0\) everywhere across the pupil:
+
+\[
+W'(p)=W(p)+c_0.
+\]
+
+The new image field is
+
+\[
+\begin{aligned}
+U_{W'}(q)
+&=
+\int K(q,p)A(p)e^{ik[W(p)+c_0]}\,dp\\
+&=
+\int K(q,p)A(p)e^{ikW(p)}e^{ikc_0}\,dp.
+\end{aligned}
+\]
+
+Since \(c_0\) does not depend on pupil position, its factor comes outside the integral:
+
+\[
+\boxed{
+U_{W'}(q)=e^{ikc_0}U_W(q).
+}
+\]
+
+Intensity is proportional to squared magnitude:
+
+\[
+I_{W'}(q)
+=
+\left|e^{ikc_0}U_W(q)\right|^2.
+\]
+
+For real \(c_0\),
+
+\[
+|e^{ikc_0}|^2=1.
+\]
+
+Therefore,
+
+\[
+\boxed{
+I_{W+c_0}(q)=I_W(q)
+\qquad\text{at every image position}.
+}
+\]
+
+This does not rely on the particular Fresnel approximation used earlier. It follows from linear field propagation and a common unit-magnitude phase factor.
+
+Physically, interference depends on phase differences. Between two pupil points,
+
+\[
+\Delta\Phi
+=
+k[W(p_1)-W(p_2)].
+\]
+
+After adding piston,
+
+\[
+\begin{aligned}
+\Delta\Phi'
+&=
+k[(W(p_1)+c_0)-(W(p_2)+c_0)]\\
+&=
+k[W(p_1)-W(p_2)]\\
+&=
+\Delta\Phi.
+\end{aligned}
+\]
+
+Every relative phase is preserved.
+
+The same reasoning applies to partially coherent imaging: each coherent source contribution receives a common phase factor, and its intensity is unchanged before the source intensities are summed.
+
+---
+
+**15. Explain why CD, PS, and PVB cannot determine global piston.**
+
+In this lithography context:
+
+- **CD:** critical dimension, describing printed feature size.
+- **PS:** pattern shift, describing placement error.
+- **PVB:** process variation band, describing variation of printed contours across process conditions.
+
+PS and PVB are used as performance indicators in the EUV aberration literature. genui{"citation":{"ref":"turn14view1"}}
+
+Within an intensity-based imaging and process model, adding piston leaves the intensity unchanged at every image point and at every evaluated process condition.
+
+Consequently:
+
+\[
+\boxed{
+\begin{aligned}
+\mathrm{CD}(W+c_0)&=\mathrm{CD}(W),\\
+\mathrm{PS}(W+c_0)&=\mathrm{PS}(W),\\
+\mathrm{PVB}(W+c_0)&=\mathrm{PVB}(W).
+\end{aligned}
+}
+\]
+
+The inverse problem therefore has infinitely many equivalent answers:
+
+\[
+W,\qquad W+c_0,\qquad W+c_1,\ldots
+\]
+
+all produce the same intensity-derived measurements.
+
+A neural network cannot uniquely determine which global piston was present from those measurements alone. It can learn an assigned convention or statistical correlations, but the observables themselves contain no information distinguishing that family of wavefronts.
+
+A common convention is to choose the pupil-average wavefront error to be zero:
+
+\[
+\langle W\rangle_{\mathrm{pupil}}=0.
+\]
+
+This fixes the otherwise arbitrary piston value.
+
+Finally, **global piston** means the same phase added to every coherently combined contribution. A phase offset applied to only one pupil segment, or to one arm of an interferometer, changes a relative phase and can affect intensity. An independent reference field can therefore make piston observable relative to that reference.

@@ -1,0 +1,37 @@
+{
+  "entrance_pupil": {
+    "z_mm": 80.0,
+    "radius_mm": 4.0,
+    "virtual": true
+  },
+  "exit_pupil": {
+    "z_mm": -50.0,
+    "radius_mm": 5.0,
+    "virtual": true
+  },
+  "object_plane_z_mm": -160.0,
+  "image_plane_z_mm": 137.5,
+  "lateral_magnification": -0.625,
+  "off_axis_source_height_mm": 6.0,
+  "off_axis_image_height_mm": -3.75,
+  "entrance_cone_half_angle_rad_paraxial": 0.016666666666666666,
+  "exit_cone_half_angle_rad_paraxial": 0.02666666666666667,
+  "off_axis_input_chief_slope": -0.025,
+  "off_axis_output_chief_slope": -0.020000000000000004,
+  "max_height_at_lenses_mm": [
+    4.666666666666667,
+    4.0
+  ],
+  "lens_clear_radius_mm": 6.0,
+  "max_pupil_image_and_source_image_error_mm": 1.7763568394002505e-15,
+  "object_to_image_ABCD": [
+    [
+      -0.6250000000000001,
+      -1.4210854715202004e-14
+    ],
+    [
+      -0.01,
+      -1.6
+    ]
+  ]
+}

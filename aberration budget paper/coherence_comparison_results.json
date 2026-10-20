@@ -1,0 +1,21 @@
+{
+  "wavelength_nm": 500.0,
+  "objective_NA": 0.05,
+  "illumination_NA_case_B": 0.15,
+  "magnification": 1,
+  "fc_cycles_per_um": 0.1,
+  "q_over_fc": 1.5,
+  "period_um": 6.666666666666666,
+  "t0": 0.5,
+  "epsilon": 0.05,
+  "OTF_q": 0.14429361281438752,
+  "object_Michelson_contrast": 0.19801980198019803,
+  "coherent_image_contrast": 0,
+  "incoherent_image_contrast": 0.02871514682873384,
+  "incoherent_image_mean": 0.25125,
+  "incoherent_cosine_amplitude": 0.007214680640719376,
+  "source_integration_max_error": 4.996003610813204e-16,
+  "normalization": "Separate flat-field calibration; uniform mask image is t0^2",
+  "source_A": "One uniform normally incident coherent plane wave",
+  "source_B": "Uniform angular disk radius 3*fc; mutually incoherent source points"
+}

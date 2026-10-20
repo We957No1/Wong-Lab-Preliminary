@@ -1,0 +1,98 @@
+\section{A film as a geometric series}
+Consider medium $0$, a film $1$ of physical thickness $d_1$, and semi-infinite substrate $2$. Reference the incident and reflected amplitudes at the top surface. The one-pass film factor is
+\begin{equation}
+p_1=\ee^{\ii\psi_1},\qquad \psi_1=k_{z,1}d_1.
+\end{equation}
+It includes both phase and attenuation: $|p_1|=\ee^{-\Ima(k_{z,1})d_1}$.
+For the returning upward wave $k_z$ and the displacement both reverse sign, so its propagation factor is again $p_1$, not $p_1^{-1}$.
+
+\subsection{List the paths before summing them}
+\begin{center}
+\begin{tabularx}{\textwidth}{@{}lYl@{}}\toprule
+Contribution & Ordered events & Amplitude / incident amplitude\\\midrule
+Direct & Reflection at upper boundary & $r_{01}$\\
+First return & Enter, descend, reflect, ascend, exit & $t_{01}p_1r_{12}p_1t_{10}$\\
+Extra round trip & Reflect internally above, descend, reflect below, ascend & $q=r_{10}r_{12}p_1^2$\\\bottomrule
+\end{tabularx}
+\end{center}
+Every return after the first therefore multiplies the amplitude by another $q$:
+\begin{equation}
+a_0=t_{01}t_{10}r_{12}p_1^2,\quad
+ a_1=a_0q,\quad a_2=a_0q^2,\quad\ldots
+\end{equation}
+For $|q|<1$ the coherent sum is
+\begin{align}
+r_{\rm film}&=r_{01}+t_{01}t_{10}r_{12}p_1^2
+\sum_{\ell=0}^{\infty}q^\ell\\
+&=r_{01}+\frac{t_{01}t_{10}r_{12}\ee^{2\ii\psi_1}}
+{1-r_{10}r_{12}\ee^{2\ii\psi_1}}.
+\label{eq:filmsum}
+\end{align}
+The derivation is a sum of fields because the alternative paths are coherent. Summing their separate intensities would discard interference. The series argument uses $|q|<1$; the same rational solution can also be obtained directly from boundary equations, including cases treated by a passive limiting procedure.
+
+\subsection{Use the secondary identities to simplify}
+Set $z=\ee^{2\ii\psi_1}$. With \eqref{eq:identities},
+\begin{align}
+r_{\rm film}
+&=r_{01}+\frac{(1-r_{01}^2)r_{12}z}{1+r_{01}r_{12}z}\\
+&=\frac{r_{01}+r_{01}^2r_{12}z+r_{12}z-r_{01}^2r_{12}z}
+{1+r_{01}r_{12}z}\\
+&=\boxed{\frac{r_{01}+r_{12}\ee^{2\ii\psi_1}}
+{1+r_{01}r_{12}\ee^{2\ii\psi_1}}}.
+\label{eq:film}
+\end{align}
+The transmitted field at the bottom interface is obtained by the same round trips:
+\begin{equation}
+\boxed{t_{\rm film}=\frac{t_{01}t_{12}\ee^{\ii\psi_1}}
+{1+r_{01}r_{12}\ee^{2\ii\psi_1}}.}
+\end{equation}
+For lossless exterior media, $\mathcal R=|r_{\rm film}|^2$ and
+$\mathcal T=(Y_2/Y_0)|t_{\rm film}|^2$; their deficit is absorption in the film. If the substrate absorbs, $\mathcal T$ denotes flux entering the substrate at its top surface.
+
+\textbf{Limiting checks.} If $r_{12}=0$, then $r_{\rm film}=r_{01}$. If $d_1\to0$, then $(r_{01}+r_{12})/(1+r_{01}r_{12})=r_{02}$: the zero-thickness layer disappears. If the film becomes optically thick and absorbing, $\ee^{2\ii\psi_1}\to0$ and only $r_{01}$ remains. A lossless thick film does not have this latter limit, because its phase keeps oscillating.
+
+\section{Multilayers: replace everything below by an effective reflection}
+For two finite films, the order is
+\begin{equation}
+0\;\longrightarrow\;1\;(d_1)\;\longrightarrow\;2\;(d_2)
+\;\longrightarrow\;3\;\text{(substrate)}.
+\end{equation}
+Seen from medium 1 at the $1|2$ boundary, film 2 and substrate 3 have the effective reflection
+\begin{equation}
+\Gamma_1=\frac{r_{12}+r_{23}\ee^{2\ii\psi_2}}
+{1+r_{12}r_{23}\ee^{2\ii\psi_2}}.
+\end{equation}
+The same film formula then gives
+\begin{equation}
+r_{\rm stack}=\frac{r_{01}+\Gamma_1\ee^{2\ii\psi_1}}
+{1+r_{01}\Gamma_1\ee^{2\ii\psi_1}}.
+\end{equation}
+Nothing beneath film 1 needs to be re-expanded path by path. Its entire linear response at the chosen reference plane is already contained in $\Gamma_1$.
+
+For $N$ finite layers and substrate $N+1$, define $\Gamma_j$ as reflection of everything to the right of boundary $j|j+1$, as seen from medium $j$ \emph{at that boundary}. Initialize and recurse:
+\begin{equation}
+\boxed{\begin{aligned}
+\Gamma_N&=r_{N,N+1},\\
+\Gamma_j&=\frac{r_{j,j+1}+\Gamma_{j+1}\ee^{2\ii k_{z,j+1}d_{j+1}}}
+{1+r_{j,j+1}\Gamma_{j+1}\ee^{2\ii k_{z,j+1}d_{j+1}}},
+\quad j=N-1,\ldots,0,\\
+r_{\rm stack}&=\Gamma_0.
+\end{aligned}}
+\label{eq:stack}
+\end{equation}
+At every step add one upper interface, one layer's propagation, and the effective reflection of the deeper structure. Each denominator accounts for all repeated reflections between the new interface and the deeper stack. Calculate $s$ and $p$ separately with the appropriate admittances and the same conserved $k_\parallel$.
+
+\subsection{Why thickness changes phase as well as reflectance}
+For one film write $r=(a+bz)/(1+abz)$, where $a=r_{01}$, $b=r_{12}$, and $z=\ee^{2\ii k_zd}$. Holding optical constants fixed,
+\begin{equation}
+\frac{\partial r}{\partial d}
+=\frac{2\ii k_zbz(1-a^2)}{(1+abz)^2},\qquad
+\dd\ln|r|=\Rea\!\left(\frac{\dd r}{r}\right),\quad
+\dd\arg r=\Ima\!\left(\frac{\dd r}{r}\right).
+\end{equation}
+Thus one physical thickness perturbation generally changes both magnitude and phase. This is the connection from multilayer materials to pupil amplitude errors and wavefront errors.
+
+% \textbf{EUV interpretation.} Coherent reinforcement of successive periods roughly suggests $2D\cos\alpha\simeq m\lambda_0$ for period $D$ and incidence angle $\alpha$ from the normal. This Bragg estimate omits complex-index corrections and termination; \eqref{eq:stack} is the planar calculation. The textbook's mask/wafer scaling example gives $D=4(0.725+1)\,\mathrm{nm}=6.9\,\mathrm{nm}$ and $2D\cos6^\circ\simeq13.724\,\mathrm{nm}$. It is a scale check, not an exact recovered coating prescription.
+
+A finite patterned absorber also has lateral edges and angular coupling. The geometrical shadow scale $h_{\rm abs}\tan\alpha$ helps explain sensitivity but does not by itself predict printed placement. A rigorous image requires complex diffraction-order amplitudes, the projection pupil, source averaging, and an image/resist metric.
+\clearpage

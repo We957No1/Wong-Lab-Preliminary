@@ -177,6 +177,186 @@ resist thresholds, and proximity correction pose a different problem.
 Do not conclude that the paper's 14 nm contacts are impossible merely
 because $0.61(13.5)/0.33\simeq24.95\nm$.
 
+\worked{A sinusoidal mask between the two cutoffs}
+Figure~\ref{fig:coherence-comparison} illustrates a case in which
+spatially incoherent imaging preserves modulation that normally incident
+coherent illumination loses. We specify both the optical system and
+the source: changing coherence alone is not a complete experimental
+description.
+
+\subsubsection*{Optical system and mask, common to both cases}
+Use a scalar, paraxial, linear, shift-invariant imaging system in air
+($n\simeq1$), at best focus, with unit lateral magnification $|M|=1$.
+The objective is free of aberration and has a clear, uniformly weighted,
+unobscured circular pupil. Its image-side NA is $0.05$, and the wavelength
+is $500\nm$. Both sources are sufficiently narrowband that we may use
+this single wavelength; the polarization is fixed and treated as scalar.
+Thus the coherent field transfer is
+\[
+P(f_x,f_y)=\mathbf1_{\sqrt{f_x^2+f_y^2}\leq f_c},
+\qquad
+f_c=\frac{\NA}{\lambda}=0.100\,\um^{-1}.
+\]
+Here $\um^{-1}$ denotes cycles per micrometre. The detector measures
+time-averaged optical intensity, with sufficient spatial sampling;
+noise, resist processing, and thresholding are outside this example.
+
+Let the thin mask have real, positive amplitude transmittance
+\begin{equation}
+t(x)=t_0+\epsilon\cos(2\pi qx),
+\qquad t_0=0.50,\quad \epsilon=0.05,\quad q=1.5f_c.
+\label{eq:sinusoidal-mask}
+\end{equation}
+It is uniform in $y$ and periodically extended in $x$, so there are no
+finite-mask edge effects in the model. Its amplitude varies from
+$0.45$ to $0.55$; its intensity transmission is $|t|^2$, not $t$.
+The modulation is weak because $\epsilon/t_0=0.10$.
+The spatial frequency is $q=0.150\,\um^{-1}$, and its period is
+$p=1/q=6.67\,\um$. In particular, $f_c<q<2f_c$.
+All positions are expressed in the common object/image length scale.
+
+\subsubsection*{Source conditions}
+\begin{center}
+\small
+\begin{tabularx}{\textwidth}{@{}L{.19\textwidth}Y Y@{}}
+\toprule
+& Case A: coherent & Case B: incoherent imaging response\\
+\midrule
+Illumination &
+One collimated, normally incident plane wave, with uniform amplitude
+over the mask. &
+A centred, extended angular source: mutually incoherent plane-wave
+components fill a circular illumination pupil.\\
+Angular support &
+A single source point at transverse frequency $\vct s=0$. &
+Uniform weight per area in transverse-frequency space for
+$|\vct s|\leq3f_c$; illumination NA $=0.15$.\\
+Phase relation &
+The field across the mask has a stable spatial phase relation. &
+Different source directions have no time-averaged mutual interference;
+their image intensities are added.\\
+\bottomrule
+\end{tabularx}
+\end{center}
+In both cases the central wavelength is $500\nm$. In Case B, an extended
+narrowband source in a condenser's illumination pupil provides a model
+for the angular distribution; exposure is long enough to average the
+relative phase fluctuations. This is not a single normally incident
+wave with an arbitrary label of incoherence.
+
+The finite source in Case B reproduces the spatially incoherent imaging
+formula for this particular mask. Its field spectrum contains only
+$0,+q,-q$. Every source direction that can send one of those orders
+through the objective lies within $|\vct s|\leq q+f_c=2.5f_c$.
+The uniform source of radius $3f_c$ therefore covers all the relevant
+pupil-overlap regions. After the calibration below, averaging over
+these source directions gives the full pupil autocorrelation in
+Eq.~\eqref{eq:otf}. A finite source need not have zero spatial coherence
+at every separation to give this response for the specified spectrum.
+Chapter~\ref{ch:partial} develops the source-point calculation.
+
+\textbf{Intensity calibration.}
+We normalize each case to its response to a uniform mask $t=t_0$, giving
+the reference level $t_0^2=0.25$ in both cases.
+With equal incident irradiance, the uniform angular source of radius
+$3f_c$ sends only $1/9$ of its power through the objective for a uniform
+mask in this model. Case B is therefore divided by that reference
+throughput, or equivalently its source power could be increased by nine.
+The figure compares pattern contrast after this stated calibration;
+it does not compare photon efficiency or signal-to-noise ratio.
+
+\subsubsection*{Case A: the pupil removes the field sidebands}
+Writing the cosine as two exponentials,
+\[
+t(x)=t_0+\frac{\epsilon}{2}\ee^{+\ii2\pi qx}
+          +\frac{\epsilon}{2}\ee^{-\ii2\pi qx}.
+\]
+Normal incidence places the three field orders at $0,+q,-q$ in the
+pupil-frequency plane. Since $q>f_c$, both sidebands are blocked:
+\begin{equation}
+U_A(x)=t_0,\qquad I_A(x)=|U_A(x)|^2=t_0^2=0.25.
+\label{eq:sinusoid-coherent}
+\end{equation}
+Only a spatially constant field survives, so the image has no sinusoidal
+modulation.
+
+\subsubsection*{Case B: some intensity modulation survives}
+For a clear circular pupil, the normalized overlap area in
+Eq.~\eqref{eq:otf} gives the real, nonnegative intensity transfer
+\begin{equation}
+T(f)=
+\begin{cases}
+\dfrac{2}{\pi}\left[\cos^{-1}\nu-\nu\sqrt{1-\nu^2}\right],
+&0\leq\nu\leq1,\\
+0,&\nu>1,
+\end{cases}
+\qquad \nu=\frac{|f|}{2f_c}.
+\label{eq:circular-incoherent-otf}
+\end{equation}
+Here $T(f)=\mathrm{OTF}(f,0)$ and $T(0)=1$.
+Its support extends to $2f_c$, but its value falls toward zero:
+being below the cutoff does not mean being transmitted at full contrast.
+At our chosen frequency, $\nu=0.75$ and $T(q)=0.144294$.
+
+Expand the object intensity exactly:
+\[
+|t(x)|^2=t_0^2+\frac{\epsilon^2}{2}
+  +2t_0\epsilon\cos(2\pi qx)
+  +\frac{\epsilon^2}{2}\cos(4\pi qx).
+\]
+In incoherent imaging, each \emph{intensity} Fourier component is
+multiplied by $T$. The DC term passes unchanged, the term at $q$
+is attenuated, and the term at $2q=3f_c$ is removed. Thus
+\begin{align}
+I_B(x)
+&=t_0^2+\frac{\epsilon^2}{2}
+  +2t_0\epsilon T(q)\cos(2\pi qx)\notag\\
+&=0.25125+0.00721468\cos(2\pi qx).
+\label{eq:sinusoid-incoherent}
+\end{align}
+Dropping terms of order $\epsilon^2$ gives the weak-modulation expression
+$I_B\simeq t_0^2+2t_0\epsilon T(q)\cos(2\pi qx)$.
+The figure retains the exact $\epsilon^2/2$ DC term; this explains why
+the mean of the incoherent curve sits slightly above the coherent curve.
+
+For a quantitative comparison, define Michelson contrast
+\[
+C=\frac{I_{\max}-I_{\min}}{I_{\max}+I_{\min}}.
+\]
+The mask's intensity transmission has $C=19.80$ percent,
+the coherent image has $C=0$, and the incoherent image has $C=2.87$
+percent. The original period survives in Case B with reduced contrast.
+
+\begin{figure}[!htbp]
+\centering
+\includegraphics[width=\textwidth]{coherence_comparison}
+\caption{Sinusoidal-mask comparison under the optical and source
+conditions stated in Section~4.4.
+(a) The coherent curve transfers field amplitude; the incoherent curve
+transfers intensity modulation. Their common pupil has field cutoff
+$f_c$, while $q=1.5f_c$ lies inside the intensity cutoff $2f_c$.
+(b) Mask intensity transmission and the two images use one common
+grayscale, with no separate contrast stretching.
+(c) The corresponding profiles are divided by $t_0^2$ after the stated
+flat-field calibration. Case A uses one normally incident coherent
+wave; Case B averages a uniform disk of mutually incoherent source
+directions with illumination NA $0.15$. The objective NA is $0.05$ in
+both cases. The incoherent image retains $2.87$ percent contrast;
+the coherent image is uniform.}
+\label{fig:coherence-comparison}
+\end{figure}
+
+No objective aperture has become larger in Case B. For example, a source
+direction $s_x=-q/2$ places the zero and $+q$ orders at $-0.75f_c$ and
+$+0.75f_c$, both inside the same pupil. Their interference can produce
+intensity variation at their difference frequency $q$.
+The source average retains some of that modulation.
+This advantage is specific to the stated comparison: oblique coherent
+illumination can also transmit an appropriate pair of orders.
+The paper's quasar source is a separate, partially coherent arrangement,
+studied in Chapter~\ref{ch:partial}; the present visible-light example
+isolates the coherence and cutoff mechanism.
+
 \section{Resolution and depth-of-focus scaling}
 Lithography often summarizes a process-dependent minimum feature scale as
 \begin{equation}

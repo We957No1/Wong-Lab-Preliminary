@@ -1,0 +1,34 @@
+% \section{Source map and reproducibility}
+% \subsection*{Sources actually used}
+% \begin{enumerate}
+% \item \textbf{Supplied local textbook,} \emph{Understanding the Aberration Budget Paper}: Chapter 5, printed pp.~22--25 (PDF pp.~31--34); Chapter 6, printed pp.~27--29 (PDF pp.~36--38); Chapter 7, printed pp.~30--35 (PDF pp.~39--44). The Rodrigues proof also uses Appendix A.1, printed pp.~81--82 (PDF pp.~90--91). The local source file is \texttt{aberration\_budget\_textbook.pdf} under \texttt{aberration budget paper}.
+% \item \textbf{Shared conversation,} \href{https://chatgpt.com/share/6ad705f0-b784-83ec-bca0-9933ba39540c}{\emph{Stepwise Optics Derivation Explanation}}, recovered 20 October 2026. Used the response on textbook Sections 6.2--6.4, especially its numbered points 6--14; its original pupil/image HTML; the final response's 12-panel explanation, rotation discussion, and balancing discussion; and its selection-rule and Legendre/Jacobi explanations. Relevant extracted text and original visualization data are retained under \texttt{checks/}.
+% \item \textbf{User-supplied screenshots,} the original eleven mathematical extracts plus the later 12-panel identification table. The three interface sections and polarization derivations retain the requested subdivision.
+% \item \textbf{Independent mathematical reference:} NIST Digital Library of Mathematical Functions, \href{https://dlmf.nist.gov/18.3}{\S18.3, Definitions} and \href{https://dlmf.nist.gov/18.5}{\S18.5, Explicit Representations}. Used to cross-check the Jacobi/Legendre convention; the orthogonality proof is written out in these notes.
+% \item \textbf{Independent interface reference:} MIT OpenCourseWare, \href{https://www.ocw.mit.edu/courses/6-974-fundamentals-of-photonics-quantum-electronics-spring-2006/fafcb9e36b7749f4eeb099d666bdf70a_electr_wav_inter.pdf}{\emph{Electromagnetic Waves and Interfaces}}, \S2.2. Used to cross-check the boundary/phase-matching framework; our displayed amplitude and time conventions are explicitly stated.
+% \end{enumerate}
+
+% \subsection*{Requested flow: coverage record}
+% \begin{tabularx}{\textwidth}{@{}lY@{}}\toprule
+% Requested material & Placement / treatment\\\midrule
+% Complex optical constant & Section 1: decay, relative material phase, and limitations of black paint.\\
+% Photos 1--3; photo 7 & Section 2: separate electric continuity, magnetic sign, solution for $r,t$; Snell's law is the boundary-condition side discovery.\\
+% Photos 4--6; photo 9 & Section 3: polarization-specific derivations; reverse-interface identities are proved earlier in Section 2.\\
+% Photos 8 and 10 & Sections 4--5: geometric series and bottom-up multilayer recursion.\\
+% Photo 11; chat points 6--14 & Sections 6--7: Fresnel cancellation, ray gradients, all five classical families, field dependence, and general piston invariance.\\
+% Original HTML illustration & \texttt{aberration\_illustration.html}: original stored data with added polar and Zernike formulas.\\
+% Adjustable companion HTML & \texttt{aberration\_explorer.html}: coefficient/field/focus controls, ray diagrams, FFT images, and atlas.\\
+% Small-error RMS and degeneracy & Section 9: brief expansion with fixed-point/peak distinctions and nonuniqueness examples.\\
+% Zernike plots and detailed explanation & Section 10: atlas and supplied identification table; Appendix A: supplementary panel-by-panel commentary from the final chat response.\\
+% Selection rules, Legendre, orthogonality & Sections 10--11: Cartesian polynomial derivation, Jacobi generalization, and full endpoint/norm proof.\\
+% Typical Zernike aberrations & Section 12: normalized formulas, raw-to-balanced decomposition, slopes, and RMS.\\\bottomrule
+% \end{tabularx}
+
+% \subsection*{How to rerun or edit}
+% Edit \texttt{study\_notes\_20\_oct.tex} and its \texttt{sections/} files. Run \texttt{build\_notes.ps1} to check the calculations, regenerate figures, and compile with the existing workspace Python and MiKTeX; SyncTeX is enabled and every figure uses \texttt{[H]}.
+
+% Open \texttt{optics\_demonstrations.ipynb} in Jupyter or VS Code. Edit the parameter cell and run the later cells. Keep the imported \texttt{optics\_calculations.py} beside it. Defaults are teaching examples, not measured materials or a scanner reconstruction.
+
+% The Python verifier checks film series/limits, recursion against characteristic matrices, power conservation, exact polynomial identities, the Gram matrix through degree eight, and Fourier piston/tilt behaviour. The JavaScript verifier checks HTML formulas, gradients, FFT invariants, and preservation of the original seven-case data. Results, source extracts, and hashes are under \texttt{checks/}; \texttt{README.txt} gives commands and dependencies.
+
+% \textbf{Numerical checks within the stated model.} The 320 stack comparisons agreed within $3.6\times10^{-16}$ in complex amplitude; the 45-mode Gram matrix through $n=8$ agreed with identity within $3.7\times10^{-14}$.

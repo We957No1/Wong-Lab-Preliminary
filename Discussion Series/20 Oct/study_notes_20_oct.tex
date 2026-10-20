@@ -1,0 +1,55 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,microtype}
+\usepackage[margin=22mm,headheight=15pt]{geometry}
+\usepackage{amsmath,amssymb,mathtools,bm}
+\usepackage{graphicx,xcolor,booktabs,tabularx,array,longtable,float}
+\usepackage{enumitem,fancyhdr,hyperref,bookmark}
+\definecolor{ink}{HTML}{17354C}
+\definecolor{teal}{HTML}{087E8B}
+\hypersetup{colorlinks=true,linkcolor=ink,urlcolor=teal,pdftitle={Discussion on 20 Oct},pdfauthor={Discussion Series}}
+\pagestyle{fancy}\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\fancyfoot[C]{\thepage}
+\setlength{\parindent}{0pt}\setlength{\parskip}{5pt plus 1pt}
+\setlength{\emergencystretch}{2em}
+\setlist{nosep,topsep=4pt}
+\allowdisplaybreaks[2]
+\newcommand{\ii}{\mathrm{i}}\newcommand{\dd}{\mathrm{d}}
+\newcommand{\ee}{\mathrm{e}}\newcommand{\bn}{\widetilde n}
+\newcommand{\avg}[1]{\left\langle #1\right\rangle}
+\newcommand{\NA}{\mathrm{NA}}\newcommand{\Rea}{\operatorname{Re}}\newcommand{\Ima}{\operatorname{Im}}
+\newcommand{\point}[1]{\begin{quote}\small\color{ink}\textbf{Physical meaning.} #1\end{quote}}
+\newcommand{\note}[1]{\begin{quote}\small\textbf{Convention / scope.} #1\end{quote}}
+\newcolumntype{Y}{>{\raggedright\arraybackslash}X}
+\numberwithin{equation}{section}
+\setcounter{tocdepth}{1}
+\begin{document}
+\begin{center}
+{\LARGE\bfseries Discussion on 20 Oct}
+\end{center}
+\vspace{3mm}
+
+\textbf{Conventions used throughout}\par\smallskip
+\begin{tabularx}{\textwidth}{@{}lY@{}}\toprule
+Symbol & Meaning\\\midrule
+$\ee^{-\ii\omega t}$ & Time dependence; a passive material has $\Ima\bn\geq0$.\\
+$\lambda_0$, $k_0$ & Vacuum wavelength and wave number, $k_0=2\pi/\lambda_0=\omega/c$.\\
+$\bn=n+\ii\kappa$ & Complex refractive index; EUV notation is $1-\delta+\ii\beta$.\\
+$\psi_j=k_{z,j}d_j$ & One-pass complex film phase; distinct from the index decrement $\delta$.\\
+$r,t$; $\mathcal R,\mathcal T$ & Complex field coefficients; reflected/transmitted power fractions.\\
+$W$ & Real wavefront error in length units; phase error is $k_0W$.\\
+$(x_p,y_p)=a(u,v)$ & Physical exit-pupil coordinates; $u=\rho\cos\theta$, $v=\rho\sin\theta$.\\
+$(\xi,\eta)$; $h$ & Image displacement from an ideal point; dimensionless object-field coordinate.\\
+$Z_n^m$; $c_n^m$ & Unit-mean-square Zernike function; its coefficient in length units.\\\bottomrule
+\end{tabularx}
+
+% The interface calculation assumes linear, isotropic, nonmagnetic media and planar layers. The imaging calculation assumes a scalar paraxial field, a clear circular pupil, and a lossless image space (vacuum for the displayed formulas). A full EUV mask calculation can require vector diffraction, patterned sidewalls, and polarization-dependent pupil amplitudes.
+
+\input{sections/01_material_and_interfaces}
+\input{sections/02_films}
+\input{sections/03_pupil_and_aberrations}
+\input{sections/04_zernike}
+\input{sections/06_atlas_supplement}
+\input{sections/05_sources}
+\end{document}

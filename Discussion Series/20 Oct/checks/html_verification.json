@@ -1,0 +1,12 @@
+{
+  "modes": 13,
+  "max_decomposition_error": 1.8790524691780774e-14,
+  "max_gradient_finite_difference_error": 7.043219341085205e-9,
+  "piston_intensity_error": 3.3306690738754696e-16,
+  "positive_tilt_shift_error": 5.773159728050814e-15,
+  "phase_only_energy_error": 9.969802761133906e-14,
+  "original_7_case_data_preserved": true,
+  "no_external_runtime_dependencies": true,
+  "browser_visual_review": "Not available: CUA reported no browsers. Numerical, syntax, and offline-dependency checks completed.",
+  "status": "PASS"
+}

@@ -1,0 +1,149 @@
+{
+  "created": "2026-10-20T06:44:42.523Z",
+  "pdf_pages": 27,
+  "figure_placements": [
+    "H",
+    "H",
+    "H"
+  ],
+  "pdf_compiler": "pdfTeX 3.141592653-2.6-1.40.29 (MiKTeX 26.5)",
+  "environment": {
+    "python": "3.12.8 | packaged by Anaconda, Inc. | (main, Dec 11 2024, 16:48:34) [MSC v.1929 64 bit (AMD64)]",
+    "packages": {
+      "numpy": "1.26.4",
+      "scipy": "1.13.1",
+      "sympy": "1.13.2",
+      "matplotlib": "3.9.2",
+      "nbformat": "5.10.4",
+      "nbclient": "0.8.0",
+      "ipykernel": "6.28.0",
+      "PyMuPDF": "1.28.2",
+      "Pillow": "12.0.0"
+    }
+  },
+  "pdf_overfull_boxes": false,
+  "notebook_code_cells": 6,
+  "notebook_errors": 0,
+  "artifact_hashes": [
+    {
+      "path": "study_notes_20_oct.pdf",
+      "bytes": 1917592,
+      "sha256": "018fb0b6af3d052e056de35847999e62179deb345f3d1047b09c7028472230b2"
+    },
+    {
+      "path": "study_notes_20_oct.tex",
+      "bytes": 4562,
+      "sha256": "b712143154ee366d2075dbd0f4f383b86c11f12d4970ad94bfa937815e21be4a"
+    },
+    {
+      "path": "study_notes_20_oct.synctex.gz",
+      "bytes": 264241,
+      "sha256": "bbb193571b5766d3162b8232e61d297155ee768c743cbf874d16aa82a1780689"
+    },
+    {
+      "path": "aberration_illustration.html",
+      "bytes": 322635,
+      "sha256": "eef3b55016d3f97fd26cf113f2acc6c3dc6dab1e427960a2ba95043b403edfcf"
+    },
+    {
+      "path": "aberration_explorer.html",
+      "bytes": 23593,
+      "sha256": "d598eb14f05cc5bb1365bed141a16726d193e5ffcfe17753e6d0b9d39d54b430"
+    },
+    {
+      "path": "optics_demonstrations.ipynb",
+      "bytes": 608118,
+      "sha256": "7f3a9ab9841a997dac65f117ac1cc5f3316ecb1ff10d21746a1d7a3daeb4de8b"
+    },
+    {
+      "path": "optics_calculations.py",
+      "bytes": 2821,
+      "sha256": "55861aeb85f19e6f861b78474eb00297553d2a98f6828fa0ef8004ad749d671e"
+    },
+    {
+      "path": "generate_figures.py",
+      "bytes": 2821,
+      "sha256": "90adeb7e2f315f4f538216fa30f64fa9ee1407398a66842e1858f1060ec00833"
+    },
+    {
+      "path": "verify_calculations.py",
+      "bytes": 4655,
+      "sha256": "675839c740d6aa211b0818d8754cc99039c2c821a9795aa21c507f2c0b4c1a1c"
+    },
+    {
+      "path": "build_notes.ps1",
+      "bytes": 894,
+      "sha256": "137a4021ed2122ad7766d2c9bdaae027594d2e4710756b9719a7553398f376d1"
+    },
+    {
+      "path": "README.txt",
+      "bytes": 3003,
+      "sha256": "1fdcfba4a1c8354a01fc8baba3fdaa7f09dbde05c79ed3a2e2bb7f387f2c1aae"
+    },
+    {
+      "path": "checks/verify_html.mjs",
+      "bytes": 3942,
+      "sha256": "2db44d10fdf1249aea88d0c479aef345143ffbc24424d48039f7b60ceed5351e"
+    },
+    {
+      "path": "checks/verification_results.json",
+      "bytes": 644,
+      "sha256": "39e0bc943206637c1c900d12cc5f2f4156d154cc0488721b9178ebea3e9cda09"
+    },
+    {
+      "path": "checks/html_verification.json",
+      "bytes": 529,
+      "sha256": "91235ef12f1594f6b7b7fe6515db339607ebf1a2f876c048dab9b6173b4db971"
+    },
+    {
+      "path": "checks/pdf_layout_checks.json",
+      "bytes": 2701,
+      "sha256": "df095a733accb056611937967cc9cf90c080bea9376a520518407df93ac2ebbc"
+    },
+    {
+      "path": "sections/01_material_and_interfaces.tex",
+      "bytes": 11566,
+      "sha256": "b4e84a0011dc75635874068085267c546e5bf12e05efdea9bbe9e0aab8e9315f"
+    },
+    {
+      "path": "sections/02_films.tex",
+      "bytes": 5899,
+      "sha256": "de656135f7a78a431e00a36e732cff6488e2cd4125c8698ede545943ed9e3d04"
+    },
+    {
+      "path": "sections/03_pupil_and_aberrations.tex",
+      "bytes": 18139,
+      "sha256": "9def8cc33926b004ae5f9a5db2a34cef22aff3848d4c94a6faea29d3c7b60684"
+    },
+    {
+      "path": "sections/04_zernike.tex",
+      "bytes": 19329,
+      "sha256": "987e7f13b51dc9e07e9e4eeddcd357c9a0ccef82b6eb03f94bb97d6ae6c2d765"
+    },
+    {
+      "path": "sections/05_sources.tex",
+      "bytes": 4918,
+      "sha256": "148ccc601da47fcdcd6e4edb6f7b144db3e6ed6982e1a016069532e43487b2cf"
+    },
+    {
+      "path": "sections/06_atlas_supplement.tex",
+      "bytes": 7489,
+      "sha256": "0463cfaa50d0a083a1ead02fbb1b4b7af53eaca406ac172199ea4a741dd1e7f7"
+    },
+    {
+      "path": "figures/pupil_ray_psf_1.png",
+      "bytes": 478035,
+      "sha256": "19637ec0490157591164337784d53f393ef631fbbcf6a28c9183df356a77f77f"
+    },
+    {
+      "path": "figures/pupil_ray_psf_2.png",
+      "bytes": 569957,
+      "sha256": "549d875ff6bce3ab9f9483b4fccdb7f1fb4d8769fba97d100babb8ae8394b57c"
+    },
+    {
+      "path": "figures/zernike_atlas.png",
+      "bytes": 780954,
+      "sha256": "bd9194dee3d8727335de5216ae588d12ba434c1a51d4c9249f8096baba6fadab"
+    }
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "coherent_cutoff_per_um": 0.1,
+  "mask_period_um": 6.666666666666666,
+  "otf_at_1_5_fc": 0.14429361281438752,
+  "coherent_intensity": 0.25,
+  "incoherent_mean": 0.25125,
+  "incoherent_cosine_amplitude": 0.007214680640719376,
+  "incoherent_Michelson_contrast": 0.02871514682873384,
+  "source_integral_max_abs_error": 4.996003610813204e-16,
+  "source_pair_kernel": [
+    [
+      1.0000000000000013,
+      0.1442936128143875,
+      0.0
+    ],
+    [
+      0.1442936128143875,
+      1.0000000000000016,
+      0.1442936128143875
+    ],
+    [
+      0.0,
+      0.1442936128143875,
+      1.0000000000000013
+    ]
+  ],
+  "uniform_mask_throughput_at_equal_incident_power": 0.1111111111111111,
+  "airy_first_zero_lambda_over_NA": 0.6098349456332522,
+  "airy_first_zero_nm_at_13_5_nm_NA_0_33": 24.94779323045123,
+  "airy_first_bright_ring_relative_intensity": 0.01749786278577499
+}

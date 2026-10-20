@@ -9,8 +9,8 @@ and learning models, explains all 12 paper figures, all 4 tables, and all
 3 numbered equations, and includes 25 solved exercises. It records the
 paper's ambiguities instead of silently correcting them.
 
-The compiled edition has 98 pages, 17 main chapters, 3 appendices, and
-8 original scientific figures. Start with **How to study this book**,
+The compiled edition has 101 pages, 17 main chapters, 3 appendices, and
+9 original scientific figures. Start with **How to study this book**,
 then Chapters 1–3. Chapter 15 is the guide to keep beside the paper;
 Appendix C contains the textbook reading map and symbol dictionary.
 
@@ -50,6 +50,9 @@ Or use the existing workspace Python from the research workspace root:
 
 This regenerates the original scientific figures in PDF and PNG,
 numerical_checks.txt, and teaching_model_results.json.
+It also writes coherence_comparison_results.json for the Section 4.4
+sinusoidal-mask example, including the declared source parameters and
+an independent check by numerical integration over source directions.
 
 The contact example is scalar and uses a binary thin mask, periodic
 boundaries, a declared quasar quadrature, and a fixed threshold. It is an

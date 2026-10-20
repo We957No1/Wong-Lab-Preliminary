@@ -1,0 +1,73 @@
+\appendix
+\section{Supporting details: read the atlas one panel at a time}
+These explanations condense the final response in the shared conversation. They supplement the main derivations; each refers to the panel positions in Fig.~\ref{fig:atlas}. The maps show $Z$ itself. A physical contribution is $W=cZ$, and a negative $c$ reverses every sign/colour stated below.
+
+\subsection*{Row 1, column 1: piston, $(0,0)$}
+$Z_0^0=1$ everywhere, so the entire disk has one constant positive colour. It has unit mean square as a basis function but zero mean-subtracted RMS. Multiplying by $c$ adds the common phase $\ee^{\ii k_0c}$ to the whole field, leaving all relative phases and the intensity unchanged. A uniformly coloured map therefore need not imply an image defect.
+
+\subsection*{Row 1, columns 2 and 3: horizontal and vertical tilt}
+$Z_1^1=2u$ is negative on the left, zero on the vertical diameter, and positive on the right. Hence blue--white--red runs horizontally. For $Z_1^{-1}=2v$, the upper half is positive, the lower half negative, and the horizontal diameter is zero. The gradient is constant, so these maps shift a point image without altering its shape. A cosine-to-sine tilt rotation is $90^\circ$.
+
+\subsection*{Row 1, column 4: defocus, $(2,0)$}
+For $Z_2^0=\sqrt3(2\rho^2-1)$, the centre is $-\sqrt3$, the rim is $+\sqrt3$, and the zero ring solves $2\rho^2-1=0$, or $\rho=1/\sqrt2\simeq0.707$. Thus blue occupies the centre and red the outer region. The white ring is a zero-OPD contour on the pupil, not a dark ring in a point image. The quadratic term describes a focus mismatch; the constant subtraction makes the pupil mean zero.
+
+\subsection*{Row 2, column 1: axis-aligned primary astigmatism, $(2,2)$}
+$Z_2^2=\sqrt6(u^2-v^2)$. On the horizontal axis $v=0$, so the value is positive; on the vertical axis $u=0$, it is negative. The zero lines are $u=\pm v$, producing diagonal white boundaries between the lobes. The two pupil directions have opposite curvature changes and different directional foci. The four-lobed pupil map is not a prediction of a four-lobed geometrical image.
+
+\subsection*{Row 2, column 2: rotated primary astigmatism, $(2,-2)$}
+$Z_2^{-2}=2\sqrt6uv$. Upper-right and lower-left quadrants have $uv>0$ and are red; upper-left and lower-right have $uv<0$ and are blue. Both coordinate axes are zero lines. The equality
+$\cos[2(\theta-45^\circ)]=\sin2\theta$ shows that this is the previous angular pattern physically rotated by $45^\circ$.
+
+\subsection*{Row 2, column 3: balanced horizontal coma, $(3,1)$}
+$Z_3^1=\sqrt8\,u(3\rho^2-2)$. Its sign depends on both $u$ and radius. The radial factor changes sign at $\rho=\sqrt{2/3}\simeq0.816$. On the right ($u>0$), the inner region is negative and the outer crescent positive; on the left the signs reverse. The vertical diameter is also a zero line. The $-2u$ contribution subtracts tilt, making the mode orthogonal to $Z_1^1$. It is this balancing that produces the radial reversal absent from the raw $u\rho^2$ monomial.
+
+\subsection*{Row 2, column 4: balanced vertical coma, $(3,-1)$}
+Replace $u$ with $v$: $Z_3^{-1}=\sqrt8\,v(3\rho^2-2)$. The same radial zero remains at $\sqrt{2/3}$. Above the centre, the inner region is negative and the outer region positive; below it, these signs reverse. The horizontal diameter is a zero line. This is the same coma family with a $90^\circ$ change in orientation, not a different radial aberration.
+
+\subsection*{Row 3, column 1: trefoil, $(3,3)$}
+$Z_3^3=\sqrt8\rho^3\cos3\theta$. During one revolution, $3\theta$ runs through three cosine cycles, producing three positive and three negative sectors. The zeros are the six rays $\theta=\pi/6+j\pi/3$; the $\rho^3$ factor suppresses the magnitude near the centre and enhances it near the rim. The omitted sine partner is the same pattern rotated by $30^\circ$, because $3\times30^\circ=90^\circ$.
+
+\subsection*{Row 3, column 2: balanced primary spherical, $(4,0)$}
+$Z_4^0=\sqrt5(6\rho^4-6\rho^2+1)$ has no angular dependence. It is $+\sqrt5$ at both centre and rim, but $-\sqrt5/2$ at $\rho=1/\sqrt2$. Hence the red centre, blue annulus, and red rim. Its two zero circles follow from $6t^2-6t+1=0$, $t=\rho^2$:
+\begin{equation}
+\rho=\sqrt{\frac{3-\sqrt3}{6}}\simeq0.460,
+\qquad \rho=\sqrt{\frac{3+\sqrt3}{6}}\simeq0.888.
+\end{equation}
+The quadratic and constant terms are the defocus/piston balance. This is not the monotonically increasing raw quartic $\rho^4$.
+
+\subsection*{Row 3, column 3: secondary astigmatism, $(4,2)$}
+$Z_4^2=\sqrt{10}\rho^2(4\rho^2-3)\cos2\theta$. The angular factor has the same four-sector pattern as primary astigmatism. The extra radial factor changes sign at $\rho=\sqrt3/2\simeq0.866$, reversing each angular lobe across that circle. For example, along the positive horizontal axis the inner region is negative and the rim positive. The origin is zero, but is a point rather than an interior zero circle.
+
+\subsection*{Row 3, column 4: balanced secondary spherical, $(6,0)$}
+$Z_6^0=\sqrt7(20\rho^6-30\rho^4+12\rho^2-1)$ begins at $-\sqrt7$ and ends at $+\sqrt7$. Its three interior radial zeros occur at approximately $\rho=0.336,\ 0.707,\ 0.942$. Thus its concentric regions alternate blue--red--blue--red from centre to rim. Compared with primary spherical, its higher radial degree introduces one further reversal while retaining rotational symmetry.
+
+% \subsection*{A general reading rule and the role of normalization}
+% For standard $R_n^{|m|}$, the number of interior radial zero circles is
+% $(n-|m|)/2$. This follows from the $k$ simple interior zeros of the degree-$k$ Jacobi polynomial under its positive weight. Zeros at the origin from $\rho^{|m|}$ are not counted as circles. Angular sine/cosine factors separately determine the sector boundaries.
+
+% Equal mean square does not mean equal extrema: piston is $1$, tilt reaches $2$, and primary spherical reaches $\sqrt5$. The atlas uses a common dimensionless colour bar so these differences remain visible. A physical OPD scale in nanometres requires the coefficient $c$; the map alone does not specify that coefficient.
+
+\subsection*{Orientation: rotating a pattern versus rotating the axes}
+For a normalized pair with the same $n$ and $M>0$, factor out
+$F(\rho)=\sqrt{2(n+1)}R_n^M(\rho)$:
+\begin{equation}
+W_{\rm pair}=F(\rho)[c_c\cos M\theta+c_s\sin M\theta]
+=CF(\rho)\cos[M(\theta-\theta_0)].
+\end{equation}
+Expanding the cosine of a difference gives
+$c_c=C\cos M\theta_0$, $c_s=C\sin M\theta_0$, hence
+\begin{equation}
+C=\sqrt{c_c^2+c_s^2},\qquad
+\theta_0=\frac{\operatorname{atan2}(c_s,c_c)}{M}.
+\end{equation}
+The pair's RMS is $C$ by orthonormality; orientation is undefined if $C=0$. For astigmatism coefficients $(0.03,0.04)\,\mathrm{nm}$, $C=0.05\,\mathrm{nm}$ and $\theta_0=53.13^\circ/2=26.565^\circ$.
+
+If the coordinate axes rotate counterclockwise by $\alpha$, then
+$\theta=\theta'+\alpha$, and collecting the new sine/cosine terms gives
+\begin{equation}
+\begin{pmatrix}c_c'\\c_s'\end{pmatrix}
+=\begin{pmatrix}\cos M\alpha&\sin M\alpha\\-\sin M\alpha&\cos M\alpha\end{pmatrix}
+\begin{pmatrix}c_c\\c_s\end{pmatrix}.
+\end{equation}
+For $M=2$, $\alpha=45^\circ$, this is $(c_c',c_s')=(c_s,-c_c)$. In contrast, physically rotating a cosine astigmatism pattern by $45^\circ$ while holding the axes fixed produces the \emph{positive} sine partner. Changing coordinates consistently changes no physics; rotating the aberration relative to a fixed mask/illumination can change imaging while preserving RMS.
+
