@@ -1,0 +1,18 @@
+{
+  "status": "PASS",
+  "forwarded_controls": {
+    "depth_nm": 4.0,
+    "area_fraction": 0.12,
+    "center_u": 0.2,
+    "center_v": -0.1,
+    "aspect_ratio": 1.4,
+    "orientation_deg": 30.0,
+    "added_defocus_nm": 0.1,
+    "noise_rms_nm": 0.03,
+    "n_max": 6,
+    "wavelength_nm": 20.0,
+    "fit_family": "all"
+  },
+  "render_callback": "All three comparison figures generated without error",
+  "frontend": "Python callback and widget state tested; no GUI browser automation"
+}

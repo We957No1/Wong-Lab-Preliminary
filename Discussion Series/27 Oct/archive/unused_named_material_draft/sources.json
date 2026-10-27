@@ -1,0 +1,23 @@
+[
+  {
+    "symbol": "mo",
+    "url": "https://henke.lbl.gov/optical_constants/sf/mo.nff",
+    "retrieved_utc": "2026-10-26T20:53:14.795720+00:00",
+    "bytes": 23614,
+    "sha256": "fb8ccfa0bac4e49cc2df2cb1c6c757536d5c8d49b7a9c409a4e9ff562150ffad"
+  },
+  {
+    "symbol": "si",
+    "url": "https://henke.lbl.gov/optical_constants/sf/si.nff",
+    "retrieved_utc": "2026-10-26T20:53:15.682598+00:00",
+    "bytes": 19539,
+    "sha256": "2bbd2aef0292aa392a61942b1c401171b5bc30bb77ab1cab9c08b6264048019a"
+  },
+  {
+    "symbol": "o",
+    "url": "https://henke.lbl.gov/optical_constants/sf/o.nff",
+    "retrieved_utc": "2026-10-26T20:53:16.434071+00:00",
+    "bytes": 13625,
+    "sha256": "adb1540b11008383aaef0b8c4f5fb1a2bc5df14f3717ac4d58fc54fff92ba6cb"
+  }
+]

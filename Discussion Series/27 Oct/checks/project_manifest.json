@@ -1,0 +1,298 @@
+{
+  "created_utc": "2026-10-26T21:11:55.882Z",
+  "defaults": {
+    "visible_wavelength_nm": 550,
+    "coating_wavelength_nm": 40,
+    "coating_materials": "Arbitrary unnamed complex indices; no measured-material data or dispersion claim"
+  },
+  "source_textbook": {
+    "file": "../../aberration budget paper/aberration_budget_textbook.pdf",
+    "sha256": "02b7fa66ab53c25c17ca865d17a11d6f6bd65d4103a86b80be2f8502ac47828c"
+  },
+  "notebook_execution": [
+    {
+      "file": "mirror_dent_zernike.ipynb",
+      "code_cells": 9,
+      "errors": [],
+      "seconds": 18.076133489608765,
+      "python": "C:\\Users\\fxl04\\Desktop\\Prof. Wong Grp Papers\\Ray Optics\\.venv\\Scripts\\python.exe",
+      "embedded_png_figures": 7,
+      "executions": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ]
+    },
+    {
+      "file": "euv_bilayer_zernike.ipynb",
+      "code_cells": 7,
+      "errors": [],
+      "seconds": 11.093575954437256,
+      "python": "C:\\Users\\fxl04\\Desktop\\Prof. Wong Grp Papers\\Ray Optics\\.venv\\Scripts\\python.exe",
+      "embedded_png_figures": 5,
+      "executions": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ]
+    },
+    {
+      "file": "optics_validation.ipynb",
+      "code_cells": 6,
+      "errors": [],
+      "seconds": 18.41890811920166,
+      "python": "C:\\Users\\fxl04\\Desktop\\Prof. Wong Grp Papers\\Ray Optics\\.venv\\Scripts\\python.exe",
+      "embedded_png_figures": 0,
+      "executions": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ]
+    }
+  ],
+  "verification_status": {
+    "visible": "PASS",
+    "coating": "PASS",
+    "widgets": "PASS",
+    "module_reload": "PASS",
+    "three_mirrors": "PASS",
+    "three_mirror_widgets": "PASS",
+    "render_updates": "PASS"
+  },
+  "widget_render": {
+    "single_mirror": {
+      "status": "PASS",
+      "compute_clicks": 3,
+      "persistent_image_slots": 4,
+      "unchanged_widget_ids": true,
+      "inline_display_events": 0,
+      "distinct_position_updates": 3,
+      "unclosed_figures": 0
+    },
+    "three_mirrors": {
+      "status": "PASS",
+      "compute_clicks": 3,
+      "persistent_image_slots": 3,
+      "unchanged_widget_ids": true,
+      "inline_display_events": 0,
+      "distinct_position_updates": 3,
+      "unclosed_figures": 0
+    },
+    "status": "PASS",
+    "scope": "Kernel display capture, widget payload replacement and callback cleanup; frontend not automated."
+  },
+  "visual_review": {
+    "status": "PASS",
+    "png_figures_reviewed": 15,
+    "scope": "Labels, numerical colour scales, comparable image scales, integer radial-order axes and visible clipping",
+    "new_figure_reviewed": "results/visible/03a_zernike_decomposition_n8.png",
+    "new_figures_reviewed": [
+      "results/visible_three_mirrors/01_facing_mirrors_and_counts.png",
+      "results/visible_three_mirrors/02_point_images.png",
+      "results/visible_three_mirrors/03_object_images.png"
+    ],
+    "additional_position_preview_reviewed": "checks/shared_position_preview.png"
+  },
+  "result_hash_integrity": [
+    {
+      "folder": "visible",
+      "checked_files": 21,
+      "status": "PASS"
+    },
+    {
+      "folder": "euv",
+      "checked_files": 16,
+      "status": "PASS"
+    },
+    {
+      "folder": "visible_three_mirrors",
+      "checked_files": 8,
+      "status": "PASS"
+    }
+  ],
+  "files": [
+    {
+      "file": "mirror_dent_zernike.ipynb",
+      "bytes": 2801553,
+      "sha256": "26725bde74e6dff8d18fc0707be3012ee2ef3313895450c0d135777cf9c2e26d"
+    },
+    {
+      "file": "euv_bilayer_zernike.ipynb",
+      "bytes": 1169161,
+      "sha256": "26277453a1d6f9247449ad71ff25d4897d5a3bc9cfd5ea402fe54a20daac3f80"
+    },
+    {
+      "file": "optics_validation.ipynb",
+      "bytes": 1846019,
+      "sha256": "0c576a34a6e5659484b1d31d497ee8732a42f4da7651ead974c8eb3bba1bae5f"
+    },
+    {
+      "file": "mirror_dent_optics.py",
+      "bytes": 41578,
+      "sha256": "eb45758bd55b0dc474fbcc27f6ade45890051ee26ccc20cf45144d6fe9ba040f"
+    },
+    {
+      "file": "euv_bilayer_optics.py",
+      "bytes": 19663,
+      "sha256": "c1308b12268ddeb7d6ed07ec57fab0f9ab7d644d0b8337981522515b8148e469"
+    },
+    {
+      "file": "verify_mirror_dent.py",
+      "bytes": 7767,
+      "sha256": "a475867c5b2b60bd16d0426c5dbd71a49cc2f5d93d1156171d36340517e93251"
+    },
+    {
+      "file": "verify_optics.py",
+      "bytes": 9307,
+      "sha256": "d3f565efa36ff0108298bd2a871f4e5fcc410134ba53f4b6e432dfa41897140c"
+    },
+    {
+      "file": "execute_notebook.py",
+      "bytes": 2202,
+      "sha256": "540b04ee74fb63aed1b1912ec0002dcab20a657595baed7f43a522c6f6d1fd5e"
+    },
+    {
+      "file": "README.txt",
+      "bytes": 7028,
+      "sha256": "73e236ca372b47eaa828b6287b4ddfdfb04e9ccf5bf75600033bd7da4ff46ce6"
+    },
+    {
+      "file": "requirements.txt",
+      "bytes": 129,
+      "sha256": "e193d665ac41cb65d515669af9233965c2f8f9cb9c6e4289d6e87e9454b90cff"
+    },
+    {
+      "file": "mirror_train_optics.py",
+      "bytes": 15091,
+      "sha256": "9577eb71f080524b7c5b14f9ce9e52ffe4191bbf320ac8eacc392caf560eaae7"
+    },
+    {
+      "file": "verify_mirror_train.py",
+      "bytes": 7098,
+      "sha256": "f66a59b2e123bbe7f396eeb14931b6e2b180017cef811497564934640695ac1e"
+    },
+    {
+      "file": "verify_module_reload.py",
+      "bytes": 1826,
+      "sha256": "28e2e77f715881805a6d917a43e0f83c4bb93b4ba2ddf1a8cd62a8d1d68b455a"
+    },
+    {
+      "file": "archive/before_n8_decomposition/mirror_dent_optics.py",
+      "bytes": 37254,
+      "sha256": "3af4543bb738bb31eda7fe71da3a3bc3d48f38e2f6f3f0d7bb0d7be66eaeffab"
+    },
+    {
+      "file": "verify_render_updates.py",
+      "bytes": 2499,
+      "sha256": "ec10f60dc66df7236acd0f9ef6490ca0e6bfda775db4426eacfd9c0215123177"
+    }
+  ],
+  "updated_utc": "2026-10-27T07:27:56.039Z",
+  "n8_decomposition": {
+    "status": "PASS",
+    "displayed_table_rows": 45,
+    "exported_table_rows": 45,
+    "coefficient_units": "OPD nm; coefficient_waves in waves",
+    "independent_of_image_reconstruction_order": true,
+    "plot": "results/visible/03a_zernike_decomposition_n8.png"
+  },
+  "module_reload": {
+    "status": "PASS",
+    "reproduced": "module 'mirror_dent_optics' has no attribute 'decomposition_through_order'",
+    "cause": "An older module remains in sys.modules in a running notebook.",
+    "C01_reload_fixed": true,
+    "C04_reload_fixed": true,
+    "loaded_file": "C:\\Users\\fxl04\\Desktop\\Prof. Wong Grp Papers\\Discussion Series\\27 Oct\\mirror_dent_optics.py"
+  },
+  "three_mirror_panel": {
+    "status": "PASS",
+    "cell": "C09",
+    "new_notebook_cells_for_three_mirrors": 1,
+    "top_level_widget_views": 1,
+    "persistent_image_slots": 3,
+    "output_capture_widgets": 0,
+    "inline_figure_displays_in_C09": 0,
+    "shared_position_controls": [
+      "center_u",
+      "center_v"
+    ],
+    "saved_errors": 0,
+    "render_updates": {
+      "single_mirror": {
+        "status": "PASS",
+        "compute_clicks": 3,
+        "persistent_image_slots": 4,
+        "unchanged_widget_ids": true,
+        "inline_display_events": 0,
+        "distinct_position_updates": 3,
+        "unclosed_figures": 0
+      },
+      "three_mirrors": {
+        "status": "PASS",
+        "compute_clicks": 3,
+        "persistent_image_slots": 3,
+        "unchanged_widget_ids": true,
+        "inline_display_events": 0,
+        "distinct_position_updates": 3,
+        "unclosed_figures": 0
+      },
+      "status": "PASS",
+      "scope": "Kernel display capture, widget payload replacement and callback cleanup; frontend not automated."
+    },
+    "scope": "Notebook widget graph and kernel regression checks; frontend not automated."
+  },
+  "three_mirror_widget_render": {
+    "status": "PASS",
+    "compute_clicks": 3,
+    "persistent_image_slots": 3,
+    "unchanged_widget_ids": true,
+    "inline_display_events": 0,
+    "distinct_position_updates": 3,
+    "unclosed_figures": 0,
+    "scope": "Kernel display capture, widget payload replacement and callback cleanup; frontend not automated."
+  },
+  "render_updates": {
+    "single_mirror": {
+      "status": "PASS",
+      "compute_clicks": 3,
+      "persistent_image_slots": 4,
+      "unchanged_widget_ids": true,
+      "inline_display_events": 0,
+      "distinct_position_updates": 3,
+      "unclosed_figures": 0
+    },
+    "three_mirrors": {
+      "status": "PASS",
+      "compute_clicks": 3,
+      "persistent_image_slots": 3,
+      "unchanged_widget_ids": true,
+      "inline_display_events": 0,
+      "distinct_position_updates": 3,
+      "unclosed_figures": 0
+    },
+    "status": "PASS",
+    "scope": "Kernel display capture, widget payload replacement and callback cleanup; frontend not automated."
+  },
+  "shared_position_verification": {
+    "centre_tested": [
+      0.3,
+      -0.2
+    ],
+    "zero_gap_field_composition_error": 3.3306690738754696e-16,
+    "angular_coefficient_max_nm": 20.79226878014744,
+    "status": "PASS"
+  }
+}

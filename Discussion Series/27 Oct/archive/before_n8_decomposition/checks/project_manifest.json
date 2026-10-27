@@ -1,0 +1,145 @@
+{
+  "created_utc": "2026-10-26T21:11:55.882Z",
+  "defaults": {
+    "visible_wavelength_nm": 550,
+    "coating_wavelength_nm": 40,
+    "coating_materials": "Arbitrary unnamed complex indices; no measured-material data or dispersion claim"
+  },
+  "source_textbook": {
+    "file": "../../aberration budget paper/aberration_budget_textbook.pdf",
+    "sha256": "02b7fa66ab53c25c17ca865d17a11d6f6bd65d4103a86b80be2f8502ac47828c"
+  },
+  "notebook_execution": [
+    {
+      "file": "mirror_dent_zernike.ipynb",
+      "code_cells": 8,
+      "errors": [],
+      "seconds": 11.880032300949097,
+      "python": "C:\\Users\\fxl04\\Desktop\\Prof. Wong Grp Papers\\Ray Optics\\.venv\\Scripts\\python.exe",
+      "embedded_png_figures": 6,
+      "executions": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ]
+    },
+    {
+      "file": "euv_bilayer_zernike.ipynb",
+      "code_cells": 7,
+      "errors": [],
+      "seconds": 11.093575954437256,
+      "python": "C:\\Users\\fxl04\\Desktop\\Prof. Wong Grp Papers\\Ray Optics\\.venv\\Scripts\\python.exe",
+      "embedded_png_figures": 5,
+      "executions": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ]
+    },
+    {
+      "file": "optics_validation.ipynb",
+      "code_cells": 5,
+      "errors": [],
+      "seconds": 4.350088119506836,
+      "python": "C:\\Users\\fxl04\\Desktop\\Prof. Wong Grp Papers\\Ray Optics\\.venv\\Scripts\\python.exe",
+      "embedded_png_figures": 0,
+      "executions": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ]
+    }
+  ],
+  "verification_status": {
+    "visible": "PASS",
+    "coating": "PASS",
+    "widgets": "PASS"
+  },
+  "widget_render": {
+    "visible_controls": "PASS",
+    "coating_controls": "PASS",
+    "rendered": true,
+    "scope": "Python widget state/callbacks; no frontend browser automation",
+    "status": "PASS"
+  },
+  "visual_review": {
+    "status": "PASS",
+    "png_figures_reviewed": 11,
+    "scope": "Labels, numerical colour scales, comparable image scales, integer radial-order axes and visible clipping"
+  },
+  "result_hash_integrity": [
+    {
+      "folder": "visible",
+      "checked_files": 18,
+      "status": "PASS"
+    },
+    {
+      "folder": "euv",
+      "checked_files": 16,
+      "status": "PASS"
+    }
+  ],
+  "files": [
+    {
+      "file": "mirror_dent_zernike.ipynb",
+      "bytes": 1708032,
+      "sha256": "5845d150914db074769cad6fe1d880ffdcce0e694d417bf0d3bf45ddf9e8c212"
+    },
+    {
+      "file": "euv_bilayer_zernike.ipynb",
+      "bytes": 1169161,
+      "sha256": "26277453a1d6f9247449ad71ff25d4897d5a3bc9cfd5ea402fe54a20daac3f80"
+    },
+    {
+      "file": "optics_validation.ipynb",
+      "bytes": 114672,
+      "sha256": "5ce26de200be5985681121c9cb95877be0a1f818342cb3578be6b7dd0b477c51"
+    },
+    {
+      "file": "mirror_dent_optics.py",
+      "bytes": 37254,
+      "sha256": "3af4543bb738bb31eda7fe71da3a3bc3d48f38e2f6f3f0d7bb0d7be66eaeffab"
+    },
+    {
+      "file": "euv_bilayer_optics.py",
+      "bytes": 19663,
+      "sha256": "c1308b12268ddeb7d6ed07ec57fab0f9ab7d644d0b8337981522515b8148e469"
+    },
+    {
+      "file": "verify_mirror_dent.py",
+      "bytes": 7767,
+      "sha256": "a475867c5b2b60bd16d0426c5dbd71a49cc2f5d93d1156171d36340517e93251"
+    },
+    {
+      "file": "verify_optics.py",
+      "bytes": 8018,
+      "sha256": "beec7dbc29fd87ace2f9a618accd4d5aff5bfcc6b05606348e8c3bb3ad6c5cb5"
+    },
+    {
+      "file": "execute_notebook.py",
+      "bytes": 2202,
+      "sha256": "540b04ee74fb63aed1b1912ec0002dcab20a657595baed7f43a522c6f6d1fd5e"
+    },
+    {
+      "file": "README.txt",
+      "bytes": 4657,
+      "sha256": "6ac94e5e466eb485ba04179b5d60b412b7cd7deaf5a576c7eb767a77a8b21593"
+    },
+    {
+      "file": "requirements.txt",
+      "bytes": 129,
+      "sha256": "e193d665ac41cb65d515669af9233965c2f8f9cb9c6e4289d6e87e9454b90cff"
+    }
+  ]
+}

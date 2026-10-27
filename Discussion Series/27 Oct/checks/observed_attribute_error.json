@@ -1,0 +1,18 @@
+{
+  "module_file": "C:/Users/fxl04/Desktop/Prof. Wong Grp Papers/Discussion Series/27 Oct/mirror_dent_optics.py",
+  "observed_errors": [
+    {
+      "cell": 8,
+      "ename": "AttributeError",
+      "evalue": "module 'mirror_dent_optics' has no attribute 'decomposition_through_order'",
+      "output_type": "error",
+      "traceback": [
+        "\u001b[1;31m---------------------------------------------------------------------------\u001b[0m",
+        "\u001b[1;31mAttributeError\u001b[0m                            Traceback (most recent call last)",
+        "Cell \u001b[1;32mIn[19], line 2\u001b[0m\n\u001b[0;32m      1\u001b[0m \u001b[38;5;66;03m# C04 — Complete aberration decomposition: all 45 Zernike components through n=8.\u001b[39;00m\n\u001b[1;32m----> 2\u001b[0m DECOMPOSITION_N8\u001b[38;5;241m=\u001b[39moptics\u001b[38;5;241m.\u001b[39mdecomposition_through_order(CASE,\u001b[38;5;241m8\u001b[39m)\n\u001b[0;32m      3\u001b[0m COEFFICIENTS_N8\u001b[38;5;241m=\u001b[39mDECOMPOSITION_N8[\u001b[38;5;124m'\u001b[39m\u001b[38;5;124mcoefficients\u001b[39m\u001b[38;5;124m'\u001b[39m]\n\u001b[0;32m      4\u001b[0m \u001b[38;5;28;01mwith\u001b[39;00m pd\u001b[38;5;241m.\u001b[39moption_context(\u001b[38;5;124m'\u001b[39m\u001b[38;5;124mdisplay.max_rows\u001b[39m\u001b[38;5;124m'\u001b[39m,\u001b[38;5;28;01mNone\u001b[39;00m):\n",
+        "\u001b[1;31mAttributeError\u001b[0m: module 'mirror_dent_optics' has no attribute 'decomposition_through_order'"
+      ]
+    }
+  ],
+  "fresh_process_function_present": true
+}

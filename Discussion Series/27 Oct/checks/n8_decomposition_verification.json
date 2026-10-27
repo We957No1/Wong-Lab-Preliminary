@@ -1,0 +1,8 @@
+{
+  "status": "PASS",
+  "displayed_table_rows": 45,
+  "exported_table_rows": 45,
+  "coefficient_units": "OPD nm; coefficient_waves in waves",
+  "independent_of_image_reconstruction_order": true,
+  "plot": "results/visible/03a_zernike_decomposition_n8.png"
+}

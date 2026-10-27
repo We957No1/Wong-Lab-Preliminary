@@ -1,0 +1,8 @@
+{
+  "status": "PASS",
+  "reproduced": "module 'mirror_dent_optics' has no attribute 'decomposition_through_order'",
+  "cause": "An older module remains in sys.modules in a running notebook.",
+  "C01_reload_fixed": true,
+  "C04_reload_fixed": true,
+  "loaded_file": "C:\\Users\\fxl04\\Desktop\\Prof. Wong Grp Papers\\Discussion Series\\27 Oct\\mirror_dent_optics.py"
+}

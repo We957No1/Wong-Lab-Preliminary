@@ -1,0 +1,52 @@
+[
+  {
+    "file": "mirror_dent_zernike.ipynb",
+    "code_cells": 8,
+    "errors": [],
+    "seconds": 11.880032300949097,
+    "python": "C:\\Users\\fxl04\\Desktop\\Prof. Wong Grp Papers\\Ray Optics\\.venv\\Scripts\\python.exe",
+    "embedded_png_figures": 6,
+    "executions": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8
+    ]
+  },
+  {
+    "file": "euv_bilayer_zernike.ipynb",
+    "code_cells": 7,
+    "errors": [],
+    "seconds": 11.093575954437256,
+    "python": "C:\\Users\\fxl04\\Desktop\\Prof. Wong Grp Papers\\Ray Optics\\.venv\\Scripts\\python.exe",
+    "embedded_png_figures": 5,
+    "executions": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7
+    ]
+  },
+  {
+    "file": "optics_validation.ipynb",
+    "code_cells": 5,
+    "errors": [],
+    "seconds": 4.350088119506836,
+    "python": "C:\\Users\\fxl04\\Desktop\\Prof. Wong Grp Papers\\Ray Optics\\.venv\\Scripts\\python.exe",
+    "embedded_png_figures": 0,
+    "executions": [
+      1,
+      2,
+      3,
+      4,
+      5
+    ]
+  }
+]

@@ -1,0 +1,140 @@
+{
+  "date": "2026-10-27",
+  "reports": {
+    "notebook_execution": {
+      "code_cells": 16,
+      "errors": [],
+      "seconds": 12.80736255645752,
+      "python": "C:\\Users\\fxl04\\Desktop\\Prof. Wong Grp Papers\\Ray Optics\\.venv\\Scripts\\python.exe",
+      "executions": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16
+      ]
+    },
+    "scientific_checks": {
+      "gram_max_abs_error": 3.4486302702418925e-15,
+      "weight_sum_error": 0,
+      "known_mode_recovery_nm": 2.4424906541753444e-15,
+      "gaussian_mean_nm_error": 1.3322676295501878e-15,
+      "gaussian_rms_nm_error": 1.7763568394002505e-15,
+      "independent_radial_integral_coeff_nm_error": 1.1657341758564144e-14,
+      "centered_dent_nonradial_coeff_nm_max": 3.1784831936378815e-17,
+      "parseval_residual_variance_nm2_error": 1.903685542536948e-14,
+      "piston_psf_max_abs_error": 3.3306690738754696e-16,
+      "positive_tilt_roll_max_abs_error": 2.220446049250313e-16,
+      "phase_only_total_energy_relative_error": 3.3306690738754696e-16,
+      "zero_dent_psf_error": 0,
+      "no_dent_same_focus_psf_error": 0,
+      "offset_x_tilt_nm": 0.4161417221705613,
+      "offset_y_tilt_nm": 1.8282147375300005e-18,
+      "annular_QR_recovery_nm_error": 2.55351295663786e-15,
+      "annular_gram_nonidentity": 0.2629252204239814,
+      "delta_object_convolution_alignment_error": 2.7755575615628914e-17,
+      "n20_residual_nm": 0.000049938106104522326,
+      "n20_psf_relative_L2": 5.853080048302948e-7,
+      "quadrature_refinement_coeff_nm_error": 7.292777493006497e-15,
+      "noise_seed_repeat_error": 0,
+      "independent_on_axis_ratio": 0.7705228866157857,
+      "image_grid_refinement": [
+        {
+          "pupil_pixels": 128,
+          "on_axis_ratio": 0.7702906968675577,
+          "absolute_error": 0.00023218974822802885
+        },
+        {
+          "pupil_pixels": 256,
+          "on_axis_ratio": 0.7703831397407976,
+          "absolute_error": 0.00013974687498807814
+        },
+        {
+          "pupil_pixels": 384,
+          "on_axis_ratio": 0.7704732342929683,
+          "absolute_error": 0.00004965232281739507
+        }
+      ],
+      "ideal_airy_cut_max_abs_error": 0.0002704219419303877,
+      "zero_padding_common_samples_max_error": 5.551115123125783e-17,
+      "status": "PASS"
+    },
+    "widget_render": {
+      "status": "PASS",
+      "forwarded_controls": {
+        "depth_nm": 4,
+        "area_fraction": 0.12,
+        "center_u": 0.2,
+        "center_v": -0.1,
+        "aspect_ratio": 1.4,
+        "orientation_deg": 30,
+        "added_defocus_nm": 0.1,
+        "noise_rms_nm": 0.03,
+        "n_max": 6,
+        "wavelength_nm": 20,
+        "fit_family": "all"
+      },
+      "render_callback": "All three comparison figures generated without error",
+      "frontend": "Python callback and widget state tested; no GUI browser automation"
+    },
+    "embedded_png_figures": 8,
+    "figure_visual_review": "All eight exported baseline figures reviewed; modal colour-bar spacing corrected.",
+    "scope": "Scientific model and Python widget/render callbacks verified; no frontend browser automation.",
+    "ideal_definition": "Same system without Gaussian dent; same pupil, amplitude, wavelength and added defocus."
+  },
+  "artifacts": [
+    {
+      "path": "mirror_dent_zernike.ipynb",
+      "bytes": 2142608,
+      "sha256": "5f35f0f0c696e7f54ea8d3ddac9f18526a6fd7f0cb16d14061b51261cbd86f9d"
+    },
+    {
+      "path": "mirror_dent_optics.py",
+      "bytes": 35492,
+      "sha256": "ec9a621670c7204d46874d29aeb34950fdfde86852d331db4a588a6502912d13"
+    },
+    {
+      "path": "verify_mirror_dent.py",
+      "bytes": 7741,
+      "sha256": "08165af02f6c7eb00bc76b2ab8e6da0f163794bdcd90bf5476cecb4bdd60a35c"
+    },
+    {
+      "path": "execute_notebook.py",
+      "bytes": 1417,
+      "sha256": "3799d9533232e31007f17bfe9080179b0d35eba60634d3305af6082373fd1639"
+    },
+    {
+      "path": "README.txt",
+      "bytes": 4345,
+      "sha256": "248bbe57071fe598797829a028ebcbf89a09b7d37664eb0f40fe8e76c98befb5"
+    },
+    {
+      "path": "requirements.txt",
+      "bytes": 129,
+      "sha256": "e193d665ac41cb65d515669af9233965c2f8f9cb9c6e4289d6e87e9454b90cff"
+    }
+  ],
+  "sources": [
+    {
+      "relative_to_workspace": "aberration budget paper/aberration_budget_textbook.pdf",
+      "bytes": 1345586,
+      "sha256": "02b7fa66ab53c25c17ca865d17a11d6f6bd65d4103a86b80be2f8502ac47828c"
+    },
+    {
+      "relative_to_workspace": "aberration budget paper/chapters/03_wavefronts.tex",
+      "bytes": 17949,
+      "sha256": "9e3e4a1c3eada55f6812498e4d9fdd8701de59c00260a15075b5d83cf7619ea5"
+    }
+  ]
+}

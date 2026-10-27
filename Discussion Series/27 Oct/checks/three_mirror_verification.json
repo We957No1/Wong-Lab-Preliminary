@@ -1,0 +1,66 @@
+{
+  "optics": {
+    "fresnel_relative_power_error": 0.0,
+    "fresnel_forward_backward_max_error": 2.237726045655905e-15,
+    "fresnel_plane_wave_max_error": 3.887366295532235e-15,
+    "image_coordinate_vs_single_mirror_error": 0.0,
+    "zero_gap_vs_added_opd_max_error": 3.3306690738754696e-16,
+    "shared_off_axis_dent_zero_gap_error": 3.3306690738754696e-16,
+    "off_axis_angular_coefficient_max_nm": 20.79226878014744,
+    "zero_gap_power_vs_abs_r6_error": 1.1102230246251565e-16,
+    "aperture_power_upper_bound": 0.7350918906249998,
+    "powers_by_dent_count": {
+      "0": 0.7266855877561832,
+      "1": 0.7266859303311957,
+      "2": 0.7266860159642,
+      "3": 0.7266860159642
+    },
+    "focal_vs_pupil_power_error": 3.3306690738754696e-16,
+    "zero_depth_all_counts_psf_error": 0.0,
+    "zero_selected_reconstruction_error": 0.0,
+    "common_reflection_phase_intensity_error": 3.885780586188048e-16,
+    "three_reflectance_factors_error": 0.0,
+    "n8_exact_global_bow_psf_error": 1.1269390654256578e-14,
+    "finite_gap_changes_ideal_psf": 0.01936141810535119,
+    "grid_refinement": [
+      {
+        "pupil_pixels": 128,
+        "padding": 2,
+        "on_axis": 0.4072355608384844,
+        "throughput": 0.7266860159642
+      },
+      {
+        "pupil_pixels": 128,
+        "padding": 4,
+        "on_axis": 0.4072353674480877,
+        "throughput": 0.726685872214518
+      },
+      {
+        "pupil_pixels": 256,
+        "padding": 4,
+        "on_axis": 0.4081142016077845,
+        "throughput": 0.7271130601691581
+      }
+    ],
+    "padding_on_axis_difference": 1.933903966966355e-07,
+    "grid_on_axis_difference": 0.0008788341596968063,
+    "status": "PASS"
+  },
+  "widgets": {
+    "status": "PASS",
+    "dented_counts_tested": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "shared_depth_nm": 90.0,
+    "shared_centre": [
+      0.3,
+      -0.2
+    ],
+    "gap_mm": 250.0,
+    "rendered": false,
+    "scope": "Python widget state and callbacks; frontend not automated."
+  }
+}

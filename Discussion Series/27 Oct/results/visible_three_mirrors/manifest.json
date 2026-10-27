@@ -1,0 +1,34 @@
+[
+  {
+    "file": "01_facing_mirrors_and_counts.pdf",
+    "sha256": "e0ae142b357a3f83ffc11864d3cb105dd3d9f0ca1748d7a28b3f3167932aa3c7"
+  },
+  {
+    "file": "01_facing_mirrors_and_counts.png",
+    "sha256": "d9041447f70b46a2344aa7c1f9fa390e7cc9743c5f14f657c112eb64d93eb137"
+  },
+  {
+    "file": "02_point_images.pdf",
+    "sha256": "ec06cb4c42eacfdf077371d446c54120f685d9bc702a244eee959de803e448f0"
+  },
+  {
+    "file": "02_point_images.png",
+    "sha256": "4055621e4ca5c9e788bd2a99697fec0c430146d9c560c35213a5baeb189ad463"
+  },
+  {
+    "file": "03_object_images.pdf",
+    "sha256": "94d54816bae8bda35c2ce64e4da9cb725a55d08739f147f59954194426ff3349"
+  },
+  {
+    "file": "03_object_images.png",
+    "sha256": "bec5dadad719e5ca82ca70f01afafcb3dc3388379e26604386230f360a31d0bd"
+  },
+  {
+    "file": "parameters.json",
+    "sha256": "0525d223e1efcdad173b270a3b04c6ff6b714a4ed60517e3efd6ba7445bb1088"
+  },
+  {
+    "file": "provenance.json",
+    "sha256": "71b4d945b6502f6241f665e6e8a7f34693ba1cece839594fc4f93ed6bbd1a06b"
+  }
+]

@@ -1,0 +1,45 @@
+{
+  "gram_max_abs_error": 3.4486302702418925e-15,
+  "weight_sum_error": 0.0,
+  "known_mode_recovery_nm": 2.4424906541753444e-15,
+  "gaussian_mean_nm_error": 1.3322676295501878e-15,
+  "gaussian_rms_nm_error": 1.7763568394002505e-15,
+  "independent_radial_integral_coeff_nm_error": 1.1657341758564144e-14,
+  "centered_dent_nonradial_coeff_nm_max": 3.1784831936378815e-17,
+  "parseval_residual_variance_nm2_error": 1.903685542536948e-14,
+  "piston_psf_max_abs_error": 3.3306690738754696e-16,
+  "positive_tilt_roll_max_abs_error": 2.220446049250313e-16,
+  "phase_only_total_energy_relative_error": 3.3306690738754696e-16,
+  "zero_dent_psf_error": 0.0,
+  "no_dent_same_focus_psf_error": 0.0,
+  "offset_x_tilt_nm": 0.4161417221705613,
+  "offset_y_tilt_nm": 1.8282147375300005e-18,
+  "annular_QR_recovery_nm_error": 2.55351295663786e-15,
+  "annular_gram_nonidentity": 0.2629252204239814,
+  "delta_object_convolution_alignment_error": 2.7755575615628914e-17,
+  "n20_residual_nm": 4.9938106104522326e-05,
+  "n20_psf_relative_L2": 5.853080048302948e-07,
+  "quadrature_refinement_coeff_nm_error": 7.292777493006497e-15,
+  "noise_seed_repeat_error": 0.0,
+  "independent_on_axis_ratio": 0.7705228866157857,
+  "image_grid_refinement": [
+    {
+      "pupil_pixels": 128,
+      "on_axis_ratio": 0.7702906968675577,
+      "absolute_error": 0.00023218974822802885
+    },
+    {
+      "pupil_pixels": 256,
+      "on_axis_ratio": 0.7703831397407976,
+      "absolute_error": 0.00013974687498807814
+    },
+    {
+      "pupil_pixels": 384,
+      "on_axis_ratio": 0.7704732342929683,
+      "absolute_error": 4.965232281739507e-05
+    }
+  ],
+  "ideal_airy_cut_max_abs_error": 0.0002704219419303877,
+  "zero_padding_common_samples_max_error": 5.551115123125783e-17,
+  "status": "PASS"
+}

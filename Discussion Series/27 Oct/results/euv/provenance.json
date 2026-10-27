@@ -1,0 +1,13 @@
+{
+  "reference": "Two spatially uniform equal-thickness films at the same settings; not the input object.",
+  "time_convention": "exp(-i omega t); n=1-delta+i beta; passive beta positive",
+  "phase_and_amplitude": "Fit the complex relative pupil r/r_reference, not phase alone.",
+  "normalization": "Common unit-reflector incident-aperture in-focus peak; no throughput renormalization.",
+  "material_model": "Arbitrary unnamed illustrative indices; held fixed during wavelength sweeps (no measured dispersion model).",
+  "r_reference": [
+    0.08690327314703669,
+    -0.013290516042783125
+  ],
+  "model": "Exactly two finite films on an unnamed semi-infinite substrate, locally planar, normal incidence.",
+  "equal_split_design_scope": "Equal-split maximum is calibrated at 40 nm for the declared arbitrary indices and computed total thickness. Changing them can move the optimum."
+}

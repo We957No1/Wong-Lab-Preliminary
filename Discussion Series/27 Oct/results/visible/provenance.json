@@ -1,0 +1,32 @@
+{
+  "python": "3.12.8 | packaged by Anaconda, Inc. | (main, Dec 11 2024, 16:48:34) [MSC v.1929 64 bit (AMD64)]",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "versions": {
+    "numpy": "1.26.4",
+    "scipy": "1.13.1",
+    "matplotlib": "3.9.2",
+    "pandas": "2.2.2",
+    "ipywidgets": "7.8.1",
+    "nbformat": "5.10.4",
+    "nbclient": "0.8.0",
+    "ipykernel": "6.28.0"
+  },
+  "normalization": "Zernike full-disk unit mean square; m>0 cosine, m<0 sine",
+  "height_to_opd": "W_nm = -2*h_nm*cos(incidence_deg); positive h toward incident space",
+  "pupil_model": "Scalar paraxial; fixed mapped pupil; phase-only defect; uniform coating",
+  "psf_normalization": "Common unit-reflector in-focus peak; uniform complex reflectance preserves throughput changes",
+  "ideal_comparison": "Dent removed; identical pupil, amplitude, wavelength and added defocus",
+  "object_model": "Spatially incoherent, shift-invariant intensity convolution",
+  "decomposition_n8": {
+    "mode_count": 45,
+    "units": "OPD nm; coefficient_waves uses the chosen wavelength",
+    "scope": "All real modes through radial degree 8, independent of image reconstruction n_max",
+    "fit_method": "Full-disk orthogonal projection",
+    "residual_rms_nm": 4.297703266547686
+  },
+  "fit_method": "Full-disk orthogonal projection",
+  "fit_gram_error": 3.4486302702418925e-15,
+  "fit_condition_design": 1.0000000000000038,
+  "source": "Local aberration_budget_textbook.pdf Chapter 7; 27 Oct teaching model",
+  "array_export": "PSF views are cropped; scalar metrics use the full FFT plane."
+}

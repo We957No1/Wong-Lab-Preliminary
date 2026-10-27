@@ -1,0 +1,112 @@
+[
+  {
+    "path": "01_mirror_geometry.pdf",
+    "bytes": 121659,
+    "sha256": "085aada2fcbb98278e21c0e4eb6d1f261f320757cd03756303db9c087254fa45"
+  },
+  {
+    "path": "01_mirror_geometry.png",
+    "bytes": 328931,
+    "sha256": "d829dd637fb0cda70a90260df745d711c76d801ecee6192d10a721648fdf9c60"
+  },
+  {
+    "path": "02_wavefront_reconstruction.pdf",
+    "bytes": 111887,
+    "sha256": "8fc18bea539f0a022862fa9e8f28a43256e70dd81319fbd7b00caef0e475875d"
+  },
+  {
+    "path": "02_wavefront_reconstruction.png",
+    "bytes": 286389,
+    "sha256": "3739797efee144b0061b139328b9c713f5589fbb42cc4624d52984be4419425f"
+  },
+  {
+    "path": "03_zernike_coefficients.pdf",
+    "bytes": 20816,
+    "sha256": "01a59cff4b4009da0fcd29791e26701045742563fbb432a1ea7fa96f105fbe09"
+  },
+  {
+    "path": "03_zernike_coefficients.png",
+    "bytes": 141772,
+    "sha256": "9a15c686ce981f41ec2a9670cf0e5ea641fb04f7c20a2fb66bf6ca94599408df"
+  },
+  {
+    "path": "04_modal_contributions.pdf",
+    "bytes": 221181,
+    "sha256": "801dab0229b53f0eb50d9c3922cf4b49cfe22e6975276a1b77996850fa2ba39a"
+  },
+  {
+    "path": "04_modal_contributions.png",
+    "bytes": 599347,
+    "sha256": "82be55fc177a7dccbf877c38a2bb58596bb83d97332a927e74e1316588b485b3"
+  },
+  {
+    "path": "05_point_images.pdf",
+    "bytes": 72282,
+    "sha256": "a5dad0b3d95bac15b2b17f9de140aba93f66592f7ecb1ffb68648977c41e0174"
+  },
+  {
+    "path": "05_point_images.png",
+    "bytes": 355243,
+    "sha256": "07709275ad4c7b0ed75d2089132ed10d2d94145bec06e6fff2c77fed9b79950a"
+  },
+  {
+    "path": "06_extended_object_images.pdf",
+    "bytes": 55343,
+    "sha256": "f01e8d1b2811c1d318fbc2be27d248e29bb0525bf8ebcf44d392e63b59b1cecf"
+  },
+  {
+    "path": "06_extended_object_images.png",
+    "bytes": 250431,
+    "sha256": "80033c20ab5d7784d97dba10a0bb3f77bffc38a79f107f3938ead4d48e641d5a"
+  },
+  {
+    "path": "07_order_convergence.pdf",
+    "bytes": 24347,
+    "sha256": "abd06c34792887590b2419a90602dd24d73df04b611db3c557bf642d7a97d493"
+  },
+  {
+    "path": "07_order_convergence.png",
+    "bytes": 209540,
+    "sha256": "f1ee0d0f1a320d929de828b309f05c24344b59b7b6d625943ce9afbe8bec2a3f"
+  },
+  {
+    "path": "08_refocus_diagnostic.pdf",
+    "bytes": 77616,
+    "sha256": "fc874a6c7fcb62048e429239bce1f9227796d0d73bb4273a951474128e7eacc2"
+  },
+  {
+    "path": "08_refocus_diagnostic.png",
+    "bytes": 220644,
+    "sha256": "a89b0ec9625ec30b2990fac6dd8845ed244529aac5dff3e91a6648fa91b30cbc"
+  },
+  {
+    "path": "convergence.csv",
+    "bytes": 1635,
+    "sha256": "9ebfb3e321d5e8faa11a3adcffea656822e8b66edce675acd13c35d3f9f61005"
+  },
+  {
+    "path": "image_metrics.csv",
+    "bytes": 318,
+    "sha256": "770ca1553523bf94038979612c432e5ca4598942eb8a44690e55d2faf9ef2dd2"
+  },
+  {
+    "path": "parameters.json",
+    "bytes": 703,
+    "sha256": "2961b33d72c28e17f6c330aaac6e8ecdce3f07c227617fe133a101d6f7f17352"
+  },
+  {
+    "path": "provenance.json",
+    "bytes": 1238,
+    "sha256": "c97be34da008ba5520d66dc93ae8d995a5bd2d17cbddc5665edb8fac0ffe67c5"
+  },
+  {
+    "path": "reconstruction_arrays.npz",
+    "bytes": 879121,
+    "sha256": "c9c7a5edffd24af79a97cb6e279630a20f13c3a4ea0194ea6f2b95f174406984"
+  },
+  {
+    "path": "zernike_coefficients.csv",
+    "bytes": 3170,
+    "sha256": "c86d5a08f96fd7f84d8a791c754ff236158102111c6821e1b3a0b640292b67ca"
+  }
+]

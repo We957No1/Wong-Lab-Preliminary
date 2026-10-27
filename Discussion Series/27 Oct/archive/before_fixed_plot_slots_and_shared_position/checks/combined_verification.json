@@ -1,0 +1,155 @@
+{
+  "visible": {
+    "gram_max_abs_error": 3.4486302702418925e-15,
+    "weight_sum_error": 0.0,
+    "known_mode_recovery_nm": 2.4424906541753444e-15,
+    "gaussian_mean_nm_error": 1.4210854715202004e-14,
+    "gaussian_rms_nm_error": 1.4210854715202004e-14,
+    "independent_radial_integral_coeff_nm_error": 3.019806626980426e-13,
+    "centered_dent_nonradial_coeff_nm_max": 1.2686908188369378e-15,
+    "parseval_residual_variance_nm2_error": 1.9184653865522705e-13,
+    "piston_psf_max_abs_error": 5.551115123125783e-16,
+    "positive_tilt_roll_max_abs_error": 3.3306690738754696e-16,
+    "phase_only_total_energy_relative_error": 2.220446049250313e-16,
+    "zero_dent_psf_error": 0.0,
+    "no_dent_same_focus_psf_error": 0.0,
+    "offset_x_tilt_nm": 16.645668886822452,
+    "offset_y_tilt_nm": 9.02903240455194e-17,
+    "annular_QR_recovery_nm_error": 2.55351295663786e-15,
+    "annular_gram_nonidentity": 0.2629252204239814,
+    "delta_object_convolution_alignment_error": 2.7755575615628914e-17,
+    "n20_residual_nm": 0.00199752424417976,
+    "n20_psf_relative_L2": 5.66217570713599e-07,
+    "quadrature_refinement_coeff_nm_error": 2.970956813896919e-13,
+    "noise_seed_repeat_error": 0.0,
+    "independent_on_axis_ratio": 0.7763724357799762,
+    "image_grid_refinement": [
+      {
+        "pupil_pixels": 128,
+        "on_axis_ratio": 0.7761463360668945,
+        "absolute_error": 0.0002260997130816289
+      },
+      {
+        "pupil_pixels": 256,
+        "on_axis_ratio": 0.7762363542154703,
+        "absolute_error": 0.00013608156450584108
+      },
+      {
+        "pupil_pixels": 384,
+        "on_axis_ratio": 0.7763240857245804,
+        "absolute_error": 4.835005539571835e-05
+      }
+    ],
+    "ideal_airy_cut_max_abs_error": 0.0002704219419303877,
+    "zero_padding_common_samples_max_error": 1.1102230246251565e-16,
+    "status": "PASS",
+    "global_bow_c00_error_nm": 6.963318810448982e-13,
+    "global_bow_c20_error_nm": 3.126388037344441e-13,
+    "global_bow_residual_nm": 5.626585890277022e-13,
+    "uniform_reflection_phase_intensity_error": 2.7755575615628914e-17,
+    "reflectance_power_scaling_error": 2.7755575615628914e-17,
+    "throughput_error": 5.551115123125783e-17,
+    "integer_order_ticks": true,
+    "broad_gaussian_spherical_to_defocus": 0.0012909935262848421,
+    "default_wavelength_nm": 550.0,
+    "n8_decomposition_mode_count": 45,
+    "n8_independent_of_image_order_error_nm": 0.0,
+    "n8_masked_refit_error_nm": 0.0
+  },
+  "coating": {
+    "recursion_vs_matrix_120_cases": 2.8263518256024656e-16,
+    "design_total_nm": 20.98814668672224,
+    "design_wavelength_nm": 40.0,
+    "design_reflectance": 0.007728816700351945,
+    "equal_split_slope": 1.3010426069826053e-13,
+    "sampled_optimum_split": 0.0,
+    "equal_split_second_derivative": -0.03572544924387161,
+    "all_A_endpoint_error": 0.0,
+    "all_B_endpoint_error": 5.222209201006512e-18,
+    "identical_material_split_invariance": 4.04812693056225e-17,
+    "fixed_index_wavelength_thickness_scaling": 0.0,
+    "local_total_thickness_error_nm": 3.552713678800501e-15,
+    "zero_deviation_same_focus_psf_error": 1.734723475976807e-18,
+    "uniform_split_unit_flux_shape_error": 1.3877787807814457e-17,
+    "uniform_split_true_throughput": 0.005221480861159508,
+    "image_power_vs_pupil_power_error": 1.734723475976807e-18,
+    "n16_complex_pupil_rms": 0.00032305629742537486,
+    "n16_image_error": 3.8666555068310096e-06,
+    "integer_order_ticks": true,
+    "status": "PASS"
+  },
+  "widgets": {
+    "visible_controls": "PASS",
+    "visible_decomposition_n8_modes": 45,
+    "coating_controls": "PASS",
+    "rendered": false,
+    "scope": "Python widget state/callbacks; no frontend browser automation",
+    "status": "PASS"
+  },
+  "module_reload": {
+    "status": "PASS",
+    "reproduced": "module 'mirror_dent_optics' has no attribute 'decomposition_through_order'",
+    "cause": "An older module remains in sys.modules in a running notebook.",
+    "C01_reload_fixed": true,
+    "C04_reload_fixed": true,
+    "loaded_file": "C:\\Users\\fxl04\\Desktop\\Prof. Wong Grp Papers\\Discussion Series\\27 Oct\\mirror_dent_optics.py"
+  },
+  "three_mirrors": {
+    "fresnel_relative_power_error": 0.0,
+    "fresnel_forward_backward_max_error": 2.237726045655905e-15,
+    "fresnel_plane_wave_max_error": 3.887366295532235e-15,
+    "image_coordinate_vs_single_mirror_error": 0.0,
+    "zero_gap_vs_added_opd_max_error": 3.3306690738754696e-16,
+    "zero_gap_power_vs_abs_r6_error": 1.1102230246251565e-16,
+    "aperture_power_upper_bound": 0.7350918906249998,
+    "powers_by_dent_count": {
+      "0": 0.7266855877561832,
+      "1": 0.7266859303311957,
+      "2": 0.7266860159642,
+      "3": 0.7266860159642
+    },
+    "focal_vs_pupil_power_error": 3.3306690738754696e-16,
+    "zero_depth_all_counts_psf_error": 0.0,
+    "zero_selected_reconstruction_error": 0.0,
+    "common_reflection_phase_intensity_error": 3.885780586188048e-16,
+    "three_reflectance_factors_error": 0.0,
+    "n8_exact_global_bow_psf_error": 1.1269390654256578e-14,
+    "finite_gap_changes_ideal_psf": 0.01936141810535119,
+    "grid_refinement": [
+      {
+        "pupil_pixels": 128,
+        "padding": 2,
+        "on_axis": 0.4072355608384844,
+        "throughput": 0.7266860159642
+      },
+      {
+        "pupil_pixels": 128,
+        "padding": 4,
+        "on_axis": 0.4072353674480877,
+        "throughput": 0.726685872214518
+      },
+      {
+        "pupil_pixels": 256,
+        "padding": 4,
+        "on_axis": 0.4081142016077845,
+        "throughput": 0.7271130601691581
+      }
+    ],
+    "padding_on_axis_difference": 1.933903966966355e-07,
+    "grid_on_axis_difference": 0.0008788341596968063,
+    "status": "PASS"
+  },
+  "three_mirror_widgets": {
+    "status": "PASS",
+    "dented_counts_tested": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "shared_depth_nm": 90.0,
+    "gap_mm": 250.0,
+    "rendered": false,
+    "scope": "Python widget state and callbacks; frontend not automated."
+  }
+}

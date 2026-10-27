@@ -1,0 +1,245 @@
+--- before/mirror_dent_optics.py
++++ after/mirror_dent_optics.py
+@@ -217,6 +217,21 @@
+     return pd.DataFrame(rows)
+ 
+ 
++def decomposition_through_order(study,n_max=8):
++    """Complete OPD decomposition, independent of the image reconstruction order.
++    Retain all allowed (n,m), including zero angular coefficients. For a masked
++    pupil, refit at this order rather than truncating a higher-order QR fit.
++    """
++    p=study['p']
++    q=replace(p,n_max=n_max,fit_family='all',
++              quad_radial=max(p.quad_radial,n_max+4),
++              quad_angular=max(p.quad_angular,2*n_max+3))
++    validate_parameters(q)
++    fit=study['fit'] if q==p else fit_wavefront(q)
++    return {'p':q,'fit':fit,'coefficients':coefficient_table(q,fit),
++            'image_reconstruction_n_max':p.n_max}
++
++
+ def cartesian_pupil(p):
+     du=2/p.n_pupil
+     coord=(np.arange(p.n_pupil)-p.n_pupil//2)*du
+@@ -420,18 +435,33 @@
+ 
+ 
+ def plot_coefficients(study):
+-    table=study['coefficients']; p=study['p']
+-    fig,axes=plt.subplots(1,2,figsize=(13,4.1))
+-    nonzero=table.loc[table['coefficient_nm'].abs().sort_values(ascending=False).index].head(15)
+-    axes[0].bar(np.arange(len(nonzero)),nonzero.coefficient_nm,color='#177b91')
+-    axes[0].set_xticks(np.arange(len(nonzero)),[f'({n},{m})' for n,m in zip(nonzero.n,nonzero.m)],rotation=60)
+-    axes[0].set(ylabel='OPD coefficient (nm)',xlabel='(n,m), ranked by absolute coefficient',title='Largest fitted coefficients (includes piston)')
+-    axes[0].axhline(0,color='.3',lw=.7)
++    """Show every coefficient in (n,m) order, with a matching coefficient map."""
++    table=study['coefficients'].sort_values(['n','m']).reset_index(drop=True)
++    p=study['p'];x=np.arange(len(table))
++    fig,axes=plt.subplots(1,2,figsize=(15.5,4.8),
++                          gridspec_kw={'width_ratios':[1.8,1]})
++    colors=np.where(table.m==0,'#087e8b','#929ba3')
++    axes[0].bar(x,table.coefficient_nm,color=colors,width=.8)
++    axes[0].scatter(x,table.coefficient_nm,c=colors,s=9,zorder=3)
++    axes[0].set_xticks(x,[f'({n},{m})' for n,m in zip(table.n,table.m)],
++                      rotation=90,fontsize=7)
++    for n in range(p.n_max+1):
++        indices=np.flatnonzero(table.n.to_numpy()==n)
++        if len(indices) and n%2==0:
++            axes[0].axvspan(indices[0]-.5,indices[-1]+.5,color='.94',zorder=0)
++    axes[0].set(ylabel='Signed OPD coefficient (nm)',xlabel='Zernike component (n,m)',
++                title=f'All {len(table)} components through n={p.n_max}; teal: m=0')
++    axes[0].axhline(0,color='.3',lw=.7);axes[0].grid(axis='y',alpha=.2)
+     maxc=max(float(table.coefficient_nm.abs().max()),1e-12)
+-    im=axes[1].scatter(table.m,table.n,c=table.coefficient_nm,cmap='RdBu_r',vmin=-maxc,vmax=maxc,s=170,edgecolors='.3',lw=.3)
+-    axes[1].set(xlabel='Angular index m',ylabel='Radial degree n',title='All retained modes; only m=0 survives ideal symmetry')
+-    fig.colorbar(im,ax=axes[1],label='OPD coefficient (nm)')
+-    axes[1].set_yticks(range(0,p.n_max+1,2));axes[1].grid(alpha=.2)
++    im=axes[1].scatter(table.m,table.n,c=table.coefficient_nm,cmap='RdBu_r',
++                      vmin=-maxc,vmax=maxc,s=155,edgecolors='.3',lw=.3)
++    axes[1].set(xlabel='Angular order m',ylabel='Radial degree n',
++                title='Coefficient map: all allowed (n,m)')
++    axes[1].set_xticks(range(-p.n_max,p.n_max+1))
++    axes[1].tick_params(axis='x',labelsize=8)
++    axes[1].set_yticks(range(p.n_max+1));axes[1].grid(alpha=.2)
++    fig.colorbar(im,ax=axes[1],label='Signed OPD coefficient (nm)')
++    fig.suptitle('Real Zernike basis: unit mean square on the full disk; piston is included.')
+     return _finish(fig)
+ 
+ 
+@@ -585,7 +615,7 @@
+     refocus=widgets.Checkbox(description='Apply area-RMS refocus',value=False,indent=False)
+     button=widgets.Button(description='Compute selected case',button_style='primary',icon='play')
+     status=widgets.HTML('Change controls, then click Compute.');out=widgets.Output()
+-    state={'study':None,'error':None}
++    state={'study':None,'decomposition_n8':None,'error':None}
+     def compute(_):
+         button.disabled=True;state['error']=None;status.value='Computing...'
+         try:
+@@ -596,10 +626,13 @@
+                 q=replace(q,added_defocus_nm=q.added_defocus_nm+correction)
+                 result=build_study(q)
+             state['study']=result
++            decomposition=decomposition_through_order(result,8)
++            state['decomposition_n8']=decomposition
+             if render:
+                 with out:
+                     clear_output(wait=True);display(result['metrics'].round(6))
+-                    for make in (plot_geometry,plot_psfs,plot_scene):
++                    display(decomposition['coefficients'].round(6))
++                    for make in (plot_geometry,lambda _:plot_coefficients(decomposition),plot_psfs,plot_scene):
+                         fig=make(result);display(fig);plt.close(fig)
+             status.value=(f'Complete: |r|^2={abs(result["reflection"])**2:.4g}; '
+                           f'wavefront residual RMS={result["fit"]["residual_rms_nm"]:.5g} nm; '
+@@ -621,6 +654,8 @@
+     p=study['p']
+     (path/'parameters.json').write_text(json.dumps(asdict(p),indent=2),encoding='utf-8')
+     study['coefficients'].to_csv(path/'zernike_coefficients.csv',index=False)
++    decomposition=decomposition_through_order(study,8)
++    decomposition['coefficients'].to_csv(path/'zernike_decomposition_n8.csv',index=False)
+     study['metrics'].to_csv(path/'image_metrics.csv')
+     if convergence is not None:convergence.to_csv(path/'convergence.csv',index=False)
+     crop,sc=_psf_crop(study)
+@@ -642,6 +677,11 @@
+                 'psf_normalization':'Common unit-reflector in-focus peak; uniform complex reflectance preserves throughput changes',
+                 'ideal_comparison':'Dent removed; identical pupil, amplitude, wavelength and added defocus',
+                 'object_model':'Spatially incoherent, shift-invariant intensity convolution',
++                'decomposition_n8':{'mode_count':len(decomposition['coefficients']),
++                    'units':'OPD nm; coefficient_waves uses the chosen wavelength',
++                    'scope':'All real modes through radial degree 8, independent of image reconstruction n_max',
++                    'fit_method':decomposition['fit']['method'],
++                    'residual_rms_nm':decomposition['fit']['residual_rms_nm']},
+                 'fit_method':study['fit']['method'],
+                 'fit_gram_error':study['fit']['gram_error'],
+                 'fit_condition_design':study['fit']['condition_design'],
+--- before/verify_optics.py
++++ after/verify_optics.py
+@@ -34,6 +34,21 @@
+     cc=dict(zip(broad['modes'],broad['coeff_nm']))
+     report['broad_gaussian_spherical_to_defocus']=float(abs(cc[4,0]/cc[2,0]));assert report['broad_gaussian_spherical_to_defocus']<.01
+     report['default_wavelength_nm']=p.wavelength_nm;assert 380<=p.wavelength_nm<=780
++    decomposition=m.decomposition_through_order(full,8)
++    modes=list(zip(decomposition['coefficients'].n,decomposition['coefficients'].m))
++    report['n8_decomposition_mode_count']=len(modes)
++    assert modes==m.mode_list(8) and len(modes)==45
++    low_order=m.build_study(replace(p,n_max=2))
++    dlow=m.decomposition_through_order(low_order,8)
++    report['n8_independent_of_image_order_error_nm']=float(np.max(abs(
++        dlow['coefficients'].coefficient_nm-decomposition['coefficients'].coefficient_nm)))
++    assert report['n8_independent_of_image_order_error_nm']<1e-10
++    high_masked=m.build_study(replace(p,n_max=12,obscuration_ratio=.25))
++    masked_decomposition=m.decomposition_through_order(high_masked,8)
++    masked_reference=m.fit_wavefront(replace(p,n_max=8,obscuration_ratio=.25))
++    report['n8_masked_refit_error_nm']=float(np.max(abs(
++        masked_decomposition['fit']['coeff_nm']-masked_reference['coeff_nm'])))
++    assert report['n8_masked_refit_error_nm']<1e-10
+     report['status']='PASS';return report
+ 
+ 
+@@ -113,16 +128,20 @@
+ 
+ def verify_widgets(render=False):
+     vis=m.make_dashboard(m.Parameters(n_pupil=128,fft_pad=2),render=render)
+-    values={'wavelength_nm':600.,'global_curvature':1.,'reflection_magnitude':.5,'reflection_phase_deg':80.,'depth_nm':100.}
++    values={'wavelength_nm':600.,'global_curvature':1.,'reflection_magnitude':.5,'reflection_phase_deg':80.,'depth_nm':100.,'n_max':2}
+     for k,v in values.items():vis['controls'][k].value=v
+     vis['button'].click();assert vis['state']['error'] is None,vis['state']['error']
+     assert all(getattr(vis['state']['study']['p'],k)==v for k,v in values.items())
++    decomposition=vis['state']['decomposition_n8']
++    assert len(decomposition['coefficients'])==45 and decomposition['p'].n_max==8
++    c20=decomposition['coefficients'].query('n==2 and m==0').coefficient_nm.iloc[0]
++    assert abs(c20+100/np.sqrt(3))<1e-9
+     uv=c.coating_dashboard(c.CoatingParameters(total_thickness_nm=c.equal_split_design(),n_pupil=128,fft_pad=2),render=render)
+     values={'wavelength_nm':45.,'deviation_percent':-100.,'nA_real':.91,'nB_imag':.003}
+     for k,v in values.items():uv['controls'][k].value=v
+     uv['button'].click();assert uv['state']['error'] is None,uv['state']['error']
+     assert np.all(uv['state']['study']['dA_nm']==0)
+-    return {'visible_controls':'PASS','coating_controls':'PASS','rendered':render,'scope':'Python widget state/callbacks; no frontend browser automation','status':'PASS'}
++    return {'visible_controls':'PASS','visible_decomposition_n8_modes':45,'coating_controls':'PASS','rendered':render,'scope':'Python widget state/callbacks; no frontend browser automation','status':'PASS'}
+ 
+ if __name__=='__main__':
+     result={'visible':verify_visible(),'coating':verify_coating(),'widgets':verify_widgets()}
+--- before/README.txt
++++ after/README.txt
+@@ -5,6 +5,9 @@
+    Condensed visible-light experiment: default 550 nm, editable complex field
+    reflectance, local Gaussian dent to global quadratic curvature, Zernike fit,
+    direct/reconstructed point and object images, integer-order convergence.
++   C04 shows all 45 Zernike components through n=8: a full OPD coefficient
++   table, signed bar chart and coefficient map. The same decomposition updates
++   in the live controls and exports as zernike_decomposition_n8.csv.
+    Edit C02; live controls in C07; baseline export in C08.
+ 
+ 2. euv_bilayer_zernike.ipynb
+--- before/mirror_dent_zernike.ipynb
++++ after/mirror_dent_zernike.ipynb
+@@ -104,13 +104,27 @@
+     FIGURES[name]=make(CASE);display(FIGURES[name]);plt.close(FIGURES[name])
+ 
+ 
+-## M04 — Which Zernike terms appear?
++## M04 — Zernike decomposition through radial order n=8
+ 
+-A centred circular dent has only $m=0$, even-$n$ terms. A localized error needs several radial/spherical orders; the global-bow endpoint has only piston and defocus. Displacing or stretching the local component introduces angular modes. Coefficients below are in **OPD nm**; roundoff-sized angular entries in a symmetric case are not physical aberrations.
++The explicit expansion is
++
++$$\widehat W_8(\rho,\theta)=\sum_{n=0}^{8}\ \sum_{m=-n,-n+2,\ldots,n} c_n^m Z_n^m(\rho,\theta).$$
++
++This includes **45 real components**, displayed in $(n,m)$ order in the full table, signed coefficient bar chart, and coefficient map. Coefficients are in **OPD nm**, with a second column in waves. Piston is listed but produces only a uniform phase. On a clear disk, each non-piston $|c_n^m|$ is that mode's RMS OPD contribution; orthogonal contributions add in quadrature.
++
++A centred circular dent has only $m=0$, even-$n$ terms: piston $(0,0)$, defocus $(2,0)$, and the balanced spherical-family terms $(4,0)$, $(6,0)$, $(8,0)$. The other 40 coefficients are numerical zero in this symmetric example. Displacing or stretching the dent introduces angular components.
++
++This diagnostic always fits **through n=8**, independently of the image reconstruction's adjustable n_max. The interactive controls update it too. The pupil maps below show the largest individual contributions.
+ 
+ 
+-# C04 — Largest coefficients and their pupil-map contributions.
+-display(CASE['coefficients'].sort_values('coefficient_nm',key=abs,ascending=False).head(12))
++# C04 — Complete aberration decomposition: all 45 Zernike components through n=8.
++DECOMPOSITION_N8=optics.decomposition_through_order(CASE,8)
++COEFFICIENTS_N8=DECOMPOSITION_N8['coefficients']
++with pd.option_context('display.max_rows',None):
++    display(COEFFICIENTS_N8.style.format({'coefficient_nm':'{:+.6f}','coefficient_waves':'{:+.8f}'}))
++print(f"n<=8 residual OPD RMS = {DECOMPOSITION_N8['fit']['residual_rms_nm']:.6g} nm")
++FIGURES['03a_zernike_decomposition_n8']=optics.plot_coefficients(DECOMPOSITION_N8)
++display(FIGURES['03a_zernike_decomposition_n8']);plt.close(FIGURES['03a_zernike_decomposition_n8'])
+ FIGURES['03_modes']=optics.plot_modal_contributions(CASE)
+ display(FIGURES['03_modes']);plt.close(FIGURES['03_modes'])
+ 
+@@ -140,7 +154,7 @@
+ 
+ ## M07 — Interactive controls
+ 
+-Move **Local dent → global bow** from 0 to 1, vary the Gaussian width, and inspect the change from several radial orders to defocus. Change the reflection phase while holding $|r|$ fixed: intensity should stay unchanged. The refocus checkbox uses the known simulated wavefront to minimize geometric-area RMS; it is not an optimization of every image metric. All three comparisons still use the same chosen focus.
++Move **Local dent → global bow** from 0 to 1, vary the Gaussian width, and inspect the change from several radial orders to defocus. The complete n≤8 coefficient table and plot update with each computed case. Change the reflection phase while holding $|r|$ fixed: intensity should stay unchanged. The refocus checkbox uses the known simulated wavefront to minimize geometric-area RMS; it is not an optimization of every image metric. All three comparisons still use the same chosen focus.
+ 
+ 
+ # C07 — Live controls: change values, then click Compute selected case.
+@@ -150,7 +164,7 @@
+ 
+ ## M08 — Save or rerun
+ 
+-C08 saves the baseline under results/visible. To save a successful interactive case, call <code>optics.export_study(DASHBOARD['state']['study'], directory=BASE_DIR/'results'/'visible_interactive')</code>. Saved output is viewable without a kernel; live controls require a widget-enabled Jupyter/VS Code frontend and a running Python kernel.
++C08 saves the baseline under results/visible, including zernike_decomposition_n8.csv and the coefficient plot. To save a successful interactive case, call <code>optics.export_study(DASHBOARD['state']['study'], directory=BASE_DIR/'results'/'visible_interactive')</code>. Saved output is viewable without a kernel; live controls require a widget-enabled Jupyter/VS Code frontend and a running Python kernel.
+ 
+ The Zernike convention follows Chapter 7 of the local [textbook](../../aberration%20budget%20paper/aberration_budget_textbook.pdf). The separate [validation notebook](optics_validation.ipynb) contains analytic checks, quadrature/grid refinement and widget callback tests.
+ 
+--- before/optics_validation.ipynb
++++ after/optics_validation.ipynb
+@@ -31,6 +31,8 @@
+ 
+ Check exact Zernike recovery, analytic Gaussian moments, radial integrals, symmetry, piston/tilt behavior, power conservation, masked-pupil QR fitting, convolution centring and independent quadrature/image-grid refinement. Additional checks verify complex-reflectance brightness/global-phase behavior, the pure-defocus global-bow endpoint and integer convergence ticks.
+ 
++The n≤8 decomposition checks cover all 45 allowed modes, independence from image reconstruction order, and refitting on a masked pupil.
++
+ 
+ # V02 — Scientific and numerical checks for the visible-light model.
+ REPORT['visible']=verification.verify_visible()
+@@ -52,6 +54,8 @@
+ 
+ Check that visible wavelength, curvature and complex reflectance controls reach the simulation, and that the two-layer slider reaches the all-B endpoint at −100%. Set RENDER_CALLBACKS=True to also exercise plotting through the callbacks. This checks the Python backend, not browser rendering of the frontend controls.
+ 
++The visible controls must keep all 45 n≤8 coefficients even when the image reconstruction uses a lower order.
++
+ 
+ # V04 — Widget state/callback checks, separated from the demonstration notebooks.
+ RENDER_CALLBACKS=False

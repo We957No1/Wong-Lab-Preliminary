@@ -1,0 +1,37 @@
+{
+  "status": "PASS",
+  "cell": "C09",
+  "new_notebook_cells_for_three_mirrors": 1,
+  "top_level_widget_views": 1,
+  "persistent_image_slots": 3,
+  "output_capture_widgets": 0,
+  "inline_figure_displays_in_C09": 0,
+  "shared_position_controls": [
+    "center_u",
+    "center_v"
+  ],
+  "saved_errors": 0,
+  "render_updates": {
+    "single_mirror": {
+      "status": "PASS",
+      "compute_clicks": 3,
+      "persistent_image_slots": 4,
+      "unchanged_widget_ids": true,
+      "inline_display_events": 0,
+      "distinct_position_updates": 3,
+      "unclosed_figures": 0
+    },
+    "three_mirrors": {
+      "status": "PASS",
+      "compute_clicks": 3,
+      "persistent_image_slots": 3,
+      "unchanged_widget_ids": true,
+      "inline_display_events": 0,
+      "distinct_position_updates": 3,
+      "unclosed_figures": 0
+    },
+    "status": "PASS",
+    "scope": "Kernel display capture, widget payload replacement and callback cleanup; frontend not automated."
+  },
+  "scope": "Notebook widget graph and kernel regression checks; frontend not automated."
+}

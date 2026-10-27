@@ -1,0 +1,14 @@
+{
+  "model": "One three-bounce folded route; scalar unfolded Fresnel propagation; common final ideal focus.",
+  "ideal": "Same three mirrors, gaps, shared angle/reflectance and final focus, with no dents.",
+  "dent_assignment": "First K mirrors; identical departures in registered unfolded pupil coordinates.",
+  "reconstruction": "Each dented mirror uses its own identical n<=8 OPD reconstruction.",
+  "field_propagation": "H=exp[-i*pi*lambda*L*(fx^2+fy^2)]; omit only uniform free-space phase.",
+  "gap_ray_length_mm": 200.76396750866948,
+  "normalization": "Common initial incident-aperture unit-reflector peak; keep all three reflectance factors and clipping.",
+  "object_plot": "Local shift-invariant incoherent approximation; off-axis vignetting not traced.",
+  "approximations": "Small equal incidence, projected circular footprints, registered local dents, planar nominal segments.",
+  "fresnel_reference": "https://ocw.mit.edu/courses/2-71-optics-spring-2009/resources/mit2_71s09_lec18/",
+  "model_sha256": "9577eb71f080524b7c5b14f9ce9e52ffe4191bbf320ac8eacc392caf560eaae7",
+  "common_model_sha256": "eb45758bd55b0dc474fbcc27f6ade45890051ee26ccc20cf45144d6fe9ba040f"
+}

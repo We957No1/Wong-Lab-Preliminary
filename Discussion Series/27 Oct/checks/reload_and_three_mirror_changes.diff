@@ -1,0 +1,136 @@
+--- before/mirror_dent_zernike.ipynb
++++ after/mirror_dent_zernike.ipynb
+@@ -2,7 +2,7 @@
+ 
+ Compare the **same mirror without surface error**, the true imperfect mirror, and the image reconstructed from Zernike coefficients. This version starts at **550 nm visible light**. The uniform complex field reflectance is tunable.
+ 
+-**Run All** once. Edit C02 for a reproducible case; use C07 for sliders and **Compute**. Mathematical/plotting helpers are in [mirror_dent_optics.py](mirror_dent_optics.py). All verification and numerical checks are in [optics_validation.ipynb](optics_validation.ipynb), keeping this notebook focused on the experiment. Results include saved figures, coefficients and data.
++**Run All** once. Edit C02 for a reproducible case; use C07 for the single-mirror sliders or C09 for three facing mirrors. Mathematical/plotting helpers are in [mirror_dent_optics.py](mirror_dent_optics.py). All verification and numerical checks are in [optics_validation.ipynb](optics_validation.ipynb), keeping this notebook focused on the experiment. Results include saved figures, coefficients and data.
+ 
+ 
+ ## M01 — The model and the curved-mirror limit
+@@ -42,7 +42,12 @@
+ from IPython import get_ipython
+ from IPython.display import display,Markdown
+ if get_ipython() is not None:get_ipython().run_line_magic('matplotlib','inline')
++import importlib
+ import mirror_dent_optics as optics
++importlib.invalidate_caches()
++optics=importlib.reload(optics)  # Refresh an older module already loaded by this kernel.
++if Path(optics.__file__).resolve() != (BASE_DIR/'mirror_dent_optics.py').resolve():
++    raise ImportError(f'Expected the local mirror model, got {optics.__file__}')
+ 
+ 
+ ## M02 — Editable parameters and complex reflectance
+@@ -118,6 +123,8 @@
+ 
+ 
+ # C04 — Complete aberration decomposition: all 45 Zernike components through n=8.
++from importlib import reload
++optics=reload(optics)  # Also supports rerunning this cell in an existing kernel.
+ DECOMPOSITION_N8=optics.decomposition_through_order(CASE,8)
+ COEFFICIENTS_N8=DECOMPOSITION_N8['coefficients']
+ with pd.option_context('display.max_rows',None):
+@@ -158,6 +165,8 @@
+ 
+ 
+ # C07 — Live controls: change values, then click Compute selected case.
++from importlib import reload
++optics=reload(optics)
+ DASHBOARD=optics.make_dashboard(P)
+ display(DASHBOARD['ui'])
+ 
+@@ -171,3 +180,21 @@
+ 
+ # C08 — Optional baseline export. Choose another directory to retain another case.
+ if SAVE:optics.export_study(CASE,CONVERGENCE,FIGURES,BASE_DIR/'results'/'visible')
++
++
++# C09 — Three facing mirrors: one interactive cell, shared dent/angle/coating.
++# Planar nominal segments, registered projected pupils, Fresnel gaps, common final ideal focus.
++import importlib
++import mirror_train_optics as train
++train=importlib.reload(train)
++THREE_MIRROR_P=replace(P,incidence_deg=5.0)  # Same angle at all three reflections.
++TRAIN_SETTINGS=train.TrainParameters(dented_mirrors=3,normal_spacing_mm=200.0)
++THREE_MIRROR_DASHBOARD=train.make_train_dashboard(THREE_MIRROR_P,TRAIN_SETTINGS)
++display(THREE_MIRROR_DASHBOARD['ui'])
++THREE_MIRROR_DASHBOARD['button'].click()  # Show the starting plots immediately.
++if THREE_MIRROR_DASHBOARD['state']['error']:
++    raise RuntimeError(THREE_MIRROR_DASHBOARD['state']['error'])
++if SAVE:
++    train.export_train(THREE_MIRROR_DASHBOARD['state']['study'],
++                       THREE_MIRROR_DASHBOARD['state']['figures'],
++                       BASE_DIR/'results'/'visible_three_mirrors')
+--- before/optics_validation.ipynb
++++ after/optics_validation.ipynb
+@@ -63,12 +63,29 @@
+ display(REPORT['widgets'])
+ 
+ 
+-## V05 — Save the verification record
++## V05 — Import reload regression and three facing mirrors
++
++The saved AttributeError and reproduced cached-module fix are recorded in checks/module_reload_verification.json. The new optical checks verify Fresnel power conservation, a plane-wave reference, the zero-gap OPD-addition limit, all three reflectance factors, the no-dent reference, n≤8 reconstruction of a pure quadratic bow, finite-gap effects, and grid/padding refinement. Widget callbacks exercise all four dent counts. These checks do not claim a full vector or off-axis mirror prescription.
++
++
++# V05 — Independent physical and numerical checks for the three-reflection panel.
++import subprocess
++REPORT['module_reload']=json.loads(subprocess.check_output(
++    [sys.executable,'-X','utf8',str(BASE_DIR/'verify_module_reload.py')],
++    cwd=BASE_DIR,text=True,encoding='utf-8'))
++import verify_mirror_train as train_verification
++REPORT['three_mirrors']=train_verification.verify_train()
++REPORT['three_mirror_widgets']=train_verification.verify_train_widgets()
++display(REPORT['three_mirrors'])
++display(REPORT['three_mirror_widgets'])
++
++
++## V06 — Save the verification record
+ 
+ The implementation and assertions are in [verify_optics.py](verify_optics.py) and [verify_mirror_dent.py](verify_mirror_dent.py). Dependency versions, exported data and source hashes accompany the result folders. No tests are run inside the two main demonstrations.
+ 
+ 
+-# V05 — Save a machine-readable verification record.
++# V06 — Save a machine-readable verification record.
+ CHECK_DIR=BASE_DIR/'checks';CHECK_DIR.mkdir(exist_ok=True)
+ (CHECK_DIR/'combined_verification.json').write_text(json.dumps(REPORT,indent=2),encoding='utf-8')
+ print({name:record['status'] for name,record in REPORT.items()})
+--- before/README.txt
++++ after/README.txt
+@@ -9,6 +9,10 @@
+    table, signed bar chart and coefficient map. The same decomposition updates
+    in the live controls and exports as zernike_decomposition_n8.csv.
+    Edit C02; live controls in C07; baseline export in C08.
++   C09 adds three facing mirrors: 0-3 identical dents, two equal adjustable
++   gaps, common incidence/complex reflectance, and plots only. The ideal
++   reference is the same three-mirror train without dents. Fresnel propagation
++   includes the two gaps before a common ideal focusing step.
+ 
+ 2. euv_bilayer_zernike.ipynb
+    New two-finite-layer experiment: default 40 nm, unnamed arbitrary materials
+@@ -82,3 +86,24 @@
+ coupling and material dispersion. It is two finite layers, not a many-period
+ multilayer coating. Independent tests validate the declared calculations rather
+ than a particular manufactured mirror.
++
++MODULE RELOAD FIX
++The saved AttributeError arose from an older cached mirror_dent_optics import.
++C01, C04 and C07 now reload it explicitly; C09 reloads the train helper too.
++Reopen this updated notebook and Run All once in an existing kernel. The
++observed traceback and reproducible reload check are retained under checks/.
++
++THREE-MIRROR OUTPUT
++results/visible_three_mirrors contains the initial three-mirror plots and settings.
++The panel applies the same dent to the first K of the three mirrors. All three
++share the 5-degree incidence and complex reflectance. The folded path is
++unfolded for scalar Fresnel propagation, with registered projected pupils.
++Object images use a local shift-invariant approximation. No tables are shown
++in the three-mirror panel. The numerical implementation and checks are in
++mirror_train_optics.py and verify_mirror_train.py.
++
++The three-mirror addition occupies ONE code cell, C09. Its controls and plots
++share one output area. Nominal segments are planar and followed by one common
++ideal focus; projected circular footprints and registered local dents are
++small-angle assumptions. Fresnel propagation reference:
++https://ocw.mit.edu/courses/2-71-optics-spring-2009/resources/mit2_71s09_lec18/

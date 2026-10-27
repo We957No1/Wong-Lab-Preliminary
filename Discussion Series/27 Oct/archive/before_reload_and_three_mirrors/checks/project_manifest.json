@@ -1,0 +1,156 @@
+{
+  "created_utc": "2026-10-26T21:11:55.882Z",
+  "defaults": {
+    "visible_wavelength_nm": 550,
+    "coating_wavelength_nm": 40,
+    "coating_materials": "Arbitrary unnamed complex indices; no measured-material data or dispersion claim"
+  },
+  "source_textbook": {
+    "file": "../../aberration budget paper/aberration_budget_textbook.pdf",
+    "sha256": "02b7fa66ab53c25c17ca865d17a11d6f6bd65d4103a86b80be2f8502ac47828c"
+  },
+  "notebook_execution": [
+    {
+      "file": "mirror_dent_zernike.ipynb",
+      "code_cells": 8,
+      "errors": [],
+      "seconds": 11.169698238372803,
+      "python": "C:\\Users\\fxl04\\Desktop\\Prof. Wong Grp Papers\\Ray Optics\\.venv\\Scripts\\python.exe",
+      "embedded_png_figures": 7,
+      "executions": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ]
+    },
+    {
+      "file": "euv_bilayer_zernike.ipynb",
+      "code_cells": 7,
+      "errors": [],
+      "seconds": 11.093575954437256,
+      "python": "C:\\Users\\fxl04\\Desktop\\Prof. Wong Grp Papers\\Ray Optics\\.venv\\Scripts\\python.exe",
+      "embedded_png_figures": 5,
+      "executions": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ]
+    },
+    {
+      "file": "optics_validation.ipynb",
+      "code_cells": 5,
+      "errors": [],
+      "seconds": 4.348332643508911,
+      "python": "C:\\Users\\fxl04\\Desktop\\Prof. Wong Grp Papers\\Ray Optics\\.venv\\Scripts\\python.exe",
+      "embedded_png_figures": 0,
+      "executions": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ]
+    }
+  ],
+  "verification_status": {
+    "visible": "PASS",
+    "coating": "PASS",
+    "widgets": "PASS"
+  },
+  "widget_render": {
+    "visible_controls": "PASS",
+    "visible_decomposition_n8_modes": 45,
+    "coating_controls": "PASS",
+    "rendered": true,
+    "scope": "Python widget state/callbacks; no frontend browser automation",
+    "status": "PASS"
+  },
+  "visual_review": {
+    "status": "PASS",
+    "png_figures_reviewed": 12,
+    "scope": "Labels, numerical colour scales, comparable image scales, integer radial-order axes and visible clipping",
+    "new_figure_reviewed": "results/visible/03a_zernike_decomposition_n8.png"
+  },
+  "result_hash_integrity": [
+    {
+      "folder": "visible",
+      "checked_files": 21,
+      "status": "PASS"
+    },
+    {
+      "folder": "euv",
+      "checked_files": 16,
+      "status": "PASS"
+    }
+  ],
+  "files": [
+    {
+      "file": "mirror_dent_zernike.ipynb",
+      "bytes": 1850081,
+      "sha256": "0166097f0695481cb845eddce8bcb224666b3375327f531dca57cbe7e8190210"
+    },
+    {
+      "file": "euv_bilayer_zernike.ipynb",
+      "bytes": 1169161,
+      "sha256": "26277453a1d6f9247449ad71ff25d4897d5a3bc9cfd5ea402fe54a20daac3f80"
+    },
+    {
+      "file": "optics_validation.ipynb",
+      "bytes": 115743,
+      "sha256": "9a111f0d942c12b918cc0cce19bb4e3e7e09843a9c39476190449ff679a369aa"
+    },
+    {
+      "file": "mirror_dent_optics.py",
+      "bytes": 39449,
+      "sha256": "8bfee27889e7ac7835e4a20f9373e71b6a565938cfe46c62bc6c013656e6c8e3"
+    },
+    {
+      "file": "euv_bilayer_optics.py",
+      "bytes": 19663,
+      "sha256": "c1308b12268ddeb7d6ed07ec57fab0f9ab7d644d0b8337981522515b8148e469"
+    },
+    {
+      "file": "verify_mirror_dent.py",
+      "bytes": 7767,
+      "sha256": "a475867c5b2b60bd16d0426c5dbd71a49cc2f5d93d1156171d36340517e93251"
+    },
+    {
+      "file": "verify_optics.py",
+      "bytes": 9307,
+      "sha256": "d3f565efa36ff0108298bd2a871f4e5fcc410134ba53f4b6e432dfa41897140c"
+    },
+    {
+      "file": "execute_notebook.py",
+      "bytes": 2202,
+      "sha256": "540b04ee74fb63aed1b1912ec0002dcab20a657595baed7f43a522c6f6d1fd5e"
+    },
+    {
+      "file": "README.txt",
+      "bytes": 4880,
+      "sha256": "b23436789e53149c4586a5f8711d773f45ad56bc0b6585f38d37e10c8bb70ca5"
+    },
+    {
+      "file": "requirements.txt",
+      "bytes": 129,
+      "sha256": "e193d665ac41cb65d515669af9233965c2f8f9cb9c6e4289d6e87e9454b90cff"
+    }
+  ],
+  "updated_utc": "2026-10-27T06:46:57.906Z",
+  "n8_decomposition": {
+    "status": "PASS",
+    "displayed_table_rows": 45,
+    "exported_table_rows": 45,
+    "coefficient_units": "OPD nm; coefficient_waves in waves",
+    "independent_of_image_reconstruction_order": true,
+    "plot": "results/visible/03a_zernike_decomposition_n8.png"
+  }
+}

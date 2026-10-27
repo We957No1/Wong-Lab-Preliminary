@@ -1,0 +1,224 @@
+{
+  "created_utc": "2026-10-26T21:11:55.882Z",
+  "defaults": {
+    "visible_wavelength_nm": 550,
+    "coating_wavelength_nm": 40,
+    "coating_materials": "Arbitrary unnamed complex indices; no measured-material data or dispersion claim"
+  },
+  "source_textbook": {
+    "file": "../../aberration budget paper/aberration_budget_textbook.pdf",
+    "sha256": "02b7fa66ab53c25c17ca865d17a11d6f6bd65d4103a86b80be2f8502ac47828c"
+  },
+  "notebook_execution": [
+    {
+      "file": "mirror_dent_zernike.ipynb",
+      "code_cells": 9,
+      "errors": [],
+      "seconds": 15.831353425979614,
+      "python": "C:\\Users\\fxl04\\Desktop\\Prof. Wong Grp Papers\\Ray Optics\\.venv\\Scripts\\python.exe",
+      "embedded_png_figures": 7,
+      "executions": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ]
+    },
+    {
+      "file": "euv_bilayer_zernike.ipynb",
+      "code_cells": 7,
+      "errors": [],
+      "seconds": 11.093575954437256,
+      "python": "C:\\Users\\fxl04\\Desktop\\Prof. Wong Grp Papers\\Ray Optics\\.venv\\Scripts\\python.exe",
+      "embedded_png_figures": 5,
+      "executions": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ]
+    },
+    {
+      "file": "optics_validation.ipynb",
+      "code_cells": 6,
+      "errors": [],
+      "seconds": 7.38912296295166,
+      "python": "C:\\Users\\fxl04\\Desktop\\Prof. Wong Grp Papers\\Ray Optics\\.venv\\Scripts\\python.exe",
+      "embedded_png_figures": 0,
+      "executions": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ]
+    }
+  ],
+  "verification_status": {
+    "visible": "PASS",
+    "coating": "PASS",
+    "widgets": "PASS",
+    "module_reload": "PASS",
+    "three_mirrors": "PASS",
+    "three_mirror_widgets": "PASS"
+  },
+  "widget_render": {
+    "visible_controls": "PASS",
+    "visible_decomposition_n8_modes": 45,
+    "coating_controls": "PASS",
+    "rendered": true,
+    "scope": "Python widget state/callbacks; no frontend browser automation",
+    "status": "PASS"
+  },
+  "visual_review": {
+    "status": "PASS",
+    "png_figures_reviewed": 15,
+    "scope": "Labels, numerical colour scales, comparable image scales, integer radial-order axes and visible clipping",
+    "new_figure_reviewed": "results/visible/03a_zernike_decomposition_n8.png",
+    "new_figures_reviewed": [
+      "results/visible_three_mirrors/01_facing_mirrors_and_counts.png",
+      "results/visible_three_mirrors/02_point_images.png",
+      "results/visible_three_mirrors/03_object_images.png"
+    ]
+  },
+  "result_hash_integrity": [
+    {
+      "folder": "visible",
+      "checked_files": 21,
+      "status": "PASS"
+    },
+    {
+      "folder": "euv",
+      "checked_files": 16,
+      "status": "PASS"
+    },
+    {
+      "folder": "visible_three_mirrors",
+      "checked_files": 8,
+      "status": "PASS"
+    }
+  ],
+  "files": [
+    {
+      "file": "mirror_dent_zernike.ipynb",
+      "bytes": 2751805,
+      "sha256": "f7da13e2db1769390c63a80aab573e8415aef6bc783d179d8e4a741f52168053"
+    },
+    {
+      "file": "euv_bilayer_zernike.ipynb",
+      "bytes": 1169161,
+      "sha256": "26277453a1d6f9247449ad71ff25d4897d5a3bc9cfd5ea402fe54a20daac3f80"
+    },
+    {
+      "file": "optics_validation.ipynb",
+      "bytes": 154707,
+      "sha256": "22420681f7e054436f62e4a5e6639efea7c975870369b43b6f54e3217f27c771"
+    },
+    {
+      "file": "mirror_dent_optics.py",
+      "bytes": 39449,
+      "sha256": "8bfee27889e7ac7835e4a20f9373e71b6a565938cfe46c62bc6c013656e6c8e3"
+    },
+    {
+      "file": "euv_bilayer_optics.py",
+      "bytes": 19663,
+      "sha256": "c1308b12268ddeb7d6ed07ec57fab0f9ab7d644d0b8337981522515b8148e469"
+    },
+    {
+      "file": "verify_mirror_dent.py",
+      "bytes": 7767,
+      "sha256": "a475867c5b2b60bd16d0426c5dbd71a49cc2f5d93d1156171d36340517e93251"
+    },
+    {
+      "file": "verify_optics.py",
+      "bytes": 9307,
+      "sha256": "d3f565efa36ff0108298bd2a871f4e5fcc410134ba53f4b6e432dfa41897140c"
+    },
+    {
+      "file": "execute_notebook.py",
+      "bytes": 2202,
+      "sha256": "540b04ee74fb63aed1b1912ec0002dcab20a657595baed7f43a522c6f6d1fd5e"
+    },
+    {
+      "file": "README.txt",
+      "bytes": 6396,
+      "sha256": "80ff2f6cfb47fa3bfee0d8460460e395713052ff5fd74a782d2de55b4c615a53"
+    },
+    {
+      "file": "requirements.txt",
+      "bytes": 129,
+      "sha256": "e193d665ac41cb65d515669af9233965c2f8f9cb9c6e4289d6e87e9454b90cff"
+    },
+    {
+      "file": "mirror_train_optics.py",
+      "bytes": 13925,
+      "sha256": "455bec99a0b62885de65abd98a50445151e45795512fdd3ab8828028f9a1cb28"
+    },
+    {
+      "file": "verify_mirror_train.py",
+      "bytes": 5947,
+      "sha256": "0f411c6053eb995e851dcdcea1db5080bb563e16723ed5251402a4c3e3615af1"
+    },
+    {
+      "file": "verify_module_reload.py",
+      "bytes": 1826,
+      "sha256": "28e2e77f715881805a6d917a43e0f83c4bb93b4ba2ddf1a8cd62a8d1d68b455a"
+    },
+    {
+      "file": "archive/before_n8_decomposition/mirror_dent_optics.py",
+      "bytes": 37254,
+      "sha256": "3af4543bb738bb31eda7fe71da3a3bc3d48f38e2f6f3f0d7bb0d7be66eaeffab"
+    }
+  ],
+  "updated_utc": "2026-10-27T07:07:20.993Z",
+  "n8_decomposition": {
+    "status": "PASS",
+    "displayed_table_rows": 45,
+    "exported_table_rows": 45,
+    "coefficient_units": "OPD nm; coefficient_waves in waves",
+    "independent_of_image_reconstruction_order": true,
+    "plot": "results/visible/03a_zernike_decomposition_n8.png"
+  },
+  "module_reload": {
+    "status": "PASS",
+    "reproduced": "module 'mirror_dent_optics' has no attribute 'decomposition_through_order'",
+    "cause": "An older module remains in sys.modules in a running notebook.",
+    "C01_reload_fixed": true,
+    "C04_reload_fixed": true,
+    "loaded_file": "C:\\Users\\fxl04\\Desktop\\Prof. Wong Grp Papers\\Discussion Series\\27 Oct\\mirror_dent_optics.py"
+  },
+  "three_mirror_panel": {
+    "status": "PASS",
+    "new_notebook_cells": 1,
+    "cell": "C09",
+    "widget_output_figures": 3,
+    "tables_in_three_mirror_output": 0,
+    "saved_errors": 0,
+    "dent_count_range": [
+      0,
+      3
+    ]
+  },
+  "three_mirror_widget_render": {
+    "status": "PASS",
+    "dented_counts_tested": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "shared_depth_nm": 90,
+    "gap_mm": 250,
+    "rendered": true,
+    "scope": "Python widget state and callbacks; frontend not automated."
+  }
+}

@@ -1,0 +1,66 @@
+[
+  {
+    "file": "01_design_response.pdf",
+    "sha256": "a1634de4be0fed00b41da202865c92ce47688c986ebfc5a3958d231b606240a8"
+  },
+  {
+    "file": "01_design_response.png",
+    "sha256": "4c48a3a0829fab6f58866d725f3d1d613453e3d9ee74abc0d340d4c5901437f2"
+  },
+  {
+    "file": "02_thickness_and_pupil.pdf",
+    "sha256": "f38c70d92fe3fe16a4c7d58612612b821549795e420266b748e91bfafded8743"
+  },
+  {
+    "file": "02_thickness_and_pupil.png",
+    "sha256": "21bdbede45033934036991a8e8a215f840c65e3be051fe58197c6ea5f84a24c7"
+  },
+  {
+    "file": "03_point_images.pdf",
+    "sha256": "73283e6d8fe1cf0e67ea4350d516d8efdaf08a37ea927843bb3fcdbb5a90943f"
+  },
+  {
+    "file": "03_point_images.png",
+    "sha256": "66045ec18ce9317188619ab0574c3182f69862aa70e98e306b82da3d363c28c4"
+  },
+  {
+    "file": "04_object_images.pdf",
+    "sha256": "d809a2853b7917be6bb4a7228e748881ed806661c59129c1d7d8394038a44579"
+  },
+  {
+    "file": "04_object_images.png",
+    "sha256": "193af583f63f0ee66544988c6d24ea443dbb9fa77d7fb0b47cf95bcd9edafa57"
+  },
+  {
+    "file": "05_order_convergence.pdf",
+    "sha256": "ab41fa383c4ef61248e590f3f04a3c64f9c0c270cc88e87f0f1a3d32f3f8358e"
+  },
+  {
+    "file": "05_order_convergence.png",
+    "sha256": "1f25afbece2a891e44d54c3de9db56d93a58cb9500f8f6261a19685ca3d60ddd"
+  },
+  {
+    "file": "coating_arrays.npz",
+    "sha256": "4a329db2c32e2ed557b8c479e4e8eeeb9bc258c10661507ed16115a08b4ef032"
+  },
+  {
+    "file": "complex_zernike_coefficients.csv",
+    "sha256": "53cacf77ceb4dcc7b54dc04499eebc75b67df08fe2bc8755b6d534df463788dd"
+  },
+  {
+    "file": "image_metrics.csv",
+    "sha256": "3e3e28d585840c1b77ce433379b9a7854452832b155be14db7edb5cb8e3dca03"
+  },
+  {
+    "file": "order_convergence.csv",
+    "sha256": "15c2569886411a84e4534bb93bc5897c5aea2874a45a583a2af0e3fb7ba97064"
+  },
+  {
+    "file": "parameters.json",
+    "sha256": "7c0015073fa0ef161e2ca97f6861ebea8c15d6cb97fe3309091f09827aa5293e"
+  },
+  {
+    "file": "provenance.json",
+    "sha256": "019f83c81a8d6ef6cac79a4c7e22778baa84ee297061f9f51ae8060e0ef12a9c"
+  }
+]

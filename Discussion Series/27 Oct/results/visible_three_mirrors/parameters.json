@@ -1,0 +1,40 @@
+{
+  "mirror": {
+    "wavelength_nm": 550.0,
+    "mirror_diameter_mm": 20.0,
+    "focal_length_mm": 200.0,
+    "incidence_deg": 5.0,
+    "depth_nm": 120.0,
+    "reflection_magnitude": 0.95,
+    "reflection_phase_deg": 135.0,
+    "global_curvature": 0.0,
+    "area_fraction": 0.1,
+    "center_u": 0.0,
+    "center_v": 0.0,
+    "aspect_ratio": 1.0,
+    "orientation_deg": 0.0,
+    "obscuration_ratio": 0.0,
+    "edge_amplitude": 1.0,
+    "n_max": 8,
+    "fit_family": "all",
+    "noise_rms_nm": 0.0,
+    "seed": 27,
+    "added_defocus_nm": 0.0,
+    "n_pupil": 256,
+    "fft_pad": 4,
+    "quad_radial": 64,
+    "quad_angular": 128,
+    "psf_half_width_s": 5.0,
+    "psf_log_floor": 1e-05,
+    "scene_half_width_s": 7.0,
+    "scene_kind": "mixed",
+    "point_flux_s2": 0.2,
+    "point_separation_s": 1.0,
+    "bar_width_s": 0.5,
+    "bar_gap_s": 0.5
+  },
+  "train": {
+    "dented_mirrors": 3,
+    "normal_spacing_mm": 200.0
+  }
+}

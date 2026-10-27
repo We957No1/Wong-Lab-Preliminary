@@ -1,0 +1,5 @@
+{
+  "saved_output_groups": 3,
+  "identical_saved_figure_copies": false,
+  "observation": "Saved widget data contains three distinct figures. Live frontend triplication was reported by the user; replace display/capture with persistent image slots and dispose previous panels on rerun."
+}

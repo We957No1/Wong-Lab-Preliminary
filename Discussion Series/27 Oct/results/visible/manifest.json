@@ -1,0 +1,107 @@
+[
+  {
+    "path": "01_surface.pdf",
+    "bytes": 121413,
+    "sha256": "70e496ea7fb0376a32f22b2201fd710db48bea3a508f4cd749867215fede9eba"
+  },
+  {
+    "path": "01_surface.png",
+    "bytes": 342533,
+    "sha256": "c575a49f8368fa53b6c36a2e66841e426812b6d904472b69862e39b65e130ff6"
+  },
+  {
+    "path": "02_wavefront.pdf",
+    "bytes": 110551,
+    "sha256": "a16ad164333bd10bb8d23e55edb9141fe4cd51dfd20dea89999d6541740ad86f"
+  },
+  {
+    "path": "02_wavefront.png",
+    "bytes": 286779,
+    "sha256": "5f7fa6a2d4f8f5aeaf139136bbd944465847dc416e651637cac63059280a0a57"
+  },
+  {
+    "path": "03_modes.pdf",
+    "bytes": 221175,
+    "sha256": "4fe49cae54176f0ca1cb538a0f6364b15a925288f40618275e622249a749a751"
+  },
+  {
+    "path": "03_modes.png",
+    "bytes": 600723,
+    "sha256": "d0181f62e9dd5efbf6a71f322d5c67ab97ae185fe0f0dd46779886687c6c88f3"
+  },
+  {
+    "path": "03a_zernike_decomposition_n8.pdf",
+    "bytes": 24541,
+    "sha256": "ffaac9ce11d06275072e7397e7759abfc6f1896355a64d2a2d02f656ca037026"
+  },
+  {
+    "path": "03a_zernike_decomposition_n8.png",
+    "bytes": 164904,
+    "sha256": "ae6c6592698dc4ba4f75089acc2c029aa90848d22629be2e688e587b6979bb04"
+  },
+  {
+    "path": "04_point_images.pdf",
+    "bytes": 72626,
+    "sha256": "7ba94e373427fd9779e9de0cb7129f701ab1f36d2b4ad3aaad9df8aa0c5f8fe4"
+  },
+  {
+    "path": "04_point_images.png",
+    "bytes": 353638,
+    "sha256": "56ba58411e2f70804658eac0da07ac629393b62754eb30997c3d1d6d052e0d1f"
+  },
+  {
+    "path": "05_object_images.pdf",
+    "bytes": 55180,
+    "sha256": "c42887a7ed6d2d044ca4a6aa70aa03570773649f970fa940b9f6177effcdeea0"
+  },
+  {
+    "path": "05_object_images.png",
+    "bytes": 253569,
+    "sha256": "bef387af9d7b9c96fbe8f25d9376c461d857585520859e2490965bbe2c2bebc5"
+  },
+  {
+    "path": "06_order_convergence.pdf",
+    "bytes": 24373,
+    "sha256": "cae128429d3b3f7ef0647247eb68a42072a1fa9ef9d07b6b17af6d36e7ebfc6f"
+  },
+  {
+    "path": "06_order_convergence.png",
+    "bytes": 208277,
+    "sha256": "c9a5813b11744d97c1809dac75754ace16eb7eb0a016520e7f25b83b42a9eee0"
+  },
+  {
+    "path": "convergence.csv",
+    "bytes": 1592,
+    "sha256": "4613a3405d85816b472dced9dba4a0b3450ffa68d11f2b522f6d8abb2ff29425"
+  },
+  {
+    "path": "image_metrics.csv",
+    "bytes": 390,
+    "sha256": "6420b4b46cf6917367277808cd62fb12f7aa6333439102205270088aef73770e"
+  },
+  {
+    "path": "parameters.json",
+    "bytes": 801,
+    "sha256": "3f3bd94081089267429aa0ba7f9d398ff56537fdc327b11277cdb98c7ddec85c"
+  },
+  {
+    "path": "provenance.json",
+    "bytes": 1587,
+    "sha256": "52c18583f110f8ef51b44d4c5c996480ebcae24ab58475b4432cd02edde6d680"
+  },
+  {
+    "path": "reconstruction_arrays.npz",
+    "bytes": 880543,
+    "sha256": "c247c43694b33ef342a5a8d9f9fba4937a5a0f9fa81af4928c4bfb77a4137a7f"
+  },
+  {
+    "path": "zernike_coefficients.csv",
+    "bytes": 3155,
+    "sha256": "869ee980d7a7670d8895026a77df3ea99245c58d201bc65a78dc76903e432e0a"
+  },
+  {
+    "path": "zernike_decomposition_n8.csv",
+    "bytes": 3155,
+    "sha256": "869ee980d7a7670d8895026a77df3ea99245c58d201bc65a78dc76903e432e0a"
+  }
+]
